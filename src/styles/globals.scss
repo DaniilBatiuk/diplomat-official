@@ -1,0 +1,50 @@
+@import './reset.scss';
+@import './variables.scss';
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-weight: 300;
+  font-size: 16px;
+  font-family: Inter;
+  background-color: $background1;
+  // color: rgb(255, 255, 255);
+}
+
+body {
+  overflow-x: hidden;
+
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: block;
+    width: 5px;
+    overflow: auto;
+    height: 5px;
+    // background-color: rgb(29, 101, 110);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    // background: rgb(2, 197, 223);
+    border-radius: 30px;
+  }
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 1 auto;
+}
+
+[class*='__container'] {
+  max-width: 1440px;
+  margin: 0px auto;
+  padding: 0px 15px;
+  overflow-wrap: break-word;
+}
