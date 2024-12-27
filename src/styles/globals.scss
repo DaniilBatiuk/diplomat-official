@@ -1,5 +1,5 @@
-@import './reset.scss';
-@import './variables.scss';
+@use '@/styles/variables' as var;
+@use '@/styles/reset' as reset;
 
 html {
   scroll-behavior: smooth;
@@ -7,10 +7,9 @@ html {
 
 body {
   font-weight: 300;
-  font-size: 16px;
-  font-family: Inter;
-  background-color: $background1;
-  // color: rgb(255, 255, 255);
+  @include var.font-family('Inter');
+  background-color: var.$background-300;
+  color: var.$black-100;
 }
 
 body {
@@ -18,18 +17,18 @@ body {
 
   overflow-y: auto;
 
-  &::-webkit-scrollbar {
-    display: block;
-    width: 5px;
-    overflow: auto;
-    height: 5px;
-    // background-color: rgb(29, 101, 110);
-  }
+  // &::-webkit-scrollbar {
+  //   display: block;
+  //   width: 5px;
+  //   overflow: auto;
+  //   height: 5px;
+  //   background-color: rgb(29, 101, 110);
+  // }
 
-  &::-webkit-scrollbar-thumb {
-    // background: rgb(2, 197, 223);
-    border-radius: 30px;
-  }
+  // &::-webkit-scrollbar-thumb {
+  //   background: rgb(2, 197, 223);
+  //   border-radius: 30px;
+  // }
 }
 
 .wrapper {
@@ -47,4 +46,8 @@ main {
   margin: 0px auto;
   padding: 0px 15px;
   overflow-wrap: break-word;
+}
+
+.no-scroll {
+  overflow: hidden;
 }

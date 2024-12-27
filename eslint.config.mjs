@@ -32,8 +32,11 @@ const eslintConfig = [
       // '@typescript-eslint/no-var-requires': 'off', // Отключает запрет на использование `require()` вместо `import` в TypeScript
       // '@typescript-eslint/no-throw-literal': 'off', // Отключает запрет на выброс литералов в исключениях (например, `throw "error"`)
       'no-restricted-syntax': 'off', // Отключает запрет на использование определённых синтаксических конструкций
+      '@typescript-eslint/no-explicit-any': 'warn', // Отключает ошибку на any
+      '@typescript-eslint/no-empty-object-type': 'off', // Отключает предупреждение о пустом типе объекта
       // 'promise/always-return': 'off', // Отключает правило, требующее всегда возвращать значение в цепочках промисов
       'jsx-a11y/label-has-associated-control': 'warn', // Показывает предупреждение, если у элемента <label> нет связанного элемента управления
+      'react/no-unescaped-entities': 'off', // Показывает предупреждение, если у компонента нет связанного элемента управления
     },
   },
 ]

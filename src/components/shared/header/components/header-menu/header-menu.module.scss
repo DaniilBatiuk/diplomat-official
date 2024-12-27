@@ -1,0 +1,59 @@
+@use '@/styles/variables' as var;
+
+.menu_open {
+  background-color: var.$background-200;
+  position: fixed;
+  width: 330px;
+  height: 100vh;
+  left: -330px;
+  top: 0;
+  padding: 17px 15px;
+  transition: left 0.2s ease-in-out;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  & svg {
+    cursor: pointer;
+  }
+
+  &.active {
+    left: 0;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  @extend %inter-400-16;
+
+  & li {
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var.$black-300;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &_item {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  &_red {
+    color: var.$red-100;
+    text-decoration-color: var.$red-100;
+  }
+}
+
+.menu_categories {
+  z-index: 11;
+}
