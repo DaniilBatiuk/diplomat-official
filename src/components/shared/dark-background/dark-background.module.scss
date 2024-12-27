@@ -1,0 +1,19 @@
+@use '@/styles/variables' as var;
+
+.dark {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  background-color: rgb(204, 204, 204, 0);
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+
+  &.active {
+    background-color: var.$black-250;
+    z-index: 9;
+  }
+  &.low {
+    background-color: var.$black-250;
+    z-index: 1;
+  }
+}
