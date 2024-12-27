@@ -1,1 +1,138 @@
-$background1: rgba(245, 236, 226, 100);
+@use 'sass:math';
+
+//// Functions
+
+// To rem
+@function rem($px) {
+  @return math.div($px, 16) + rem;
+}
+
+// To em
+@function em($px) {
+  @return math.div($px, 16) + em;
+}
+
+//// Mixins
+
+// Adaptive value using rem from 390 to 1440
+@mixin adaptive-value-rem($property, $min-size, $max-size) {
+  $min-size-rem: rem($min-size);
+  $max-size-rem: rem($max-size);
+
+  // Calculate the slope (unitless)
+  $slope: math.div($max-size - $min-size, $max-width - $min-width);
+
+  // Calculate the y-intercept (unit: px)
+  $y-intercept: $min-size - $slope * $min-width;
+
+  #{$property}: $max-size-rem;
+  @media (max-width: #{$max-width}px) {
+    #{$property}: clamp(
+      #{$min-size-rem},
+      calc(#{$slope * 100vw} + #{math.div($y-intercept, 16)}rem),
+      #{$max-size-rem}
+    );
+  }
+}
+
+// Adaptive value using px from 390 to 1440
+@mixin adaptive-value-px($property, $min-size, $max-size) {
+  #{$property}: #{$max-size}px;
+  @media (max-width: #{$max-width}px) {
+    #{$property}: calc(
+      #{$min-size}px + #{($max-size - $min-size)} *
+        ((100vw - #{$min-width}px) / (#{($max-width - $min-width)}))
+    );
+  }
+}
+
+// Text ellipsis
+@mixin text-ellipsis($lines: 1) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
+// Font family save usage
+@mixin font-family($primary-font) {
+  font-family: #{$primary-font}#{$base-font-stack};
+}
+
+//// Variables
+
+$max-width: 1440;
+$min-width: 390;
+
+$base-font-stack: ', Arial, sans-serif';
+
+$background-300: #f5ece2;
+$background-200: #f9f4ee;
+$background-100: #fbf8f5;
+
+$black-100: #231e16;
+$black-200: #b5b5b5;
+$black-250: rgba(0, 0, 0, 0.25);
+$black-300: #dbd7d4;
+
+$white-100: #ffffff;
+
+$primary-100: #f8ecde;
+$primary-600: #f1a84d;
+$primary-700: #fa9f2f;
+
+$red-100: #d92c1e;
+
+//// Templates
+
+// Center block
+%center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%button-active {
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+// Text templates
+
+%lora-700-22 {
+  @include font-family('Lora');
+  font-weight: 700;
+  font-size: 22px;
+  //@include adaptive-value-rem(font-size, 20, 22);
+}
+
+%inter-500-16 {
+  @include font-family('Inter');
+  font-weight: 500;
+  font-size: 16px;
+}
+%inter-400-20 {
+  @include font-family('Inter');
+  font-weight: 400;
+  font-size: 20px;
+}
+
+%inter-400-18 {
+  @include font-family('Inter');
+  font-weight: 400;
+  font-size: 18px;
+}
+
+%inter-400-16 {
+  @include font-family('Inter');
+  font-weight: 400;
+  font-size: 16px;
+}
+
+%inter-300-16 {
+  @include font-family('Inter');
+  font-weight: 300;
+  font-size: 16px;
+}
