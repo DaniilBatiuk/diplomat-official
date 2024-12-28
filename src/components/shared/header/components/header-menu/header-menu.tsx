@@ -8,7 +8,7 @@ import { ICONS } from '@/utils/config/icons'
 import { MenuCategories } from './components/menu-categories/menu-categories'
 import styles from './header-menu.module.scss'
 
-type HeaderMenuProp = {
+interface HeaderMenuProp {
   menuActive: boolean
   menuOpen: () => void
 }

@@ -5,7 +5,7 @@ import { ICONS } from '@/utils/config/icons'
 
 import styles from '../../header-menu.module.scss'
 
-type HeaderMenuProp = {
+interface HeaderMenuProp {
   setActiveMenuCategories: Dispatch<SetStateAction<boolean>>
   activeMenuCategories: boolean
 }

@@ -3,6 +3,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -13,20 +14,20 @@ body {
 }
 
 body {
-  overflow-x: hidden;
+  // overflow-x: hidden;
 
-  overflow-y: auto;
+  // overflow-y: auto;
 
   // &::-webkit-scrollbar {
   //   display: block;
   //   width: 5px;
   //   overflow: auto;
   //   height: 5px;
-  //   background-color: rgb(29, 101, 110);
+  //   background: rgb(245, 214, 180);
   // }
 
   // &::-webkit-scrollbar-thumb {
-  //   background: rgb(2, 197, 223);
+  //   background: var.$primary-700;
   //   border-radius: 30px;
   // }
 }
@@ -50,4 +51,7 @@ main {
 
 .no-scroll {
   overflow: hidden;
+  position: fixed;
+  width: 100%;
+  overflow-y: scroll;
 }

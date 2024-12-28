@@ -14,7 +14,8 @@
 
   transition:
     opacity 0.2s ease-in-out,
-    top 0.2s ease-in-out;
+    top 0.2s ease-in-out,
+    z-index 0.2s ease-in-out;
 
   &.active {
     top: 74px;
@@ -23,12 +24,12 @@
   }
 
   &_form {
-    @extend %inter-400-20;
+    @extend %inter-400-18;
     background-color: var.$background-100;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
+    height: 48px;
     padding-inline: 15px;
     border-radius: 5px;
     cursor: text;
@@ -43,6 +44,7 @@
 
   & input {
     width: calc(100% - 40px);
+    background-color: inherit;
   }
 }
 

@@ -8,7 +8,7 @@ import { HeaderList } from '../header-list/header-list'
 import styles from './search-mobile.module.scss'
 import { DarkBackground } from '@/components'
 
-type SearchMobileProp = {
+interface SearchMobileProp {
   searchValue: string
   setSearchValue: Dispatch<SetStateAction<string>>
   searchMobileActive: boolean

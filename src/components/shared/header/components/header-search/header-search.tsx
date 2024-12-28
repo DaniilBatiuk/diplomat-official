@@ -1,5 +1,6 @@
 'use client'
 
+import clsx from 'clsx'
 import { Dispatch, SetStateAction } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
@@ -7,20 +8,21 @@ import { ICONS } from '@/utils/config/icons'
 import { HeaderList } from '../header-list/header-list'
 
 import styles from './header-search.module.scss'
-import { UseRerenderReturns } from '@/utils/hooks'
 
-type SearchMobileProp = {
+interface SearchMobileProp {
   searchValue: string
   setSearchValue: Dispatch<SetStateAction<string>>
   inputRef: React.RefObject<HTMLInputElement | null>
-  rerender: UseRerenderReturns
+  setSearchActive: Dispatch<SetStateAction<boolean>>
+  searchActive: boolean
 }
 
 export const HeaderSearch: React.FC<SearchMobileProp> = ({
   inputRef,
   searchValue,
   setSearchValue,
-  rerender,
+  setSearchActive,
+  searchActive,
 }: SearchMobileProp) => {
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -40,20 +42,16 @@ export const HeaderSearch: React.FC<SearchMobileProp> = ({
             placeholder='Я шукаю...'
             value={searchValue}
             onChange={e => setSearchValue(e.target.value)}
-            onFocus={() => rerender.update()}
+            onFocus={() => setSearchActive(true)}
           ></input>
+          {ICONS.close({
+            className: clsx(styles.close_icon, { [styles.active]: searchValue.length }),
+            onClick: () => setSearchValue(''),
+          })}
         </div>
+
         <button type='submit'>Знайти</button>
-        <HeaderList
-          isAbsolute={true}
-          isActive={
-            inputRef.current &&
-            inputRef.current === document.activeElement &&
-            searchValue.length > 0
-              ? true
-              : false
-          }
-        />
+        <HeaderList isAbsolute={true} isActive={searchActive && searchValue.length > 0} />
       </form>
     </>
   )

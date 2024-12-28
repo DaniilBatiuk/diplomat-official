@@ -10,7 +10,7 @@ const array: string[] = [
   'подарунковий набір',
 ]
 
-type SearchMobileProp = {
+interface SearchMobileProp {
   isAbsolute?: boolean
   isActive?: boolean
 }
