@@ -1,0 +1,104 @@
+@use '@/styles/variables' as var;
+
+.catalog {
+  position: absolute;
+  width: 100%;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  opacity: 0;
+  z-index: -1;
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
+
+  transition:
+    opacity 0.2s ease-in-out,
+    top 0.2s ease-in-out,
+    z-index 0.2s ease-out;
+  &.active {
+    top: 64px;
+    opacity: 1;
+    z-index: 2;
+  }
+}
+
+.body {
+  max-width: calc(1440px - 30px);
+
+  margin: 0 auto;
+  background-color: var.$background-200;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 500px;
+  display: flex;
+
+  &__column {
+    padding-block: 15px;
+    padding-inline: 20px;
+    width: 20%;
+    &:nth-child(even) {
+      background-color: var.$background-300;
+    }
+
+    &_categories {
+      padding-left: 0px;
+      padding-right: 10px;
+    }
+
+    &_list_categories {
+      &_item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 39px;
+        padding-inline: 15px;
+        @extend %inter-300-16;
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+        cursor: pointer;
+
+        transition: background-color 0.05s ease-in-out;
+        &:hover {
+          background-color: var.$primary-150;
+        }
+      }
+    }
+
+    &_list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 24px;
+      &_item {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        &_title {
+          @extend %inter-700-18;
+          &:hover {
+            color: var.$primary-700;
+            text-decoration: underline;
+            padding-left: 7px;
+          }
+        }
+
+        &_subcategories {
+          @extend %inter-400-14;
+          display: flex;
+          flex-direction: column;
+          row-gap: 10px;
+          &_sub {
+            text-transform: lowercase;
+
+            &:hover {
+              color: var.$primary-700;
+              text-decoration: underline;
+              padding-left: 7px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

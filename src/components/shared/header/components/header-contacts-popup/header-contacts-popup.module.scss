@@ -1,0 +1,72 @@
+@use '@/styles/variables' as var;
+
+.header_contacts_icon {
+  position: relative;
+
+  @media (max-width: 430px) {
+    display: none !important;
+  }
+
+  &.active {
+    background-color: var.$primary-100;
+    &:active {
+      transform: scale(1);
+    }
+  }
+}
+
+.contacts {
+  position: absolute;
+  background-color: var.$background-200;
+  top: 50px;
+  left: 50%;
+  z-index: 3;
+  transform: translate(-50%, 0);
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  width: 254px;
+  cursor: default;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+
+  &_info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+    &_title {
+      @extend %inter-400-16;
+
+      & > span {
+        color: var.$primary-700;
+        cursor: pointer;
+      }
+    }
+    &_subtitle {
+      text-align: center;
+      @extend %inter-400-14;
+      color: var.$black-200;
+    }
+  }
+}
+
+.invisible {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}

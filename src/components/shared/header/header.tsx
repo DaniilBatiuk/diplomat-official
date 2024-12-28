@@ -2,6 +2,7 @@
 
 import Logo from '@../../public/logo.png'
 import { Badge } from '@mui/material'
+import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
@@ -12,30 +13,40 @@ import { LINKS } from '@/utils/config/links'
 import { DarkBackground } from '../dark-background/dark-background'
 
 import { HeaderButton } from './components/header-botton/header-button'
+import { Catalog } from './components/header-catalog/header-catalog'
+import { HeaderContactsPopUp } from './components/header-contacts-popup/header-contacts-popup'
 import { HeaderMenu } from './components/header-menu/header-menu'
 import { HeaderSearch } from './components/header-search/header-search'
 import { SearchMobile } from './components/search-mobile/search-mobile'
 import styles from './header.module.scss'
-import { useRerender } from '@/utils/hooks'
 
 export const Header: React.FC = () => {
   const [menuActive, setMenuActive] = useState(false)
+  const [catalogActive, setCatalogActive] = useState(false)
   const [searchMobileActive, setSearchMobileActive] = useState(false)
+  const [searchActive, setSearchActive] = useState(false)
   const inputRefMobile = useRef<null | HTMLInputElement>(null)
   const inputRef = useRef<null | HTMLInputElement>(null)
   const [searchValue, setSearchValue] = useState('')
-  const rerender = useRerender()
 
+  const handleHeaderClosePopUp = () => {
+    if (catalogActive) {
+      setCatalogActive(false)
+    } else if (
+      searchActive &&
+      inputRef.current &&
+      inputRef.current !== document.activeElement &&
+      searchValue.length > 0
+    ) {
+      setSearchActive(false)
+    }
+  }
   return (
     <>
       <DarkBackground
-        backgroundActive={
-          inputRef.current && inputRef.current === document.activeElement && searchValue.length > 0
-            ? true
-            : false
-        }
+        backgroundActive={searchActive && searchValue.length > 0}
         isLow
-        onClick={rerender.update}
+        onClick={() => setSearchActive(false)}
       />
       <HeaderMenu menuActive={menuActive} menuOpen={() => setMenuActive(false)} />
       <SearchMobile
@@ -45,7 +56,7 @@ export const Header: React.FC = () => {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-      <header className={styles.header}>
+      <header className={styles.header} onClick={handleHeaderClosePopUp}>
         <div className={styles.header__container}>
           <div className={styles.header__burger_logo}>
             <div className={styles.header__burger} onClick={() => setMenuActive(true)}>
@@ -58,14 +69,18 @@ export const Header: React.FC = () => {
           </div>
 
           <div className={styles.header__search_categories}>
-            <HeaderButton>
-              {ICONS.categories()} <p>Каталог</p> {ICONS.arrowDown()}
+            <HeaderButton onClick={() => setCatalogActive(prev => !prev)}>
+              {ICONS.categories()} <p>Каталог</p>
+              {ICONS.arrowDown({
+                className: clsx(styles.header_arrow, { [styles.header_arrow_down]: catalogActive }),
+              })}
             </HeaderButton>
             <HeaderSearch
-              rerender={rerender}
               inputRef={inputRef}
               searchValue={searchValue}
               setSearchValue={setSearchValue}
+              setSearchActive={setSearchActive}
+              searchActive={searchActive}
             />
           </div>
           <nav>
@@ -78,7 +93,9 @@ export const Header: React.FC = () => {
               >
                 {ICONS.search()}
               </li>
-              <li>{ICONS.contacts()}</li>
+
+              <HeaderContactsPopUp />
+
               <li>
                 <Link href={LINKS.SignIn}>{ICONS.user()}</Link>
               </li>
@@ -92,6 +109,7 @@ export const Header: React.FC = () => {
           </nav>
         </div>
       </header>
+      <Catalog catalogActive={catalogActive} setCatalogActive={setCatalogActive} />
     </>
   )
 }

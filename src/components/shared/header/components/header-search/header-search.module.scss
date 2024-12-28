@@ -40,7 +40,16 @@
 
   & input {
     background-color: inherit;
-    height: 100%;
+    width: 100%;
     border-radius: 5px;
+  }
+}
+
+.close_icon {
+  cursor: pointer;
+  display: none;
+
+  &.active {
+    display: block;
   }
 }
