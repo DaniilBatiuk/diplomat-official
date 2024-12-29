@@ -1,3 +1,6 @@
 export * from './shared/dark-background/dark-background'
 export * from './shared/header/header'
-export * from './shared/wrappers/themeWrapper/theme-wrapper'
+export * from './shared/invisible-background/invisible-background'
+export * from './shared/ui/counter/counter'
+export * from './shared/ui/custom-button/custom-button'
+export * from './shared/wrappers/theme-wrapper/theme-wrapper'

@@ -1,0 +1,66 @@
+@use '@/styles/variables' as var;
+
+.item {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  padding-block: 10px;
+  border-bottom: 1px solid var.$black-150;
+  position: relative;
+  &:first-child {
+    padding-top: 0px;
+  }
+  &:last-child {
+    border-bottom: 0px;
+  }
+
+  & > img {
+    aspect-ratio: 1 / 1;
+    border-radius: 5px;
+  }
+  &_info {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-between;
+    height: 80px;
+
+    &_title {
+      width: calc(100% - 30px);
+      @extend %inter-400-16;
+      @include var.text-ellipsis(2);
+    }
+
+    &_close {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 10px;
+      right: 0;
+    }
+
+    &_prices {
+    }
+
+    &_sale {
+      color: var.$black-200;
+      @extend %lora-700-16;
+      text-align: end;
+      text-decoration: line-through;
+    }
+    &_price {
+      @extend %lora-700-22;
+
+      &_discount {
+        color: var.$red-100;
+      }
+    }
+
+    &_counter {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+}

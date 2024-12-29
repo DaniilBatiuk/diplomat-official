@@ -1,0 +1,27 @@
+@use '@/styles/variables' as var;
+
+.button {
+  background-color: var.$primary-600;
+  color: var.$white-100;
+  @extend %inter-500-18;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+
+  transition: background-color 0.15s ease-in-out;
+  @extend %button-active;
+  @include var.adaptive-value-px(height, 44, 48);
+  &:hover {
+    background-color: var.$primary-700;
+  }
+
+  &__full_width {
+    width: 100%;
+  }
+
+  &__big {
+    @include var.adaptive-value-px(height, 52, 46);
+  }
+}

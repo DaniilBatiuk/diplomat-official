@@ -1,6 +1,8 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 
+import { InvisibleBackground } from '@/components/shared/invisible-background/invisible-background'
+
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './header-contacts-popup.module.scss'
@@ -10,10 +12,10 @@ export const HeaderContactsPopUp: React.FC = () => {
 
   return (
     <>
-      <div
-        className={clsx(styles.invisible, { [styles.active]: isContactsActive })}
+      <InvisibleBackground
+        backgroundActive={isContactsActive}
         onClick={() => setIsContactsActive(false)}
-      ></div>
+      />
       <li
         className={clsx(styles.header_contacts_icon, { [styles.active]: isContactsActive })}
         onClick={() => setIsContactsActive(true)}

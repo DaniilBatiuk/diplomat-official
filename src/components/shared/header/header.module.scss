@@ -23,7 +23,7 @@
       @include var.adaptive-value-px(column-gap, 8, 13);
 
       & li {
-        border: 1px solid var.$black-300;
+        border: 1px solid var.$black-150;
         border-radius: 5px;
         width: 42px;
         height: 42px;

@@ -1,18 +1,17 @@
 'use client'
 
-import Logo from '@../../public/logo.png'
 import { Badge } from '@mui/material'
 import clsx from 'clsx'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
+import { Basket } from '../basket/basket'
 import { DarkBackground } from '../dark-background/dark-background'
 
-import { HeaderButton } from './components/header-botton/header-button'
+import { HeaderButton } from './components/header-button/header-button'
 import { Catalog } from './components/header-catalog/header-catalog'
 import { HeaderContactsPopUp } from './components/header-contacts-popup/header-contacts-popup'
 import { HeaderMenu } from './components/header-menu/header-menu'
@@ -22,6 +21,7 @@ import styles from './header.module.scss'
 
 export const Header: React.FC = () => {
   const [menuActive, setMenuActive] = useState(false)
+  const [basketActive, setBasketActive] = useState(false)
   const [catalogActive, setCatalogActive] = useState(false)
   const [searchMobileActive, setSearchMobileActive] = useState(false)
   const [searchActive, setSearchActive] = useState(false)
@@ -49,6 +49,7 @@ export const Header: React.FC = () => {
         onClick={() => setSearchActive(false)}
       />
       <HeaderMenu menuActive={menuActive} menuOpen={() => setMenuActive(false)} />
+      <Basket basketActive={basketActive} setBasketActive={setBasketActive} />
       <SearchMobile
         searchMobileActive={searchMobileActive}
         searchMobileClose={() => setSearchMobileActive(false)}
@@ -64,7 +65,7 @@ export const Header: React.FC = () => {
             </div>
 
             <Link href={LINKS.Home}>
-              <Image src={Logo} alt='logo' width={124} height={37} />
+              <img src={'logo.png'} alt='logo' />
             </Link>
           </div>
 
@@ -99,7 +100,7 @@ export const Header: React.FC = () => {
               <li>
                 <Link href={LINKS.SignIn}>{ICONS.user()}</Link>
               </li>
-              <li>
+              <li onClick={() => setBasketActive(true)}>
                 <Badge badgeContent={1} color='error' showZero max={9} style={{ padding: 0 }}>
                   {ICONS.cart()}
                 </Badge>
