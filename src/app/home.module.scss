@@ -1,8 +1,8 @@
 @use '@/styles/variables.scss' as var;
-.h1 {
-  //font-size: clamp(1.25rem, 0.7143rem + 2.6786vw, 3.125rem);
-  // font-size: fluid(20, 50);
+.page {
+  display: flex;
+  flex-direction: column;
 
+  @include var.adaptive-value-rem(row-gap, 40, 60);
   @include var.adaptive-value-rem(font-size, 20, 50);
-  height: 10000px;
 }

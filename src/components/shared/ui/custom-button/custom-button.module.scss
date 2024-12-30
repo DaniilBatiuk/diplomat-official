@@ -13,6 +13,7 @@
   transition: background-color 0.15s ease-in-out;
   @extend %button-active;
   @include var.adaptive-value-px(height, 44, 48);
+
   &:hover {
     background-color: var.$primary-700;
   }
@@ -23,5 +24,16 @@
 
   &__big {
     @include var.adaptive-value-px(height, 52, 46);
+  }
+
+  &__extra_big {
+    @include var.adaptive-value-px(height, 50, 56);
+    @extend %inter-700-20-18;
+
+    &_58 {
+      @extend %inter-700-20-18;
+      @include var.adaptive-value-rem(height, 50, 58);
+      @include var.adaptive-value-rem(width, 190, 234);
+    }
   }
 }

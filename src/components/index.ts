@@ -1,4 +1,5 @@
 export * from './shared/dark-background/dark-background'
+export * from './shared/footer/footer'
 export * from './shared/header/header'
 export * from './shared/invisible-background/invisible-background'
 export * from './shared/ui/counter/counter'

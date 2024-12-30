@@ -56,7 +56,7 @@ export const Basket: React.FC<BasketProp> = ({ basketActive, setBasketActive }: 
                   </div>
                   <div className={styles.total_price}>
                     <p>До оплати:</p>
-                    <p>- {PRODUCTS[1].price.toLocaleString('uk-UA')} ₴</p>
+                    <p>{PRODUCTS[1].price.toLocaleString('uk-UA')} ₴</p>
                   </div>
                 </div>
                 <CustomButton fullWidth>Оформити замовлення</CustomButton>

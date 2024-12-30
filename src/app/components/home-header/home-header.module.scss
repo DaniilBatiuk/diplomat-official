@@ -1,0 +1,71 @@
+@use '@/styles/variables.scss' as var;
+
+.main {
+  position: relative;
+  &__photo {
+    width: 100%;
+    min-height: 720px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__content {
+    @extend %center;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__logo {
+    padding-inline: 15px;
+    @include var.adaptive-value-px(width, 350, 550, 2500);
+  }
+
+  &__title {
+    @extend %inter-800-75-38;
+    color: var.$yellow-100;
+    letter-spacing: 0.02em;
+    text-wrap: nowrap;
+  }
+  &__text {
+    margin-top: 5px;
+    @extend %inter-500-22-14;
+    text-align: center;
+    color: var.$white-100;
+    line-height: 147%;
+    padding-inline: 15px;
+  }
+
+  &__button {
+    border: 2px solid var.$white-100;
+    border-radius: 30px !important;
+    width: 350px;
+    @include var.adaptive-value-px(margin-top, 15, 20);
+    @media (max-width: 390px) {
+      width: calc(100% - 30px);
+    }
+  }
+
+  &__advantages {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 710px;
+    @include var.adaptive-value-px(margin-top, 30, 50);
+    &_item {
+      display: flex;
+      column-gap: 10px;
+      align-items: center;
+      border-radius: 8px;
+      backdrop-filter: blur(30px);
+      background: rgba(249, 242, 232, 0.25);
+      color: var.$white-100;
+      @include var.adaptive-value-px(padding-inline, 12, 15);
+      @include var.adaptive-value-px(padding-block, 8, 11);
+      @extend %inter-400-18-16;
+    }
+  }
+}

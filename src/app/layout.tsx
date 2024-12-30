@@ -3,7 +3,7 @@ import { Inter, Lora } from 'next/font/google'
 
 import '@/styles/globals.scss'
 
-import { Header, ThemeWrapper } from '@/components'
+import { Footer, Header, ThemeWrapper } from '@/components'
 
 const interSans = Inter({
   variable: '--font-geist-sans',
@@ -32,7 +32,7 @@ export default function RootLayout({
           <div className='wrapper' id='wrapper'>
             <Header />
             <main>{children}</main>
-            {/* <Footer /> */}
+            <Footer />
           </div>
         </ThemeWrapper>
       </body>
