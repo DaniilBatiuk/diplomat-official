@@ -4,8 +4,9 @@
   background-color: #853f2f;
   color: var.$white-100;
   @include var.adaptive-value-rem(margin-top, 60, 120);
+  @include var.adaptive-value-rem(padding-top, 40, 60);
   &__container {
-    @include var.adaptive-value-rem(padding-top, 40, 60);
+    color: var.$white-100;
   }
 
   &__logo {

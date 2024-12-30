@@ -1,7 +1,7 @@
 @use '@/styles/variables' as var;
 
 .catalog {
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: -20px;
   left: 50%;

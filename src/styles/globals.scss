@@ -5,6 +5,18 @@ html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
   overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    display: block;
+    width: 5px;
+    overflow: auto;
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var.$primary-600;
+    border-radius: 30px;
+  }
 }
 
 body {
@@ -14,29 +26,11 @@ body {
   color: var.$black-100;
 }
 
-body {
-  // overflow-x: hidden;
-
-  // overflow-y: auto;
-
-  // &::-webkit-scrollbar {
-  //   display: block;
-  //   width: 5px;
-  //   overflow: auto;
-  //   height: 5px;
-  //   background: rgb(245, 214, 180);
-  // }
-
-  // &::-webkit-scrollbar-thumb {
-  //   background: var.$primary-700;
-  //   border-radius: 30px;
-  // }
-}
-
 .wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 main {
@@ -52,7 +46,7 @@ main {
 
 .no-scroll {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
-  overflow-y: scroll;
+  // position: fixed;
+  height: 100%;
+  // overflow-y: scroll;
 }
