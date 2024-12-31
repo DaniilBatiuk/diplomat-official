@@ -50,3 +50,43 @@ main {
   height: 100%;
   // overflow-y: scroll;
 }
+
+// swiper
+
+.swiper-button-prev {
+  content: url('../../public/arrow-left.svg');
+  width: clamp(40px, 5vw, 50px) !important;
+  height: clamp(40px, 5vw, 50px) !important;
+  -webkit-user-select: none; // для Safari
+  -moz-user-select: none; // для Firefox
+  -ms-user-select: none; // для IE
+  padding: 7px;
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+  background: var.$black-110;
+
+  @extend %button-active;
+
+  &:hover {
+    background: var.$black-151;
+  }
+}
+
+.swiper-button-next {
+  content: url('../../public/arrow-right.svg');
+  width: clamp(40px, 5vw, 50px) !important;
+  height: clamp(40px, 5vw, 50px) !important;
+  -webkit-user-select: none; // для Safari
+  -moz-user-select: none; // для Firefox
+  -ms-user-select: none; // для IE
+  padding: 7px;
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+  background: var.$black-110;
+
+  @extend %button-active;
+
+  &:hover {
+    background: var.$black-151;
+  }
+}

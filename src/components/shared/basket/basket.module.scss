@@ -44,8 +44,16 @@
       width: 30px;
       height: 30px;
       justify-self: flex-end;
+
+      @extend %button-active-small-items;
       & path {
         stroke: var.$primary-600;
+      }
+
+      &:hover {
+        & path {
+          stroke: var.$primary-700;
+        }
       }
     }
   }

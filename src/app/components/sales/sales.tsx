@@ -12,7 +12,7 @@ export const Sales: React.FC = () => {
             Знайдіть подарунок, який буде приємним не тільки для душі, але й для гаманця. Обирайте
             найкращі пропозиції та заощаджуйте на кожній покупці!
           </p>
-          <CustomButton extraBig58>ДО ЗНИЖОК</CustomButton>
+          <CustomButton>ДО ЗНИЖОК</CustomButton>
         </div>
       </div>
     </section>

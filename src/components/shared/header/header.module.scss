@@ -35,7 +35,7 @@
         @extend %button-active;
         &:hover {
           cursor: pointer;
-          background-color: var.$primary-100;
+          background-color: var.$primary-150;
         }
 
         &:first-child {

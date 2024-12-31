@@ -13,11 +13,27 @@
 
   & > button {
     height: 30px;
+
+    &:not(:disabled):hover {
+      & svg {
+        fill: var.$primary-150;
+
+        & rect {
+          stroke: var.$primary-600;
+        }
+        & path {
+          fill: var.$primary-600;
+        }
+      }
+    }
+
     &:disabled rect {
       stroke: var.$primary-500;
     }
     &:disabled path {
       fill: var.$primary-500;
     }
+
+    @extend %button-active;
   }
 }

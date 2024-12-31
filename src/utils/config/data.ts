@@ -2,7 +2,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '1',
     title: 'Смартфон Apple iPhone 14 з гарним чохлом на вель єкран на безкошкомвою камерою',
-    price: 37999,
+    price: 371999,
     description: 'Новітній iPhone з чипом A16 Bionic та просунутою камерою.',
     category: 'Електроніка',
     image: 'https://example.com/images/iphone14.jpg',
