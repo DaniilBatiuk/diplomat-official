@@ -19,18 +19,17 @@
   z-index: 1;
   top: 50%;
   transform: translate(0, -50%);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  background: var.$black-110;
 
   @include var.adaptive-value-px(left, 7, 10);
   @include var.adaptive-value-px(width, 40, 50);
   @include var.adaptive-value-px(height, 40, 50);
 
-  backdrop-filter: blur(4px);
-  background: var.$black-110;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 30px;
   @extend %button-active;
 
   &:hover {
@@ -65,5 +64,28 @@
   & svg {
     transform: rotate(180deg);
     @include var.adaptive-value-px(width, 24, 34);
+  }
+}
+
+.skeleton {
+  margin-top: 15px;
+  column-gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr; // явно задаем один ряд
+  grid-auto-rows: 0; // все последующие ряды будут иметь высоту 0
+  overflow: hidden; // скрываем все, что выходит за пределы
+  padding-block: 1.5px;
+  &__container {
+    padding-inline: 0px;
+  }
+  @media (max-width: 900px) {
+    column-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 641px) {
+    padding-block: 1px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }

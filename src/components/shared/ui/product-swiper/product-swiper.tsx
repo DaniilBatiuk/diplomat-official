@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { breakPoints } from './constants'
 import styles from './product-swiper.module.scss'
-import { Card, Title } from '@/components'
+import { Card, CardSkeleton, Title } from '@/components'
 
 interface ProductSwiperProps {
   title: string
@@ -26,31 +26,39 @@ export const ProductSwiper: React.FC<ProductSwiperProps> = ({
     setIsLoading(false)
   }, [])
 
-  if (isLoading) {
-    return <div className={styles.recommend__list}>Loading...</div>
-  }
-
   return (
-    <section className={styles.recommend}>
-      <div className={styles.recommend__container}>
-        <Title>{title}</Title>
-
-        <div className={styles.recommend__list}>
-          <Swiper
-            modules={[Navigation]}
-            navigation
-            slidesPerView={4}
-            spaceBetween={11}
-            breakpoints={breakPoints}
-          >
-            {products.map(product => (
-              <SwiperSlide key={product.id}>
-                <Card product={product} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+    <>
+      <section className={styles.recommend}>
+        <div className={styles.recommend__container}>
+          <Title>{title}</Title>
+          {isLoading ? (
+            <div className={styles.skeleton__container}>
+              <div className={styles.skeleton}>
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+              </div>
+            </div>
+          ) : (
+            <div className={styles.recommend__list}>
+              <Swiper
+                modules={[Navigation]}
+                navigation
+                slidesPerView={4}
+                spaceBetween={11}
+                breakpoints={breakPoints}
+              >
+                {products.map(product => (
+                  <SwiperSlide key={product.id}>
+                    <Card product={product} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          )}
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
