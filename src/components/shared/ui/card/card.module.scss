@@ -5,6 +5,7 @@
   border-radius: 10px;
   max-width: 341px;
   background-color: var.$white-100;
+  position: relative;
 
   &:hover {
     & img {
@@ -63,9 +64,22 @@
     @include var.adaptive-value-px(width, 56, 70);
     @include var.adaptive-value-px(height, 44, 54);
 
-    @extend %button-active;
+    transition: transform 0.05s ease-in-out;
+    @include var.button-active(0.95);
     & svg {
       @include var.adaptive-value-px(width, 23, 30);
     }
+  }
+
+  &__sale {
+    @extend %lora-600-16-14;
+    position: absolute;
+    background-color: var.$red-100;
+    border-radius: 5px;
+    color: var.$white-100;
+    padding-block: 4px;
+    @include var.adaptive-value-px(top, 10, 15);
+    @include var.adaptive-value-px(right, 10, 15);
+    @include var.adaptive-value-px(padding-inline, 7, 10);
   }
 }

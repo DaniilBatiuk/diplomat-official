@@ -24,8 +24,9 @@
 
   // Calculate the y-intercept (unit: px)
   $y-intercept: $min-size - $slope * $min-width;
-
-  #{$property}: $max-size-rem;
+  & {
+    #{$property}: #{$max-size}px; // Явно обернули в `&`
+  }
   @media (max-width: #{$max-width}px) {
     #{$property}: clamp(
       #{$min-size-rem},
@@ -37,7 +38,9 @@
 
 // Adaptive value using px from 390 to 1440
 @mixin adaptive-value-px($property, $min-size, $max-size, $max-width-px: 1440) {
-  #{$property}: #{$max-size}px;
+  & {
+    #{$property}: #{$max-size}px; // Явно обернули в `&`
+  }
   @media (max-width: #{$max-width-px}px) {
     #{$property}: calc(
       #{$min-size}px + #{($max-size - $min-size)} *
@@ -58,6 +61,12 @@
 // Font family save usage
 @mixin font-family($primary-font) {
   font-family: #{$primary-font}#{$base-font-stack};
+}
+
+@mixin button-active($scale) {
+  &:active {
+    transform: scale($scale);
+  }
 }
 
 //// Variables
@@ -101,22 +110,6 @@ $yellow-100: #fff41c;
   transform: translate(-50%, -50%);
 }
 
-%button-active {
-  &:active {
-    transform: scale(0.97);
-  }
-}
-%button-active-small-items {
-  &:active {
-    transform: scale(0.9);
-  }
-}
-%button-active-big-items {
-  &:active {
-    transform: scale(0.98);
-  }
-}
-
 // Text templates
 
 %lora-700-30-22 {
@@ -147,16 +140,27 @@ $yellow-100: #fff41c;
   font-weight: 600;
   @include adaptive-value-rem(font-size, 26, 40);
 }
+
 %lora-600-32-23 {
   @include font-family('Lora');
   font-weight: 600;
   @include adaptive-value-rem(font-size, 23, 32);
+}
+%lora-600-16-14 {
+  @include font-family('Lora');
+  font-weight: 600;
+  @include adaptive-value-rem(font-size, 14, 16);
 }
 
 %inter-800-75-38 {
   @include font-family('Inter');
   font-weight: 800;
   @include adaptive-value-px(font-size, 38, 75, 2500);
+}
+%inter-700-38-26 {
+  @include font-family('Inter');
+  font-weight: 700;
+  @include adaptive-value-px(font-size, 26, 38);
 }
 %inter-700-22-20 {
   @include font-family('Inter');

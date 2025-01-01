@@ -6,7 +6,6 @@
   @extend %inter-500-16;
 
   display: flex;
-  @include var.adaptive-value-px(column-gap, 6, 8);
   align-items: center;
   justify-content: center;
 
@@ -14,8 +13,12 @@
   width: 152px;
   border-radius: 5px;
 
-  transition: background-color 0.15s ease-in-out;
-  @extend %button-active-big-items;
+  transition:
+    background-color 0.15s ease-in-out,
+    transform 0.05s ease-in-out;
+  @include var.adaptive-value-px(column-gap, 6, 8);
+
+  @include var.button-active(0.97);
   &:hover {
     background-color: var.$primary-700;
   }

@@ -16,7 +16,7 @@ export const Card: React.FC<CardProp> = ({ product }: CardProp) => {
     <figure className={styles.card}>
       <Image src={CardImg} width={300} height={300} alt='photo' priority quality={100} />
       <p className={styles.card__title}>{product.title}</p>
-      <div className={styles.card__info}>
+      <figcaption className={styles.card__info}>
         <div className={styles.card__prices}>
           {product.discountPercentage > 0 && (
             <p className={styles.card__price_sale}>{product.price.toLocaleString('uk-UA')} ₴</p>
@@ -30,7 +30,10 @@ export const Card: React.FC<CardProp> = ({ product }: CardProp) => {
           </p>
         </div>
         <CustomButton>{ICONS.buy()}</CustomButton>
-      </div>
+      </figcaption>
+      {product.discountPercentage > 0 && (
+        <div className={styles.card__sale}>-{product.discountPercentage}%</div>
+      )}
     </figure>
   )
 }

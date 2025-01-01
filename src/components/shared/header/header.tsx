@@ -98,7 +98,7 @@ export const Header: React.FC = () => {
               <HeaderContactsPopUp />
 
               <li>
-                <Link href={LINKS.SignIn}>{ICONS.user()}</Link>
+                <Link href={LINKS.Profile}>{ICONS.user()}</Link>
               </li>
               <li onClick={() => setBasketActive(true)}>
                 <Badge badgeContent={1} color='error' showZero max={9} style={{ padding: 0 }}>

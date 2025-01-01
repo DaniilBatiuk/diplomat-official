@@ -65,7 +65,8 @@ main {
   backdrop-filter: blur(4px);
   background: var.$black-110;
 
-  @extend %button-active;
+  transition: transform 0.05s ease-in-out;
+  @include var.button-active(0.95);
 
   &:hover {
     background: var.$black-151;
@@ -84,9 +85,18 @@ main {
   backdrop-filter: blur(4px);
   background: var.$black-110;
 
-  @extend %button-active;
+  transition: transform 0.05s ease-in-out;
+  @include var.button-active(0.95);
 
   &:hover {
     background: var.$black-151;
   }
+}
+
+.swiper {
+  z-index: 0 !important;
+}
+
+.swiper-wrapper {
+  z-index: 0 !important;
 }

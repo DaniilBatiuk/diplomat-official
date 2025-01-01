@@ -149,7 +149,8 @@
           min-width: 120px;
           flex: 0 1 145px;
           max-width: 145px;
-          @extend %button-active;
+          transition: transform 0.05s ease-in-out;
+          @include var.button-active(0.97);
 
           @media (max-width: 715px) {
             max-width: none;

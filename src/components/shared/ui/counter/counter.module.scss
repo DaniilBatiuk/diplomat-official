@@ -34,6 +34,7 @@
       fill: var.$primary-500;
     }
 
-    @extend %button-active;
+    transition: transform 0.05s ease-in-out;
+    @include var.button-active(0.95);
   }
 }

@@ -27,38 +27,36 @@ export const ProductSwiper: React.FC<ProductSwiperProps> = ({
   }, [])
 
   return (
-    <>
-      <section className={styles.recommend}>
-        <div className={styles.recommend__container}>
-          <Title>{title}</Title>
-          {isLoading ? (
-            <div className={styles.skeleton__container}>
-              <div className={styles.skeleton}>
-                <CardSkeleton />
-                <CardSkeleton />
-                <CardSkeleton />
-                <CardSkeleton />
-              </div>
+    <section className={styles.recommend}>
+      <div className={styles.recommend__container}>
+        <Title>{title}</Title>
+        {isLoading ? (
+          <div className={styles.skeleton__container}>
+            <div className={styles.skeleton}>
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
             </div>
-          ) : (
-            <div className={styles.recommend__list}>
-              <Swiper
-                modules={[Navigation]}
-                navigation
-                slidesPerView={4}
-                spaceBetween={11}
-                breakpoints={breakPoints}
-              >
-                {products.map(product => (
-                  <SwiperSlide key={product.id}>
-                    <Card product={product} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          )}
-        </div>
-      </section>
-    </>
+          </div>
+        ) : (
+          <div className={styles.recommend__list}>
+            <Swiper
+              modules={[Navigation]}
+              navigation
+              slidesPerView={4}
+              spaceBetween={11}
+              breakpoints={breakPoints}
+            >
+              {products.map(product => (
+                <SwiperSlide key={product.id}>
+                  <Card product={product} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
+      </div>
+    </section>
   )
 }

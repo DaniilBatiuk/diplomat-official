@@ -10,8 +10,10 @@
   justify-content: center;
   border-radius: 5px;
 
-  transition: background-color 0.15s ease-in-out;
-  @extend %button-active-big-items;
+  transition:
+    background-color 0.15s ease-in-out,
+    transform 0.05s ease-in-out;
+  @include var.button-active(0.98);
   @include var.adaptive-value-px(height, 44, 48);
 
   &:hover {
