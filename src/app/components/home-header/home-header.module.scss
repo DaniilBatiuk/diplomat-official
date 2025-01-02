@@ -2,11 +2,15 @@
 
 .main {
   position: relative;
+  @include var.adaptive-value-px(height, 720, 1000, 2500);
   &__photo {
     width: 100%;
-    min-height: 720px;
+    height: 100%;
     object-fit: cover;
     object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   &__content {
@@ -21,6 +25,7 @@
   &__logo {
     padding-inline: 15px;
     @include var.adaptive-value-px(width, 350, 550, 2500);
+    @include var.adaptive-value-px(height, 224, 360, 2500);
   }
 
   &__title {

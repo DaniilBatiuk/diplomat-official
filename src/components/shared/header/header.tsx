@@ -10,6 +10,7 @@ import { LINKS } from '@/utils/config/links'
 
 import { Basket } from '../basket/basket'
 import { DarkBackground } from '../dark-background/dark-background'
+import { SignIn } from '../sign-in/sign-in'
 
 import { HeaderButton } from './components/header-button/header-button'
 import { Catalog } from './components/header-catalog/header-catalog'
@@ -21,6 +22,7 @@ import styles from './header.module.scss'
 
 export const Header: React.FC = () => {
   const [menuActive, setMenuActive] = useState(false)
+  const [signInActive, setSignInActive] = useState(false)
   const [basketActive, setBasketActive] = useState(false)
   const [catalogActive, setCatalogActive] = useState(false)
   const [searchMobileActive, setSearchMobileActive] = useState(false)
@@ -97,9 +99,8 @@ export const Header: React.FC = () => {
 
               <HeaderContactsPopUp />
 
-              <li>
-                <Link href={LINKS.Profile}>{ICONS.user()}</Link>
-              </li>
+              <li onClick={() => setSignInActive(true)}>{ICONS.user()}</li>
+
               <li onClick={() => setBasketActive(true)}>
                 <Badge badgeContent={1} color='error' showZero max={9} style={{ padding: 0 }}>
                   {ICONS.cart()}
@@ -109,6 +110,7 @@ export const Header: React.FC = () => {
             </ul>
           </nav>
         </div>
+        {signInActive && <SignIn onClickClose={() => setSignInActive(false)} />}
       </header>
       <Catalog catalogActive={catalogActive} setCatalogActive={setCatalogActive} />
     </>

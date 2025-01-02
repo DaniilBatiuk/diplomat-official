@@ -50,6 +50,11 @@ main {
   height: 100%;
   // overflow-y: scroll;
 }
+.no-scroll-view {
+  overflow: hidden;
+  height: 100%;
+  scrollbar-gutter: unset;
+}
 
 // swiper
 
@@ -99,4 +104,9 @@ main {
 
 .swiper-wrapper {
   z-index: 0 !important;
+}
+
+.MuiOutlinedInput-root {
+  @include var.adaptive-value-px(height, 46, 52);
+  @include var.adaptive-value-px(top, 3, 0);
 }

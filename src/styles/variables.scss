@@ -112,6 +112,11 @@ $yellow-100: #fff41c;
 
 // Text templates
 
+%lora-700-50-40 {
+  @include font-family('Lora');
+  font-weight: 700;
+  @include adaptive-value-rem(font-size, 40, 50);
+}
 %lora-700-30-22 {
   @include font-family('Lora');
   font-weight: 700;
