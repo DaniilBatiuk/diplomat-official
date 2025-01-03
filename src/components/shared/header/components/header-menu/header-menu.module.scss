@@ -37,8 +37,13 @@
     border-bottom: 1px solid var.$black-150;
     cursor: pointer;
 
-    &:hover {
-      text-decoration: underline;
+    & a {
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 

@@ -90,8 +90,9 @@ $black-250: rgba(0, 0, 0, 0.25);
 $white-100: #ffffff;
 
 $primary-50: #f9f0e6;
-$primary-100: #f8ecde;
-$primary-150: #f8e9d6;
+$primary-150: #f8e9d6; // Hover
+$primary-200: #f7e5ce; // Active
+$primary-300: #f7ddbe; // Active
 $primary-500: #f5c594; // Disabled
 $primary-600: #f1a84d; // Main
 $primary-700: #fa9f2f; // Hover
@@ -172,6 +173,11 @@ $yellow-100: #fff41c;
   font-weight: 700;
   @include adaptive-value-px(font-size, 20, 22);
 }
+%inter-700-22-18 {
+  @include font-family('Inter');
+  font-weight: 700;
+  @include adaptive-value-px(font-size, 18, 22);
+}
 %inter-700-20-18 {
   @include font-family('Inter');
   font-weight: 700;
@@ -192,15 +198,25 @@ $yellow-100: #fff41c;
   font-weight: 600;
   font-size: 24px;
 }
-%inter-500-18 {
+%inter-600-18-16 {
   @include font-family('Inter');
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: 600;
+  @include adaptive-value-px(font-size, 16, 18);
 }
 %inter-500-22-14 {
   @include font-family('Inter');
   font-weight: 500;
   @include adaptive-value-px(font-size, 14, 20);
+}
+%inter-500-20-18 {
+  @include font-family('Inter');
+  font-weight: 500;
+  @include adaptive-value-px(font-size, 18, 20);
+}
+%inter-500-18 {
+  @include font-family('Inter');
+  font-weight: 500;
+  font-size: 18px;
 }
 %inter-500-18-16 {
   @include font-family('Inter');

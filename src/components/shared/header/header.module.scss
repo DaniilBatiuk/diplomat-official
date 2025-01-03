@@ -62,7 +62,7 @@
           }
 
           & > p {
-            text-wrap: nowrap;
+            white-space: nowrap;
 
             @media (max-width: 1050px) {
               display: none;

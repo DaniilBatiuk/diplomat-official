@@ -3,7 +3,11 @@ export const LINKS = {
   Profile: '/profile',
   SingIn: '/sign-in',
   SingUp: '/sign-up',
-  CreateProduct: '/create-product',
+  Delivery: '/delivery',
+  Payment: '/payment',
+  ReturnProduct: '/return-product',
+  RulesAndConditions: '/rules-and-conditions',
+  PrivacyPolicy: '/privacy-policy',
   Categories: '/categories',
   Admin: '/admin',
 }

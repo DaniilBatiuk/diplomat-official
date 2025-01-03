@@ -61,10 +61,10 @@
   }
 
   & button {
+    transition: transform 0.05s ease-in-out;
     @include var.adaptive-value-px(width, 56, 70);
     @include var.adaptive-value-px(height, 44, 54);
 
-    transition: transform 0.05s ease-in-out;
     @include var.button-active(0.95);
     & svg {
       @include var.adaptive-value-px(width, 23, 30);

@@ -1,3 +1,7 @@
+import Link from 'next/link'
+
+import { LINKS } from '@/utils/config/links'
+
 import { CopyLi } from './components/copy-li/copy-li'
 import styles from './footer.module.scss'
 
@@ -30,11 +34,31 @@ export const Footer: React.FC = () => {
               <h2>Додатково</h2>
               <ul>
                 <li>Про нас</li>
-                <li>Оплата</li>
-                <li>Доставка</li>
-                <li>Повернення товару</li>
-                <li>Політика конфіденційності</li>
-                <li>Правила та умови</li>
+                <li>
+                  <Link href={LINKS.Payment} prefetch>
+                    Оплата
+                  </Link>
+                </li>
+                <li>
+                  <Link href={LINKS.Delivery} prefetch>
+                    Доставка
+                  </Link>
+                </li>
+                <li>
+                  <Link href={LINKS.ReturnProduct} prefetch>
+                    Повернення товару
+                  </Link>
+                </li>
+                <li>
+                  <Link href={LINKS.PrivacyPolicy} prefetch>
+                    Політика конфіденційності
+                  </Link>
+                </li>
+                <li>
+                  <Link href={LINKS.RulesAndConditions} prefetch>
+                    Правила та умови
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className={styles.footer__main_column}>

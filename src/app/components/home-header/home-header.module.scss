@@ -32,7 +32,7 @@
     @extend %inter-800-75-38;
     color: var.$yellow-100;
     letter-spacing: 0.02em;
-    text-wrap: nowrap;
+    white-space: nowrap;
   }
   &__text {
     margin-top: 5px;

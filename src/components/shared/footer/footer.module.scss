@@ -62,6 +62,13 @@
 
     &_column {
       min-width: 207px;
+
+      @media (max-width: 715px) {
+        &:nth-child(3) {
+          flex: 1 1 auto;
+        }
+      }
+
       & h2 {
         @extend %inter-700-22-20;
         @include var.adaptive-value-rem(margin-bottom, 20, 25);
@@ -70,14 +77,20 @@
       & ul {
         display: flex;
         flex-direction: column;
+        @media (max-width: 560px) {
+          align-items: center;
+        }
         @include var.adaptive-value-rem(row-gap, 14, 18);
       }
       & li {
         @extend %inter-400-16;
+        width: fit-content;
 
-        &:hover {
-          cursor: pointer;
-          text-decoration: underline;
+        & a {
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
         }
       }
 
