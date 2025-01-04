@@ -3,6 +3,6 @@
   display: flex;
   flex-direction: column;
 
-  @include var.adaptive-value-rem(row-gap, 40, 60);
-  @include var.adaptive-value-rem(font-size, 20, 50);
+  @include var.adaptive-value-px(row-gap, 40, 60);
+  @include var.adaptive-value-px(font-size, 20, 50);
 }

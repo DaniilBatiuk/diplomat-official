@@ -5,7 +5,7 @@ export const Sales: React.FC = () => {
   return (
     <section className={styles.sales}>
       <div className={styles.sales__container}>
-        <img src={'sales.webp'} alt='logo' className={styles.sales__img} />
+        <img src={'/sales.webp'} alt='logo' className={styles.sales__img} />
         <div className={styles.sales__right}>
           <h2>Час дарувати вигідно!</h2>
           <p>

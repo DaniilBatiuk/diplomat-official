@@ -25,6 +25,7 @@ export const HeaderMenu: React.FC<HeaderMenuProp> = ({ menuActive, menuOpen }: H
     <>
       <DarkBackground backgroundActive={menuActive} onClick={closeMenu} />
       <MenuCategories
+        closeMenu={closeMenu}
         activeMenuCategories={activeMenuCategories}
         setActiveMenuCategories={setActiveMenuCategories}
       />
@@ -36,21 +37,26 @@ export const HeaderMenu: React.FC<HeaderMenuProp> = ({ menuActive, menuOpen }: H
         {ICONS.close({ onClick: () => menuOpen() })}
         <nav className={styles.menu}>
           <ul>
-            <li onClick={() => setActiveMenuCategories(true)}>
+            <li onClick={() => setActiveMenuCategories(true)} className={styles.menu_underline}>
               <div className={styles.menu_item}>
                 {ICONS.menuCategories()} <p>Категорії</p>
               </div>
               {ICONS.arrowRight()}
             </li>
             <li className={styles.menu_red}>
-              <div className={styles.menu_item}>
+              <Link
+                href={LINKS.Categories}
+                className={styles.menu_item}
+                onClick={closeMenu}
+                prefetch
+              >
                 {ICONS.menuSales()} <p>Знижка</p>
-              </div>
+              </Link>
             </li>
             <li>
-              <div className={styles.menu_item}>
-                {ICONS.menuAboutUs()} <p>Про нас</p>
-              </div>
+              <Link href={LINKS.AboutUs} className={styles.menu_item} onClick={closeMenu} prefetch>
+                {ICONS.menuPayment()} <p>Про нас</p>
+              </Link>
             </li>
             <li>
               <Link href={LINKS.Payment} className={styles.menu_item} onClick={closeMenu} prefetch>

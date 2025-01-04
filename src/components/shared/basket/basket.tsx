@@ -38,7 +38,7 @@ export const Basket: React.FC<BasketProp> = ({ basketActive, setBasketActive }: 
                 <span>Подивіться наш каталог, ви обов'язково</span>
                 <span>щось знайдете</span>
               </p>
-              <img src={'empty.png'} alt='basket' />
+              <img src={'/empty.png'} alt='basket' />
               <CustomButton fullWidth>До категорій</CustomButton>
             </div>
           ) : (

@@ -15,6 +15,20 @@ const theme = createTheme({
       },
     },
   },
+  palette: {
+    primary: {
+      main: '#f1a84d',
+      contrastText: '#fff',
+    },
+    action: {
+      hover: '#f8e9d6',
+      selectedOpacity: 0.4,
+    },
+    background: {
+      default: '#f9f4ee',
+      paper: '#f9f4ee',
+    },
+  },
 })
 
 export default theme

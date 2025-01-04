@@ -67,7 +67,7 @@ export const Header: React.FC = () => {
             </div>
 
             <Link href={LINKS.Home}>
-              <img src={'logo.png'} alt='logo' />
+              <img src={'/logo.png'} alt='logo' />
             </Link>
           </div>
 

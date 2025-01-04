@@ -1,0 +1,152 @@
+@use '@/styles/variables.scss' as var;
+
+.categories {
+  &__container {
+    @include var.adaptive-value-px(margin-top, 20, 30);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & > p {
+      @extend %inter-500-14;
+      letter-spacing: 0.05em;
+
+      & a:hover {
+        text-decoration: underline;
+      }
+    }
+    @media (max-width: 840px) {
+      display: none;
+    }
+  }
+  &__content {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  &__nav {
+    position: sticky;
+    top: 64px;
+    z-index: 1;
+    padding-inline: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var.$background-200;
+    border-bottom: 1px solid var.$black-151;
+    height: 46px;
+    column-gap: 10px;
+
+    @media (min-width: 840px) {
+      display: none;
+    }
+    &_item {
+      display: flex;
+      align-items: center;
+      column-gap: 5px;
+      @extend %inter-400-16;
+      cursor: pointer;
+
+      & svg {
+        width: 20px;
+        height: 20px;
+
+        & path {
+          stroke: var.$black-100;
+        }
+      }
+    }
+  }
+}
+
+.aside {
+  flex: 1 1 auto;
+  min-width: 230px;
+
+  @media (max-width: 840px) {
+    display: none;
+  }
+  @include var.adaptive-value-px(margin-right, 20, 30);
+  &__categories,
+  &__filter {
+    border-bottom: 1px solid var.$black-151;
+    padding-block: 15px;
+    &:first-child {
+      padding-top: 0px;
+    }
+    &:last-child {
+      border-bottom: 0px;
+      padding-bottom: 0px;
+    }
+    & > h1 {
+      @extend %inter-700-24-20;
+      margin-bottom: 10px;
+    }
+    & > h2 {
+      @extend %inter-700-20-18;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    & > ul {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+
+      & > li {
+        & > a {
+          @extend %inter-400-16;
+          line-height: 187%;
+          letter-spacing: 0.05em;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  &__sales {
+    color: var.$red-100 !important;
+  }
+
+  &__checkbox {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    column-gap: 10px;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+
+    & > p {
+      @extend %inter-400-16;
+      line-height: 187%;
+      letter-spacing: 0.05em;
+    }
+  }
+}
+
+.list {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 1038px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 840px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 680px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include var.adaptive-value-px(gap, 10, 15);
+
+  & img {
+    height: auto !important;
+  }
+}

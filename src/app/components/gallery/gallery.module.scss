@@ -20,7 +20,7 @@
       grid-template-columns: 1fr;
       grid-template-rows: repeat(6, 1fr);
     }
-    @include var.adaptive-value-rem(gap, 10, 15);
+    @include var.adaptive-value-px(gap, 10, 15);
   }
 
   &__item {
@@ -28,10 +28,10 @@
     overflow: hidden;
     border-radius: 5px;
     @media (max-width: 1238px) {
-      @include var.adaptive-value-rem(max-height, 260, 500);
+      @include var.adaptive-value-px(max-height, 260, 500);
     }
     @media (max-width: 686px) {
-      @include var.adaptive-value-rem(max-height, 260, 700);
+      @include var.adaptive-value-px(max-height, 260, 700);
     }
 
     & img {

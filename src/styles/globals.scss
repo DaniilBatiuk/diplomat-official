@@ -23,6 +23,7 @@ body {
   font-weight: 300;
   @include var.font-family('Inter');
   background-color: var.$background-300;
+  padding: 0px !important;
   color: var.$black-100;
 }
 
@@ -109,4 +110,8 @@ main {
 .MuiOutlinedInput-root {
   @include var.adaptive-value-px(height, 46, 52);
   @include var.adaptive-value-px(top, 3, 0);
+}
+
+.MuiCheckbox-root {
+  padding: 0px !important;
 }

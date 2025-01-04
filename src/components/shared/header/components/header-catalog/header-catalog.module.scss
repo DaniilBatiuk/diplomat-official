@@ -8,15 +8,15 @@
   transform: translate(-50%, 0);
   opacity: 0;
   z-index: -1;
+  transition:
+    opacity 0.2s ease-in-out,
+    top 0.2s ease-in-out,
+    z-index 0.2s ease-out;
 
   @media (max-width: 1100px) {
     display: none;
   }
 
-  transition:
-    opacity 0.2s ease-in-out,
-    top 0.2s ease-in-out,
-    z-index 0.2s ease-out;
   &.active {
     top: 64px;
     opacity: 1;

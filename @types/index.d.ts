@@ -3,7 +3,12 @@ type Product = {
   title: string
   price: number
   description: string
-  category: string
+  category: Category
   image: string
   discountPercentage: number
+}
+
+type Category = {
+  id: string
+  name: string
 }

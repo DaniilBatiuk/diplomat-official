@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
         <div className={styles.footer__main}>
           <div className={styles.footer__main_columns}>
             <div className={styles.footer__main_column}>
-              <img src={'homeLogo.webp'} alt='logo' className={styles.footer__logo} />
+              <img src={'/homeLogo.webp'} alt='logo' className={styles.footer__logo} />
             </div>
             <div className={styles.footer__main_column}>
               <h2>Контакти</h2>
@@ -23,17 +23,41 @@ export const Footer: React.FC = () => {
             <div className={styles.footer__main_column}>
               <h2>Каталог</h2>
               <ul>
-                <li>Посуд</li>
-                <li>Фігурки та статуетки</li>
-                <li>Годинники</li>
-                <li>Символи року</li>
-                <li>Настільні ігри</li>
+                <li>
+                  <Link href={LINKS.Categories + '/Посуд'} prefetch>
+                    Посуд
+                  </Link>
+                </li>
+                <li>
+                  <Link href={LINKS.Categories + '/Фігурки та статуетки'} prefetch>
+                    Фігурки та статуетки
+                  </Link>
+                </li>
+                <li>
+                  <Link href={LINKS.Categories + '/Годинники'} prefetch>
+                    Годинники
+                  </Link>
+                </li>
+                <li>
+                  <Link href={LINKS.Categories + '/Символи року'} prefetch>
+                    Символи року
+                  </Link>
+                </li>
+                <li>
+                  <Link href={LINKS.Categories + '/Настільні ігри'} prefetch>
+                    Настільні ігри
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className={styles.footer__main_column}>
               <h2>Додатково</h2>
               <ul>
-                <li>Про нас</li>
+                <li>
+                  <Link href={LINKS.AboutUs} prefetch>
+                    Про нас
+                  </Link>
+                </li>
                 <li>
                   <Link href={LINKS.Payment} prefetch>
                     Оплата

@@ -20,8 +20,9 @@ export const Gallery: React.FC = () => {
         <Title>Подарунки по категоріях</Title>
         <div className={styles.gallery__list}>
           <Link
-            href={LINKS.Home}
+            href={LINKS.Categories + '/Настільні ігри'}
             className={clsx(styles.gallery__item, styles.gallery__item__more_first)}
+            prefetch
           >
             {/* <img src={'gallery1.webp'} alt='category' /> */}
             <Image src={gallery1} alt='gallary1' priority placeholder='blur' />
@@ -29,8 +30,9 @@ export const Gallery: React.FC = () => {
             <p>Настільні ігри</p>
           </Link>
           <Link
-            href={LINKS.Home}
+            href={LINKS.Categories + "/Інтер'єр та декор"}
             className={clsx(styles.gallery__item, styles.gallery__item__more_width)}
+            prefetch
           >
             {/* <img src={'gallery2.webp'} alt='category' /> */}
             <Image src={gallery2} alt='gallary2' priority placeholder='blur' />
@@ -39,22 +41,24 @@ export const Gallery: React.FC = () => {
           </Link>
 
           <Link
-            href={LINKS.Home}
+            href={LINKS.Categories + '/Фігурки та статуетки'}
             className={clsx(styles.gallery__item, styles.gallery__item__more)}
+            prefetch
           >
             {/* <img src={'gallery6.webp'} alt='category' /> */}
             <Image src={gallery6} alt='gallary6' priority placeholder='blur' />
             <div className={styles.gallery__item__gradient}></div>
             <p>Фігурки та статуетки</p>
           </Link>
-          <Link href={LINKS.Home} className={styles.gallery__item}>
+          <Link href={LINKS.Categories + '/Посуд'} className={styles.gallery__item} prefetch>
             {/* <img src={'gallery3.webp'} alt='category' /> */}
             <Image src={gallery3} alt='gallary3' priority placeholder='blur' />
             <div className={styles.gallery__item__gradient}></div>
             <p>Посуд</p>
           </Link>
           <Link
-            href={LINKS.Home}
+            href={LINKS.Categories + '/Символи року'}
+            prefetch
             className={clsx(styles.gallery__item, styles.gallery__item_height)}
           >
             {/* <img src={'gallery4.webp'} alt='category' /> */}
@@ -62,7 +66,7 @@ export const Gallery: React.FC = () => {
             <div className={styles.gallery__item__gradient}></div>
             <p>Символи року</p>
           </Link>
-          <Link href={LINKS.Home} className={styles.gallery__item}>
+          <Link href={LINKS.Categories + '/Годинники'} prefetch className={styles.gallery__item}>
             {/* <img src={'gallery5.webp'} alt='category' /> */}
             <Image src={gallery5} alt='gallary5' priority placeholder='blur' />
             <div className={styles.gallery__item__gradient}></div>

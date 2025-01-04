@@ -6,6 +6,7 @@
   top: 0;
   height: 64px;
   z-index: 101;
+  border-bottom: 1px solid var.$black-151;
 
   &__container {
     display: flex;
@@ -14,11 +15,11 @@
     justify-content: space-between;
     @include var.adaptive-value-px(column-gap, 10, 30);
 
-    & ul {
+    & > nav > ul {
       display: flex;
       @include var.adaptive-value-px(column-gap, 8, 13);
 
-      & li {
+      & > li {
         border: 1px solid var.$black-150;
         border-radius: 5px;
         width: 42px;
@@ -26,6 +27,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: var.$background-100;
 
         transition:
           background-color 0.15s ease-in-out,

@@ -3,8 +3,8 @@
 .footer {
   background-color: #853f2f;
   color: var.$white-100;
-  @include var.adaptive-value-rem(margin-top, 60, 120);
-  @include var.adaptive-value-rem(padding-top, 40, 60);
+  @include var.adaptive-value-px(margin-top, 60, 120);
+  @include var.adaptive-value-px(padding-top, 40, 60);
   &__container {
     color: var.$white-100;
   }
@@ -19,7 +19,7 @@
 
   &__bottom {
     border-top: 1px solid var.$white-100;
-    @include var.adaptive-value-rem(padding-top, 20, 30);
+    @include var.adaptive-value-px(padding-top, 20, 30);
     &_line {
       display: flex;
       align-items: center;
@@ -36,18 +36,18 @@
       }
     }
 
-    @include var.adaptive-value-rem(padding-bottom, 40, 60);
+    @include var.adaptive-value-px(padding-bottom, 40, 60);
   }
 
   &__main {
-    @include var.adaptive-value-rem(padding-bottom, 50, 80);
+    @include var.adaptive-value-px(padding-bottom, 50, 80);
 
     &_columns {
       flex: 1 1 auto;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      @include var.adaptive-value-rem(gap, 20, 30);
+      @include var.adaptive-value-px(gap, 20, 30);
 
       @media (max-width: 715px) {
         gap: 40px;
@@ -71,7 +71,7 @@
 
       & h2 {
         @extend %inter-700-22-20;
-        @include var.adaptive-value-rem(margin-bottom, 20, 25);
+        @include var.adaptive-value-px(margin-bottom, 20, 25);
       }
 
       & ul {
@@ -80,7 +80,7 @@
         @media (max-width: 560px) {
           align-items: center;
         }
-        @include var.adaptive-value-rem(row-gap, 14, 18);
+        @include var.adaptive-value-px(row-gap, 14, 18);
       }
       & li {
         @extend %inter-400-16;
@@ -124,7 +124,7 @@
       & h3 {
         @extend %inter-400-16-14;
         line-height: 140%;
-        @include var.adaptive-value-rem(margin-bottom, 16, 24);
+        @include var.adaptive-value-px(margin-bottom, 16, 24);
       }
 
       & p {

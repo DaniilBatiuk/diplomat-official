@@ -3,7 +3,7 @@
 .info {
   &__container {
     display: flex;
-    @include var.adaptive-value-rem(margin-top, 20, 30);
+    @include var.adaptive-value-px(margin-top, 20, 30);
   }
 }
 
@@ -15,8 +15,8 @@
   @media (max-width: 800px) {
     display: none;
   }
-  @include var.adaptive-value-rem(padding-right, 15, 20);
-  @include var.adaptive-value-rem(margin-right, 20, 30);
+  @include var.adaptive-value-px(padding-right, 15, 20);
+  @include var.adaptive-value-px(margin-right, 20, 30);
 
   & ul {
     display: flex;
@@ -37,9 +37,9 @@
           background-color: var.$primary-200;
         }
 
-        @include var.adaptive-value-rem(padding-left, 10, 15);
-        @include var.adaptive-value-rem(height, 45, 50);
-        @include var.adaptive-value-rem(width, 250, 335);
+        @include var.adaptive-value-px(padding-left, 10, 15);
+        @include var.adaptive-value-px(height, 45, 50);
+        @include var.adaptive-value-px(width, 250, 335);
       }
     }
   }
@@ -82,7 +82,7 @@
   }
 
   &__title {
-    @include var.adaptive-value-rem(margin-bottom, 20, 25);
+    @include var.adaptive-value-px(margin-bottom, 20, 25);
   }
 
   &__colon {
@@ -131,7 +131,7 @@
     display: flex;
     justify-content: space-between;
     column-gap: 15px;
-    @include var.adaptive-value-rem(margin-top, 30, 50);
+    @include var.adaptive-value-px(margin-top, 30, 50);
 
     & > a {
       border-radius: 5px;
@@ -142,7 +142,7 @@
     align-items: center;
     column-gap: 10px;
 
-    @include var.adaptive-value-rem(padding-inline, 20, 30);
+    @include var.adaptive-value-px(padding-inline, 20, 30);
     // & > p {
     //   white-space: nowrap;
     //   overflow: hidden;

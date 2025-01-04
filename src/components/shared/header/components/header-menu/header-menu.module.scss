@@ -29,6 +29,12 @@
   flex-direction: column;
   @extend %inter-400-16;
 
+  &_item_with_arrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   & li {
     height: 54px;
     display: flex;
@@ -47,6 +53,12 @@
     }
   }
 
+  &_underline {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   &_item {
     display: flex;
     align-items: center;
@@ -55,7 +67,6 @@
 
   &_red {
     color: var.$red-100;
-    text-decoration-color: var.$red-100;
   }
 }
 

@@ -10,4 +10,5 @@ export const LINKS = {
   PrivacyPolicy: '/privacy-policy',
   Categories: '/categories',
   Admin: '/admin',
+  AboutUs: '/about-us',
 }
