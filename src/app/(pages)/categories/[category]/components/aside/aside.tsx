@@ -6,20 +6,26 @@ import { LINKS } from '@/utils/config/links'
 import styles from './../../categories.module.scss'
 import { CheckBoxCategories } from './components/check-box/check-box'
 
-export const Aside: React.FC = () => {
+interface AsideProps {
+  category: string
+}
+
+export const Aside: React.FC<AsideProps> = ({ category }: AsideProps) => {
   return (
     <aside className={styles.aside}>
       <div className={styles.aside__categories}>
-        <h1>Категорії</h1>
+        <h1>{category !== 'Всі' ? category : 'Категорії'}</h1>
         <ul>
           <li>
-            <Link className={styles.aside__sales} href={LINKS.Categories + '/Знижки'}>
+            <Link className={styles.aside__sales} href={LINKS.Categories + '/Знижки'} prefetch>
               Знижки
             </Link>
           </li>
           {[...new Set(PRODUCTS.map(product => product.category.name))].map(category => (
             <li key={category}>
-              <Link href={LINKS.Categories + '/' + category}>{category}</Link>
+              <Link href={LINKS.Categories + '/' + category} prefetch>
+                {category}
+              </Link>
             </li>
           ))}
         </ul>

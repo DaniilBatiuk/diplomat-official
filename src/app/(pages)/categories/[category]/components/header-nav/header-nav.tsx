@@ -7,10 +7,13 @@ import { MenuCategories } from '@/components/shared/header/components/header-men
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../categories.module.scss'
-import { DarkBackground } from '@/components'
+import { MenuFilters } from './components/menu-filters/menu-filters'
+import { DarkBackground, MenuSort } from '@/components'
 
 export const HeaderNav: React.FC = () => {
   const [activeMenuCategories, setActiveMenuCategories] = useState(false)
+  const [activeMenuFilters, setActiveMenuFilters] = useState(false)
+  const [activeMenuSort, setActiveMenuSort] = useState(false)
 
   return (
     <>
@@ -23,14 +26,19 @@ export const HeaderNav: React.FC = () => {
         activeMenuCategories={activeMenuCategories}
         setActiveMenuCategories={setActiveMenuCategories}
       />
+      <MenuFilters
+        activeMenuFilters={activeMenuFilters}
+        setActiveMenuFilters={setActiveMenuFilters}
+      />
+      <MenuSort activeMenuSort={activeMenuSort} setActiveMenuSort={setActiveMenuSort} />
       <div className={styles.categories__nav}>
         <div className={styles.categories__nav_item} onClick={() => setActiveMenuCategories(true)}>
           {ICONS.categories()} <p>Категорії</p>
         </div>
-        <div className={styles.categories__nav_item}>
+        <div className={styles.categories__nav_item} onClick={() => setActiveMenuSort(true)}>
           {ICONS.sort()} <p>Сортування</p>
         </div>
-        <div className={styles.categories__nav_item}>
+        <div className={styles.categories__nav_item} onClick={() => setActiveMenuFilters(true)}>
           {ICONS.filter()} <p>Фільтр</p>
         </div>
       </div>

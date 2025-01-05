@@ -15,7 +15,7 @@ export const CategoriesHeader: React.FC = () => {
           Головна
         </Link>{' '}
         /{' '}
-        <Link href={LINKS.Home} prefetch>
+        <Link href={LINKS.Categories + '/Всі'} prefetch>
           Категорії
         </Link>
       </p>

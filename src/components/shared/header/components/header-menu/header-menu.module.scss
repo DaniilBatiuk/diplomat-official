@@ -9,7 +9,7 @@
   top: 0;
   padding: 17px 15px;
   transition: left 0.2s ease-in-out;
-  z-index: 201;
+  z-index: 2010;
 
   display: flex;
   flex-direction: column;
@@ -71,5 +71,5 @@
 }
 
 .menu_categories {
-  z-index: 202;
+  z-index: 2020;
 }
