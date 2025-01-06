@@ -1,0 +1,5 @@
+@use '@/styles/variables' as var;
+
+.input {
+  @include var.adaptive-value-px(height, 46, 52);
+}

@@ -4,8 +4,8 @@ import { CustomButton } from '@/components/shared/ui/custom-button/custom-button
 
 import { ICONS } from '@/utils/config/icons'
 
+import { CustomField } from '../../../ui/custom-field/custom-field'
 import styles from '../../sign-in.module.scss'
-import { WhiteField } from '../white-field/white-field'
 
 interface SignInProps {
   setSignUp: Dispatch<SetStateAction<boolean>>
@@ -21,8 +21,8 @@ export const SignInPage: React.FC<SignInProps> = ({ setSignUp }: SignInProps) =>
       <div className={styles.signIn__or}>Або</div>
       <form className={styles.signIn__form} noValidate>
         <div className={styles.signIn__form_inputs}>
-          <WhiteField label='Введіть свій e-mail' type='email' fullWidth />
-          <WhiteField label='Введіть свій пароль' type='password' fullWidth />
+          <CustomField label='Введіть свій e-mail' type='email' fullWidth isWhite />
+          <CustomField label='Введіть свій пароль' type='password' fullWidth isWhite />
         </div>
         <CustomButton fullWidth big>
           Увійти

@@ -2,7 +2,7 @@
 
 .categories {
   &__container {
-    @include var.adaptive-value-px(margin-top, 20, 30);
+    @include var.adaptive-value-px(margin-top, 15, 30);
   }
 
   &__header {
@@ -23,7 +23,7 @@
   }
   &__content {
     display: flex;
-    margin-top: 20px;
+    @include var.adaptive-value-px(margin-top, 15, 20);
   }
 
   &__nav {

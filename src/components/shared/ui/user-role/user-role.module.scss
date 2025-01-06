@@ -1,0 +1,45 @@
+@use '@/styles/variables.scss' as var;
+
+.role {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  border-radius: 5px;
+  padding: 6px 8px;
+  @extend %inter-500-14;
+
+  &:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  &.user {
+    border: 1px solid var.$green-300;
+    background-color: var.$green-100;
+    color: var.$green-300;
+
+    &::before {
+      background-color: var.$green-300;
+    }
+  }
+  &.manager {
+    border: 1px solid var.$blue-300;
+    background-color: var.$blue-100;
+    color: var.$blue-300;
+
+    &::before {
+      background-color: var.$blue-300;
+    }
+  }
+  &.admin {
+    border: 1px solid var.$purple-200;
+    background-color: var.$purple-100;
+    color: var.$purple-200;
+
+    &::before {
+      background-color: var.$purple-200;
+    }
+  }
+}

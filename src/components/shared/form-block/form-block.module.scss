@@ -1,0 +1,13 @@
+@use '@/styles/variables' as var;
+
+.form_block {
+  border-radius: 10px;
+  background-color: var.$background-200;
+  display: flex;
+  flex-direction: column;
+  @include var.adaptive-value-px(padding, 15, 25);
+  & > h2 {
+    @extend %inter-600-24-20;
+    @include var.adaptive-value-px(margin-bottom, 15, 25);
+  }
+}

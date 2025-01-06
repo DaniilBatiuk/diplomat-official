@@ -12,3 +12,5 @@ type Category = {
   id: string
   name: string
 }
+
+type Role = 'User' | 'Manager' | 'Admin'

@@ -126,10 +126,6 @@
       }
     }
 
-    &_input {
-      @include var.adaptive-value-px(height, 46, 52);
-    }
-
     & > button {
       @include var.adaptive-value-px(margin-top, 20, 30);
     }

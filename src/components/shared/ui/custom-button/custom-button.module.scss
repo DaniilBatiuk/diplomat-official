@@ -33,3 +33,9 @@
     @include var.inter-700-20-18;
   }
 }
+
+.button:disabled {
+  background-color: var.$primary-500;
+  cursor: default;
+  @include var.button-active(1);
+}

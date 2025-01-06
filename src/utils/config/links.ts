@@ -1,6 +1,5 @@
 export const LINKS = {
   Home: '/',
-  Profile: '/profile',
   SingIn: '/sign-in',
   SingUp: '/sign-up',
   Delivery: '/delivery',
@@ -11,4 +10,6 @@ export const LINKS = {
   Categories: '/categories',
   Admin: '/admin',
   AboutUs: '/about-us',
+  CreateProduct: '/create-product',
+  Profile: '/profile',
 }

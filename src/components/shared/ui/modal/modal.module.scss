@@ -1,0 +1,110 @@
+@use '@/styles/variables.scss' as var;
+
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: var.$black-151;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease-in-out;
+  z-index: 2020;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+    cursor: auto;
+  }
+
+  &__message {
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  &__h2 {
+    margin-top: 40px;
+    @extend %lora-700-22;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  &__p {
+    @extend %inter-400-15;
+    line-height: 1.2;
+    text-align: center;
+    color: var.$black-200;
+  }
+  &__main {
+    margin-top: 15px;
+  }
+  &__footer {
+    margin-top: 20px;
+  }
+
+  &__close {
+    width: 23px;
+    height: 23px;
+    &_button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      cursor: pointer;
+      z-index: 301;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var.$white-100;
+      border-radius: 30px;
+      padding: 9px;
+      aspect-ratio: 1 / 1;
+      background-color: var.$black-50;
+
+      transition:
+        transform 0.05s ease-in-out,
+        background-color 0.1s ease-in-out;
+      @include var.button-active(0.94);
+
+      &:hover {
+        background-color: var.$black-110;
+      }
+    }
+  }
+
+  &__content {
+    padding: 15px;
+    width: 100%;
+    background-color: var.$background-200;
+    border-radius: 16px;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: 0.4s;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    position: relative;
+
+    @media (max-width: 525.98px) {
+      margin: 0px 5px;
+    }
+
+    &::-webkit-scrollbar {
+      display: block;
+      width: 5px;
+      overflow: auto;
+      height: 5px;
+      background-color: lightgray;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: gray;
+    }
+  }
+
+  &__content.active {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}

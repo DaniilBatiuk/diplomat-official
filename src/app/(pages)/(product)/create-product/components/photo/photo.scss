@@ -1,0 +1,88 @@
+@use '@/styles/variables' as var;
+
+.photo {
+  &__content {
+    max-width: 600px;
+    margin: 0px auto;
+    width: 100%;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: block;
+      width: 0px;
+      overflow: auto;
+      height: 0px;
+      background-color: rgb(207, 207, 207);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb(167, 167, 167);
+      border-radius: 30px;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1fr);
+    grid-gap: 10px;
+  }
+
+  &__item {
+    background-color: var.$background-200;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    position: relative;
+
+    & > .delete {
+      position: absolute;
+      top: clamp(15px, 2.5vw, 20px);
+      right: clamp(15px, 2.5vw, 20px);
+    }
+
+    &.full-width {
+      grid-column: span 2;
+      aspect-ratio: 1 / 1;
+
+      @media (max-width: 700.98px) {
+        grid-column: span 1;
+      }
+    }
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.images_upload {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  background-color: var.$background-200;
+  height: clamp(350px, 30vw, 491px);
+  cursor: pointer;
+
+  & > *[data-ut-element='button'] {
+    margin-top: 15px;
+    height: 40px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    align-items: center;
+    background-color: var.$primary-600;
+    color: white;
+  }
+
+  & > *[data-ut-element='button'][data-state='uploading'] {
+    background-color: var.$primary-500;
+  }
+
+  & > *[data-ut-element='button'][data-state='uploading']::after {
+    background-color: var.$primary-500;
+  }
+}
