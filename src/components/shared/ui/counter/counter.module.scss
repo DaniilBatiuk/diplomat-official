@@ -1,0 +1,40 @@
+@use '@/styles/variables' as var;
+
+.counter {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  & > input {
+    @extend %inter-400-18;
+    width: 23px;
+    background-color: inherit;
+    text-align: center;
+  }
+
+  & > button {
+    height: 30px;
+
+    &:not(:disabled):hover {
+      & svg {
+        fill: var.$primary-150;
+
+        & rect {
+          stroke: var.$primary-600;
+        }
+        & path {
+          fill: var.$primary-600;
+        }
+      }
+    }
+
+    &:disabled rect {
+      stroke: var.$primary-500;
+    }
+    &:disabled path {
+      fill: var.$primary-500;
+    }
+
+    transition: transform 0.05s ease-in-out;
+    @include var.button-active(0.95);
+  }
+}

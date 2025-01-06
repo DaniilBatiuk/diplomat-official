@@ -1,0 +1,306 @@
+@use '@/styles/variables.scss' as var;
+
+.profile {
+  &__title {
+    padding: 0px 15px;
+  }
+  &__container {
+    @include var.adaptive-value-px(margin-top, 20, 30);
+
+    @media (max-width: 660px) {
+      padding: 0px 5px;
+    }
+  }
+  &__change_password_fields {
+    display: flex;
+    flex-direction: column;
+    row-gap: 13px;
+  }
+
+  &__content {
+    display: flex;
+    @include var.adaptive-value-px(margin-top, 15, 25);
+    @include var.adaptive-value-px(gap, 25, 30);
+
+    @media (max-width: 660px) {
+      flex-direction: column;
+    }
+    &_left {
+      border-radius: 10px;
+      background-color: var.$background-200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: fit-content;
+      row-gap: 10px;
+      @include var.adaptive-value-px(padding, 15, 25);
+      @include var.adaptive-value-px(width, 250, 300);
+
+      @media (max-width: 660px) {
+        width: 100%;
+      }
+
+      & > h2 {
+        @extend %inter-500-20;
+      }
+
+      &_info {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        &_item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 45px;
+          @extend %inter-400-16;
+          border-bottom: 1px solid var.$black-151;
+
+          & > p:first-child {
+            color: var.$black-151;
+          }
+        }
+      }
+    }
+    &_right {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      @include var.adaptive-value-px(row-gap, 25, 30);
+
+      &_form {
+        &_fields {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 13px;
+          margin-bottom: 13px;
+          @media (max-width: 770px) {
+            grid-template-columns: repeat(1, 1fr);
+          }
+          @media (min-width: 770px) {
+            & > *:nth-last-child(1):nth-child(odd) {
+              grid-column: span 2;
+            }
+          }
+        }
+
+        &_footer {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          column-gap: 20px;
+          @include var.adaptive-value-px(margin-top, 20, 25);
+          & > p {
+            @extend %inter-400-16;
+
+            & > span {
+              cursor: pointer;
+              color: var.$primary-600;
+            }
+          }
+
+          &_button {
+            white-space: nowrap;
+            @include var.adaptive-value-px(padding-inline, 22, 30);
+          }
+        }
+      }
+    }
+  }
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 15px;
+    @include var.adaptive-value-px(height, 180, 220);
+
+    @extend %inter-400-16;
+  }
+
+  &__header {
+    display: flex;
+    @extend %inter-600-16;
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid var.$black-151;
+    @include var.adaptive-value-px(column-gap, 0, 30);
+    &_number {
+      min-width: 80px;
+    }
+    &_date {
+      min-width: 100px;
+    }
+    &_products {
+      flex: 1 1 auto;
+      max-width: 640px;
+    }
+    &_sum {
+      min-width: 120px;
+    }
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  }
+
+  &__item {
+    display: flex;
+    width: 100%;
+    padding-block: 20px;
+    border-bottom: 1px solid var.$black-151;
+    @include var.adaptive-value-px(column-gap, 0, 30);
+
+    &_number {
+      @extend %inter-600-16;
+      min-width: 80px;
+    }
+    &_date {
+      @extend %inter-400-16;
+      min-width: 100px;
+    }
+    &_products {
+      flex: 1 1 auto;
+      max-width: 640px;
+    }
+
+    &_footer {
+      display: flex;
+      justify-content: space-between;
+
+      align-items: flex-end;
+      margin-top: 15px;
+      @media (min-width: 1000px) {
+        align-items: center;
+      }
+    }
+    &_sum {
+      @extend %lora-700-24;
+      min-width: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      @media (max-width: 1000px) {
+        min-width: 0px;
+      }
+
+      &_text {
+        @extend %inter-400-18;
+        @media (min-width: 1000px) {
+          display: none;
+        }
+      }
+    }
+    &:last-child {
+      padding-bottom: 0px;
+      border-bottom: 0px solid var.$black-151;
+    }
+
+    &_number_date {
+      display: flex;
+      @include var.adaptive-value-px(column-gap, 0, 20);
+      @media (max-width: 1000px) {
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+        & > .history__item_date {
+          text-align: end;
+        }
+      }
+    }
+    @media (max-width: 1000px) {
+      flex-direction: column;
+    }
+  }
+}
+
+.product_item {
+  display: flex;
+  padding-block: 10px;
+  border-bottom: 1px solid var.$black-151;
+  align-items: center;
+  @include var.adaptive-value-px(column-gap, 10, 20);
+
+  &_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    @include var.adaptive-value-px(column-gap, 0, 20);
+
+    @media (max-width: 1112px) {
+      flex-direction: column;
+      height: 80px;
+      row-gap: 8px;
+    }
+  }
+
+  &_count_prices {
+    display: flex;
+    align-items: center;
+    @include var.adaptive-value-px(column-gap, 0, 20);
+
+    @media (max-width: 1112px) {
+      width: 100%;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+
+  &:first-child {
+    padding-top: 0px;
+  }
+  &:last-child {
+    padding-bottom: 0px;
+    border-bottom: 0px solid var.$black-151;
+  }
+
+  &_title {
+    max-width: 350px;
+    flex: 1 1 auto;
+    @extend %inter-400-16;
+
+    @include var.text-ellipsis(2);
+
+    @media (min-width: 1112px) {
+      height: fit-content;
+    }
+    @media (max-width: 1112px) {
+      width: 100%;
+      max-width: none;
+    }
+  }
+  &_count {
+    min-width: 50px;
+    @extend %inter-400-16;
+  }
+
+  &_sale {
+    color: var.$black-200;
+    @extend %lora-700-16;
+    text-align: end;
+    text-decoration: line-through;
+  }
+  &_price {
+    text-align: end;
+    min-width: 98px;
+    @extend %lora-700-22;
+
+    &_discount {
+      color: var.$red-100;
+    }
+  }
+
+  & > img {
+    background-color: white;
+    padding: 5px;
+    aspect-ratio: 1 / 1;
+    border-radius: 5px;
+  }
+}

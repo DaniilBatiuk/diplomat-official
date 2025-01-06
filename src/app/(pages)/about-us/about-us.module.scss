@@ -1,0 +1,80 @@
+@use '@/styles/variables.scss' as var;
+
+.about {
+  &__container {
+    @include var.adaptive-value-px(margin-top, 20, 30);
+  }
+  &__title {
+    @include var.adaptive-value-px(margin-bottom, 20, 25);
+  }
+
+  &__content {
+    max-width: 1100px;
+
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    @include var.adaptive-value-px(row-gap, 55, 110);
+
+    & > h2 {
+      text-align: center;
+      margin: 0 auto;
+      max-width: 830px;
+      @extend %inter-600-24-20;
+      line-height: 150%;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 840px) {
+      flex-direction: column;
+    }
+    @include var.adaptive-value-px(gap, 10, 60);
+
+    &_reverse {
+      flex-direction: row-reverse;
+
+      @media (max-width: 840px) {
+        flex-direction: column;
+      }
+      & img {
+        margin-right: 0px !important;
+        margin-left: 15px;
+        box-shadow: -15px 15px 0 0 var.$background-200 !important;
+        @media (max-width: 840px) {
+          width: calc(100% - 15px);
+        }
+      }
+    }
+
+    &_info {
+      width: 50%;
+      @media (max-width: 840px) {
+        width: 100%;
+      }
+      & > h2 {
+        @extend %inter-600-24-20;
+        line-height: 120%;
+        @include var.adaptive-value-px(margin-bottom, 10, 20);
+      }
+      & > p {
+        @extend %inter-400-18-16;
+        line-height: 167%;
+      }
+    }
+
+    & img {
+      margin-right: 15px;
+      width: 45%;
+      object-fit: cover;
+      box-shadow: 15px 15px 0 0 var.$background-200;
+      @media (max-width: 840px) {
+        width: calc(100% - 15px);
+      }
+    }
+  }
+}

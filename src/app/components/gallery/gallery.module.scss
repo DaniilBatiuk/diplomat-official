@@ -1,0 +1,115 @@
+@use '@/styles/variables' as var;
+
+.gallery {
+  &__container {
+    background-color: inherit;
+  }
+
+  &__list {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(267px, 345px));
+
+    @media (max-width: 1238px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+    }
+
+    @media (max-width: 686px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(6, 1fr);
+    }
+    @include var.adaptive-value-px(gap, 10, 15);
+  }
+
+  &__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    @media (max-width: 1238px) {
+      @include var.adaptive-value-px(max-height, 260, 500);
+    }
+    @media (max-width: 686px) {
+      @include var.adaptive-value-px(max-height, 260, 700);
+    }
+
+    & img {
+      user-select: none;
+
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.15);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &:hover img {
+      transform: scale(1);
+    }
+
+    &__more_width {
+      grid-column: span 3;
+
+      @media (max-width: 1351px) {
+        grid-column: span 2;
+      }
+      @media (max-width: 1238px) {
+        grid-column: span 1;
+      }
+    }
+
+    &__more {
+      grid-column: span 2;
+      grid-row: span 2;
+
+      @media (max-width: 1238px) {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+    }
+
+    &_height {
+      grid-row: span 2;
+
+      @media (max-width: 1238px) {
+        grid-row: span 1;
+      }
+    }
+
+    &__more_first {
+      @media (max-width: 1351px) {
+        grid-column: span 2;
+      }
+
+      @media (max-width: 1238px) {
+        grid-column: span 1;
+      }
+    }
+
+    &__gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.6) 100%
+      );
+    }
+
+    & > p {
+      @extend %inter-700-38-26;
+      text-transform: uppercase;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      text-align: end;
+
+      color: var.$white-100;
+    }
+  }
+}

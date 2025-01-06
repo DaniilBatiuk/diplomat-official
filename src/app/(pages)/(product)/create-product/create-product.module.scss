@@ -1,0 +1,97 @@
+@use '@/styles/variables.scss' as var;
+
+.create {
+  &__title {
+    padding: 0px 15px;
+  }
+  &__container {
+    @media (max-width: 660px) {
+      padding: 0px 5px;
+    }
+
+    @include var.adaptive-value-px(margin-top, 20, 30);
+
+    & > form {
+      display: flex;
+      flex-direction: column;
+      @include var.adaptive-value-px(margin-top, 15, 25);
+      @include var.adaptive-value-px(row-gap, 25, 30);
+    }
+  }
+
+  &__form_block {
+    display: flex;
+    @include var.adaptive-value-px(column-gap, 13, 40);
+
+    @media (max-width: 705px) {
+      flex-direction: column;
+      row-gap: 13px;
+    }
+
+    &_2 {
+      display: flex;
+      flex-direction: column;
+      row-gap: 13px;
+    }
+
+    &_3 {
+      display: flex;
+      column-gap: 13px;
+
+      &_row_gap {
+        row-gap: 13px;
+      }
+      & > &_inputs {
+        display: flex;
+        width: 100%;
+        column-gap: 13px;
+      }
+
+      & > button {
+        display: flex;
+        align-items: center;
+        transition: transform 0.05s ease-in-out;
+        @include var.button-active(0.95);
+
+        & svg {
+        }
+
+        &:not(:disabled):hover {
+          & svg {
+            fill: var.$primary-150;
+
+            & rect {
+              stroke: var.$primary-600;
+            }
+            & path {
+              fill: var.$primary-600;
+            }
+          }
+        }
+      }
+    }
+
+    &_left,
+    &_right {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      row-gap: 13px;
+    }
+
+    &_left {
+      justify-content: space-between;
+    }
+    &_select {
+      width: 100%;
+      & > p {
+        margin-top: 10px;
+        @extend %inter-400-16-14;
+        & > span {
+          color: var.$primary-600;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

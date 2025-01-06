@@ -9,7 +9,7 @@
   top: 0;
   padding: 17px 15px;
   transition: left 0.2s ease-in-out;
-  z-index: 10;
+  z-index: 2010;
 
   display: flex;
   flex-direction: column;
@@ -29,14 +29,31 @@
   flex-direction: column;
   @extend %inter-400-16;
 
+  &_item_with_arrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   & li {
     height: 54px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid var.$black-300;
+    border-bottom: 1px solid var.$black-150;
     cursor: pointer;
 
+    & a {
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &_underline {
     &:hover {
       text-decoration: underline;
     }
@@ -50,10 +67,9 @@
 
   &_red {
     color: var.$red-100;
-    text-decoration-color: var.$red-100;
   }
 }
 
 .menu_categories {
-  z-index: 11;
+  z-index: 2020;
 }

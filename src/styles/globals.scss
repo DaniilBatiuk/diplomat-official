@@ -3,39 +3,36 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
   overflow-x: hidden;
+  background: rgb(248, 222, 187);
+  &::-webkit-scrollbar {
+    display: block;
+    width: 5px;
+    overflow: auto;
+    height: 5px;
+    background: rgb(248, 222, 187);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var.$primary-600;
+    border-radius: 30px;
+  }
 }
 
 body {
   font-weight: 300;
   @include var.font-family('Inter');
-  background-color: var.$background-300;
+  padding: 0px !important;
   color: var.$black-100;
-}
-
-body {
-  // overflow-x: hidden;
-
-  // overflow-y: auto;
-
-  // &::-webkit-scrollbar {
-  //   display: block;
-  //   width: 5px;
-  //   overflow: auto;
-  //   height: 5px;
-  //   background: rgb(245, 214, 180);
-  // }
-
-  // &::-webkit-scrollbar-thumb {
-  //   background: var.$primary-700;
-  //   border-radius: 30px;
-  // }
 }
 
 .wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  background-color: var.$background-300;
 }
 
 main {
@@ -51,7 +48,75 @@ main {
 
 .no-scroll {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
-  overflow-y: scroll;
+  // position: fixed;
+  height: 100%;
+  // overflow-y: scroll;
+}
+.no-scroll-view {
+  overflow: hidden;
+  height: 100%;
+  scrollbar-gutter: unset;
+}
+
+// swiper
+.swiper-button-prev {
+  content: url('../../public/arrow-left.svg');
+  width: clamp(40px, 5vw, 50px) !important;
+  height: clamp(40px, 5vw, 50px) !important;
+  -webkit-user-select: none; // для Safari
+  -moz-user-select: none; // для Firefox
+  -ms-user-select: none; // для IE
+  padding: 7px;
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+  background: var.$black-110;
+
+  transition: transform 0.05s ease-in-out;
+  @include var.button-active(0.95);
+
+  &:hover {
+    background: var.$black-151;
+  }
+}
+
+.swiper-button-next {
+  content: url('../../public/arrow-right.svg');
+  width: clamp(40px, 5vw, 50px) !important;
+  height: clamp(40px, 5vw, 50px) !important;
+  -webkit-user-select: none; // для Safari
+  -moz-user-select: none; // для Firefox
+  -ms-user-select: none; // для IE
+  padding: 7px;
+  border-radius: 30px;
+  backdrop-filter: blur(4px);
+  background: var.$black-110;
+
+  transition: transform 0.05s ease-in-out;
+  @include var.button-active(0.95);
+
+  &:hover {
+    background: var.$black-151;
+  }
+}
+
+.swiper {
+  z-index: 0 !important;
+}
+
+.swiper-wrapper {
+  z-index: 0 !important;
+}
+
+// MUI
+.MuiOutlinedInput-root {
+  @include var.adaptive-value-px(height, 46, 52);
+  @include var.adaptive-value-px(top, 3, 0);
+}
+
+.MuiInputBase-multiline {
+  height: auto;
+}
+
+.MuiCheckbox-root {
+  padding: 0px !important;
 }

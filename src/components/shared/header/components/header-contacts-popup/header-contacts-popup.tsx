@@ -4,23 +4,24 @@ import { useState } from 'react'
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './header-contacts-popup.module.scss'
+import { useClickOutside } from '@/utils/hooks'
 
 export const HeaderContactsPopUp: React.FC = () => {
   const [isContactsActive, setIsContactsActive] = useState(false)
 
+  const clickOutsideRef = useClickOutside<HTMLDivElement>(() => {
+    setIsContactsActive(false)
+  })
+
   return (
     <>
-      <div
-        className={clsx(styles.invisible, { [styles.active]: isContactsActive })}
-        onClick={() => setIsContactsActive(false)}
-      ></div>
       <li
         className={clsx(styles.header_contacts_icon, { [styles.active]: isContactsActive })}
         onClick={() => setIsContactsActive(true)}
       >
         {ICONS.contacts()}
         {isContactsActive && (
-          <div className={styles.contacts}>
+          <div className={styles.contacts} ref={clickOutsideRef}>
             <div className={styles.contact}>
               {ICONS.contactPhone()}
               <div className={styles.contact_info}>

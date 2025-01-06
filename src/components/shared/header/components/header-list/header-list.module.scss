@@ -9,13 +9,10 @@
 
   &.absolute {
     position: absolute;
-
     width: 100%;
-    top: 38px;
+    top: -300px;
     opacity: 0;
-    transition:
-      opacity 0.2s ease-in-out,
-      top 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
 
     &.active {
       top: 48px;
@@ -34,7 +31,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: var.$primary-100;
+      background-color: var.$primary-150;
     }
   }
 }

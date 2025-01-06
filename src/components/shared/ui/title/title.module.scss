@@ -1,0 +1,17 @@
+@use '@/styles/variables.scss' as var;
+
+.title {
+  display: flex;
+  column-gap: 10px;
+  & > div {
+    border-radius: 30px;
+    width: 6px;
+    background-color: var.$primary-600;
+  }
+  & > h2,
+  & > h1 {
+    padding-block: 5px;
+    @extend %lora-600-32-23;
+    text-transform: uppercase;
+  }
+}

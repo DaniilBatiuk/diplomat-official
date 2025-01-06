@@ -11,17 +11,24 @@
   "dependencies": {
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.3.0",
+    "@react-input/mask": "^2.0.4",
     "@trivago/prettier-plugin-sort-imports": "^5.2.0",
+    "@uploadthing/react": "^7.1.5",
     "clsx": "^2.1.1",
     "next": "15.1.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-input-mask": "^2.0.4",
+    "react-sortablejs": "^6.1.4",
+    "swiper": "^11.1.15",
+    "uploadthing": "^7.4.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-input-mask": "^3.0.6",
     "eslint": "^9",
     "eslint-config-next": "15.1.2",
     "sass": "^1.83.0",
