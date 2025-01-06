@@ -5,7 +5,7 @@ import React, { ReactNode, useEffect } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
 
-import styles from './Modal.module.scss'
+import styles from './modal.module.scss'
 
 export interface ModalProps {
   active: boolean

@@ -25,7 +25,7 @@ export const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
           </div>
           <Modal.Footer>
             <CustomButton type='submit' fullWidth>
-              Зміни
+              Змінити
             </CustomButton>
           </Modal.Footer>
         </form>
