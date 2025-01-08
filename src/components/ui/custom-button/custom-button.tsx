@@ -6,6 +6,7 @@ export interface CustomButtonProp extends React.ComponentProps<'button'> {
   fullWidth?: boolean
   big?: boolean
   extraBig?: boolean
+  outline?: boolean
 }
 export const CustomButton: React.FC<CustomButtonProp> = ({
   children,
@@ -13,6 +14,7 @@ export const CustomButton: React.FC<CustomButtonProp> = ({
   fullWidth,
   big,
   extraBig,
+  outline,
   ...props
 }: CustomButtonProp) => {
   return (
@@ -24,6 +26,7 @@ export const CustomButton: React.FC<CustomButtonProp> = ({
           [styles.button__full_width]: fullWidth,
           [styles.button__big]: big,
           [styles.button__extra_big]: extraBig,
+          [styles.button__outline]: outline,
         },
         styles.button,
       )}

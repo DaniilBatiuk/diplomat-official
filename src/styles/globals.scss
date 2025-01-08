@@ -120,3 +120,32 @@ main {
 .MuiCheckbox-root {
   padding: 0px !important;
 }
+
+.MuiPaper-root {
+  background-color: inherit !important;
+  box-shadow: none !important;
+  margin: 0px !important;
+
+  &::after {
+    position: absolute;
+    left: 0;
+    top: -1px;
+    right: 0;
+    height: 1px;
+    content: '';
+    background-color: var.$black-150 !important;
+    opacity: 1 !important;
+  }
+
+  & .MuiButtonBase-root {
+    padding-inline: 0px !important;
+  }
+
+  & .MuiAccordionDetails-root {
+    padding-inline: 0px !important;
+  }
+
+  & svg {
+    color: var.$black-100 !important;
+  }
+}

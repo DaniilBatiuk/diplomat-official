@@ -154,6 +154,13 @@
   & img {
     height: auto !important;
   }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+  }
 }
 
 .menu_open {

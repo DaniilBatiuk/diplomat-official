@@ -1,0 +1,379 @@
+@use '@/styles/variables.scss' as var;
+
+.product {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    @include var.adaptive-value-px(margin-top, 20, 30);
+    @include var.adaptive-value-px(row-gap, 40, 60);
+  }
+
+  &__header {
+    display: flex;
+
+    @include var.adaptive-value-px(gap, 15, 60);
+    @media (max-width: 1000px) {
+      flex-direction: column;
+    }
+  }
+
+  &__info {
+    width: calc(50% - 30px);
+    @media (max-width: 1000px) {
+      width: 100%;
+    }
+    &_title {
+      @extend %lora-500-28-22;
+    }
+    &_sale {
+      color: var.$black-200;
+      @extend %lora-700-18;
+      text-align: start;
+      text-decoration: line-through;
+    }
+    &_price {
+      text-align: start;
+      min-width: 98px;
+      @extend %lora-700-30;
+
+      &_discount {
+        color: var.$red-100;
+      }
+    }
+
+    &_price_buy {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      @include var.adaptive-value-px(margin-top, 10, 20);
+
+      & > button {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        @include var.adaptive-value-px(padding-inline, 27, 30);
+
+        & svg {
+          @include var.adaptive-value-px(width, 24, 26);
+        }
+      }
+    }
+
+    &_accordion_no_before {
+      &::after,
+      &::before {
+        display: none !important;
+      }
+    }
+    &_about {
+      @extend %inter-400-16;
+      line-height: 140%;
+    }
+    &_accordion_title {
+      @extend %inter-400-18-16;
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 7px;
+      @extend %inter-400-16;
+      &_item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      &_characteristic {
+        color: var.$black-200;
+      }
+      &_data {
+      }
+    }
+
+    &_contact {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+
+      & > div {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        & > svg {
+          width: 35px;
+        }
+        & > p {
+          @extend %inter-500-20;
+        }
+      }
+    }
+  }
+
+  &__columns {
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 1012px) {
+      flex-direction: column;
+      row-gap: 25px;
+    }
+  }
+  &__column {
+    width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var.$black-150;
+
+    @include var.adaptive-value-px(padding-inline, 10, 40);
+    &:first-child {
+      padding-left: 0px;
+    }
+    &:last-child {
+      border: 0px;
+      padding-right: 0px;
+    }
+
+    @media (max-width: 1012px) {
+      padding: 0px;
+      border: 0px;
+      width: 100%;
+    }
+    & > p {
+      @include var.adaptive-value-px(padding-top, 15, 20);
+      margin-top: auto;
+      @extend %inter-400-16;
+
+      & > a {
+        color: var.$primary-600;
+      }
+    }
+    &_title {
+      @extend %inter-600-24-20;
+      display: flex;
+      column-gap: 15px;
+      align-items: center;
+      @include var.adaptive-value-px(margin-bottom, 10, 15);
+      & svg {
+        border-radius: 50px;
+        background-color: var.$primary-600;
+        @include var.adaptive-value-px(padding, 5, 8);
+        @include var.adaptive-value-px(width, 38, 50);
+        @include var.adaptive-value-px(height, 38, 50);
+        & > path {
+          fill: var.$white-100;
+        }
+      }
+    }
+
+    &_body {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+
+      & > h5 {
+        @extend %inter-500-16;
+        margin-bottom: 10px;
+      }
+      & > ul {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+      }
+      & li {
+        margin-left: 20px;
+        list-style-type: disc;
+        @extend %inter-400-16;
+        line-height: 140%;
+      }
+      &_line {
+        width: 100%;
+        display: flex;
+        column-gap: 10px;
+      }
+      &_text {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        @extend %inter-400-14;
+        &_line {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          & > h4 {
+            @extend %inter-500-16;
+          }
+          & > p {
+            color: var.$black-200;
+          }
+        }
+      }
+
+      &_return {
+        @extend %inter-400-16;
+        line-height: 140%;
+      }
+    }
+  }
+}
+
+.comments {
+  @extend %inter-400-16;
+  &__form {
+    &_fields {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 13px;
+    }
+
+    &_rating {
+      display: flex;
+      align-items: center;
+      column-gap: 5px;
+    }
+    &_checkbox {
+      display: flex;
+      align-items: center;
+      column-gap: 5px;
+    }
+
+    & > div:last-child {
+      display: flex;
+      justify-content: flex-end;
+      & > button {
+        padding: 8px 30px;
+      }
+    }
+  }
+  & > button {
+    margin-top: 15px;
+    @media (min-width: 570px) {
+      display: none;
+    }
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    @include var.adaptive-value-px(margin-bottom, 5, 15);
+    & > button {
+      @include var.adaptive-value-px(padding-inline, 20, 31);
+      @media (max-width: 570px) {
+        display: none;
+      }
+    }
+  }
+
+  &__stars {
+    display: flex;
+    align-items: flex-end;
+
+    & > &_text {
+      margin-right: 3px;
+      @extend %lora-700-30;
+    }
+
+    & > &_text_2 {
+      margin-left: 10px;
+      @extend %lora-600-17;
+    }
+  }
+
+  &__list {
+    @extend %inter-400-16;
+    @include var.adaptive-value-px(margin-top, 20, 30);
+    &_item {
+      border-top: 1px solid var.$black-150;
+      @include var.adaptive-value-px(padding-block, 15, 25);
+      &_top {
+        display: flex;
+        align-items: center;
+        @include var.adaptive-value-px(column-gap, 20, 50);
+
+        &_name {
+          white-space: nowrap;
+          width: 220px;
+
+          @media (max-width: 620px) {
+            width: fit-content;
+          }
+        }
+        &_right {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex: 1 1 auto;
+
+          @media (max-width: 620px) {
+            justify-content: flex-end;
+            & span {
+              display: none;
+            }
+          }
+          &_date {
+            @extend %lora-500-17;
+          }
+        }
+      }
+      &_body {
+        margin-top: 20px;
+        display: flex;
+        @include var.adaptive-value-px(column-gap, 20, 50);
+
+        @media (max-width: 620px) {
+          flex-direction: column;
+        }
+        &_left {
+          display: flex;
+          align-items: center;
+          @media (min-width: 620px) {
+            & span {
+              display: none;
+            }
+          }
+          @media (max-width: 620px) {
+            justify-content: space-between;
+            margin-bottom: 20px;
+          }
+        }
+        &_recommendation {
+          white-space: nowrap;
+          width: 230px;
+          display: flex;
+          align-items: center;
+          column-gap: 5px;
+          @extend %inter-400-16-14;
+
+          @media (max-width: 620px) {
+            width: fit-content;
+            white-space: normal;
+          }
+
+          & > p::after {
+            content: ' Я рекомендую цей товар';
+            @media (max-width: 620px) {
+              content: ' Я рекоменду';
+            }
+          }
+        }
+        &_main {
+          display: flex;
+          flex-direction: column;
+          row-gap: 10px;
+          flex: 1 1 auto;
+
+          & > h5 {
+            @extend %inter-600-24-20;
+          }
+
+          & > p {
+            line-height: 130%;
+          }
+        }
+      }
+    }
+  }
+}

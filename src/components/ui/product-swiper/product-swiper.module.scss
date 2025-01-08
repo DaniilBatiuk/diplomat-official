@@ -12,6 +12,10 @@
       margin: 2px;
     }
   }
+
+  &__no_padding {
+    padding-inline: 0px;
+  }
 }
 
 .skeleton {

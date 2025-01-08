@@ -1,3 +1,7 @@
+import Link from 'next/link'
+
+import { LINKS } from '@/utils/config/links'
+
 import styles from './sales.module.scss'
 import { CustomButton } from '@/components'
 
@@ -12,7 +16,9 @@ export const Sales: React.FC = () => {
             Знайдіть подарунок, який буде приємним не тільки для душі, але й для гаманця. Обирайте
             найкращі пропозиції та заощаджуйте на кожній покупці!
           </p>
-          <CustomButton>ДО ЗНИЖОК</CustomButton>
+          <Link href={LINKS.Categories + '/Знижки'} prefetch>
+            <CustomButton>ДО ЗНИЖОК</CustomButton>
+          </Link>
         </div>
       </div>
     </section>

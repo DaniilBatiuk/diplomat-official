@@ -1,5 +1,6 @@
 'use client'
 
+import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -15,10 +16,12 @@ import { Card, CardSkeleton, Title } from '@/components'
 interface ProductSwiperProps {
   title: string
   products: Product[]
+  noPadding?: boolean
 }
 export const ProductSwiper: React.FC<ProductSwiperProps> = ({
   title,
   products,
+  noPadding,
 }: ProductSwiperProps) => {
   const [isLoading, setIsLoading] = useState(true)
 
@@ -28,7 +31,9 @@ export const ProductSwiper: React.FC<ProductSwiperProps> = ({
 
   return (
     <section className={styles.recommend}>
-      <div className={styles.recommend__container}>
+      <div
+        className={clsx(styles.recommend__container, { [styles.recommend__no_padding]: noPadding })}
+      >
         <Title>{title}</Title>
         {isLoading ? (
           <div className={styles.skeleton__container}>

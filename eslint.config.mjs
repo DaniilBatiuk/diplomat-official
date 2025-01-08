@@ -37,6 +37,7 @@ const eslintConfig = [
       // 'promise/always-return': 'off', // Отключает правило, требующее всегда возвращать значение в цепочках промисов
       'jsx-a11y/label-has-associated-control': 'warn', // Показывает предупреждение, если у элемента <label> нет связанного элемента управления
       'react/no-unescaped-entities': 'off', // Показывает предупреждение, если у компонента нет связанного элемента управления
+      '@typescript-eslint/ban-ts-comment': 'off',
     },
   },
 ]

@@ -32,6 +32,16 @@
     @include var.adaptive-value-px(height, 50, 56);
     @include var.inter-700-20-18;
   }
+
+  &__outline {
+    color: var.$primary-600;
+    background-color: var.$primary-100;
+    border: 1px solid var.$primary-600;
+    &:hover {
+      background-color: var.$primary-600;
+      color: var.$white-100;
+    }
+  }
 }
 
 .button:disabled {

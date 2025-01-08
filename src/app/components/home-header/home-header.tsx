@@ -1,6 +1,8 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { ICONS } from '@/utils/config/icons'
+import { LINKS } from '@/utils/config/links'
 
 import styles from './home-header.module.scss'
 import HomeImg from '@/../public/home.webp'
@@ -29,9 +31,11 @@ export const HomeHeader: React.FC = () => {
           <br />
           Зробіть своє привітання незабутнім, даруючи щось особливе.
         </p>
-        <CustomButton className={styles.main__button} extraBig>
-          ДО КАТЕГОРІЙ
-        </CustomButton>
+        <Link href={LINKS.Categories + '/Всі'} prefetch>
+          <CustomButton className={styles.main__button} extraBig>
+            ДО КАТЕГОРІЙ
+          </CustomButton>
+        </Link>
         <div className={styles.main__advantages}>
           <div className={styles.main__advantages_item}>
             {ICONS.checkMark()} <p>Широкий вибір товарів</p>

@@ -4,8 +4,8 @@ import { Dispatch, SetStateAction } from 'react'
 import { PRODUCTS } from '@/utils/config/data'
 import { ICONS } from '@/utils/config/icons'
 
+import { CustomButton } from '../../ui/custom-button/custom-button'
 import { DarkBackground } from '../dark-background/dark-background'
-import { CustomButton } from '../ui/custom-button/custom-button'
 
 import styles from './basket.module.scss'
 import { BasketItem } from './components/basket-item/basket-item'

@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction } from 'react'
 
-import { CustomButton } from '@/components/shared/ui/custom-button/custom-button'
+import { CustomButton } from '@/components/ui/custom-button/custom-button'
 
 import { ICONS } from '@/utils/config/icons'
 
-import { CustomField } from '../../../ui/custom-field/custom-field'
+import { CustomField } from '../../../../ui/custom-field/custom-field'
 import styles from '../../sign-in.module.scss'
 
 interface SignInProps {

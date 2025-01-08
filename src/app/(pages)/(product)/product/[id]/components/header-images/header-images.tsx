@@ -1,0 +1,86 @@
+'use client'
+
+import CardImg from '@../../public/product.webp'
+import Image from 'next/image'
+import React, { useState } from 'react'
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import 'swiper/css/navigation'
+import 'swiper/css/thumbs'
+// import required modules
+import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import './header-images.scss'
+
+export const HeaderImages: React.FC = () => {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null)
+
+  return (
+    <div className='product__header_images'>
+      <Swiper
+        spaceBetween={10}
+        navigation={true}
+        thumbs={{ swiper: thumbsSwiper }}
+        modules={[FreeMode, Navigation, Thumbs]}
+        className='mySwiper2'
+      >
+        <SwiperSlide>
+          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
+        </SwiperSlide>
+      </Swiper>
+      <Swiper
+        // @ts-ignore
+        onSwiper={setThumbsSwiper}
+        spaceBetween={10}
+        slidesPerView={4}
+        freeMode={true}
+        watchSlidesProgress={true}
+        modules={[FreeMode, Navigation, Thumbs]}
+        className='mySwiper'
+      >
+        <SwiperSlide>
+          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  )
+}

@@ -91,6 +91,7 @@ $black-250: rgba(0, 0, 0, 0.25);
 $white-100: #ffffff;
 
 $primary-50: #f9f0e6;
+$primary-100: #f8ecde;
 $primary-150: #f8e9d6; // Hover
 $primary-200: #f7e5ce; // Active
 $primary-300: #f7ddbe; // Active
@@ -130,6 +131,11 @@ $yellow-100: #fff41c;
   font-weight: 700;
   @include adaptive-value-px(font-size, 40, 50);
 }
+%lora-700-30 {
+  @include font-family('Lora');
+  font-weight: 700;
+  font-size: 30px;
+}
 %lora-700-30-22 {
   @include font-family('Lora');
   font-weight: 700;
@@ -145,6 +151,11 @@ $yellow-100: #fff41c;
   @include font-family('Lora');
   font-weight: 700;
   font-size: 22px;
+}
+%lora-700-18 {
+  @include font-family('Lora');
+  font-weight: 700;
+  font-size: 18px;
 }
 %lora-700-18-16 {
   @include font-family('Lora');
@@ -169,10 +180,25 @@ $yellow-100: #fff41c;
   font-weight: 600;
   @include adaptive-value-px(font-size, 23, 32);
 }
+%lora-600-17 {
+  @include font-family('Lora');
+  font-weight: 600;
+  font-size: 17px;
+}
 %lora-600-16-14 {
   @include font-family('Lora');
   font-weight: 600;
   @include adaptive-value-px(font-size, 14, 16);
+}
+%lora-500-28-22 {
+  @include font-family('Lora');
+  font-weight: 500;
+  @include adaptive-value-px(font-size, 22, 28);
+}
+%lora-500-17 {
+  @include font-family('Lora');
+  font-weight: 500;
+  font-size: 17px;
 }
 
 %inter-800-75-38 {

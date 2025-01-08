@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 
-import { Counter } from '@/components/shared/ui/counter/counter'
+import { Counter } from '@/components/ui/counter/counter'
 
 import { ICONS } from '@/utils/config/icons'
 
