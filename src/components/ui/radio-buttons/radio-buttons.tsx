@@ -5,9 +5,13 @@ import { useState } from 'react'
 
 interface RadioButtonsProp {
   values: string[]
+  className?: string
 }
 
-export const RadioButtons: React.FC<RadioButtonsProp> = ({ values }: RadioButtonsProp) => {
+export const RadioButtons: React.FC<RadioButtonsProp> = ({
+  values,
+  className,
+}: RadioButtonsProp) => {
   const [value, setValue] = useState(values[0])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,7 +19,7 @@ export const RadioButtons: React.FC<RadioButtonsProp> = ({ values }: RadioButton
   }
 
   return (
-    <RadioGroup value={value} onChange={handleChange}>
+    <RadioGroup value={value} onChange={handleChange} className={className}>
       {values.map(value => (
         <FormControlLabel key={value} value={value} control={<Radio />} label={value} />
       ))}

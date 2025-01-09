@@ -13,15 +13,20 @@ const array: string[] = [
 interface SearchMobileProp {
   isAbsolute?: boolean
   isActive?: boolean
+  className?: string
 }
 
 export const HeaderList: React.FC<SearchMobileProp> = ({
   isAbsolute,
   isActive,
+  className,
 }: SearchMobileProp) => {
   return (
     <div
-      className={clsx(styles.list, { [styles.absolute]: isAbsolute, [styles.active]: isActive })}
+      className={clsx(styles.list, className, {
+        [styles.absolute]: isAbsolute,
+        [styles.active]: isActive,
+      })}
     >
       {array.map((item, index) => (
         <div className={styles.list_item} key={index}>

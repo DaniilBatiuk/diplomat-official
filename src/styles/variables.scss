@@ -136,6 +136,11 @@ $yellow-100: #fff41c;
   font-weight: 700;
   font-size: 30px;
 }
+%lora-700-30-24 {
+  @include font-family('Lora');
+  font-weight: 700;
+  @include adaptive-value-px(font-size, 24, 30);
+}
 %lora-700-30-22 {
   @include font-family('Lora');
   font-weight: 700;
@@ -256,6 +261,7 @@ $yellow-100: #fff41c;
   font-weight: 600;
   @include adaptive-value-px(font-size, 16, 18);
 }
+
 %inter-600-16 {
   @include font-family('Inter');
   font-weight: 600;

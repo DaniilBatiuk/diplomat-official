@@ -4,7 +4,7 @@
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
-  overflow-x: hidden;
+  // overflow-x: hidden;
   background: rgb(248, 222, 187);
   &::-webkit-scrollbar {
     display: block;
@@ -121,7 +121,7 @@ main {
   padding: 0px !important;
 }
 
-.MuiPaper-root {
+.MuiAccordion-root {
   background-color: inherit !important;
   box-shadow: none !important;
   margin: 0px !important;
@@ -148,4 +148,20 @@ main {
   & svg {
     color: var.$black-100 !important;
   }
+}
+.input.readOnly {
+  pointer-events: none; // Отключаем события мыши (кроме onClick на обертке)
+}
+
+.input.readOnly .MuiOutlinedInput-root {
+  cursor: default; // Ставим обычный курсор
+}
+
+.input.readOnly .MuiOutlinedInput-root.Mui-focused {
+  border-color: transparent; // Убираем рамку при фокусе
+  box-shadow: none; // Убираем тень при фокусе
+}
+
+.input.readOnly .MuiInputBase-input {
+  caret-color: transparent; // Убираем каретку (курсор)
 }

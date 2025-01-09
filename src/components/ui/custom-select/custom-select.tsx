@@ -6,25 +6,31 @@ import { ReactNode, useState } from 'react'
 interface CustomSelectProp {
   label?: ReactNode
   fullWidth?: boolean
+  values: string[]
+  className?: string
 }
 
 export const CustomSelect: React.FC<CustomSelectProp> = ({
   label,
   fullWidth,
+  values,
+  className,
 }: CustomSelectProp) => {
-  const [select, setSelect] = useState('Новинки')
+  const [select, setSelect] = useState<string>('')
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelect(event.target.value)
   }
 
   return (
-    <FormControl fullWidth={fullWidth}>
+    <FormControl fullWidth={fullWidth} className={className}>
       <InputLabel>{label}</InputLabel>
       <Select value={select} label={label} fullWidth={fullWidth} onChange={handleChange}>
-        <MenuItem value={'Новинки'}>Новинки</MenuItem>
-        <MenuItem value={'Дешеві'}>Дешеві</MenuItem>
-        <MenuItem value={'Дорогі'}>Дорогі</MenuItem>
+        {values?.map(value => (
+          <MenuItem key={value} value={value}>
+            {value}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   )

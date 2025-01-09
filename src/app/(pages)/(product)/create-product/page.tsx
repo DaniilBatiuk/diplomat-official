@@ -36,13 +36,21 @@ export default function CreateProduct() {
           <FormBlock title='Поля категорії'>
             <div className={styles.create__form_block_2}>
               <div className={styles.create__form_block_select}>
-                <CustomSelect label='Виберіть категорію' fullWidth />
+                <CustomSelect
+                  label='Виберіть категорію'
+                  fullWidth
+                  values={['Київ', 'Львів', 'Одеса']}
+                />
                 <p>
                   Немає необхійдої категорії? <span>Створити</span>.
                 </p>
               </div>
               <div className={styles.create__form_block_select}>
-                <CustomSelect label='Виберіть підкатегорію' fullWidth />
+                <CustomSelect
+                  label='Виберіть підкатегорію'
+                  fullWidth
+                  values={['Київ', 'Львів', 'Одеса']}
+                />
                 <p>
                   Немає необхійдої категорії? <span>Створити</span>.
                 </p>

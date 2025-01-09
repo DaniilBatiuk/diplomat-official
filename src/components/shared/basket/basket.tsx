@@ -1,8 +1,10 @@
 import clsx from 'clsx'
+import Link from 'next/link'
 import { Dispatch, SetStateAction } from 'react'
 
 import { PRODUCTS } from '@/utils/config/data'
 import { ICONS } from '@/utils/config/icons'
+import { LINKS } from '@/utils/config/links'
 
 import { CustomButton } from '../../ui/custom-button/custom-button'
 import { DarkBackground } from '../dark-background/dark-background'
@@ -59,7 +61,9 @@ export const Basket: React.FC<BasketProp> = ({ basketActive, setBasketActive }: 
                     <p>{PRODUCTS[1].price.toLocaleString('uk-UA')} ₴</p>
                   </div>
                 </div>
-                <CustomButton fullWidth>Оформити замовлення</CustomButton>
+                <Link href={LINKS.Order} prefetch onClick={() => setBasketActive(false)}>
+                  <CustomButton fullWidth>Оформити замовлення</CustomButton>
+                </Link>
               </div>
             </div>
           )}

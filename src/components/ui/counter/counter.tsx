@@ -10,7 +10,7 @@ export const Counter: React.FC = () => {
   const [count, setCount] = useState(1)
   return (
     <div className={styles.counter}>
-      <button onClick={() => setCount(prev => prev - 1)} disabled={count <= 1}>
+      <button onClick={() => setCount(prev => prev - 1)} disabled={count <= 1} type='button'>
         {ICONS.minus()}
       </button>
       <input
@@ -26,7 +26,7 @@ export const Counter: React.FC = () => {
           }
         }}
       />
-      <button onClick={() => setCount(prev => prev + 1)} disabled={count >= 99}>
+      <button onClick={() => setCount(prev => prev + 1)} disabled={count >= 99} type='button'>
         {ICONS.plus()}
       </button>
     </div>

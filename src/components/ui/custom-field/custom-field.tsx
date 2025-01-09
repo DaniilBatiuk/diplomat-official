@@ -1,27 +1,46 @@
 import { TextField } from '@mui/material'
-import { HTMLInputTypeAttribute, ReactNode } from 'react'
+import clsx from 'clsx'
+import { HTMLInputTypeAttribute } from 'react'
 
 import styles from './custom-field.module.scss'
 
 interface CustomFieldProps {
   type?: HTMLInputTypeAttribute
-  label?: ReactNode
+  label?: string
   fullWidth?: boolean
   isWhite?: boolean
+  className?: string
+  inputRef?: (node: HTMLInputElement) => void
+  onClick?: () => void
+  readOnly?: boolean
 }
 export const CustomField: React.FC<CustomFieldProps> = ({
+  inputRef,
   type,
   label,
   fullWidth,
   isWhite,
+  className,
+  readOnly,
+  onClick,
 }: CustomFieldProps) => {
   return (
     <TextField
-      className={styles.input}
+      className={clsx(styles.input, className, {
+        [styles.readOnly]: readOnly,
+      })}
       type={type}
       label={label}
+      inputRef={inputRef}
       variant='outlined'
       fullWidth={fullWidth}
+      onClick={onClick}
+      focused={readOnly ? false : undefined}
+      slotProps={{
+        input: {
+          readOnly: readOnly,
+        },
+      }}
       sx={
         isWhite
           ? {

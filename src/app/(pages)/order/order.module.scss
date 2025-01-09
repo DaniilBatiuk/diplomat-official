@@ -1,0 +1,251 @@
+@use '@/styles/variables.scss' as var;
+
+.order {
+  &__title {
+    padding: 0px 15px;
+    @include var.adaptive-value-px(margin-bottom, 15, 25);
+  }
+  &__container {
+    @include var.adaptive-value-px(margin-top, 20, 30);
+    @include var.adaptive-value-px(column-gap, 25, 30);
+    @media (max-width: 660px) {
+      padding: 0px 5px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+
+    @include var.adaptive-value-px(column-gap, 25, 30);
+
+    @media (max-width: 1130px) {
+      @include var.adaptive-value-px(row-gap, 25, 30);
+      flex-direction: column;
+    }
+
+    &_left {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      @include var.adaptive-value-px(row-gap, 25, 30);
+    }
+  }
+
+  &__basket {
+    &_item {
+      display: flex;
+      align-items: center;
+      column-gap: 15px;
+      padding-block: 10px;
+      border-bottom: 1px solid var.$black-150;
+
+      &:last-child {
+        border-bottom: 0px;
+      }
+      & > img {
+        border-radius: 5px;
+        padding: 5px;
+        background-color: var.$white-100;
+        border: 1px solid var.$primary-300;
+      }
+
+      &_info {
+        position: relative;
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        // flex-direction: column;
+        // justify-content: center;
+        justify-content: space-between;
+        height: 90px;
+        column-gap: 10px;
+
+        @media (max-width: 850px) {
+          flex-direction: column;
+          //   flex: none;
+        }
+      }
+
+      &_title {
+        @include var.adaptive-value-px(width, 10, 360);
+        @extend %inter-400-16;
+        @include var.text-ellipsis(2);
+
+        @media (max-width: 1130px) {
+          max-width: 360px;
+          width: auto;
+        }
+
+        @media (max-width: 850px) {
+          max-width: none;
+          margin-right: 30px;
+          width: auto;
+        }
+      }
+
+      &_close {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.05s ease-in-out;
+        cursor: pointer;
+        @include var.button-active(0.88);
+
+        &:hover {
+          & path {
+            stroke: var.$red-100;
+          }
+        }
+
+        @media (max-width: 850px) {
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+
+      &_prices {
+      }
+
+      &_sale {
+        color: var.$black-200;
+        @extend %lora-700-16;
+        text-align: end;
+        text-decoration: line-through;
+      }
+      &_price {
+        @extend %lora-700-22;
+        white-space: nowrap;
+
+        &_discount {
+          color: var.$red-100;
+        }
+      }
+
+      &_counter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 20px;
+        width: 34%;
+
+        @media (max-width: 850px) {
+          width: 100%;
+          align-items: flex-end;
+        }
+      }
+    }
+  }
+
+  &__personal {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 13px;
+    margin-bottom: 13px;
+    @media (max-width: 600px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &__payment {
+  }
+
+  &__right {
+    @include var.adaptive-value-px(width, 30, 395);
+    @media (max-width: 1130px) {
+      width: 100%;
+    }
+
+    &_block {
+      position: sticky;
+      top: calc(63px + 15px);
+      height: fit-content;
+    }
+    &_text {
+      @extend %inter-400-18-16;
+      margin-bottom: 5px;
+    }
+
+    & > h3 {
+      @extend %lora-700-30-24;
+      margin-bottom: 15px;
+    }
+
+    &_line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &_left {
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        @extend %inter-400-16;
+        color: var.$black-250;
+      }
+
+      & > h4 {
+        @extend %lora-600-17;
+      }
+    }
+
+    &_footer {
+      margin-top: 20px;
+      &__button {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        & path {
+          fill: var.$white-100;
+        }
+      }
+    }
+  }
+  &__delivery {
+    &_accordion {
+      height: 0;
+      transition: height 0.2s ease-in-out;
+      overflow: hidden;
+
+      &.active {
+        height: 200px;
+        @media (max-width: 451px) {
+          height: 240px;
+        }
+        &_2 {
+          height: 185px;
+          @media (max-width: 451px) {
+            height: 176px;
+          }
+        }
+      }
+    }
+
+    &_way {
+      display: flex;
+      align-items: center;
+      column-gap: 5px;
+
+      &_inner {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        margin-bottom: 25px;
+        & > label {
+          width: fit-content;
+        }
+
+        &_2 {
+          max-width: 506px;
+        }
+      }
+    }
+
+    &_margin_bottom {
+      margin-bottom: 10px;
+
+      &_13 {
+        margin-bottom: 13px !important;
+      }
+    }
+  }
+}
