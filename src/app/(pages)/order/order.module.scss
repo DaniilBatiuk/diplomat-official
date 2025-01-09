@@ -20,8 +20,8 @@
     @include var.adaptive-value-px(column-gap, 25, 30);
 
     @media (max-width: 1130px) {
-      @include var.adaptive-value-px(row-gap, 25, 30);
       flex-direction: column;
+      @include var.adaptive-value-px(row-gap, 25, 30);
     }
 
     &_left {
@@ -68,9 +68,9 @@
       }
 
       &_title {
-        @include var.adaptive-value-px(width, 10, 360);
-        @extend %inter-400-16;
         @include var.text-ellipsis(2);
+        @extend %inter-400-16;
+        @include var.adaptive-value-px(width, 10, 360);
 
         @media (max-width: 1130px) {
           max-width: 360px;
@@ -226,9 +226,9 @@
       column-gap: 5px;
 
       &_inner {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row;
+        display: flex !important;
+        justify-content: space-between !important;
+        flex-direction: row !important;
         margin-bottom: 25px;
         & > label {
           width: fit-content;

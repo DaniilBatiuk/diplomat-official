@@ -1,10 +1,9 @@
-import Link from 'next/link'
-
 import { LINKS } from '@/utils/config/links'
 
 import { SelectCategories } from '../select/select'
 
 import styles from './../../categories.module.scss'
+import { Link } from '@/components'
 
 export const CategoriesHeader: React.FC = () => {
   return (

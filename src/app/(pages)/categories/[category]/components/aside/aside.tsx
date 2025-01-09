@@ -1,10 +1,9 @@
-import Link from 'next/link'
-
 import { COLORS, COUNTRIES, MATERIAL, PRODUCTS } from '@/utils/config/data'
 import { LINKS } from '@/utils/config/links'
 
 import styles from './../../categories.module.scss'
 import { CheckBoxCategories } from './components/check-box/check-box'
+import { Link } from '@/components'
 
 interface AsideProps {
   category: string

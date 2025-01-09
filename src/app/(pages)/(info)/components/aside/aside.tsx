@@ -1,12 +1,12 @@
 'use client'
 
 import clsx from 'clsx'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { LINKS } from '@/utils/config/links'
 
 import styles from './../../info.module.scss'
+import { Link } from '@/components'
 
 export const InfoAside: React.FC = () => {
   const pathname = usePathname()

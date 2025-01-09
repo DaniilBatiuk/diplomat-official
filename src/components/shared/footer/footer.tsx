@@ -1,9 +1,8 @@
-import Link from 'next/link'
-
 import { LINKS } from '@/utils/config/links'
 
 import { CopyLi } from './components/copy-li/copy-li'
 import styles from './footer.module.scss'
+import { Link } from '@/components'
 
 export const Footer: React.FC = () => {
   return (

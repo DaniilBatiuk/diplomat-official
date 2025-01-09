@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import Link from 'next/link'
 import { Dispatch, SetStateAction } from 'react'
 
 import { PRODUCTS } from '@/utils/config/data'
@@ -11,6 +10,7 @@ import { DarkBackground } from '../dark-background/dark-background'
 
 import styles from './basket.module.scss'
 import { BasketItem } from './components/basket-item/basket-item'
+import { Link } from '@/components'
 
 interface BasketProp {
   basketActive: boolean

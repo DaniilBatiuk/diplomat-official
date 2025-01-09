@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
@@ -7,7 +6,7 @@ import { LINKS } from '@/utils/config/links'
 import styles from './home-header.module.scss'
 import HomeImg from '@/../public/home.webp'
 import homeLogo from '@/../public/homeLogo.webp'
-import { CustomButton } from '@/components'
+import { CustomButton, Link } from '@/components'
 
 export const HomeHeader: React.FC = () => {
   return (

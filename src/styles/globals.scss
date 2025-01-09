@@ -22,9 +22,9 @@ html {
 
 body {
   font-weight: 300;
-  @include var.font-family('Inter');
-  padding: 0px !important;
   color: var.$black-100;
+  padding: 0px !important;
+  @include var.font-family('Inter');
 }
 
 .wrapper {

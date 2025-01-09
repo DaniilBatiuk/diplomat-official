@@ -51,16 +51,20 @@
 
 // Text ellipsis
 @mixin text-ellipsis($lines: 1) {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: $lines;
-  -webkit-box-orient: vertical;
-  height: calc($lines * 1em);
+  & {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    height: calc($lines * 1em);
+  }
 }
 
 // Font family save usage
 @mixin font-family($primary-font) {
-  font-family: #{$primary-font}#{$base-font-stack};
+  & {
+    font-family: #{$primary-font}#{$base-font-stack};
+  }
 }
 
 @mixin button-active($scale) {
@@ -127,231 +131,231 @@ $yellow-100: #fff41c;
 // Text templates
 
 %lora-700-50-40 {
-  @include font-family('Lora');
   font-weight: 700;
+  @include font-family('Lora');
   @include adaptive-value-px(font-size, 40, 50);
 }
 %lora-700-30 {
-  @include font-family('Lora');
   font-weight: 700;
   font-size: 30px;
+  @include font-family('Lora');
 }
 %lora-700-30-24 {
-  @include font-family('Lora');
   font-weight: 700;
+  @include font-family('Lora');
   @include adaptive-value-px(font-size, 24, 30);
 }
 %lora-700-30-22 {
-  @include font-family('Lora');
   font-weight: 700;
+  @include font-family('Lora');
   @include adaptive-value-px(font-size, 22, 30);
 }
 
 %lora-700-24 {
-  @include font-family('Lora');
   font-weight: 700;
   font-size: 24px;
+  @include font-family('Lora');
 }
 %lora-700-22 {
-  @include font-family('Lora');
   font-weight: 700;
   font-size: 22px;
+  @include font-family('Lora');
 }
 %lora-700-18 {
-  @include font-family('Lora');
   font-weight: 700;
   font-size: 18px;
+  @include font-family('Lora');
 }
 %lora-700-18-16 {
-  @include font-family('Lora');
   font-weight: 700;
+  @include font-family('Lora');
   @include adaptive-value-px(font-size, 16, 18);
 }
 
 %lora-700-16 {
-  @include font-family('Lora');
   font-weight: 700;
   font-size: 16px;
+  @include font-family('Lora');
 }
 
 %lora-600-40-26 {
-  @include font-family('Lora');
   font-weight: 600;
+  @include font-family('Lora');
   @include adaptive-value-px(font-size, 26, 40);
 }
 
 %lora-600-32-23 {
-  @include font-family('Lora');
   font-weight: 600;
+  @include font-family('Lora');
   @include adaptive-value-px(font-size, 23, 32);
 }
 %lora-600-17 {
-  @include font-family('Lora');
   font-weight: 600;
   font-size: 17px;
+  @include font-family('Lora');
 }
 %lora-600-16-14 {
-  @include font-family('Lora');
   font-weight: 600;
+  @include font-family('Lora');
   @include adaptive-value-px(font-size, 14, 16);
 }
 %lora-500-28-22 {
-  @include font-family('Lora');
   font-weight: 500;
+  @include font-family('Lora');
   @include adaptive-value-px(font-size, 22, 28);
 }
 %lora-500-17 {
-  @include font-family('Lora');
   font-weight: 500;
   font-size: 17px;
+  @include font-family('Lora');
 }
 
 %inter-800-75-38 {
-  @include font-family('Inter');
   font-weight: 800;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 38, 75, 2500);
 }
 %inter-700-38-26 {
-  @include font-family('Inter');
   font-weight: 700;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 26, 38);
 }
 %inter-700-24-20 {
-  @include font-family('Inter');
   font-weight: 700;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 20, 24);
 }
 %inter-700-22-20 {
-  @include font-family('Inter');
   font-weight: 700;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 20, 22);
 }
 %inter-700-22-18 {
-  @include font-family('Inter');
   font-weight: 700;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 18, 22);
 }
 %inter-700-20-18 {
-  @include font-family('Inter');
   font-weight: 700;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 18, 20);
 }
 @mixin inter-700-20-18 {
-  @include font-family('Inter');
   font-weight: 700;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 18, 20);
 }
 %inter-700-18 {
-  @include font-family('Inter');
   font-weight: 700;
   font-size: 20px;
+  @include font-family('Inter');
 }
 %inter-600-24 {
-  @include font-family('Inter');
   font-weight: 600;
   font-size: 24px;
+  @include font-family('Inter');
 }
 %inter-600-24-20 {
-  @include font-family('Inter');
   font-weight: 600;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 20, 24);
 }
 %inter-600-18-16 {
-  @include font-family('Inter');
   font-weight: 600;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 16, 18);
 }
 
 %inter-600-16 {
-  @include font-family('Inter');
   font-weight: 600;
   font-size: 16px;
+  @include font-family('Inter');
 }
 %inter-500-22-14 {
-  @include font-family('Inter');
   font-weight: 500;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 14, 20);
 }
 %inter-500-20 {
-  @include font-family('Inter');
   font-weight: 500;
   font-size: 20px;
+  @include font-family('Inter');
 }
 %inter-500-20-18 {
-  @include font-family('Inter');
   font-weight: 500;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 18, 20);
 }
 %inter-500-18 {
-  @include font-family('Inter');
   font-weight: 500;
   font-size: 18px;
+  @include font-family('Inter');
 }
 %inter-500-18-16 {
-  @include font-family('Inter');
   font-weight: 500;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 16, 18);
 }
 %inter-500-16 {
-  @include font-family('Inter');
   font-weight: 500;
   font-size: 16px;
+  @include font-family('Inter');
 }
 %inter-500-14 {
-  @include font-family('Inter');
   font-weight: 500;
   font-size: 14px;
+  @include font-family('Inter');
 }
 %inter-400-20 {
-  @include font-family('Inter');
   font-weight: 400;
   font-size: 20px;
+  @include font-family('Inter');
 }
 %inter-400-20-16 {
-  @include font-family('Inter');
   font-weight: 400;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 16, 20);
 }
 
 %inter-400-18 {
-  @include font-family('Inter');
   font-weight: 400;
   font-size: 18px;
+  @include font-family('Inter');
 }
 %inter-400-18-16 {
-  @include font-family('Inter');
   font-weight: 400;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 16, 18);
 }
 
 %inter-400-16 {
-  @include font-family('Inter');
   font-weight: 400;
   font-size: 16px;
+  @include font-family('Inter');
 }
 %inter-400-15 {
-  @include font-family('Inter');
   font-weight: 400;
   font-size: 15px;
+  @include font-family('Inter');
 }
 %inter-400-16-14 {
-  @include font-family('Inter');
   font-weight: 400;
+  @include font-family('Inter');
   @include adaptive-value-px(font-size, 14, 16);
 }
 %inter-400-14 {
-  @include font-family('Inter');
   font-weight: 400;
   font-size: 14px;
+  @include font-family('Inter');
 }
 %inter-400-12 {
-  @include font-family('Inter');
   font-weight: 400;
   font-size: 12px;
+  @include font-family('Inter');
 }
 
 %inter-300-16 {
-  @include font-family('Inter');
   font-weight: 300;
   font-size: 16px;
+  @include font-family('Inter');
 }

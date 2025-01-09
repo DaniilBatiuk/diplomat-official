@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import Link from 'next/link'
 import { useState } from 'react'
 
 import { DarkBackground } from '@/components/shared/dark-background/dark-background'
@@ -9,6 +8,7 @@ import { LINKS } from '@/utils/config/links'
 
 import { MenuCategories } from './components/menu-categories/menu-categories'
 import styles from './header-menu.module.scss'
+import { Link } from '@/components'
 
 interface HeaderMenuProp {
   menuActive: boolean

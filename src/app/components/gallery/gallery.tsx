@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { LINKS } from '@/utils/config/links'
 
@@ -11,7 +10,7 @@ import gallery3 from '@/../public/gallery3.webp'
 import gallery4 from '@/../public/gallery4.webp'
 import gallery5 from '@/../public/gallery5.webp'
 import gallery6 from '@/../public/gallery6.webp'
-import { Title } from '@/components'
+import { Link, Title } from '@/components'
 
 export const Gallery: React.FC = () => {
   return (

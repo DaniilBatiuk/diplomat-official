@@ -4,13 +4,12 @@
   &__container {
     display: flex;
     flex-direction: column;
-    @include var.adaptive-value-px(margin-top, 20, 30);
     @include var.adaptive-value-px(row-gap, 40, 60);
   }
 
   &__header {
     display: flex;
-
+    @include var.adaptive-value-px(margin-top, 20, 30);
     @include var.adaptive-value-px(gap, 15, 60);
     @media (max-width: 1000px) {
       flex-direction: column;
@@ -139,8 +138,8 @@
       width: 100%;
     }
     & > p {
-      @include var.adaptive-value-px(padding-top, 15, 20);
       margin-top: auto;
+      @include var.adaptive-value-px(padding-top, 15, 20);
       @extend %inter-400-16;
 
       & > a {

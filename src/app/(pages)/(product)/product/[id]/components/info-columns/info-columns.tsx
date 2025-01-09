@@ -1,12 +1,12 @@
 import Ukr from '@../../public/Ukr.png'
 import Nova from '@../../public/nova.png'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
 import styles from './../../product.module.scss'
+import { Link } from '@/components'
 
 export const InfoColumns: React.FC = () => {
   return (

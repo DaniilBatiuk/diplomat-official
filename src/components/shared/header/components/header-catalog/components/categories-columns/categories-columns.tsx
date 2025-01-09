@@ -1,6 +1,6 @@
-import Link from 'next/link'
-
 import styles from '../../header-catalog.module.scss'
+
+import { Link } from '@/components'
 
 export const CategoriesColumns: React.FC = () => {
   return (

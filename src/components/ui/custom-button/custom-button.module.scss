@@ -29,8 +29,8 @@
   }
 
   &__extra_big {
-    @include var.adaptive-value-px(height, 50, 56);
     @include var.inter-700-20-18;
+    @include var.adaptive-value-px(height, 50, 56);
   }
 
   &__outline {

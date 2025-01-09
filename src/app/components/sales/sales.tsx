@@ -1,9 +1,7 @@
-import Link from 'next/link'
-
 import { LINKS } from '@/utils/config/links'
 
 import styles from './sales.module.scss'
-import { CustomButton } from '@/components'
+import { CustomButton, Link } from '@/components'
 
 export const Sales: React.FC = () => {
   return (

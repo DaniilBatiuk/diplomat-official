@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import Link from 'next/link'
 import { Dispatch, SetStateAction } from 'react'
 
 import { CATEGORIES } from '@/utils/config/data'
@@ -7,6 +6,8 @@ import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
 import styles from '../../header-menu.module.scss'
+
+import { Link } from '@/components'
 
 interface HeaderMenuProp {
   setActiveMenuCategories: Dispatch<SetStateAction<boolean>>

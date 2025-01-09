@@ -3,10 +3,10 @@
 import CardImg from '@../../public/card.webp'
 import clsx from 'clsx'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import styles from './card.module.scss'
 import { BuyButton } from './components/buy-button/buy-button'
+import { Link } from '@/components'
 
 interface CardProp {
   product: Product

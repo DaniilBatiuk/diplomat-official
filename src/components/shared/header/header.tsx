@@ -2,7 +2,6 @@
 
 import { Badge } from '@mui/material'
 import clsx from 'clsx'
-import Link from 'next/link'
 import { useRef, useState } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
@@ -19,6 +18,7 @@ import { HeaderMenu } from './components/header-menu/header-menu'
 import { HeaderSearch } from './components/header-search/header-search'
 import { SearchMobile } from './components/search-mobile/search-mobile'
 import styles from './header.module.scss'
+import { Link } from '@/components'
 
 export const Header: React.FC = () => {
   const [menuActive, setMenuActive] = useState(false)
