@@ -12,14 +12,18 @@ interface UkrPoshtaProps {
   inputRefCity: React.RefObject<HTMLInputElement | null>
   setSearchDepartmentActive: (value: boolean) => void
   inputRefDepartment: React.RefObject<HTMLInputElement | null>
+  searchCityValue: string
+  selectedDepartment: string
 }
 
 export const UkrPoshta: React.FC<UkrPoshtaProps> = ({
   value,
   setSearchCityActive,
-  inputRefCity,
-  setSearchDepartmentActive,
   inputRefDepartment,
+  setSearchDepartmentActive,
+  inputRefCity,
+  searchCityValue,
+  selectedDepartment,
 }: UkrPoshtaProps) => {
   return (
     <>
@@ -46,6 +50,7 @@ export const UkrPoshta: React.FC<UkrPoshtaProps> = ({
           label={'Вкажіть населений пункт'}
           fullWidth
           readOnly
+          value={searchCityValue}
           onClick={() => {
             setSearchCityActive(true)
             if (inputRefCity.current) inputRefCity.current.focus()
@@ -55,6 +60,8 @@ export const UkrPoshta: React.FC<UkrPoshtaProps> = ({
         <CustomField
           label={'Вкажіть відділення'}
           fullWidth
+          disabled={searchCityValue === ''}
+          value={selectedDepartment}
           readOnly
           onClick={() => {
             setSearchDepartmentActive(true)

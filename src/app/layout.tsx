@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter, Lora } from 'next/font/google'
 
+import { QueryWrapper } from '@/components/shared/wrappers/query-wrapper/query-wrapper'
+
 import '@/styles/globals.scss'
 
 import { Footer, Header, ThemeWrapper } from '@/components'
@@ -29,11 +31,13 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${interSans.variable} ${loraMono.variable}`}>
         <ThemeWrapper>
-          <div className='wrapper' id='wrapper'>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </div>
+          <QueryWrapper>
+            <div className='wrapper' id='wrapper'>
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </div>
+          </QueryWrapper>
         </ThemeWrapper>
       </body>
     </html>

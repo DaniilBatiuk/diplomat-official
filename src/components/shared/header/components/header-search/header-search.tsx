@@ -51,7 +51,12 @@ export const HeaderSearch: React.FC<SearchMobileProp> = ({
         </div>
 
         <button type='submit'>Знайти</button>
-        <HeaderList isAbsolute={true} isActive={searchActive && searchValue.length > 0} />
+        <HeaderList
+          isAbsolute={true}
+          // searchClose={() => setSearchActive(false)}
+          isActive={searchActive && searchValue.length > 0}
+          // setSearchValue={setSearchValue}
+        />
       </form>
     </>
   )

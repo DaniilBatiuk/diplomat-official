@@ -10,17 +10,19 @@ const array: string[] = [
   'подарунковий набір',
 ]
 
-interface SearchMobileProp {
+interface HeaderListProp {
   isAbsolute?: boolean
   isActive?: boolean
   className?: string
+  children?: React.ReactNode
 }
 
-export const HeaderList: React.FC<SearchMobileProp> = ({
+export const HeaderList: React.FC<HeaderListProp> = ({
   isAbsolute,
   isActive,
   className,
-}: SearchMobileProp) => {
+  children,
+}: HeaderListProp) => {
   return (
     <div
       className={clsx(styles.list, className, {
@@ -28,11 +30,13 @@ export const HeaderList: React.FC<SearchMobileProp> = ({
         [styles.active]: isActive,
       })}
     >
-      {array.map((item, index) => (
-        <div className={styles.list_item} key={index}>
-          {item}
-        </div>
-      ))}
+      {children
+        ? children
+        : array.map((item, index) => (
+            <div className={styles.list_item} key={index}>
+              {item}
+            </div>
+          ))}
     </div>
   )
 }

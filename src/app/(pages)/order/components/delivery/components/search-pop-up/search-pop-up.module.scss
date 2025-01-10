@@ -57,3 +57,21 @@
     display: block;
   }
 }
+
+.list {
+  &_item {
+    height: 39px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-inline: 15px;
+    @extend %inter-300-16;
+    cursor: pointer;
+    & > p {
+      @include var.text-ellipsis(1);
+    }
+    &:hover {
+      background-color: var.$primary-150;
+    }
+  }
+}

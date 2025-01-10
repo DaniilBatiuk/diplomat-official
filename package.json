@@ -13,6 +13,8 @@
     "@mui/icons-material": "^6.3.1",
     "@mui/material": "^6.3.0",
     "@react-input/mask": "^2.0.4",
+    "@tanstack/react-query": "^5.63.0",
+    "@tanstack/react-query-devtools": "^5.63.0",
     "@trivago/prettier-plugin-sort-imports": "^5.2.0",
     "@uploadthing/react": "^7.1.5",
     "clsx": "^2.1.1",

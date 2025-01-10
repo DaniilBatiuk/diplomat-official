@@ -52,7 +52,11 @@ export const SearchMobile: React.FC<SearchMobileProp> = ({
         </form>
         {inputRefMobile.current &&
           inputRefMobile.current === document.activeElement &&
-          searchValue.length > 0 && <HeaderList />}
+          searchValue.length > 0 && (
+            <HeaderList
+            // setSearchValue={setSearchValue} searchClose={searchMobileClose}
+            />
+          )}
       </div>
     </>
   )

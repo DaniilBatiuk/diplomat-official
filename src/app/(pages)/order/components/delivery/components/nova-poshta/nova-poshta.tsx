@@ -12,6 +12,8 @@ interface NovaPoshtaProps {
   inputRefCity: React.RefObject<HTMLInputElement | null>
   setSearchDepartmentActive: (value: boolean) => void
   inputRefDepartment: React.RefObject<HTMLInputElement | null>
+  searchCityValue: string
+  selectedDepartment: string
 }
 export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
   value,
@@ -19,6 +21,8 @@ export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
   inputRefDepartment,
   setSearchDepartmentActive,
   inputRefCity,
+  searchCityValue,
+  selectedDepartment,
 }: NovaPoshtaProps) => {
   return (
     <>
@@ -47,6 +51,7 @@ export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
           label={'Вкажіть населений пункт'}
           fullWidth
           readOnly
+          value={searchCityValue}
           onClick={() => {
             setSearchCityActive(true)
             if (inputRefCity.current) inputRefCity.current.focus()
@@ -57,6 +62,8 @@ export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
           label={'Вкажіть відділення'}
           fullWidth
           readOnly
+          disabled={searchCityValue === ''}
+          value={selectedDepartment}
           onClick={() => {
             setSearchDepartmentActive(true)
             if (inputRefDepartment.current) inputRefDepartment.current.focus()

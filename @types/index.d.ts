@@ -14,3 +14,22 @@ type Category = {
 }
 
 type Role = 'User' | 'Manager' | 'Admin'
+
+type Address = {
+  Present: string
+  AddressDeliveryAllowed: boolean
+  DeliveryCity: string
+}
+
+type Department = {
+  Description: string
+}
+
+type NovaPoshtaCity = {
+  data: { Addresses: Address[]; TotalCount: number }[]
+  errors: string[]
+}
+type NovaPoshtaDepartment = {
+  data: Department[]
+  errors: string[]
+}

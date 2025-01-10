@@ -1,33 +1,53 @@
 'use client'
 
 import { RadioGroup } from '@mui/material'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
 import styles from './../../order.module.scss'
 import { NovaPoshta } from './components/nova-poshta/nova-poshta'
+import { SearchPopUpDepartment } from './components/search-pop-up-department/search-pop-up-department'
 import { UkrPoshta } from './components/ukr-poshta/urk-poshta'
+import { useCity } from './hooks/use-city'
+import { useDepartment } from './hooks/use-department'
 import { FormBlock, SearchPopUp } from '@/components'
 
 export const Delivery: React.FC = () => {
-  const [value, setValue] = useState('')
+  const [deliveryWay, setDeliveryWay] = useState('')
 
-  // city
-  const [searchCityActive, setSearchCityActive] = useState(false)
-  const inputRefCity = useRef<null | HTMLInputElement>(null)
-  const [searchCityValue, setSearchCityValue] = useState('')
-
-  // city
-  const [searchDepartmentActive, setSearchDepartmentActive] = useState(false)
-  const inputRefDepartment = useRef<null | HTMLInputElement>(null)
-  const [searchDepartmentValue, setSearchDepartmentValue] = useState('')
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((event.target as HTMLInputElement).value)
+  const handleChangeDeliveryWay = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDeliveryWay((event.target as HTMLInputElement).value)
   }
 
+  // city
+  const {
+    citiesList,
+    searchCityActive,
+    setSearchCityActive,
+    inputRefCity,
+    searchCityValue,
+    setSearchCityValue,
+    setSelectedCity,
+    selectedCity,
+  } = useCity()
+
+  // department
+  const {
+    departmentsList,
+    searchDepartmentActive,
+    setSearchDepartmentActive,
+    inputRefDepartment,
+    searchDepartmentValue,
+    setSearchDepartmentValue,
+    setSelectedDepartment,
+    selectedDepartment,
+  } = useDepartment({ selectedCity })
+
+  console.log('render')
   return (
     <>
-      <SearchPopUp
+      <SearchPopUpDepartment
+        listData={departmentsList}
+        setSelected={setSelectedDepartment}
         searchActive={searchDepartmentActive}
         searchClose={() => setSearchDepartmentActive(false)}
         inputRef={inputRefDepartment}
@@ -35,6 +55,8 @@ export const Delivery: React.FC = () => {
         setSearchValue={setSearchDepartmentValue}
       />
       <SearchPopUp
+        listData={citiesList}
+        setSelected={setSelectedCity}
         searchActive={searchCityActive}
         searchClose={() => setSearchCityActive(false)}
         inputRef={inputRefCity}
@@ -43,21 +65,24 @@ export const Delivery: React.FC = () => {
       />
       <FormBlock title='4. Спосіб оплати'>
         <div className={styles.order__delivery}>
-          <RadioGroup value={value} onChange={handleChange}>
+          <RadioGroup value={deliveryWay} onChange={handleChangeDeliveryWay}>
             <NovaPoshta
-              value={value}
+              value={deliveryWay}
               inputRefCity={inputRefCity}
               setSearchCityActive={setSearchCityActive}
               setSearchDepartmentActive={setSearchDepartmentActive}
               inputRefDepartment={inputRefDepartment}
+              searchCityValue={selectedCity ? selectedCity.Present : ''}
+              selectedDepartment={selectedDepartment ? selectedDepartment.Description : ''}
             />
-
             <UkrPoshta
-              value={value}
+              searchCityValue={selectedCity ? selectedCity.Present : ''}
+              value={deliveryWay}
               inputRefCity={inputRefCity}
               setSearchCityActive={setSearchCityActive}
               setSearchDepartmentActive={setSearchDepartmentActive}
               inputRefDepartment={inputRefDepartment}
+              selectedDepartment={selectedDepartment ? selectedDepartment.Description : ''}
             />
           </RadioGroup>
         </div>

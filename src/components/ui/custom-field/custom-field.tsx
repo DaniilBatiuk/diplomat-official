@@ -13,6 +13,8 @@ interface CustomFieldProps {
   inputRef?: (node: HTMLInputElement) => void
   onClick?: () => void
   readOnly?: boolean
+  value?: string
+  disabled?: boolean
 }
 export const CustomField: React.FC<CustomFieldProps> = ({
   inputRef,
@@ -23,6 +25,8 @@ export const CustomField: React.FC<CustomFieldProps> = ({
   className,
   readOnly,
   onClick,
+  value,
+  disabled,
 }: CustomFieldProps) => {
   return (
     <TextField
@@ -31,11 +35,13 @@ export const CustomField: React.FC<CustomFieldProps> = ({
       })}
       type={type}
       label={label}
+      disabled={disabled}
       inputRef={inputRef}
       variant='outlined'
       fullWidth={fullWidth}
       onClick={onClick}
       focused={readOnly ? false : undefined}
+      value={value}
       slotProps={{
         input: {
           readOnly: readOnly,

@@ -1,7 +1,7 @@
 import type { RefObject } from 'react'
 import { useEffect, useRef, useState } from 'react'
 
-import { getElement } from '@/utils/helpers'
+import { getElement } from '@/utils/helpers/getElement'
 
 /** The use click outside target element type */
 export type UseClickOutsideTarget =
