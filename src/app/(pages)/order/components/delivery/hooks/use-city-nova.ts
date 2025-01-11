@@ -3,15 +3,15 @@ import { useRef, useState } from 'react'
 
 import { orderApi } from '@/utils/modules'
 
-export const useCity = () => {
+export const useCityNova = () => {
   const [selectedCity, setSelectedCity] = useState<Address | null>(null)
   const [searchCityActive, setSearchCityActive] = useState(false)
   const inputRefCity = useRef<null | HTMLInputElement>(null)
   const [searchCityValue, setSearchCityValue] = useState('')
 
   const { data } = useQuery({
-    queryKey: ['city', searchCityValue],
-    queryFn: meta => orderApi.getCities(meta, { city: searchCityValue }),
+    queryKey: ['city nova', searchCityValue],
+    queryFn: meta => orderApi.getCitiesNovaPoshta(meta, { city: searchCityValue }),
     placeholderData: keepPreviousData,
   })
 

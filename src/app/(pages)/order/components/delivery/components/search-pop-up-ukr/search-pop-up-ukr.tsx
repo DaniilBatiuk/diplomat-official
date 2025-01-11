@@ -6,17 +6,17 @@ import { PopUpDelivery } from '../pop-up-delivery/pop-up-delivery'
 
 import styles from './../search-pop-up/search-pop-up.module.scss'
 
-interface SearchPopUpDepartmentProp {
+interface SearchPopUpUrkProp {
   searchValue: string
   setSearchValue: Dispatch<SetStateAction<string>>
   searchActive: boolean
   searchClose: () => void
   inputRef: React.RefObject<HTMLInputElement | null>
-  listData: Department[]
-  setSelected: Dispatch<SetStateAction<Department | null>>
+  listData: AddressUrk[]
+  setSelected: Dispatch<SetStateAction<AddressUrk | null>>
 }
 
-export const SearchPopUpDepartment: React.FC<SearchPopUpDepartmentProp> = ({
+export const SearchPopUpUrk: React.FC<SearchPopUpUrkProp> = ({
   searchActive,
   searchClose,
   searchValue,
@@ -24,7 +24,7 @@ export const SearchPopUpDepartment: React.FC<SearchPopUpDepartmentProp> = ({
   inputRef,
   listData,
   setSelected,
-}: SearchPopUpDepartmentProp) => {
+}: SearchPopUpUrkProp) => {
   return (
     <PopUpDelivery
       searchActive={searchActive}
@@ -37,26 +37,26 @@ export const SearchPopUpDepartment: React.FC<SearchPopUpDepartmentProp> = ({
       inputRef.current === document.activeElement &&
       listData.filter(item => {
         const regex = new RegExp(`(${searchValue.trim()})`, 'gi')
-        return regex.test(item.Description)
+        return regex.test(item.city_name)
       }).length ? (
         <HeaderList>
           {listData
             .filter(item => {
               const regex = new RegExp(`(${searchValue.trim()})`, 'gi')
-              return regex.test(item.Description)
+              return regex.test(item.city_name)
             })
             .slice(0, 10)
             .map(item => {
               const regex = new RegExp(`(${searchValue.trim()})`, 'gi')
-              const parts = item.Description.split(regex)
+              const parts = item.city_name.split(regex)
 
               return (
                 <div
                   className={styles.list_item}
-                  key={item.Description}
+                  key={item.city_name}
                   onClick={() => {
                     setSelected(item)
-                    setSearchValue(item.Description)
+                    setSearchValue(item.city_name)
                     searchClose()
                   }}
                 >

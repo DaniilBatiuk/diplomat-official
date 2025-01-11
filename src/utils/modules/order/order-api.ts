@@ -1,5 +1,5 @@
 export const orderApi = {
-  getCities: ({ signal }: { signal: AbortSignal }, { city }: { city: string }) => {
+  getCitiesNovaPoshta: ({ signal }: { signal: AbortSignal }, { city }: { city: string }) => {
     return fetch(`${process.env.NEXT_PUBLIC_NOVA_POSHTA_URL}`, {
       method: 'POST',
       headers: {
@@ -18,7 +18,7 @@ export const orderApi = {
       }),
     }).then(response => response.json() as Promise<NovaPoshtaCity>)
   },
-  getDepartments: (
+  getDepartmentsNovaPoshta: (
     { signal }: { signal: AbortSignal },
     { cityRef }: { cityRef: string },
     { findByString }: { findByString: string },
@@ -41,5 +41,32 @@ export const orderApi = {
         },
       }),
     }).then(response => response.json() as Promise<NovaPoshtaDepartment>)
+  },
+  getCitiesUkrPoshta: ({ signal }: { signal: AbortSignal }, { city }: { city: string }) => {
+    return fetch(
+      `${process.env.NEXT_PUBLIC_UKR_POSHTA_URL}/cities?language=ua&region_id&city_name=${city}&sort_by=entry_index&all_langs_search=true&country=UA&providers=ukrposhta`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        signal,
+      },
+    ).then(response => response.json() as Promise<UkrPoshtaCity>)
+  },
+  getDepartmentsUkrPoshta: (
+    { signal }: { signal: AbortSignal },
+    { city_doc_id }: { city_doc_id: string },
+  ) => {
+    return fetch(
+      `${process.env.NEXT_PUBLIC_UKR_POSHTA_URL}/warehouses?city_doc_id=${city_doc_id}&language=ua&providers=ukrposhta&receive=true&country=UA`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        signal,
+      },
+    ).then(response => response.json() as Promise<UkrPoshtaDepartment>)
   },
 }

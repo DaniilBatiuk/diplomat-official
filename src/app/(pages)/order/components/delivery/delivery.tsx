@@ -5,10 +5,14 @@ import { useState } from 'react'
 
 import styles from './../../order.module.scss'
 import { NovaPoshta } from './components/nova-poshta/nova-poshta'
+import { SearchPopUpDepartmentUkr } from './components/search-pop-up-department-ukr/search-pop-up-department-ukr'
 import { SearchPopUpDepartment } from './components/search-pop-up-department/search-pop-up-department'
+import { SearchPopUpUrk } from './components/search-pop-up-ukr/search-pop-up-ukr'
 import { UkrPoshta } from './components/ukr-poshta/urk-poshta'
-import { useCity } from './hooks/use-city'
-import { useDepartment } from './hooks/use-department'
+import { useCityNova } from './hooks/use-city-nova'
+import { useCityUkr } from './hooks/use-city-ukr'
+import { useDepartmentNova } from './hooks/use-department-nova'
+import { useDepartmentUkr } from './hooks/use-department-ukr'
 import { FormBlock, SearchPopUp } from '@/components'
 
 export const Delivery: React.FC = () => {
@@ -28,7 +32,18 @@ export const Delivery: React.FC = () => {
     setSearchCityValue,
     setSelectedCity,
     selectedCity,
-  } = useCity()
+  } = useCityNova()
+
+  const {
+    citiesListUkr,
+    searchCityActiveUkr,
+    setSearchCityActiveUkr,
+    inputRefCityUkr,
+    searchCityValueUkr,
+    setSearchCityValueUkr,
+    setSelectedCityUkr,
+    selectedCityUkr,
+  } = useCityUkr()
 
   // department
   const {
@@ -40,11 +55,39 @@ export const Delivery: React.FC = () => {
     setSearchDepartmentValue,
     setSelectedDepartment,
     selectedDepartment,
-  } = useDepartment({ selectedCity })
+  } = useDepartmentNova({ selectedCity })
 
-  console.log('render')
+  const {
+    departmentsListUkr,
+    searchDepartmentActiveUkr,
+    setSearchDepartmentActiveUkr,
+    inputRefDepartmentUkr,
+    searchDepartmentValueUkr,
+    setSearchDepartmentValueUkr,
+    setSelectedDepartmentUkr,
+    selectedDepartmentUkr,
+  } = useDepartmentUkr({ selectedCityUkr })
+
   return (
     <>
+      <SearchPopUpUrk
+        listData={citiesListUkr}
+        setSelected={setSelectedCityUkr}
+        searchActive={searchCityActiveUkr}
+        searchClose={() => setSearchCityActiveUkr(false)}
+        inputRef={inputRefCityUkr}
+        searchValue={searchCityValueUkr}
+        setSearchValue={setSearchCityValueUkr}
+      />
+      <SearchPopUpDepartmentUkr
+        listData={departmentsListUkr}
+        setSelected={setSelectedDepartmentUkr}
+        searchActive={searchDepartmentActiveUkr}
+        searchClose={() => setSearchDepartmentActiveUkr(false)}
+        inputRef={inputRefDepartmentUkr}
+        searchValue={searchDepartmentValueUkr}
+        setSearchValue={setSearchDepartmentValueUkr}
+      />
       <SearchPopUpDepartment
         listData={departmentsList}
         setSelected={setSelectedDepartment}
@@ -76,13 +119,13 @@ export const Delivery: React.FC = () => {
               selectedDepartment={selectedDepartment ? selectedDepartment.Description : ''}
             />
             <UkrPoshta
-              searchCityValue={selectedCity ? selectedCity.Present : ''}
+              searchCityValue={selectedCityUkr ? selectedCityUkr.city_name : ''}
               value={deliveryWay}
-              inputRefCity={inputRefCity}
-              setSearchCityActive={setSearchCityActive}
-              setSearchDepartmentActive={setSearchDepartmentActive}
-              inputRefDepartment={inputRefDepartment}
-              selectedDepartment={selectedDepartment ? selectedDepartment.Description : ''}
+              inputRefCity={inputRefCityUkr}
+              setSearchCityActive={setSearchCityActiveUkr}
+              setSearchDepartmentActive={setSearchDepartmentActiveUkr}
+              inputRefDepartment={inputRefDepartmentUkr}
+              selectedDepartment={selectedDepartmentUkr ? selectedDepartmentUkr.name : ''}
             />
           </RadioGroup>
         </div>

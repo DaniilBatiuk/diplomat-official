@@ -2,6 +2,7 @@ import Nova from '@../../public/nova.png'
 import { FormControlLabel, Radio } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 import styles from './../../../../order.module.scss'
 import { CustomField, RadioButtons } from '@/components'
@@ -15,6 +16,9 @@ interface NovaPoshtaProps {
   searchCityValue: string
   selectedDepartment: string
 }
+
+const DELIVERY_WAYS: string[] = ["Кур'єром", 'У відділення', 'У поштомат']
+
 export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
   value,
   setSearchCityActive,
@@ -24,6 +28,19 @@ export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
   searchCityValue,
   selectedDepartment,
 }: NovaPoshtaProps) => {
+  const [deliveryWay, setDeliveryWay] = useState(DELIVERY_WAYS[0])
+
+  useEffect(() => {
+    if (selectedDepartment && selectedDepartment.includes('Поштомат')) {
+      setDeliveryWay(DELIVERY_WAYS[2])
+    } else if (
+      selectedDepartment &&
+      selectedDepartment.includes('Відділення') &&
+      deliveryWay !== DELIVERY_WAYS[0]
+    ) {
+      setDeliveryWay(DELIVERY_WAYS[1])
+    }
+  }, [selectedDepartment])
   return (
     <>
       <FormControlLabel
@@ -43,8 +60,10 @@ export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
         })}
       >
         <RadioButtons
+          value={deliveryWay}
+          setValue={setDeliveryWay}
           className={styles.order__delivery_way_inner}
-          values={["Кур'єром", 'У відділення', 'У поштомат']}
+          values={DELIVERY_WAYS}
         />
 
         <CustomField

@@ -2,6 +2,7 @@ import Ukr from '@../../public/Ukr.png'
 import { FormControlLabel, Radio } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
+import { useState } from 'react'
 
 import styles from './../../../../order.module.scss'
 import { CustomField, RadioButtons } from '@/components'
@@ -15,6 +16,7 @@ interface UkrPoshtaProps {
   searchCityValue: string
   selectedDepartment: string
 }
+const DELIVERY_WAYS: string[] = ["Кур'єром", 'У відділення']
 
 export const UkrPoshta: React.FC<UkrPoshtaProps> = ({
   value,
@@ -25,6 +27,7 @@ export const UkrPoshta: React.FC<UkrPoshtaProps> = ({
   searchCityValue,
   selectedDepartment,
 }: UkrPoshtaProps) => {
+  const [deliveryWay, setDeliveryWay] = useState(DELIVERY_WAYS[0])
   return (
     <>
       <FormControlLabel
@@ -44,6 +47,8 @@ export const UkrPoshta: React.FC<UkrPoshtaProps> = ({
       >
         <RadioButtons
           className={clsx(styles.order__delivery_way_inner, styles.order__delivery_way_inner_2)}
+          value={deliveryWay}
+          setValue={setDeliveryWay}
           values={["Кур'єром", 'У відділення']}
         />
         <CustomField

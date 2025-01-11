@@ -1,19 +1,21 @@
 'use client'
 
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
 interface RadioButtonsProp {
   values: string[]
   className?: string
+  value: string
+  setValue: Dispatch<SetStateAction<string>>
 }
 
 export const RadioButtons: React.FC<RadioButtonsProp> = ({
   values,
   className,
+  value,
+  setValue,
 }: RadioButtonsProp) => {
-  const [value, setValue] = useState(values[0])
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value)
   }

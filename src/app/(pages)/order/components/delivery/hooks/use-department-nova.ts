@@ -3,20 +3,24 @@ import { useEffect, useRef, useState } from 'react'
 
 import { orderApi } from '@/utils/modules'
 
-interface useDepartment {
+interface useDepartmentNova {
   selectedCity: Address | null
 }
 
-export const useDepartment = ({ selectedCity }: useDepartment) => {
+export const useDepartmentNova = ({ selectedCity }: useDepartmentNova) => {
   const [searchDepartmentActive, setSearchDepartmentActive] = useState(false)
   const inputRefDepartment = useRef<null | HTMLInputElement>(null)
   const [searchDepartmentValue, setSearchDepartmentValue] = useState('')
   const [selectedDepartment, setSelectedDepartment] = useState<Department | null>(null)
 
   const { data } = useQuery({
-    queryKey: ['department', selectedCity ? selectedCity.DeliveryCity : '', searchDepartmentValue],
+    queryKey: [
+      'department nova',
+      selectedCity ? selectedCity.DeliveryCity : '',
+      searchDepartmentValue,
+    ],
     queryFn: meta =>
-      orderApi.getDepartments(
+      orderApi.getDepartmentsNovaPoshta(
         meta,
         { cityRef: selectedCity ? selectedCity.DeliveryCity : '' },
         {

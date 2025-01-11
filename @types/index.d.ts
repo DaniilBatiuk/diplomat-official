@@ -33,3 +33,20 @@ type NovaPoshtaDepartment = {
   data: Department[]
   errors: string[]
 }
+
+type AddressUrk = {
+  city_doc_id: string
+  city_name: string
+}
+type DepartmentUkr = {
+  name: string
+  warehouse_doc_id: string
+}
+
+type UkrPoshtaCity = {
+  data: { cities: AddressUrk[] }
+}
+
+type UkrPoshtaDepartment = {
+  data: { warehouses: DepartmentUkr[] }
+}
