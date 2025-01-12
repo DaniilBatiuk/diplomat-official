@@ -16,8 +16,6 @@ export const TelInput: React.FC = () => {
     setValue(event.target.value)
   }
 
-  console.log('value', value)
-
   return (
     <TextField
       inputRef={inputRef}

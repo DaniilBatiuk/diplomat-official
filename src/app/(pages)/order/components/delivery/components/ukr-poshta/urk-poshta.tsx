@@ -16,7 +16,7 @@ interface UkrPoshtaProps {
   searchCityValue: string
   selectedDepartment: string
 }
-const DELIVERY_WAYS: string[] = ["Кур'єром", 'У відділення']
+const DELIVERY_WAYS: string[] = ['У відділення', "Кур'єром"]
 
 export const UkrPoshta: React.FC<UkrPoshtaProps> = ({
   value,
@@ -49,7 +49,7 @@ export const UkrPoshta: React.FC<UkrPoshtaProps> = ({
           className={clsx(styles.order__delivery_way_inner, styles.order__delivery_way_inner_2)}
           value={deliveryWay}
           setValue={setDeliveryWay}
-          values={["Кур'єром", 'У відділення']}
+          values={DELIVERY_WAYS}
         />
         <CustomField
           label={'Вкажіть населений пункт'}

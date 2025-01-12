@@ -17,7 +17,7 @@ interface NovaPoshtaProps {
   selectedDepartment: string
 }
 
-const DELIVERY_WAYS: string[] = ["Кур'єром", 'У відділення', 'У поштомат']
+const DELIVERY_WAYS: string[] = ['У відділення', "Кур'єром", 'У поштомат']
 
 export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
   value,
@@ -36,9 +36,9 @@ export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
     } else if (
       selectedDepartment &&
       selectedDepartment.includes('Відділення') &&
-      deliveryWay !== DELIVERY_WAYS[0]
+      deliveryWay !== DELIVERY_WAYS[1]
     ) {
-      setDeliveryWay(DELIVERY_WAYS[1])
+      setDeliveryWay(DELIVERY_WAYS[0])
     }
   }, [selectedDepartment])
   return (
