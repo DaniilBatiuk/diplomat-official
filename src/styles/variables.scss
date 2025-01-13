@@ -210,11 +210,19 @@ $yellow-100: #fff41c;
   @include font-family('Lora');
 }
 
+// Inter
+
 %inter-800-75-38 {
   font-weight: 800;
   @include font-family('Inter');
   @include adaptive-value-px(font-size, 38, 75, 2500);
 }
+%inter-700-90-70 {
+  font-weight: 700;
+  @include font-family('Inter');
+  @include adaptive-value-px(font-size, 70, 90);
+}
+
 %inter-700-38-26 {
   font-weight: 700;
   @include font-family('Inter');
@@ -250,6 +258,12 @@ $yellow-100: #fff41c;
   font-size: 20px;
   @include font-family('Inter');
 }
+%inter-600-30-24 {
+  font-weight: 600;
+  @include font-family('Inter');
+  @include adaptive-value-px(font-size, 24, 30);
+}
+
 %inter-600-24 {
   font-weight: 600;
   font-size: 24px;

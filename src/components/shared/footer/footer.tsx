@@ -16,8 +16,7 @@ export const Footer: React.FC = () => {
             <div className={styles.footer__main_column}>
               <Image
                 src={Logo}
-                alt='MainPhoto'
-                placeholder='blur'
+                alt='LogoPhoto'
                 loading={'eager'}
                 quality={100}
                 className={styles.footer__logo}

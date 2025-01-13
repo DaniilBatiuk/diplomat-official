@@ -69,14 +69,7 @@ export const Header: React.FC = () => {
             </div>
 
             <Link href={LINKS.Home}>
-              <Image
-                src={Logo}
-                alt='MainPhoto'
-                placeholder='blur'
-                loading={'eager'}
-                decoding='sync'
-                quality={100}
-              />
+              <Image src={Logo} alt='MainPhoto' loading={'eager'} decoding='sync' quality={100} />
             </Link>
           </div>
 
