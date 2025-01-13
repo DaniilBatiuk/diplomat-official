@@ -18,6 +18,7 @@ function sleep(ms: number) {
 
 async function prefetchImages(href: string) {
   if (!href.startsWith('/') || href.startsWith('/order') || href === '/') {
+    console.log('haha')
     return []
   }
   const url = new URL(href, window.location.href)
@@ -26,7 +27,8 @@ async function prefetchImages(href: string) {
   })
   // only throw in dev
   if (!imageResponse.ok && process.env.NODE_ENV === 'development') {
-    throw new Error('Failed to prefetch images')
+    console.log('error prefetching images', imageResponse)
+    // throw new Error('Failed to prefetch images')
   }
   const { images } = await imageResponse.json()
   return images as PrefetchImage[]

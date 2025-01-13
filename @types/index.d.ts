@@ -1,12 +1,67 @@
-type Product = {
+types
+type IProduct = {
   id: string
-  title: string
-  price: number
+  name: string
   description: string
-  category: Category
-  image: string
-  discountPercentage: number
+  price: number
+  count: number
+  imageUrls: string[]
+  status: $Enums.Status
+  discountPercent: number | null
+  subcategoryId: string
+  createdAt: Date
 }
+
+type IProductBase = Omit<IProduct, 'createdAt' | 'subcategoryId' | 'status'>
+
+type IProperty = {
+  id: string
+  name: string
+  value: string
+  productId: string
+  subcategoryId: string
+}
+
+type IPropertyBase = Omit<IProperty, 'subcategoryId' | 'productId'>
+
+type IComment = {
+  id: string
+  comment: string
+  title: string
+  starCount: number
+  recommend: boolean | null
+  createdAt: Date
+}
+
+type ICommentBase = Omit<IComment, 'subcategoryId' | 'productId'>
+
+type IUser = {
+  id: string
+  name: string
+  surname: string
+  email: string
+  passwordHash: string
+  address: string | null
+  phone: string | null
+  role: $Enums.UserRole
+  provider: string | null
+  providerId: string | null
+  createdAt: Date
+}
+
+type IUserBase = Omit<IUser, 'provider' | 'providerId' | 'createdAt'>
+
+// Combined types
+type ICommentAndUser = {
+  user: IUserBase
+} & ICommentBase
+
+type IProductOne = IProductBase & {
+  properties: IPropertyBase[]
+  comments: ICommentAndUser[]
+}
+
+///////////////////////////
 
 type Category = {
   id: string

@@ -1,8 +1,6 @@
-import { PRODUCTS } from '@/utils/config/data'
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../profile.module.scss'
-import { HistoryItem } from './components/history-item/history-item'
 import { FormBlock } from '@/components'
 
 export const History: React.FC = () => {
@@ -23,9 +21,9 @@ export const History: React.FC = () => {
             <p className={styles.history__header_products}>Товари</p>
             <p className={styles.history__header_sum}>Сума</p>
           </div>
-          {PRODUCTS.map(product => (
+          {/* {PRODUCTS.map(product => (
             <HistoryItem key={product.id} product={product} />
-          ))}
+          ))} */}
         </div>
       )}
     </FormBlock>

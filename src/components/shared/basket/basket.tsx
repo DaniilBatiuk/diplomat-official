@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { Dispatch, SetStateAction } from 'react'
 
-import { PRODUCTS } from '@/utils/config/data'
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
@@ -9,7 +8,6 @@ import { CustomButton } from '../../ui/custom-button/custom-button'
 import { DarkBackground } from '../dark-background/dark-background'
 
 import styles from './basket.module.scss'
-import { BasketItem } from './components/basket-item/basket-item'
 import { Link } from '@/components'
 
 interface BasketProp {
@@ -46,12 +44,12 @@ export const Basket: React.FC<BasketProp> = ({ basketActive, setBasketActive }: 
           ) : (
             <div className={styles.full}>
               <div className={styles.full__list}>
-                {PRODUCTS.map(product => (
+                {/* {PRODUCTS.map(product => (
                   <BasketItem key={product.id} product={product} />
-                ))}
+                ))} */}
               </div>
               <div className={styles.total}>
-                <div className={styles.total_block}>
+                {/* <div className={styles.total_block}>
                   <div className={styles.total_sale}>
                     <p>Знижка:</p>
                     <p>- {PRODUCTS[2].price.toLocaleString('uk-UA')} ₴</p>
@@ -60,7 +58,7 @@ export const Basket: React.FC<BasketProp> = ({ basketActive, setBasketActive }: 
                     <p>До оплати:</p>
                     <p>{PRODUCTS[1].price.toLocaleString('uk-UA')} ₴</p>
                   </div>
-                </div>
+                </div> */}
                 <Link href={LINKS.Order} prefetch onClick={() => setBasketActive(false)}>
                   <CustomButton fullWidth>Оформити замовлення</CustomButton>
                 </Link>

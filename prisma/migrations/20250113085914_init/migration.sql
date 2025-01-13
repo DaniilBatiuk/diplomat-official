@@ -1,52 +1,48 @@
-/*
-  Warnings:
-
-  - You are about to drop the column `fullName` on the `User` table. All the data in the column will be lost.
-  - You are about to drop the column `password` on the `User` table. All the data in the column will be lost.
-  - Added the required column `cartId` to the `User` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `name` to the `User` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `passwordHash` to the `User` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `surname` to the `User` table without a default value. This is not possible if the table is not empty.
-
-*/
 -- CreateEnum
-CREATE TYPE "OrderStatus" AS ENUM ('COMPLETED', 'IN_PROGRESS', 'CONFIRMED', 'DENIED');
+CREATE TYPE "OrderStatus" AS ENUM ('completed', 'inProgress', 'confirmed', 'denied');
 
 -- CreateEnum
-CREATE TYPE "PaymentStatus" AS ENUM ('COMPLETED', 'IN_PROGRESS', 'DENIED');
+CREATE TYPE "PaymentStatus" AS ENUM ('completed', 'inProgress', 'denied');
 
 -- CreateEnum
-CREATE TYPE "PaymentWays" AS ENUM ('UPON_RECEIPT', 'PRIVATE_BANK', 'CASHLESS');
+CREATE TYPE "PaymentWays" AS ENUM ('uponReceipt', 'privateBank', 'cashless');
 
 -- CreateEnum
-CREATE TYPE "DeliveryWays" AS ENUM ('NOVA_POSHTA', 'UKR_POSHTA');
+CREATE TYPE "DeliveryWays" AS ENUM ('novaPoshta', 'ukrPoshta');
 
 -- CreateEnum
-CREATE TYPE "DeliveryVariants" AS ENUM ('POSTOMAT', 'DEPARTMENT', 'COURIER');
+CREATE TYPE "DeliveryVariants" AS ENUM ('postomat', 'department', 'courier');
 
 -- CreateEnum
-CREATE TYPE "Status" AS ENUM ('ACTIVE', 'INACTIVE');
+CREATE TYPE "Status" AS ENUM ('active', 'inactive');
 
 -- CreateEnum
-CREATE TYPE "UserRole" AS ENUM ('USER', 'ADMIN', 'MANAGER');
+CREATE TYPE "UserRole" AS ENUM ('user', 'admin', 'manager');
 
--- AlterTable
-ALTER TABLE "User" DROP COLUMN "fullName",
-DROP COLUMN "password",
-ADD COLUMN     "address" TEXT,
-ADD COLUMN     "cartId" TEXT NOT NULL,
-ADD COLUMN     "name" TEXT NOT NULL,
-ADD COLUMN     "passwordHash" TEXT NOT NULL,
-ADD COLUMN     "phone" TEXT,
-ADD COLUMN     "role" "UserRole" NOT NULL DEFAULT 'USER',
-ADD COLUMN     "surname" TEXT NOT NULL;
+-- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "surname" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "passwordHash" TEXT NOT NULL,
+    "address" TEXT,
+    "phone" TEXT,
+    "role" "UserRole" NOT NULL DEFAULT 'user',
+    "provider" TEXT,
+    "providerId" TEXT,
+    "cartId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "Cart" (
     "id" TEXT NOT NULL,
     "token" TEXT NOT NULL,
-    "totalPrice" DECIMAL(65,30) NOT NULL DEFAULT 0,
-    "userId" TEXT NOT NULL,
+    "totalPrice" INTEGER NOT NULL DEFAULT 0,
+    "userId" TEXT,
 
     CONSTRAINT "Cart_pkey" PRIMARY KEY ("id")
 );
@@ -66,10 +62,10 @@ CREATE TABLE "Product" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "price" DECIMAL(65,30) NOT NULL,
+    "price" INTEGER NOT NULL,
     "count" INTEGER NOT NULL,
     "imageUrls" TEXT[],
-    "status" "Status" NOT NULL DEFAULT 'INACTIVE',
+    "status" "Status" NOT NULL DEFAULT 'inactive',
     "discountPercent" INTEGER,
     "subcategoryId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -122,24 +118,29 @@ CREATE TABLE "Comment" (
 -- CreateTable
 CREATE TABLE "Order" (
     "id" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "surname" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "city" TEXT NOT NULL,
     "department" TEXT NOT NULL,
-    "orderStatus" "OrderStatus" NOT NULL DEFAULT 'IN_PROGRESS',
-    "paymentStatus" "PaymentStatus" NOT NULL DEFAULT 'IN_PROGRESS',
+    "orderStatus" "OrderStatus" NOT NULL DEFAULT 'inProgress',
+    "paymentStatus" "PaymentStatus" NOT NULL DEFAULT 'inProgress',
     "deliveryWay" "DeliveryWays" NOT NULL,
-    "deliveryVariants" "DeliveryVariants" NOT NULL DEFAULT 'DEPARTMENT',
+    "deliveryVariants" "DeliveryVariants" NOT NULL DEFAULT 'department',
     "paymentWays" "PaymentWays" NOT NULL,
     "cartSnapshot" JSONB NOT NULL,
     "comment" TEXT,
     "cartId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Cart_userId_key" ON "Cart"("userId");
@@ -151,7 +152,7 @@ CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
 CREATE UNIQUE INDEX "Subcategory_name_categoryId_key" ON "Subcategory"("name", "categoryId");
 
 -- AddForeignKey
-ALTER TABLE "Cart" ADD CONSTRAINT "Cart_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Cart" ADD CONSTRAINT "Cart_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CartItem" ADD CONSTRAINT "CartItem_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

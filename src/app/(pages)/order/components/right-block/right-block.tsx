@@ -4,7 +4,7 @@ import styles from './../../order.module.scss'
 import { CustomButton, FormBlock } from '@/components'
 
 interface RightBlockProps {
-  product: Product
+  product: IProductBase
 }
 
 export const RightBlock: React.FC<RightBlockProps> = ({ product }: RightBlockProps) => {

@@ -1,15 +1,17 @@
 import { Pagination } from '@mui/material'
-
-import { PRODUCTS } from '@/utils/config/data'
+import { Product } from '@prisma/client'
 
 import styles from './../../categories.module.scss'
 import { Card } from '@/components'
 
-export const List: React.FC = () => {
+type ListProps = {
+  products: Product[]
+}
+export const List: React.FC<ListProps> = ({ products }: ListProps) => {
   return (
     <section className={styles.list__section}>
       <div className={styles.list}>
-        {PRODUCTS.map(product => (
+        {products.map(product => (
           <Card key={product.id} product={product}></Card>
         ))}
       </div>

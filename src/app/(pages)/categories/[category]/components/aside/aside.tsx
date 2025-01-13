@@ -1,4 +1,4 @@
-import { COLORS, COUNTRIES, MATERIAL, PRODUCTS } from '@/utils/config/data'
+import { COLORS, COUNTRIES, MATERIAL } from '@/utils/config/data'
 import { LINKS } from '@/utils/config/links'
 
 import styles from './../../categories.module.scss'
@@ -20,13 +20,13 @@ export const Aside: React.FC<AsideProps> = ({ category }: AsideProps) => {
               Знижки
             </Link>
           </li>
-          {[...new Set(PRODUCTS.map(product => product.category.name))].map(category => (
+          {/* {[...new Set(PRODUCTS.map(product => product.category.name))].map(category => (
             <li key={category}>
               <Link href={LINKS.Categories + '/' + category} prefetch>
                 {category}
               </Link>
             </li>
-          ))}
+          ))} */}
         </ul>
       </div>
       <div className={styles.aside__filter}>

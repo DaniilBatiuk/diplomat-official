@@ -3,7 +3,7 @@ import { ProductItem } from '../product-item/product-item'
 import styles from './../../../../profile.module.scss'
 
 interface HistoryItemProps {
-  product: Product
+  product: IProductBase
 }
 
 export const HistoryItem: React.FC<HistoryItemProps> = ({ product }: HistoryItemProps) => {

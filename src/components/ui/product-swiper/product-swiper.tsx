@@ -15,7 +15,7 @@ import { Card, CardSkeleton, Title } from '@/components'
 
 interface ProductSwiperProps {
   title: string
-  products: Product[]
+  products: IProductBase[]
   noPadding?: boolean
 }
 export const ProductSwiper: React.FC<ProductSwiperProps> = ({
@@ -39,6 +39,7 @@ export const ProductSwiper: React.FC<ProductSwiperProps> = ({
           <div className={styles.skeleton__container}>
             <div className={styles.skeleton}>
               <CardSkeleton />
+
               <CardSkeleton />
               <CardSkeleton />
               <CardSkeleton />

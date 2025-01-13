@@ -1,6 +1,5 @@
 'use client'
 
-import CardImg from '@../../public/product.webp'
 import Image from 'next/image'
 import React, { useState } from 'react'
 // Import Swiper styles
@@ -15,7 +14,11 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import './header-images.scss'
 
-export const HeaderImages: React.FC = () => {
+interface HeaderImagesProps {
+  images: string[]
+}
+
+export const HeaderImages: React.FC<HeaderImagesProps> = ({ images }: HeaderImagesProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
   return (
@@ -27,24 +30,11 @@ export const HeaderImages: React.FC = () => {
         modules={[FreeMode, Navigation, Thumbs]}
         className='mySwiper2'
       >
-        <SwiperSlide>
-          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={500} height={500} alt='photo' priority quality={100} />
-        </SwiperSlide>
+        {images.map(image => (
+          <SwiperSlide key={image}>
+            <Image src={image} width={500} height={500} alt='photo' priority quality={100} />
+          </SwiperSlide>
+        ))}
       </Swiper>
       <Swiper
         // @ts-ignore
@@ -56,30 +46,11 @@ export const HeaderImages: React.FC = () => {
         modules={[FreeMode, Navigation, Thumbs]}
         className='mySwiper'
       >
-        <SwiperSlide>
-          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src={CardImg} width={100} height={100} alt='photo' priority quality={100} />
-        </SwiperSlide>
+        {images.map(image => (
+          <SwiperSlide key={image}>
+            <Image src={image} width={100} height={100} alt='photo' priority quality={100} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   )
