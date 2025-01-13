@@ -7,7 +7,6 @@ import { getProducts } from '@/utils/lib/queries'
 
 export default async function Home() {
   const products = await getProducts()
-
   return (
     <div className={styles.page}>
       <HomeHeader />

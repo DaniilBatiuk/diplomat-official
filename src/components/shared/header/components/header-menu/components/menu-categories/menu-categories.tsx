@@ -1,4 +1,3 @@
-import { useSuspenseQuery } from '@tanstack/react-query'
 import clsx from 'clsx'
 import { Dispatch, SetStateAction } from 'react'
 
@@ -8,7 +7,7 @@ import { LINKS } from '@/utils/config/links'
 import styles from '../../header-menu.module.scss'
 
 import { Link } from '@/components'
-import { categoryApi } from '@/utils/modules'
+import { useAllCategoriesStore } from '@/utils/lib/store/categories-store'
 
 interface HeaderMenuProp {
   setMenuCategoriesActive: Dispatch<SetStateAction<boolean>>
@@ -20,12 +19,7 @@ export const MenuCategories: React.FC<HeaderMenuProp> = ({
   menuCategoriesActive,
   closeMenu,
 }: HeaderMenuProp) => {
-  const { data: categories } = useSuspenseQuery({
-    queryKey: ['all-categories'],
-    queryFn: meta => categoryApi.getAllCategories(meta),
-  })
-
-  console.log('data', categories)
+  const allCategories = useAllCategoriesStore(state => state.allCategories)
 
   return (
     <div
@@ -36,7 +30,7 @@ export const MenuCategories: React.FC<HeaderMenuProp> = ({
       {ICONS.arrowLeft({ onClick: () => setMenuCategoriesActive(false) })}
       <nav className={styles.menu}>
         <ul>
-          {categories.map((category, index) => (
+          {allCategories.map((category, index) => (
             <li key={index}>
               <Link
                 className={styles.menu_item_with_arrow}

@@ -34,3 +34,14 @@ export const getProductsWithSameSubcategory = unstable_cache(
     revalidate: 60 * 60 * 2, // two hours,
   },
 )
+
+export const getAllCategories = unstable_cache(
+  () =>
+    prisma.category.findMany({
+      include: { subcategories: true },
+    }),
+  ['all-categories'],
+  {
+    revalidate: 60 * 60 * 2, // two hours,
+  },
+)
