@@ -165,3 +165,7 @@ main {
 .input.readOnly .MuiInputBase-input {
   caret-color: transparent; // Убираем каретку (курсор)
 }
+
+.MuiModal-root {
+  z-index: 2020 !important;
+}

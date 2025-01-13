@@ -34,7 +34,7 @@ export const CreateCommentModal: React.FC<CreateCommentModalProps> = ({
               checked={checked}
               name={'Я рекомендую цей товар'}
               sx={{
-                color: '#b5b5b5', // Цвет квадрата
+                color: '#b5b5b5',
               }}
             />
             <p>Я рекомендую цей товар</p>

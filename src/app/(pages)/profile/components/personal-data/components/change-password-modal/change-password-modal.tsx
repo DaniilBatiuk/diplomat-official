@@ -2,16 +2,16 @@ import styles from './../../../../profile.module.scss'
 import { CustomButton, CustomField, Modal } from '@/components'
 
 interface ChangePasswordModalProps {
-  activeModal: boolean
-  setActiveModal: (value: boolean) => void
+  modalActive: boolean
+  setModalActive: (value: boolean) => void
 }
 
 export const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({
-  activeModal,
-  setActiveModal,
+  modalActive,
+  setModalActive,
 }: ChangePasswordModalProps) => {
   return (
-    <Modal active={activeModal} setActive={setActiveModal} maxDivWidth='440px'>
+    <Modal active={modalActive} setActive={setModalActive} maxDivWidth='440px'>
       <Modal.Title>Змінити пароль</Modal.Title>
       <Modal.SubTitle>
         Зміна пароля призведе до виходу з усіх інших пристроїв де ви авторизовані

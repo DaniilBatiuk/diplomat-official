@@ -95,3 +95,13 @@
     }
   }
 }
+
+.create_category_fields {
+  display: flex;
+  flex-direction: column;
+  row-gap: 13px;
+
+  & ul {
+    z-index: 10000 !important;
+  }
+}

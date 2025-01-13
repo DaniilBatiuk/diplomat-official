@@ -7,7 +7,7 @@ import { ChangePasswordModal } from './components/change-password-modal/change-p
 import { CustomButton, CustomField, FormBlock, TelInput } from '@/components'
 
 export const PersonalData: React.FC = () => {
-  const [activeModal, setActiveModal] = useState(false)
+  const [modalActive, setModalActive] = useState(false)
   return (
     <FormBlock title='Персональні дані'>
       <form noValidate className={styles.profile__content_right_form}>
@@ -21,7 +21,7 @@ export const PersonalData: React.FC = () => {
 
         <div className={styles.profile__content_right_form_footer}>
           <p>
-            Хочете змінити пароль <span onClick={() => setActiveModal(true)}>Змінити</span>.
+            Хочете змінити пароль <span onClick={() => setModalActive(true)}>Змінити</span>.
           </p>
           <CustomButton
             type='submit'
@@ -32,7 +32,7 @@ export const PersonalData: React.FC = () => {
           </CustomButton>
         </div>
       </form>
-      <ChangePasswordModal activeModal={activeModal} setActiveModal={setActiveModal} />
+      <ChangePasswordModal modalActive={modalActive} setModalActive={setModalActive} />
     </FormBlock>
   )
 }
