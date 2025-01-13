@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import Image from 'next/image'
 import { Dispatch, SetStateAction } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
@@ -8,6 +9,7 @@ import { CustomButton } from '../../ui/custom-button/custom-button'
 import { DarkBackground } from '../dark-background/dark-background'
 
 import styles from './basket.module.scss'
+import Empty from '@/../public/empty.png'
 import { Link } from '@/components'
 
 interface BasketProp {
@@ -31,14 +33,22 @@ export const Basket: React.FC<BasketProp> = ({ basketActive, setBasketActive }: 
           })}
         </div>
         <div className={styles.basket__body}>
-          {false ? (
+          {true ? (
             <div className={styles.empty}>
               <p className={styles.empty_title}>Кошик порожній</p>
               <p className={styles.empty_subtitle}>
                 <span>Подивіться наш каталог, ви обов'язково</span>
                 <span>щось знайдете</span>
               </p>
-              <img src={'/empty.png'} alt='basket' />
+
+              <Image
+                src={Empty}
+                alt='MainPhoto'
+                placeholder='blur'
+                loading={'eager'}
+                decoding='sync'
+                quality={100}
+              />
               <CustomButton fullWidth>До категорій</CustomButton>
             </div>
           ) : (

@@ -8,7 +8,7 @@ import { getProducts } from '@/utils/lib/queries'
 export async function generateStaticParams() {
   const categories = await prisma.category.findMany()
   return categories.map(product => ({
-    slug: product.id,
+    category: product.id,
   }))
 }
 

@@ -7,20 +7,18 @@ import Image from 'next/image'
 import styles from './card.module.scss'
 import { BuyButton } from './components/buy-button/buy-button'
 import { Link } from '@/components'
+import { calculateRoundedPrice } from '@/utils/helpers'
 
 interface CardProp {
   product: IProductBase
 }
 export const Card: React.FC<CardProp> = ({ product }: CardProp) => {
-  let imageCount = 0
-
   return (
     <Link href={`/product/${product.id}`} prefetch>
       <figure className={styles.card}>
         <Image
           src={product.imageUrls?.[0] || CardImg}
-          loading={imageCount++ < 15 ? 'eager' : 'lazy'}
-          decoding='sync'
+          loading={'eager'}
           width={300}
           height={300}
           alt='photo'
@@ -33,21 +31,14 @@ export const Card: React.FC<CardProp> = ({ product }: CardProp) => {
             {product.discountPercent && (
               <p className={styles.card__price_sale}>{product.price.toLocaleString('uk-UA')} ₴</p>
             )}
-            {product.discountPercent && (
-              <p
-                className={clsx(styles.card__price_price, {
-                  [styles.discount]: product.discountPercent,
-                })}
-              >
-                {(() => {
-                  const discountedPrice =
-                    product.price - (product.price * product.discountPercent) / 100
-                  const roundedPrice = Math.round(discountedPrice)
-                  return roundedPrice.toLocaleString('uk-UA')
-                })()}{' '}
-                ₴
-              </p>
-            )}
+
+            <p
+              className={clsx(styles.card__price_price, {
+                [styles.discount]: product.discountPercent,
+              })}
+            >
+              {calculateRoundedPrice(product.price, product.discountPercent)} ₴
+            </p>
           </div>
           <BuyButton />
         </figcaption>

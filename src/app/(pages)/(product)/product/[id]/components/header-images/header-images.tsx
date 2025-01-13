@@ -20,6 +20,7 @@ interface HeaderImagesProps {
 
 export const HeaderImages: React.FC<HeaderImagesProps> = ({ images }: HeaderImagesProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
+  let imageCount = 0
 
   return (
     <div className='product__header_images'>
@@ -32,7 +33,16 @@ export const HeaderImages: React.FC<HeaderImagesProps> = ({ images }: HeaderImag
       >
         {images.map(image => (
           <SwiperSlide key={image}>
-            <Image src={image} width={500} height={500} alt='photo' priority quality={100} />
+            <Image
+              loading={imageCount++ < 15 ? 'eager' : 'lazy'}
+              decoding='sync'
+              src={image}
+              width={500}
+              height={500}
+              alt='photo'
+              priority
+              quality={100}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -48,7 +58,16 @@ export const HeaderImages: React.FC<HeaderImagesProps> = ({ images }: HeaderImag
       >
         {images.map(image => (
           <SwiperSlide key={image}>
-            <Image src={image} width={100} height={100} alt='photo' priority quality={100} />
+            <Image
+              loading={imageCount++ < 15 ? 'eager' : 'lazy'}
+              decoding='sync'
+              src={image}
+              width={100}
+              height={100}
+              alt='photo'
+              priority
+              quality={100}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -11,6 +11,7 @@
 
   &__logo {
     width: 100%;
+    height: fit-content;
 
     @media (max-width: 985px) {
       max-width: 300px;

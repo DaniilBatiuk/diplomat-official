@@ -17,7 +17,15 @@ export const InfoColumns: React.FC = () => {
         </div>
         <div className={styles.product__column_body}>
           <div className={styles.product__column_body_line}>
-            <Image src={Nova} width={40} height={40} alt='photo' priority quality={100} />
+            <Image
+              src={Nova}
+              width={40}
+              height={40}
+              alt='photo'
+              priority
+              quality={100}
+              loading={'eager'}
+            />
             <div className={styles.product__column_body_text}>
               <div className={styles.product__column_body_text_line}>
                 <h4>Нова пошта</h4>
@@ -27,7 +35,15 @@ export const InfoColumns: React.FC = () => {
             </div>
           </div>
           <div className={styles.product__column_body_line}>
-            <Image src={Ukr} width={40} height={40} alt='photo' priority quality={100} />
+            <Image
+              src={Ukr}
+              width={40}
+              height={40}
+              alt='photo'
+              priority
+              quality={100}
+              loading={'eager'}
+            />
             <div className={styles.product__column_body_text}>
               <div className={styles.product__column_body_text_line}>
                 <h4>Укрпошта</h4>

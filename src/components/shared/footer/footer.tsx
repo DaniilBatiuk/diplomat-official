@@ -1,7 +1,10 @@
+import Image from 'next/image'
+
 import { LINKS } from '@/utils/config/links'
 
 import { CopyLi } from './components/copy-li/copy-li'
 import styles from './footer.module.scss'
+import Logo from '@/../public/homeLogo.webp'
 import { Link } from '@/components'
 
 export const Footer: React.FC = () => {
@@ -11,7 +14,14 @@ export const Footer: React.FC = () => {
         <div className={styles.footer__main}>
           <div className={styles.footer__main_columns}>
             <div className={styles.footer__main_column}>
-              <img src={'/homeLogo.webp'} alt='logo' className={styles.footer__logo} />
+              <Image
+                src={Logo}
+                alt='MainPhoto'
+                placeholder='blur'
+                loading={'eager'}
+                quality={100}
+                className={styles.footer__logo}
+              />
             </div>
             <div className={styles.footer__main_column}>
               <h2>Контакти</h2>

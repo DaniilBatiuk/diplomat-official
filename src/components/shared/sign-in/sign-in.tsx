@@ -25,7 +25,7 @@ export const SignIn: React.FC<SignInProps> = ({ onClickClose }: SignInProps) => 
 
   return (
     <section className={styles.signIn}>
-      <Image src={SignInImg} alt='MainPhoto' fill priority placeholder='blur' />
+      <Image src={SignInImg} alt='MainPhoto' fill priority placeholder='blur' loading={'eager'} />
       <button onClick={onClickClose} className={styles.signIn__close_button}>
         {ICONS.close({ className: styles.signIn__close })}
       </button>

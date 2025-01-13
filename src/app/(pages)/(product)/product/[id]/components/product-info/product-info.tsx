@@ -6,6 +6,7 @@ import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../product.module.scss'
 import { CustomButton } from '@/components'
+import { calculateRoundedPrice } from '@/utils/helpers'
 
 interface ProductInfoProps {
   product: IProductOne
@@ -20,21 +21,14 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }: ProductInfo
           {product.discountPercent && (
             <p className={styles.product__info_sale}>{product.price.toLocaleString('uk-UA')} ₴</p>
           )}
-          {product.discountPercent && (
-            <p
-              className={clsx(styles.product__info_price, {
-                [styles.product__info_price_discount]: product.discountPercent,
-              })}
-            >
-              {(() => {
-                const discountedPrice =
-                  product.price - (product.price * product.discountPercent) / 100
-                const roundedPrice = Math.round(discountedPrice)
-                return roundedPrice.toLocaleString('uk-UA')
-              })()}{' '}
-              ₴
-            </p>
-          )}
+
+          <p
+            className={clsx(styles.product__info_price, {
+              [styles.product__info_price_discount]: product.discountPercent,
+            })}
+          >
+            {calculateRoundedPrice(product.price, product.discountPercent)} ₴
+          </p>
         </div>
 
         <CustomButton>

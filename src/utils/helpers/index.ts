@@ -1,4 +1,5 @@
 export * from './calculate-average-star-сount'
+export * from './calculate-rounded-price'
 export * from './debounce'
 export * from './get-time-ago'
 export * from './getElement'

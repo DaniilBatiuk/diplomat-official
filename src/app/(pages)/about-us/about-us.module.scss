@@ -44,6 +44,7 @@
       & img {
         margin-right: 0px !important;
         margin-left: 15px;
+        height: fit-content;
         box-shadow: -15px 15px 0 0 var.$background-200 !important;
         @media (max-width: 840px) {
           width: calc(100% - 15px);
@@ -71,6 +72,7 @@
       margin-right: 15px;
       width: 45%;
       object-fit: cover;
+      height: fit-content;
       box-shadow: 15px 15px 0 0 var.$background-200;
       @media (max-width: 840px) {
         width: calc(100% - 15px);

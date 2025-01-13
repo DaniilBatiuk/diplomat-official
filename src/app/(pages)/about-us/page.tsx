@@ -1,6 +1,10 @@
 import clsx from 'clsx'
+import Image from 'next/image'
 
 import styles from './about-us.module.scss'
+import About1 from '@/../public/about-us1.webp'
+import About2 from '@/../public/about-us2.webp'
+import About3 from '@/../public/about-us3.webp'
 import { Title } from '@/components'
 
 export default function AboutUs() {
@@ -21,7 +25,13 @@ export default function AboutUs() {
                 близьких або для себе.
               </p>
             </div>
-            <img src={'/about-us1.webp'} alt='photo' />
+            <Image
+              src={About1}
+              alt='AboutPhoto1'
+              placeholder='blur'
+              loading={'eager'}
+              quality={100}
+            />
           </div>
           <div className={clsx(styles.about__item, styles.about__item_reverse)}>
             <div className={styles.about__item_info}>
@@ -32,7 +42,13 @@ export default function AboutUs() {
                 доступний у будь-якому куточку України, не виходячи з дому.
               </p>
             </div>
-            <img src={'/about-us2.webp'} alt='photo' />
+            <Image
+              src={About2}
+              alt='AboutPhoto3'
+              placeholder='blur'
+              loading={'eager'}
+              quality={100}
+            />
           </div>
           <div className={styles.about__item}>
             <div className={styles.about__item_info}>
@@ -43,7 +59,13 @@ export default function AboutUs() {
                 увагою до деталей, аби відповідати високим стандартам якості.
               </p>
             </div>
-            <img src={'/about-us3.webp'} alt='photo' />
+            <Image
+              src={About3}
+              alt='AboutPhoto3'
+              placeholder='blur'
+              loading={'eager'}
+              quality={100}
+            />
           </div>
           <h2>
             Дякуємо, що обираєте "Дипломат". Разом із вами ми продовжуємо дарувати щирі емоції та

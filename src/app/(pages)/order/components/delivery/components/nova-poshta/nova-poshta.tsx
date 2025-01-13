@@ -49,7 +49,15 @@ export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
         control={<Radio />}
         label={
           <div className={styles.order__delivery_way}>
-            <Image src={Nova} width={40} height={40} alt='photo' priority quality={100} />
+            <Image
+              src={Nova}
+              width={40}
+              height={40}
+              alt='photo'
+              priority
+              quality={100}
+              loading={'eager'}
+            />
             <p>Доставка Новою Поштою - від 60 ₴</p>
           </div>
         }

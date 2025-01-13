@@ -51,7 +51,15 @@ export const Photo: React.FC<photoProp> = ({ photos, setPhotos }: photoProp) => 
                 ['full-width']: index === 0,
               })}
             >
-              <Image width={1280} height={1280} priority={true} src={photo.url} alt={`Image`} />
+              <Image
+                width={1280}
+                height={1280}
+                priority={true}
+                src={photo.url}
+                alt={`Image`}
+                loading={'eager'}
+                decoding='sync'
+              />
               {ICONS.deleteImage({ className: 'delete', onClick: () => handlerDelete(photo) })}
             </div>
           ))}
