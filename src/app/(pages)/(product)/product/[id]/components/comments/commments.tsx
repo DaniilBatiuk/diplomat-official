@@ -14,13 +14,13 @@ interface CommentsProps {
 }
 
 export const Comments: React.FC<CommentsProps> = ({ comments }: CommentsProps) => {
-  const [activeModal, setActiveModal] = useState(false)
+  const [modalActive, setModalActive] = useState(false)
 
   return (
     <section className={styles.comments}>
       <div className={styles.comments__header}>
         <Title>Відгуки користувачів</Title>
-        <CustomButton outline onClick={() => setActiveModal(true)}>
+        <CustomButton outline onClick={() => setModalActive(true)}>
           Написати відгук
         </CustomButton>
       </div>
@@ -31,7 +31,7 @@ export const Comments: React.FC<CommentsProps> = ({ comments }: CommentsProps) =
             <Rating defaultValue={1} max={1} size='large' readOnly />
             <p className={styles.comments__stars_text_2}>{comments.length} відгуків</p>
           </div>
-          <CustomButton outline fullWidth onClick={() => setActiveModal(true)}>
+          <CustomButton outline fullWidth onClick={() => setModalActive(true)}>
             Написати відгук
           </CustomButton>
           <div className={styles.comments__list}>
@@ -41,7 +41,7 @@ export const Comments: React.FC<CommentsProps> = ({ comments }: CommentsProps) =
           </div>
         </>
       )}
-      <CreateCommentModal activeModal={activeModal} setActiveModal={setActiveModal} />
+      <CreateCommentModal modalActive={modalActive} setModalActive={setModalActive} />
     </section>
   )
 }

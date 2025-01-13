@@ -31,6 +31,7 @@
     "react-dom": "^19.0.0",
     "react-input-mask": "^2.0.4",
     "react-sortablejs": "^6.1.4",
+    "react-toastify": "^11.0.2",
     "swiper": "^11.1.15",
     "uploadthing": "^7.4.4"
   },

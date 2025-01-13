@@ -9,8 +9,8 @@ import styles from './menu-sort.module.scss'
 import { DarkBackground, RadioButtons } from '@/components'
 
 interface MenuSortProp {
-  setActiveMenuSort: Dispatch<SetStateAction<boolean>>
-  activeMenuSort: boolean
+  setMenuSortActive: Dispatch<SetStateAction<boolean>>
+  menuSortActive: boolean
 }
 
 const SORT_WAYS: string[] = [
@@ -20,22 +20,22 @@ const SORT_WAYS: string[] = [
 ]
 
 export const MenuSort: React.FC<MenuSortProp> = ({
-  setActiveMenuSort,
-  activeMenuSort,
+  setMenuSortActive,
+  menuSortActive,
 }: MenuSortProp) => {
   const [sortWay, setSortWay] = useState(SORT_WAYS[0])
 
   return (
     <>
-      <DarkBackground backgroundActive={activeMenuSort} onClick={() => setActiveMenuSort(false)} />
+      <DarkBackground backgroundActive={menuSortActive} onClick={() => setMenuSortActive(false)} />
       <div
         className={clsx(styles.menu_open_footer, {
-          [styles.active]: activeMenuSort,
+          [styles.active]: menuSortActive,
         })}
       >
         <div className={styles.menu_open_footer_header}>
           <h3>Сортування</h3>
-          {ICONS.close({ onClick: () => setActiveMenuSort(false) })}
+          {ICONS.close({ onClick: () => setMenuSortActive(false) })}
         </div>
         <RadioButtons value={sortWay} setValue={setSortWay} values={SORT_WAYS} />
       </div>

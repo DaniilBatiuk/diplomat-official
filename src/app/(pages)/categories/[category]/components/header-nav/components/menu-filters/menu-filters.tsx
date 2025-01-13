@@ -10,26 +10,26 @@ import styles from './../../../../categories.module.scss'
 import { DarkBackground } from '@/components'
 
 interface MenuFiltersProp {
-  setActiveMenuFilters: Dispatch<SetStateAction<boolean>>
-  activeMenuFilters: boolean
+  setMenuFiltersActive: Dispatch<SetStateAction<boolean>>
+  menuFiltersActive: boolean
 }
 
 export const MenuFilters: React.FC<MenuFiltersProp> = ({
-  setActiveMenuFilters,
-  activeMenuFilters,
+  setMenuFiltersActive,
+  menuFiltersActive,
 }: MenuFiltersProp) => {
   return (
     <>
       <DarkBackground
-        backgroundActive={activeMenuFilters}
-        onClick={() => setActiveMenuFilters(false)}
+        backgroundActive={menuFiltersActive}
+        onClick={() => setMenuFiltersActive(false)}
       />
       <div
         className={clsx(styles.menu_open, styles.menu_categories, {
-          [styles.active]: activeMenuFilters,
+          [styles.active]: menuFiltersActive,
         })}
       >
-        {ICONS.arrowLeft({ onClick: () => setActiveMenuFilters(false) })}
+        {ICONS.arrowLeft({ onClick: () => setMenuFiltersActive(false) })}
         <div className={styles.aside__filter}>
           <h2>МАТЕРІАЛ</h2>
           <ul>

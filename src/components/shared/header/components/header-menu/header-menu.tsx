@@ -15,19 +15,19 @@ interface HeaderMenuProp {
   menuOpen: () => void
 }
 export const HeaderMenu: React.FC<HeaderMenuProp> = ({ menuActive, menuOpen }: HeaderMenuProp) => {
-  const [activeMenuCategories, setActiveMenuCategories] = useState(false)
+  const [menuCategoriesActive, setMenuCategoriesActive] = useState(false)
 
   const closeMenu = () => {
     menuOpen()
-    setActiveMenuCategories(false)
+    setMenuCategoriesActive(false)
   }
   return (
     <>
       <DarkBackground backgroundActive={menuActive} onClick={closeMenu} />
       <MenuCategories
         closeMenu={closeMenu}
-        activeMenuCategories={activeMenuCategories}
-        setActiveMenuCategories={setActiveMenuCategories}
+        menuCategoriesActive={menuCategoriesActive}
+        setMenuCategoriesActive={setMenuCategoriesActive}
       />
       <div
         className={clsx(styles.menu_open, {
@@ -37,7 +37,7 @@ export const HeaderMenu: React.FC<HeaderMenuProp> = ({ menuActive, menuOpen }: H
         {ICONS.close({ onClick: () => menuOpen() })}
         <nav className={styles.menu}>
           <ul>
-            <li onClick={() => setActiveMenuCategories(true)} className={styles.menu_underline}>
+            <li onClick={() => setMenuCategoriesActive(true)} className={styles.menu_underline}>
               <div className={styles.menu_item}>
                 {ICONS.menuCategories()} <p>Категорії</p>
               </div>

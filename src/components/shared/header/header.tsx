@@ -45,6 +45,7 @@ export const Header: React.FC = () => {
       setSearchActive(false)
     }
   }
+
   return (
     <>
       <DarkBackground
@@ -52,6 +53,7 @@ export const Header: React.FC = () => {
         isLow
         onClick={() => setSearchActive(false)}
       />
+      <Catalog catalogActive={catalogActive} setCatalogActive={setCatalogActive} />
       <HeaderMenu menuActive={menuActive} menuOpen={() => setMenuActive(false)} />
       <Basket basketActive={basketActive} setBasketActive={setBasketActive} />
       <SearchMobile
@@ -61,6 +63,7 @@ export const Header: React.FC = () => {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
+      {signInActive && <SignIn onClickClose={() => setSignInActive(false)} />}
       <header className={styles.header} onClick={handleHeaderClosePopUp}>
         <div className={styles.header__container}>
           <div className={styles.header__burger_logo}>
@@ -112,9 +115,7 @@ export const Header: React.FC = () => {
             </ul>
           </nav>
         </div>
-        {signInActive && <SignIn onClickClose={() => setSignInActive(false)} />}
       </header>
-      <Catalog catalogActive={catalogActive} setCatalogActive={setCatalogActive} />
     </>
   )
 }

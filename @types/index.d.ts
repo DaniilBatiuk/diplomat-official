@@ -51,6 +51,16 @@ type IUser = {
 
 type IUserBase = Omit<IUser, 'provider' | 'providerId' | 'createdAt'>
 
+type ICategory = {
+  id: string
+  name: string
+}
+
+type ISubcategory = {
+  id: string
+  name: string
+}
+
 // Combined types
 type ICommentAndUser = {
   user: IUserBase
@@ -59,6 +69,10 @@ type ICommentAndUser = {
 type IProductOne = IProductBase & {
   properties: IPropertyBase[]
   comments: ICommentAndUser[]
+}
+
+type IBaseCategory = ICategory & {
+  subcategories: ISubcategory[]
 }
 
 ///////////////////////////

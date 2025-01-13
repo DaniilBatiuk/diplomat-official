@@ -1,38 +1,46 @@
+import { useSuspenseQuery } from '@tanstack/react-query'
 import clsx from 'clsx'
 import { Dispatch, SetStateAction } from 'react'
 
-import { CATEGORIES } from '@/utils/config/data'
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
 import styles from '../../header-menu.module.scss'
 
 import { Link } from '@/components'
+import { categoryApi } from '@/utils/modules'
 
 interface HeaderMenuProp {
-  setActiveMenuCategories: Dispatch<SetStateAction<boolean>>
-  activeMenuCategories: boolean
+  setMenuCategoriesActive: Dispatch<SetStateAction<boolean>>
+  menuCategoriesActive: boolean
   closeMenu: () => void
 }
 export const MenuCategories: React.FC<HeaderMenuProp> = ({
-  setActiveMenuCategories,
-  activeMenuCategories,
+  setMenuCategoriesActive,
+  menuCategoriesActive,
   closeMenu,
 }: HeaderMenuProp) => {
+  const { data: categories } = useSuspenseQuery({
+    queryKey: ['all-categories'],
+    queryFn: meta => categoryApi.getAllCategories(meta),
+  })
+
+  console.log('data', categories)
+
   return (
     <div
       className={clsx(styles.menu_open, styles.menu_categories, {
-        [styles.active]: activeMenuCategories,
+        [styles.active]: menuCategoriesActive,
       })}
     >
-      {ICONS.arrowLeft({ onClick: () => setActiveMenuCategories(false) })}
+      {ICONS.arrowLeft({ onClick: () => setMenuCategoriesActive(false) })}
       <nav className={styles.menu}>
         <ul>
-          {CATEGORIES.map((category, index) => (
+          {categories.map((category, index) => (
             <li key={index}>
               <Link
                 className={styles.menu_item_with_arrow}
-                href={LINKS.Categories + category.href}
+                href={LINKS.Categories + '/' + category.name}
                 prefetch
                 onClick={closeMenu}
               >

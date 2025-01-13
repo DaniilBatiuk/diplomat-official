@@ -17,8 +17,8 @@
     object-fit: cover;
     max-height: 720px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
-    @include var.adaptive-value-px(border-radius, 10, 20);
     height: fit-content;
+    @include var.adaptive-value-px(border-radius, 10, 20);
 
     @media (max-width: 730px) {
       width: 100%;

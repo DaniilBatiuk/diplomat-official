@@ -5,13 +5,13 @@ import styles from '././../../../../product.module.scss'
 import { CustomButton, CustomField, Modal } from '@/components'
 
 interface CreateCommentModalProps {
-  activeModal: boolean
-  setActiveModal: (value: boolean) => void
+  modalActive: boolean
+  setModalActive: (value: boolean) => void
 }
 
 export const CreateCommentModal: React.FC<CreateCommentModalProps> = ({
-  activeModal,
-  setActiveModal,
+  modalActive,
+  setModalActive,
 }: CreateCommentModalProps) => {
   const [checked, setChecked] = useState(false)
 
@@ -20,7 +20,7 @@ export const CreateCommentModal: React.FC<CreateCommentModalProps> = ({
   }
 
   return (
-    <Modal active={activeModal} setActive={setActiveModal} maxDivWidth='440px'>
+    <Modal active={modalActive} setActive={setModalActive} maxDivWidth='440px'>
       <form noValidate className={styles.comments__form}>
         <div className={styles.comments__form_fields}>
           <div className={styles.comments__form_rating}>
