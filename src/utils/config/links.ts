@@ -13,4 +13,5 @@ export const LINKS = {
   CreateProduct: '/create-product',
   Profile: '/profile',
   Order: '/order',
+  Product: '/product',
 }

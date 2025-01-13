@@ -54,12 +54,17 @@
         justify-content: space-between;
         height: 39px;
         padding-inline: 15px;
-        @extend %inter-300-16;
+        @extend %inter-400-16;
         border-top-right-radius: 30px;
         border-bottom-right-radius: 30px;
         cursor: pointer;
 
         transition: background-color 0.05s ease-in-out;
+
+        &.active {
+          font-weight: 600;
+          background-color: var.$primary-150;
+        }
         &:hover {
           background-color: var.$primary-150;
         }
@@ -90,7 +95,6 @@
           row-gap: 10px;
           &_sub {
             text-transform: lowercase;
-
             &:hover {
               color: var.$primary-700;
               text-decoration: underline;

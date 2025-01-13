@@ -38,7 +38,7 @@ export const getProductsWithSameSubcategory = unstable_cache(
 export const getAllCategories = unstable_cache(
   () =>
     prisma.category.findMany({
-      include: { subcategories: true },
+      include: { subcategories: { include: { products: { select: { id: true, name: true } } } } },
     }),
   ['all-categories'],
   {
