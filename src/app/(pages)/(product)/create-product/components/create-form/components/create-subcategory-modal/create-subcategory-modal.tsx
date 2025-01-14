@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
-import styles from './../../../../create-product.module.scss'
-import { CustomButton, CustomField, CustomSelect, Modal } from '@/components'
+import { CustomButton, Modal } from '@/components'
 
 interface CreateCommentModalProps {
   modalActive: boolean
@@ -27,14 +26,14 @@ export const CreateSubcategoryModal: React.FC<CreateCommentModalProps> = ({
       </Modal.SubTitle>
       <Modal.Main>
         <form noValidate>
-          <div className={styles.create_category_fields}>
+          {/* <div className={styles.create_category_fields}>
             <CustomSelect
               label='Виберіть категорію'
               fullWidth
               values={['Київ', 'Львів', 'Одеса']}
             />
             <CustomField label='Введіть назву підкатогорії' />
-          </div>
+          </div> */}
           <Modal.Footer>
             <CustomButton type='submit' fullWidth>
               Створити

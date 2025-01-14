@@ -22,7 +22,11 @@ import styles from './header.module.scss'
 import Logo from '@/../public/logo.png'
 import { Link } from '@/components'
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  allCategories: IBaseCategory[]
+}
+
+export const Header: React.FC<HeaderProps> = ({ allCategories }: HeaderProps) => {
   const [menuActive, setMenuActive] = useState(false)
   const [signInActive, setSignInActive] = useState(false)
   const [basketActive, setBasketActive] = useState(false)
@@ -53,8 +57,16 @@ export const Header: React.FC = () => {
         isLow
         onClick={() => setSearchActive(false)}
       />
-      <Catalog catalogActive={catalogActive} setCatalogActive={setCatalogActive} />
-      <HeaderMenu menuActive={menuActive} menuOpen={() => setMenuActive(false)} />
+      <Catalog
+        catalogActive={catalogActive}
+        setCatalogActive={setCatalogActive}
+        allCategories={allCategories}
+      />
+      <HeaderMenu
+        menuActive={menuActive}
+        menuOpen={() => setMenuActive(false)}
+        allCategories={allCategories}
+      />
       <Basket basketActive={basketActive} setBasketActive={setBasketActive} />
       <SearchMobile
         searchMobileActive={searchMobileActive}

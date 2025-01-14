@@ -9,18 +9,18 @@ import { ICONS } from '@/utils/config/icons'
 
 import { CategoriesColumns } from './components/categories-columns/categories-columns'
 import styles from './header-catalog.module.scss'
-import { useCategories } from '@/components'
 
 interface CatalogProp {
   catalogActive: boolean
   setCatalogActive: Dispatch<SetStateAction<boolean>>
+  allCategories: IBaseCategory[]
 }
 export const Catalog: React.FC<CatalogProp> = ({
   catalogActive,
   setCatalogActive,
+  allCategories,
 }: CatalogProp) => {
-  const categories = useCategories()
-  const [selectedCategory, setSelectedCategory] = useState<IBaseCategory>(categories[0])
+  const [selectedCategory, setSelectedCategory] = useState<IBaseCategory>(allCategories[0])
 
   return (
     <>
@@ -33,7 +33,7 @@ export const Catalog: React.FC<CatalogProp> = ({
         <div className={styles.body} onClick={e => e.stopPropagation()}>
           <div className={clsx(styles.body__column, styles.body__column_categories)}>
             <div className={styles.body__column_list_categories}>
-              {categories.map(category => (
+              {allCategories.map(category => (
                 <div
                   onMouseEnter={() => setSelectedCategory(category)}
                   className={clsx(styles.body__column_list_categories_item, {

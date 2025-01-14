@@ -5,7 +5,7 @@ import { QueryWrapper } from '@/components/shared/wrappers/query-wrapper/query-w
 
 import '@/styles/globals.scss'
 
-import { ContextWrapper, Footer, Header, ThemeWrapper } from '@/components'
+import { Footer, Header, ThemeWrapper } from '@/components'
 import { getAllCategories } from '@/utils/lib/queries'
 
 const interSans = Inter({
@@ -29,21 +29,18 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const allCategories = await getAllCategories()
-
   return (
     <html lang='en'>
       <body className={`${interSans.variable} ${loraMono.variable}`}>
-        <ContextWrapper allCategories={allCategories}>
-          <ThemeWrapper>
-            <QueryWrapper>
-              <div className='wrapper' id='wrapper'>
-                <Header />
-                <main>{children}</main>
-                <Footer />
-              </div>
-            </QueryWrapper>
-          </ThemeWrapper>
-        </ContextWrapper>
+        <ThemeWrapper>
+          <QueryWrapper>
+            <div className='wrapper' id='wrapper'>
+              <Header allCategories={allCategories} />
+              <main>{children}</main>
+              <Footer />
+            </div>
+          </QueryWrapper>
+        </ThemeWrapper>
       </body>
     </html>
   )

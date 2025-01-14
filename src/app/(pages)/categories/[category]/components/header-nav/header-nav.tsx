@@ -10,7 +10,11 @@ import styles from './../../categories.module.scss'
 import { MenuFilters } from './components/menu-filters/menu-filters'
 import { DarkBackground, MenuSort } from '@/components'
 
-export const HeaderNav: React.FC = () => {
+interface HeaderNavProps {
+  allCategories: IBaseCategory[]
+}
+
+export const HeaderNav: React.FC<HeaderNavProps> = ({ allCategories }: HeaderNavProps) => {
   const [menuCategoriesActive, setMenuCategoriesActive] = useState(false)
   const [menuFiltersActive, setMenuFiltersActive] = useState(false)
   const [menuSortActive, setMenuSortActive] = useState(false)
@@ -22,6 +26,7 @@ export const HeaderNav: React.FC = () => {
         onClick={() => setMenuCategoriesActive(false)}
       />
       <MenuCategories
+        allCategories={allCategories}
         closeMenu={() => setMenuCategoriesActive(false)}
         menuCategoriesActive={menuCategoriesActive}
         setMenuCategoriesActive={setMenuCategoriesActive}

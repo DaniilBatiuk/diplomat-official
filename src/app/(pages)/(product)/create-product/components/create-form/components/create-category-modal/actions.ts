@@ -1,23 +1,33 @@
 'use server'
 
-import { prisma } from '@/utils/lib/db'
+import { revalidateTag } from 'next/cache'
 
-export async function createCategory({ name }: { name: string }) {
-  const categoryExist = await prisma.category.findUnique({
+import { prisma } from '@/utils/lib/db'
+import { validatedAction } from '@/utils/lib/middleware'
+import { categoryScheme } from '@/utils/validators/category-validator'
+
+export const createCategory = validatedAction(categoryScheme, async data => {
+  const { name } = data
+
+  const isCategoryExists = await prisma.category.findUnique({
     where: {
       name,
     },
   })
 
-  if (categoryExist) {
-    throw new Error('Категорія з цією назвою вже існує.')
+  if (isCategoryExists) {
+    return { success: false, error: 'Категорія з такою назвою вже існує', inputs: data }
   }
 
-  const newCategory = await prisma.category.create({
+  await prisma.category.create({
     data: {
       name,
     },
   })
 
-  return { newCategory }
-}
+  revalidateTag('all-categories')
+
+  return {
+    success: true,
+  }
+})

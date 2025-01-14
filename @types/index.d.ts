@@ -13,6 +13,12 @@ type IProduct = {
 }
 
 type IProductBase = Omit<IProduct, 'createdAt' | 'subcategoryId' | 'status'>
+type IProductCreate = {
+  properties: {
+    name: string
+    value: string
+  }[]
+} & Omit<IProduct, 'createdAt' | 'status' | 'id'>
 
 type IProperty = {
   id: string
@@ -23,6 +29,7 @@ type IProperty = {
 }
 
 type IPropertyBase = Omit<IProperty, 'subcategoryId' | 'productId'>
+type IPropertyCreate = Omit<IProperty, 'id'>
 
 type IComment = {
   id: string

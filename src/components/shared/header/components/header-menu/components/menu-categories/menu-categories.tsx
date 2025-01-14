@@ -1,26 +1,24 @@
 import clsx from 'clsx'
+import Link from 'next/link'
 import { Dispatch, SetStateAction } from 'react'
-
-import { Link } from '@/components/ui/link/link'
 
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
 import styles from '../../header-menu.module.scss'
 
-import { useCategories } from '@/components'
-
 interface HeaderMenuProp {
   setMenuCategoriesActive: Dispatch<SetStateAction<boolean>>
   menuCategoriesActive: boolean
   closeMenu: () => void
+  allCategories: IBaseCategory[]
 }
 export const MenuCategories: React.FC<HeaderMenuProp> = ({
   setMenuCategoriesActive,
   menuCategoriesActive,
+  allCategories,
   closeMenu,
 }: HeaderMenuProp) => {
-  const categories = useCategories()
   return (
     <div
       className={clsx(styles.menu_open, styles.menu_categories, {
@@ -30,7 +28,7 @@ export const MenuCategories: React.FC<HeaderMenuProp> = ({
       {ICONS.arrowLeft({ onClick: () => setMenuCategoriesActive(false) })}
       <nav className={styles.menu}>
         <ul>
-          {categories.map((category, index) => (
+          {allCategories.map((category, index) => (
             <li key={index}>
               <Link
                 className={styles.menu_item_with_arrow}

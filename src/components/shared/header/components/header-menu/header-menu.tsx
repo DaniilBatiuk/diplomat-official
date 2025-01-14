@@ -13,8 +13,13 @@ import { Link } from '@/components'
 interface HeaderMenuProp {
   menuActive: boolean
   menuOpen: () => void
+  allCategories: IBaseCategory[]
 }
-export const HeaderMenu: React.FC<HeaderMenuProp> = ({ menuActive, menuOpen }: HeaderMenuProp) => {
+export const HeaderMenu: React.FC<HeaderMenuProp> = ({
+  menuActive,
+  menuOpen,
+  allCategories,
+}: HeaderMenuProp) => {
   const [menuCategoriesActive, setMenuCategoriesActive] = useState(false)
 
   const closeMenu = () => {
@@ -26,6 +31,7 @@ export const HeaderMenu: React.FC<HeaderMenuProp> = ({ menuActive, menuOpen }: H
       <DarkBackground backgroundActive={menuActive} onClick={closeMenu} />
       <MenuCategories
         closeMenu={closeMenu}
+        allCategories={allCategories}
         menuCategoriesActive={menuCategoriesActive}
         setMenuCategoriesActive={setMenuCategoriesActive}
       />
