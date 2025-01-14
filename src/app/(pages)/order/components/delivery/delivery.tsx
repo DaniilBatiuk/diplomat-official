@@ -106,7 +106,7 @@ export const Delivery: React.FC = () => {
         searchValue={searchCityValue}
         setSearchValue={setSearchCityValue}
       />
-      <FormBlock title='4. Спосіб оплати'>
+      <FormBlock title='3. Спосіб доставки'>
         <div className={styles.order__delivery}>
           <RadioGroup value={deliveryWay} onChange={handleChangeDeliveryWay}>
             <NovaPoshta

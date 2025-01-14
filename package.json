@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@emotion/styled": "^11.14.0",
+    "@hookform/resolvers": "^3.10.0",
     "@mui/icons-material": "^6.3.1",
     "@mui/material": "^6.3.0",
     "@prisma/client": "^6.2.1",
@@ -29,11 +30,13 @@
     "next": "15.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.2",
     "react-input-mask": "^2.0.4",
     "react-sortablejs": "^6.1.4",
     "react-toastify": "^11.0.2",
     "swiper": "^11.1.15",
     "uploadthing": "^7.4.4",
+    "zod": "^3.24.1",
     "zustand": "^5.0.3"
   },
   "devDependencies": {

@@ -169,3 +169,14 @@ main {
 .MuiModal-root {
   z-index: 2020 !important;
 }
+
+// Toastify
+.Toastify__toast {
+  background-color: var.$background-100 !important;
+}
+
+.Toastify__toast-container {
+  @media (max-width: 480px) {
+    width: 100% !important;
+  }
+}
