@@ -5,7 +5,7 @@ import { QueryWrapper } from '@/components/shared/wrappers/query-wrapper/query-w
 
 import '@/styles/globals.scss'
 
-import { Footer, Header, ThemeWrapper, ZustandWrapper } from '@/components'
+import { ContextWrapper, Footer, Header, ThemeWrapper } from '@/components'
 import { getAllCategories } from '@/utils/lib/queries'
 
 const interSans = Inter({
@@ -33,7 +33,7 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body className={`${interSans.variable} ${loraMono.variable}`}>
-        <ZustandWrapper allCategories={allCategories}>
+        <ContextWrapper allCategories={allCategories}>
           <ThemeWrapper>
             <QueryWrapper>
               <div className='wrapper' id='wrapper'>
@@ -43,7 +43,7 @@ export default async function RootLayout({
               </div>
             </QueryWrapper>
           </ThemeWrapper>
-        </ZustandWrapper>
+        </ContextWrapper>
       </body>
     </html>
   )

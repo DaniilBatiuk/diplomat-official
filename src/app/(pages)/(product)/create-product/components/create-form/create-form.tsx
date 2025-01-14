@@ -10,7 +10,7 @@ import { Photo } from '../photo/photo'
 import styles from './../../create-product.module.scss'
 import { CreateCategoryModal } from './components/create-category-modal/create-category-modal'
 import { CreateSubcategoryModal } from './components/create-subcategory-modal/create-subcategory-modal'
-import { CustomField, CustomSelect, FormBlock } from '@/components'
+import { CustomField, CustomSelect, FormBlock, useCategories } from '@/components'
 
 export const CreateForm: React.FC = () => {
   const [photos, setPhotos] = useState<{ id: string; url: string }[]>([])
@@ -18,6 +18,8 @@ export const CreateForm: React.FC = () => {
   const [createCategoryModalActive, setCreateCategoryModalActive] = useState(false)
   const [createSubcategoryModalActive, setCreateSubcategoryModalActive] = useState(false)
 
+  const categories = useCategories()
+  console.log('categories', categories)
   return (
     <>
       <form noValidate>
@@ -25,13 +27,12 @@ export const CreateForm: React.FC = () => {
           <div className={styles.create__form_block}>
             <div className={styles.create__form_block_left}>
               <CustomField label='Введіть назву товару' fullWidth />
-              <TextField label='Введіть опис' multiline rows={6} />
+              <TextField label='Введіть опис' multiline rows={4} />
             </div>
             <div className={styles.create__form_block_right}>
               <CustomField label='Введіть ціну товару' />
               <CustomField label='Введіть знижку товару' fullWidth type='number' />
               <CustomField label='Введіть кількість одиниць товару' fullWidth type='number' />
-              <CustomField label='Введіть постачальника товару' fullWidth />
             </div>
           </div>
         </FormBlock>

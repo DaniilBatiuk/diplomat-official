@@ -1,7 +1,7 @@
 'use client'
 
 import clsx from 'clsx'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 import { DarkBackground } from '@/components/shared/dark-background/dark-background'
 
@@ -9,7 +9,7 @@ import { ICONS } from '@/utils/config/icons'
 
 import { CategoriesColumns } from './components/categories-columns/categories-columns'
 import styles from './header-catalog.module.scss'
-import { useAllCategoriesStore } from '@/utils/lib/store/categories-store'
+import { useCategories } from '@/components'
 
 interface CatalogProp {
   catalogActive: boolean
@@ -19,17 +19,8 @@ export const Catalog: React.FC<CatalogProp> = ({
   catalogActive,
   setCatalogActive,
 }: CatalogProp) => {
-  const allCategories = useAllCategoriesStore(state => state.allCategories)
-
-  const [selectedCategory, setSelectedCategory] = useState<IBaseCategory | null>(null)
-
-  useEffect(() => {
-    if (allCategories.length > 0 && !selectedCategory) {
-      setSelectedCategory(allCategories[0])
-    }
-  }, [allCategories])
-
-  if (!!!selectedCategory) return <></>
+  const categories = useCategories()
+  const [selectedCategory, setSelectedCategory] = useState<IBaseCategory>(categories[0])
 
   return (
     <>
@@ -42,7 +33,7 @@ export const Catalog: React.FC<CatalogProp> = ({
         <div className={styles.body} onClick={e => e.stopPropagation()}>
           <div className={clsx(styles.body__column, styles.body__column_categories)}>
             <div className={styles.body__column_list_categories}>
-              {allCategories.map(category => (
+              {categories.map(category => (
                 <div
                   onMouseEnter={() => setSelectedCategory(category)}
                   className={clsx(styles.body__column_list_categories_item, {
