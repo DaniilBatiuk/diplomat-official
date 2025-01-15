@@ -47,12 +47,15 @@ main {
 }
 
 .no-scroll {
-  overflow: hidden;
+  // overflow: hidden;
   // position: fixed;
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: clip;
   // overflow-y: scroll;
 }
 .no-scroll-view {
+  position: fixed;
   overflow: hidden;
   height: 100%;
   scrollbar-gutter: unset;
