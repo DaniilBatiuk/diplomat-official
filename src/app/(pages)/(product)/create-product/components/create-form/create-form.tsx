@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { MenuItem, TextField } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
@@ -12,7 +12,7 @@ import { ICONS } from '@/utils/config/icons'
 import { Photo } from '../photo/photo'
 
 import styles from './../../create-product.module.scss'
-import { createProduct } from './actions'
+import { createProduct, updateProduct } from './actions'
 import { CreateCategoryModal } from './components/create-category-modal/create-category-modal'
 import { CreateSubcategoryModal } from './components/create-subcategory-modal/create-subcategory-modal'
 import { convertData } from './helpers/convert-data'
@@ -21,21 +21,38 @@ import { CreateProduct, productScheme } from '@/utils/validators/product-validat
 
 interface CreateFormProps {
   allCategories: IBaseCategory[]
+  productDataUpdate?: IProductUpdate
 }
 
-export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateFormProps) => {
+export const CreateForm: React.FC<CreateFormProps> = ({
+  allCategories,
+  productDataUpdate,
+}: CreateFormProps) => {
   const [createCategoryModalActive, setCreateCategoryModalActive] = useState(false)
   const [createSubcategoryModalActive, setCreateSubcategoryModalActive] = useState(false)
 
-  const [selectCategoryId, setSelectCategoryId] = useState('')
-  const [selectSubcategoryId, setSelectSubcategoryId] = useState('')
-  const [photos, setPhotos] = useState<{ id: string; url: string }[]>([])
-  const availableSubcategories = allCategories.find(
-    category => category.id === selectCategoryId,
-  )?.subcategories
+  const [selectCategoryId, setSelectCategoryId] = useState(() =>
+    productDataUpdate
+      ? (allCategories.find(category =>
+          category.subcategories.find(
+            subcategory => subcategory.id === productDataUpdate.subcategoryId,
+          ),
+        )?.id ?? '')
+      : '',
+  )
+  const [selectSubcategoryId, setSelectSubcategoryId] = useState(
+    () => productDataUpdate?.subcategoryId ?? '',
+  )
+  const [photos, setPhotos] = useState<{ id: string; url: string }[]>(
+    () => productDataUpdate?.imageUrls.map(image => ({ id: image, url: image })) ?? [],
+  )
 
+  const isFirstRender = useRef(true)
   useEffect(() => {
-    setSelectSubcategoryId('')
+    if (!isFirstRender.current) {
+      setSelectSubcategoryId('')
+    }
+    isFirstRender.current = false
   }, [selectCategoryId])
 
   const {
@@ -45,14 +62,23 @@ export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateF
     reset,
     formState: { errors },
   } = useForm<CreateProduct>({
-    defaultValues: {
-      name: '',
-      description: '',
-      price: '0',
-      count: '1',
-      properties: [],
-      discountPercent: undefined,
-    },
+    defaultValues: productDataUpdate
+      ? {
+          ...productDataUpdate,
+          price: productDataUpdate.price.toString(),
+          count: productDataUpdate.count.toString(),
+          discountPercent: productDataUpdate.discountPercent
+            ? productDataUpdate.discountPercent.toString()
+            : undefined,
+        }
+      : {
+          name: '',
+          description: '',
+          price: '0',
+          count: '1',
+          properties: [],
+          discountPercent: undefined,
+        },
     mode: 'onSubmit',
     resolver: zodResolver(productScheme),
   })
@@ -64,22 +90,27 @@ export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateF
   } = useFieldArray({ control, name: `properties` })
 
   const onSubmit: SubmitHandler<CreateProduct> = async data => {
-    if (!!!selectCategoryId.length) {
-      toast.error('Категорія має бути вибрана.')
-      return
-    } else if (!!!selectSubcategoryId.length) {
-      toast.error('Підкатегорія має бути вибрана.')
-      return
-    } else if (!!!photos.length) {
-      toast.error('Має бути як мінімум 1 фото.')
-      return
+    const validations = [
+      { condition: !selectCategoryId.length, message: 'Категорія має бути вибрана.' },
+      { condition: !selectSubcategoryId.length, message: 'Підкатегорія має бути вибрана.' },
+      { condition: !photos.length, message: 'Має бути як мінімум 1 фото.' },
+    ]
+
+    for (const { condition, message } of validations) {
+      if (condition) {
+        toast.error(message)
+        return
+      }
     }
-    const res = convertData(data, selectSubcategoryId, photos)
+
+    const res: IProductCreate = convertData(data, selectSubcategoryId, photos)
     mutate(res)
   }
 
   const { isPending, mutate } = useMutation({
-    mutationFn: createProduct,
+    mutationFn: productDataUpdate
+      ? (product: IProductCreate) => updateProduct(product, productDataUpdate.id)
+      : createProduct,
     onSuccess: () => {
       reset()
       setPhotos([])
@@ -165,11 +196,13 @@ export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateF
                 selectControl={selectSubcategoryId}
                 setSelectControl={setSelectSubcategoryId}
               >
-                {availableSubcategories?.map(subcategory => (
-                  <MenuItem key={subcategory.id} value={subcategory.id}>
-                    {subcategory.name}
-                  </MenuItem>
-                ))}
+                {allCategories
+                  .find(category => category.id === selectCategoryId)
+                  ?.subcategories.map(subcategory => (
+                    <MenuItem key={subcategory.id} value={subcategory.id}>
+                      {subcategory.name}
+                    </MenuItem>
+                  ))}
               </CustomSelect>
               <p>
                 Немає необхійдої підкатегорії?{' '}
@@ -219,9 +252,15 @@ export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateF
           </CustomButton>
         </FormBlock>
         <Photo photos={photos} setPhotos={setPhotos} />
-        <CustomButton type='submit' disabled={isPending}>
-          {isPending ? 'Створення...' : 'Створити'}
-        </CustomButton>
+        {productDataUpdate ? (
+          <CustomButton type='submit' disabled={isPending}>
+            {isPending ? 'Змінення...' : 'Змінити'}
+          </CustomButton>
+        ) : (
+          <CustomButton type='submit' disabled={isPending}>
+            {isPending ? 'Створення...' : 'Створити'}
+          </CustomButton>
+        )}
       </form>
       <CreateCategoryModal
         modalActive={createCategoryModalActive}

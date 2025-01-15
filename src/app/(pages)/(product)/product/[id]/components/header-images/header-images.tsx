@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/free-mode'
@@ -20,7 +20,8 @@ interface HeaderImagesProps {
 
 export const HeaderImages: React.FC<HeaderImagesProps> = ({ images }: HeaderImagesProps) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null)
-  let imageCount = 0
+
+  const imageCount = useRef(0)
 
   return (
     <div className='product__header_images'>
@@ -34,7 +35,7 @@ export const HeaderImages: React.FC<HeaderImagesProps> = ({ images }: HeaderImag
         {images.map(image => (
           <SwiperSlide key={image}>
             <Image
-              loading={imageCount++ < 15 ? 'eager' : 'lazy'}
+              loading={imageCount.current++ < 15 ? 'eager' : 'lazy'}
               decoding='sync'
               src={image}
               width={500}
@@ -59,7 +60,7 @@ export const HeaderImages: React.FC<HeaderImagesProps> = ({ images }: HeaderImag
         {images.map(image => (
           <SwiperSlide key={image}>
             <Image
-              loading={imageCount++ < 15 ? 'eager' : 'lazy'}
+              loading={imageCount.current++ < 15 ? 'eager' : 'lazy'}
               decoding='sync'
               src={image}
               width={100}

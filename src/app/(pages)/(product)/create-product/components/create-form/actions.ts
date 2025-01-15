@@ -25,6 +25,30 @@ export async function createProduct(product: IProductCreate) {
   revalidateTag('products')
 }
 
+export async function updateProduct(product: IProductCreate, id: string) {
+  const { properties: productProperties, ...productUpdateData } = product
+  const updatedProduct = await prisma.product.update({
+    where: {
+      id,
+    },
+    data: {
+      ...productUpdateData,
+    },
+  })
+
+  await deleteAllProperties(updatedProduct.id)
+
+  const properties = product.properties.map(prop => {
+    return { ...prop, productId: updatedProduct.id, subcategoryId: product.subcategoryId }
+  })
+
+  for (let property of properties) {
+    await createProperty(property)
+  }
+
+  revalidateTag('products')
+}
+
 export async function createProperty(property: IPropertyCreate) {
   await prisma.property.create({
     data: {
@@ -32,6 +56,14 @@ export async function createProperty(property: IPropertyCreate) {
       value: property.value,
       productId: property.productId,
       subcategoryId: property.subcategoryId,
+    },
+  })
+}
+
+export async function deleteAllProperties(productId: string) {
+  await prisma.property.deleteMany({
+    where: {
+      productId: productId,
     },
   })
 }

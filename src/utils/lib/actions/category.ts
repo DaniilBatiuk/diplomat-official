@@ -6,9 +6,9 @@ import { prisma } from '@/utils/lib/db'
 import { validatedAction } from '@/utils/lib/middleware'
 import { categoryScheme } from '@/utils/validators/category-validator'
 
-export const createCategory = validatedAction(categoryScheme, async data => {
-  const { name } = data
-
+export const createCategory = validatedAction(categoryScheme, async category => {
+  const name = category.name.trim().charAt(0).toUpperCase() + category.name.trim().slice(1)
+  console.log('name', name)
   const isCategoryExists = await prisma.category.findUnique({
     where: {
       name,
@@ -19,7 +19,7 @@ export const createCategory = validatedAction(categoryScheme, async data => {
     return {
       success: false,
       errors: { name: 'Категорія з такою назвою вже існує' },
-      inputs: data,
+      inputs: category,
     }
   }
 

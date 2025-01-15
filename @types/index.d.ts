@@ -19,6 +19,12 @@ type IProductCreate = {
     value: string
   }[]
 } & Omit<IProduct, 'createdAt' | 'status' | 'id'>
+type IProductUpdate = {
+  properties: {
+    name: string
+    value: string
+  }[]
+} & Omit<IProduct, 'createdAt' | 'status'>
 
 type IProperty = {
   id: string

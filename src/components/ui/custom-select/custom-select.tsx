@@ -28,7 +28,11 @@ export const CustomSelect: React.FC<CustomSelectProp> = ({
 }: CustomSelectProp) => {
   const [select, setSelect] = useState('')
   const handleChange = (event: SelectChangeEvent) => {
-    setSelectControl ? setSelectControl(event.target.value) : setSelect(event.target.value)
+    if (setSelectControl) {
+      setSelectControl(event.target.value)
+    } else {
+      setSelect(event.target.value)
+    }
   }
 
   return (
