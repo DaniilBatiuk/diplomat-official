@@ -41,7 +41,9 @@ export const getAllCategories = unstable_cache(
       include: { subcategories: { include: { products: { select: { id: true, name: true } } } } },
     }),
   ['all-categories'],
+
   {
+    tags: ['all-categories'],
     revalidate: 60 * 60 * 2, // two hours,
   },
 )

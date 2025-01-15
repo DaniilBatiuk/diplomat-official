@@ -16,7 +16,11 @@ export const createCategory = validatedAction(categoryScheme, async data => {
   })
 
   if (isCategoryExists) {
-    return { success: false, error: 'Категорія з такою назвою вже існує', inputs: data }
+    return {
+      success: false,
+      errors: { name: 'Категорія з такою назвою вже існує' },
+      inputs: data,
+    }
   }
 
   await prisma.category.create({
@@ -28,6 +32,8 @@ export const createCategory = validatedAction(categoryScheme, async data => {
   revalidateTag('all-categories')
 
   return {
+    errors: {},
+    inputs: {},
     success: true,
   }
 })

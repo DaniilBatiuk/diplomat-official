@@ -2,9 +2,10 @@
 import { z } from 'zod'
 
 export type ActionState = {
-  error?: string
-  success?: boolean
-  [key: string]: any // This allows for additional properties
+  errors: { [key: string]: string | undefined }
+  success: boolean
+  inputs: { [key: string]: string | undefined }
+  [key: string]: any
 }
 
 type ValidatedActionFunction<S extends z.ZodType<any, any>, T> = (
@@ -18,10 +19,20 @@ export function validatedAction<S extends z.ZodType<any, any>, T>(
 ) {
   return async (prevState: ActionState, formData: FormData): Promise<T> => {
     const result = schema.safeParse(Object.fromEntries(formData))
+
     if (!result.success) {
+      const errors = result.error.errors.reduce(
+        (acc, err) => {
+          acc[err.path[0]] = err.message || 'Невідома помилка'
+          return acc
+        },
+        {} as { [key: string]: string },
+      )
+
+      console.log('errors', errors)
       return {
         success: false,
-        error: result.error.errors[0].message,
+        errors,
         inputs: Object.fromEntries(formData),
       } as T
     }

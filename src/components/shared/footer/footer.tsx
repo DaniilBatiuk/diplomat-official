@@ -8,7 +8,6 @@ import Logo from '@/../public/homeLogo.webp'
 import { Link } from '@/components'
 
 export const Footer: React.FC = () => {
-  console.log('rerender')
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__container}>
