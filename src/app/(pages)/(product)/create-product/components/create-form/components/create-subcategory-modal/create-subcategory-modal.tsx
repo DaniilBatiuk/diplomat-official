@@ -1,5 +1,5 @@
-import { MenuItem, SelectChangeEvent } from '@mui/material'
-import { useActionState, useState } from 'react'
+import { MenuItem } from '@mui/material'
+import { useActionState } from 'react'
 import { toast } from 'react-toastify'
 
 import { initialState } from '@/utils/config/initial0value'
@@ -38,10 +38,6 @@ export const CreateSubcategoryModal: React.FC<CreateCommentModalProps> = ({
     },
   })
 
-  const [select, setSelect] = useState('')
-  const handleChange = (event: SelectChangeEvent) => {
-    setSelect(event.target.value)
-  }
   return (
     <Modal active={modalActive} setActive={setModalActive} maxDivWidth='440px'>
       <Modal.Title>Створити категорію</Modal.Title>
@@ -52,25 +48,6 @@ export const CreateSubcategoryModal: React.FC<CreateCommentModalProps> = ({
       <Modal.Main>
         <form action={createSubcategoryFormAction}>
           <div className={styles.create_category_fields}>
-            {/* <FormControl fullWidth error={!!createSubcategoryState.errors.categoryId}>
-              <InputLabel>
-                {createSubcategoryState.errors.categoryId ?? 'Виберіть категорію'}
-              </InputLabel>
-              <Select
-                id='categoryId'
-                name='categoryId'
-                value={select}
-                label={createSubcategoryState.errors.categoryId ?? 'Виберіть категорію'}
-                fullWidth
-                onChange={handleChange}
-              >
-                {allCategories.map(category => (
-                  <MenuItem key={category.id} value={category.id}>
-                    {category.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl> */}
             <CustomSelect
               idName='categoryId'
               label='Виберіть категорію'
@@ -84,9 +61,7 @@ export const CreateSubcategoryModal: React.FC<CreateCommentModalProps> = ({
               ))}
             </CustomSelect>
             <CustomField
-              id='name'
-              name='name'
-              aria-label='name'
+              idName='name'
               defaultValue={createSubcategoryState.inputs.name}
               label={createSubcategoryState.errors.name ?? 'Введіть назву підкатогорії'}
               error={!!createSubcategoryState.errors.name}

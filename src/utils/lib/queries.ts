@@ -8,6 +8,7 @@ export const getProducts = unstable_cache(
     }),
   ['products'],
   {
+    tags: ['products'],
     revalidate: 60 * 60 * 2, // two hours,
   },
 )

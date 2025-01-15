@@ -1,16 +1,18 @@
 'use client'
 
 import { FormControl, InputLabel, Select, SelectChangeEvent } from '@mui/material'
-import { ReactNode, useState } from 'react'
+import { Dispatch, ReactNode, SetStateAction, useState } from 'react'
 
 interface CustomSelectProp {
   label: string
   fullWidth?: boolean
   className?: string
   disabled?: boolean
-  error: string | undefined
+  error?: string | undefined
   idName: string
   children: ReactNode
+  selectControl?: string
+  setSelectControl?: Dispatch<SetStateAction<string>>
 }
 
 export const CustomSelect: React.FC<CustomSelectProp> = ({
@@ -21,10 +23,12 @@ export const CustomSelect: React.FC<CustomSelectProp> = ({
   error,
   idName,
   children,
+  selectControl,
+  setSelectControl,
 }: CustomSelectProp) => {
   const [select, setSelect] = useState('')
   const handleChange = (event: SelectChangeEvent) => {
-    setSelect(event.target.value)
+    setSelectControl ? setSelectControl(event.target.value) : setSelect(event.target.value)
   }
 
   return (
@@ -33,7 +37,7 @@ export const CustomSelect: React.FC<CustomSelectProp> = ({
       <Select
         id={idName}
         name={idName}
-        value={select}
+        value={selectControl ?? select}
         label={error ?? label}
         fullWidth={fullWidth}
         onChange={handleChange}

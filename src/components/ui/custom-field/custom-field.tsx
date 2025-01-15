@@ -6,7 +6,9 @@ import styles from './custom-field.module.scss'
 interface CustomFieldProps extends Omit<TextFieldProps, 'inputRef'> {
   isWhite?: boolean
   inputRef?: (node: HTMLInputElement) => void
+  fullWidth?: boolean
   readOnly?: boolean
+  idName?: string
 }
 
 export const CustomField: React.FC<CustomFieldProps> = ({
@@ -15,11 +17,15 @@ export const CustomField: React.FC<CustomFieldProps> = ({
   className,
   fullWidth,
   readOnly,
+  idName,
   ...rest
 }: CustomFieldProps) => {
   return (
     <TextField
       {...rest}
+      id={idName}
+      name={idName}
+      aria-label={idName}
       className={clsx(styles.input, className)}
       fullWidth={fullWidth}
       inputRef={inputRef}

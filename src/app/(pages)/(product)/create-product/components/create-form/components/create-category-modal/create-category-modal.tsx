@@ -48,9 +48,7 @@ export const CreateCategoryModal: React.FC<CreateCommentModalProps> = ({
         <form action={createCategoryFormAction}>
           <div className={styles.create_category_fields}>
             <CustomField
-              id='name'
-              name='name'
-              aria-label='name'
+              idName='name'
               defaultValue={createCategoryState.inputs.name}
               label={createCategoryState.errors.name ?? 'Введіть назву катогорії'}
               error={!!createCategoryState.errors.name}

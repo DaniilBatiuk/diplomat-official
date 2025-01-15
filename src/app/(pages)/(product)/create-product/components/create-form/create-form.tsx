@@ -1,109 +1,104 @@
 'use client'
 
-import { useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { MenuItem, TextField } from '@mui/material'
+import { useMutation } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
+import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+
+import { ICONS } from '@/utils/config/icons'
 
 import { Photo } from '../photo/photo'
 
 import styles from './../../create-product.module.scss'
+import { createProduct } from './actions'
 import { CreateCategoryModal } from './components/create-category-modal/create-category-modal'
 import { CreateSubcategoryModal } from './components/create-subcategory-modal/create-subcategory-modal'
+import { convertData } from './helpers/convert-data'
 import { CustomButton, CustomSelect, FormBlock } from '@/components'
+import { CreateProduct, productScheme } from '@/utils/validators/product-validator'
 
 interface CreateFormProps {
   allCategories: IBaseCategory[]
 }
 
 export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateFormProps) => {
-  const [photos, setPhotos] = useState<{ id: string; url: string }[]>([])
-
   const [createCategoryModalActive, setCreateCategoryModalActive] = useState(false)
   const [createSubcategoryModalActive, setCreateSubcategoryModalActive] = useState(false)
 
-  const [selectCategoryName, setSelectCategoryName] = useState<string>('')
-  // const [selectSubCategory, setSelectSubCategory] = useState<string>('')
+  const [selectCategoryId, setSelectCategoryId] = useState('')
+  const [selectSubcategoryId, setSelectSubcategoryId] = useState('')
+  const [photos, setPhotos] = useState<{ id: string; url: string }[]>([])
+  const availableSubcategories = allCategories.find(
+    category => category.id === selectCategoryId,
+  )?.subcategories
 
-  // const {
-  //   control,
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm<CreateProduct>({
-  //   defaultValues: {
-  //     name: '',
-  //     description: '',
-  //     price: 0,
-  //     count: 1,
-  //     properties: [],
-  //     discountPercent: undefined,
-  //   },
-  //   mode: 'onSubmit',
-  //   resolver: zodResolver(productScheme),
-  // })
+  useEffect(() => {
+    setSelectSubcategoryId('')
+  }, [selectCategoryId])
 
-  // const {
-  //   fields: propertyFields,
-  //   append: propertyAppend,
-  //   remove: propertyRemove,
-  // } = useFieldArray({ control, name: `properties` })
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<CreateProduct>({
+    defaultValues: {
+      name: '',
+      description: '',
+      price: '0',
+      count: '1',
+      properties: [],
+      discountPercent: undefined,
+    },
+    mode: 'onSubmit',
+    resolver: zodResolver(productScheme),
+  })
 
-  // const onSubmit: SubmitHandler<CreateProduct> = async data => {
-  //   if (!!!selectCategoryName.length) {
-  //     toast.error('Категорія має бути вибрана.')
-  //     return
-  //   }
-  //   if (!!!selectSubCategory.length) {
-  //     toast.error('Підкатегорія має бути вибрана.')
-  //     return
-  //   }
-  //   if (!!!photos.length) {
-  //     toast.error('Має бути як мінімум 1 фото.')
-  //     return
-  //   }
-  //   const res: IProductCreate = {
-  //     ...data,
-  //     name: data.name.trim().charAt(0).toUpperCase() + data.name.trim().slice(1),
-  //     description:
-  //       data.description.trim().charAt(0).toUpperCase() + data.description.trim().slice(1),
-  //     imageUrls: photos.map(photo => photo.url),
-  //     count: +data.count,
-  //     price: +data.price,
-  //     subcategoryId:
-  //       allCategories
-  //         .find(category => category.name === selectCategoryName)
-  //         ?.subcategories.find(subcategory => subcategory.name === selectSubCategory)?.id ?? '',
-  //     discountPercent: data.discountPercent ? +data.discountPercent : null,
-  //     properties: data.properties
-  //       .filter(el => el.value !== '')
-  //       .map(el => ({
-  //         name: el.name.trim().charAt(0).toUpperCase() + el.name.trim().slice(1),
-  //         value: el.value.trim().charAt(0).toUpperCase() + el.value.trim().slice(1),
-  //       })),
-  //   }
-  //   console.log('res', res)
-  //   mutate(res)
-  // }
+  const {
+    fields: propertyFields,
+    append: propertyAppend,
+    remove: propertyRemove,
+  } = useFieldArray({ control, name: `properties` })
 
-  // const { isPending, mutate } = useMutation({
-  //   mutationFn: createProduct,
-  //   onSuccess: () => {
-  //     toast.success('Товар був успішно створений.')
-  //     // queryClient.invalidateQueries({
-  //     //   queryKey: ["products"],
-  //     // });
-  //     // router.push(`/admin`);
-  //   },
-  //   onError: error => {
-  //     toast.error(error.message)
-  //   },
-  // })
+  const onSubmit: SubmitHandler<CreateProduct> = async data => {
+    if (!!!selectCategoryId.length) {
+      toast.error('Категорія має бути вибрана.')
+      return
+    } else if (!!!selectSubcategoryId.length) {
+      toast.error('Підкатегорія має бути вибрана.')
+      return
+    } else if (!!!photos.length) {
+      toast.error('Має бути як мінімум 1 фото.')
+      return
+    }
+    const res = convertData(data, selectSubcategoryId, photos)
+    mutate(res)
+  }
+
+  const { isPending, mutate } = useMutation({
+    mutationFn: createProduct,
+    onSuccess: () => {
+      reset()
+      setPhotos([])
+      setSelectCategoryId('')
+      setSelectSubcategoryId('')
+      toast.success('Товар був успішно створений.')
+    },
+    onError: error => {
+      toast.error(error.message)
+    },
+  })
 
   return (
     <>
-      <form>
-        {/* <FormBlock title='Основні поля'>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormBlock title='Основні поля'>
           <div className={styles.create__form_block}>
             <div className={styles.create__form_block_left}>
-              <CustomField
+              <TextField
                 fullWidth
                 {...register(`name`)}
                 error={Boolean(errors.name?.message)}
@@ -118,20 +113,20 @@ export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateF
               />
             </div>
             <div className={styles.create__form_block_right}>
-              <CustomField
+              <TextField
                 type='number'
                 {...register(`price`)}
                 error={Boolean(errors.price?.message)}
                 label={errors.price?.message || 'Введіть ціну товару'}
               />
-              <CustomField
+              <TextField
                 fullWidth
                 type='number'
                 {...register(`discountPercent`)}
                 error={Boolean(errors.discountPercent?.message)}
                 label={errors.discountPercent?.message || 'Введіть знижку товару'}
               />
-              <CustomField
+              <TextField
                 fullWidth
                 type='number'
                 {...register(`count`)}
@@ -140,47 +135,54 @@ export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateF
               />
             </div>
           </div>
-        </FormBlock> */}
+        </FormBlock>
         <FormBlock title='Поля категорії'>
           <div className={styles.create__form_block_2}>
             <div className={styles.create__form_block_select}>
               <CustomSelect
+                idName='categoryId'
+                label='Виберіть категорію'
                 fullWidth
-                setSelect={setSelectCategoryName}
-                select={selectCategoryName}
-                values={allCategories.map(category => category.name)}
-                label={'Виберіть категорію'}
-              />
+                selectControl={selectCategoryId}
+                setSelectControl={setSelectCategoryId}
+              >
+                {allCategories.map(category => (
+                  <MenuItem key={category.id} value={category.id}>
+                    {category.name}
+                  </MenuItem>
+                ))}
+              </CustomSelect>
               <p>
                 Немає необхійдої категорії?{' '}
                 <span onClick={() => setCreateCategoryModalActive(true)}>Створити</span>.
               </p>
             </div>
             <div className={styles.create__form_block_select}>
-              {/* <CustomSelect
+              <CustomSelect
+                idName='subcategoryId'
+                label='Виберіть підкатегорію'
                 fullWidth
-                disabled={!selectCategoryName.length}
-                setSelect={setSelectSubCategory}
-                select={selectSubCategory}
-                values={
-                  allCategories
-                    .find(category => category.name === selectCategoryName)
-                    ?.subcategories.map(category => category.name) ?? []
-                }
-                label={'Виберіть категорію'}
-              /> */}
+                selectControl={selectSubcategoryId}
+                setSelectControl={setSelectSubcategoryId}
+              >
+                {availableSubcategories?.map(subcategory => (
+                  <MenuItem key={subcategory.id} value={subcategory.id}>
+                    {subcategory.name}
+                  </MenuItem>
+                ))}
+              </CustomSelect>
               <p>
-                Немає необхійдої категорії?{' '}
+                Немає необхійдої підкатегорії?{' '}
                 <span onClick={() => setCreateSubcategoryModalActive(true)}>Створити</span>.
               </p>
             </div>
           </div>
         </FormBlock>
-        {/* <FormBlock title='Поля характеристики' className={styles.create__form_block_3_row_gap}>
+        <FormBlock title='Поля характеристики' className={styles.create__form_block_3_row_gap}>
           {propertyFields.map((field, index) => (
             <div className={styles.create__form_block_3} key={field.id}>
               <div className={styles.create__form_block_3_inputs}>
-                <CustomField
+                <TextField
                   fullWidth
                   {...register(`properties.${index}.name`)}
                   error={Boolean(errors?.properties && errors?.properties[index]?.name?.message)}
@@ -189,7 +191,7 @@ export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateF
                     'Введіть властивість'
                   }
                 />
-                <CustomField
+                <TextField
                   fullWidth
                   {...register(`properties.${index}.value`)}
                   error={Boolean(errors?.properties && errors?.properties[index]?.value?.message)}
@@ -204,7 +206,6 @@ export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateF
               </button>
             </div>
           ))}
-
           <CustomButton
             type='button'
             onClick={() =>
@@ -216,9 +217,11 @@ export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateF
           >
             Додати характеристику
           </CustomButton>
-        </FormBlock> */}
+        </FormBlock>
         <Photo photos={photos} setPhotos={setPhotos} />
-        <CustomButton type='submit'>Створити</CustomButton>
+        <CustomButton type='submit' disabled={isPending}>
+          {isPending ? 'Створення...' : 'Створити'}
+        </CustomButton>
       </form>
       <CreateCategoryModal
         modalActive={createCategoryModalActive}
