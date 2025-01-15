@@ -1,44 +1,44 @@
 'use client'
 
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material'
-import { Dispatch, SetStateAction } from 'react'
+import { FormControl, InputLabel, Select, SelectChangeEvent } from '@mui/material'
+import { ReactNode, useState } from 'react'
 
 interface CustomSelectProp {
-  label?: string
+  label: string
   fullWidth?: boolean
-  values: string[]
   className?: string
   disabled?: boolean
-  select: string
-  setSelect: Dispatch<SetStateAction<string>>
-  error?: boolean
-  value?: string
+  error: string | undefined
+  idName: string
+  children: ReactNode
 }
 
 export const CustomSelect: React.FC<CustomSelectProp> = ({
   label,
   fullWidth,
-  values,
   className,
   disabled,
-  select,
-  setSelect,
   error,
-  value,
+  idName,
+  children,
 }: CustomSelectProp) => {
+  const [select, setSelect] = useState('')
   const handleChange = (event: SelectChangeEvent) => {
     setSelect(event.target.value)
   }
 
   return (
-    <FormControl fullWidth={fullWidth} className={className} disabled={disabled} error={error}>
-      <InputLabel>{label}</InputLabel>
-      <Select value={value ?? select} label={label} fullWidth={fullWidth} onChange={handleChange}>
-        {values?.map(value => (
-          <MenuItem key={value} value={value}>
-            {value}
-          </MenuItem>
-        ))}
+    <FormControl fullWidth error={!!error} disabled={disabled} className={className}>
+      <InputLabel>{error ?? label}</InputLabel>
+      <Select
+        id={idName}
+        name={idName}
+        value={select}
+        label={error ?? label}
+        fullWidth={fullWidth}
+        onChange={handleChange}
+      >
+        {children}
       </Select>
     </FormControl>
   )

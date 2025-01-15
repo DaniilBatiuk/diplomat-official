@@ -225,6 +225,7 @@ export const CreateForm: React.FC<CreateFormProps> = ({ allCategories }: CreateF
         setModalActive={setCreateCategoryModalActive}
       />
       <CreateSubcategoryModal
+        allCategories={allCategories}
         modalActive={createSubcategoryModalActive}
         setModalActive={setCreateSubcategoryModalActive}
       />

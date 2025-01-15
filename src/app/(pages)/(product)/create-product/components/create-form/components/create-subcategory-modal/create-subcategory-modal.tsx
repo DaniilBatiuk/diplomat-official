@@ -1,22 +1,47 @@
-import { useState } from 'react'
+import { MenuItem, SelectChangeEvent } from '@mui/material'
+import { useActionState, useState } from 'react'
+import { toast } from 'react-toastify'
 
-import { CustomButton, Modal } from '@/components'
+import { initialState } from '@/utils/config/initial0value'
+
+import { useFormResultProcess } from '@/utils/hooks/useFormResultProcess/useFormResultProcess'
+
+import { createSubcategory } from '@/utils/lib/actions/subcategory'
+
+import styles from './../../../../create-product.module.scss'
+import { CustomButton, CustomField, CustomSelect, Modal } from '@/components'
+import { ActionState } from '@/utils/lib/middleware'
 
 interface CreateCommentModalProps {
   modalActive: boolean
   setModalActive: (value: boolean) => void
+  allCategories: IBaseCategory[]
 }
 
 export const CreateSubcategoryModal: React.FC<CreateCommentModalProps> = ({
   modalActive,
   setModalActive,
+  allCategories,
 }: CreateCommentModalProps) => {
-  const [checked, setChecked] = useState(false)
+  const [createSubcategoryState, createSubcategoryFormAction, createSubcategoryPending] =
+    useActionState<ActionState, FormData>(createSubcategory, initialState)
 
-  const handleChange = () => {
-    setChecked(prev => !prev)
+  useFormResultProcess({
+    state: createSubcategoryState,
+    isPending: createSubcategoryPending,
+    onSuccess: () => {
+      toast.success('Підкатегорія успішно створена')
+      setModalActive(false)
+    },
+    onError: () => {
+      toast.error('Виникла помилка при створенні підкатегорії')
+    },
+  })
+
+  const [select, setSelect] = useState('')
+  const handleChange = (event: SelectChangeEvent) => {
+    setSelect(event.target.value)
   }
-
   return (
     <Modal active={modalActive} setActive={setModalActive} maxDivWidth='440px'>
       <Modal.Title>Створити категорію</Modal.Title>
@@ -25,18 +50,51 @@ export const CreateSubcategoryModal: React.FC<CreateCommentModalProps> = ({
         підкатегорія моє мати хоча б 1 товар.
       </Modal.SubTitle>
       <Modal.Main>
-        <form noValidate>
-          {/* <div className={styles.create_category_fields}>
+        <form action={createSubcategoryFormAction}>
+          <div className={styles.create_category_fields}>
+            {/* <FormControl fullWidth error={!!createSubcategoryState.errors.categoryId}>
+              <InputLabel>
+                {createSubcategoryState.errors.categoryId ?? 'Виберіть категорію'}
+              </InputLabel>
+              <Select
+                id='categoryId'
+                name='categoryId'
+                value={select}
+                label={createSubcategoryState.errors.categoryId ?? 'Виберіть категорію'}
+                fullWidth
+                onChange={handleChange}
+              >
+                {allCategories.map(category => (
+                  <MenuItem key={category.id} value={category.id}>
+                    {category.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl> */}
             <CustomSelect
+              idName='categoryId'
               label='Виберіть категорію'
               fullWidth
-              values={['Київ', 'Львів', 'Одеса']}
+              error={createSubcategoryState.errors.categoryId}
+            >
+              {allCategories.map(category => (
+                <MenuItem key={category.id} value={category.id}>
+                  {category.name}
+                </MenuItem>
+              ))}
+            </CustomSelect>
+            <CustomField
+              id='name'
+              name='name'
+              aria-label='name'
+              defaultValue={createSubcategoryState.inputs.name}
+              label={createSubcategoryState.errors.name ?? 'Введіть назву підкатогорії'}
+              error={!!createSubcategoryState.errors.name}
             />
-            <CustomField label='Введіть назву підкатогорії' />
-          </div> */}
+          </div>
           <Modal.Footer>
-            <CustomButton type='submit' fullWidth>
-              Створити
+            <CustomButton type='submit' fullWidth disabled={createSubcategoryPending}>
+              {createSubcategoryPending ? 'Створення...' : 'Створити'}
             </CustomButton>
           </Modal.Footer>
         </form>
