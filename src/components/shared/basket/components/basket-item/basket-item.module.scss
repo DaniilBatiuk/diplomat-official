@@ -5,7 +5,7 @@
   column-gap: 10px;
   align-items: center;
   padding-block: 10px;
-  border-bottom: 1px solid var.$black-150;
+  border-bottom: 1px solid var.$black-200;
   position: relative;
   &:first-child {
     padding-top: 0px;
@@ -51,7 +51,7 @@
     }
 
     &_sale {
-      color: var.$black-200;
+      color: var.$black-300;
       @extend %lora-700-16;
       text-align: end;
       text-decoration: line-through;

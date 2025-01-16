@@ -3,8 +3,7 @@
 import { $Enums } from '@prisma/client'
 import { revalidateTag } from 'next/cache'
 
-import { deleteAllProperties } from './properties'
-import { createProperty } from './property'
+import { createProperty, deleteAllProperties } from './property'
 import { prisma } from '@/utils/lib/db'
 
 export async function createProduct(product: IProductCreate) {

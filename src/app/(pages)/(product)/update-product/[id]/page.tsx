@@ -10,7 +10,6 @@ export default async function CreateProduct({ params }: { params: Promise<{ id: 
   const id = (await params).id
 
   const product = await getProductDetails(id)
-
   const allCategories = await getCategories()
 
   if (!product) return notFound()

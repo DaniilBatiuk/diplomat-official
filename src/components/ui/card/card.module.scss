@@ -41,7 +41,7 @@
   &__price_sale {
     text-decoration: line-through;
     @extend %lora-700-18-16;
-    color: var.$black-200;
+    color: var.$black-300;
   }
 
   &__price_price {
@@ -138,6 +138,10 @@
   &:hover {
     background-color: var.$red-200 !important;
   }
+
+  &.disable {
+    background-color: var.$black-100 !important;
+  }
 }
 .deactivate {
   background-color: var.$green-100 !important;
@@ -145,5 +149,8 @@
 
   &:hover {
     background-color: var.$green-200 !important;
+  }
+  &.disable {
+    background-color: var.$black-100 !important;
   }
 }

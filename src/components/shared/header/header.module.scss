@@ -6,7 +6,7 @@
   top: 0;
   height: 64px;
   z-index: 101;
-  border-bottom: 1px solid var.$black-151;
+  border-bottom: 1px solid var.$black-150;
 
   &__container {
     display: flex;
@@ -20,7 +20,7 @@
       @include var.adaptive-value-px(column-gap, 8, 13);
 
       & > li {
-        border: 1px solid var.$black-150;
+        border: 1px solid var.$black-200;
         border-radius: 5px;
         width: 42px;
         height: 42px;

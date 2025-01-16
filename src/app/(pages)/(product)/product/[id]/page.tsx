@@ -21,9 +21,7 @@ export default async function Product({ params }: { params: Promise<{ id: string
 
   const product = await getProductDetails(id)
 
-  if (!product) {
-    return notFound()
-  }
+  if (!product) return notFound()
 
   const productsSimilar = await getProductsWithSameSubcategory(product.subcategoryId, id)
 

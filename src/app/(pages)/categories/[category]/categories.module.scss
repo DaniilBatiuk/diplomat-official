@@ -35,7 +35,7 @@
     align-items: center;
     justify-content: space-between;
     background-color: var.$background-200;
-    border-bottom: 1px solid var.$black-151;
+    border-bottom: 1px solid var.$black-150;
     height: 46px;
     column-gap: 10px;
 
@@ -54,7 +54,7 @@
         height: 20px;
 
         & path {
-          stroke: var.$black-100;
+          stroke: var.$black-500;
         }
       }
     }
@@ -71,7 +71,7 @@
   @include var.adaptive-value-px(margin-right, 20, 30);
   &__categories,
   &__filter {
-    border-bottom: 1px solid var.$black-151;
+    border-bottom: 1px solid var.$black-150;
     padding-block: 15px;
     &:first-child {
       padding-top: 0px;

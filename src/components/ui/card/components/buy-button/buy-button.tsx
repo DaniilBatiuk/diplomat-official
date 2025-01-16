@@ -2,6 +2,7 @@
 
 import { $Enums } from '@prisma/client'
 import { useMutation } from '@tanstack/react-query'
+import clsx from 'clsx'
 import { toast } from 'react-toastify'
 
 import { CustomButton } from '@/components/ui/custom-button/custom-button'
@@ -43,7 +44,10 @@ export const BuyButton: React.FC<BuyButtonProp> = ({ onAdminPage, product }: Buy
                   : $Enums.Status.active,
             })
           }}
-          className={product.status === $Enums.Status.active ? styles.active : styles.deactivate}
+          className={clsx(
+            product.status === $Enums.Status.active ? styles.active : styles.deactivate,
+            { [styles.disable]: isPending },
+          )}
         >
           {product.status === $Enums.Status.active ? 'D' : 'A'}
         </CustomButton>

@@ -25,7 +25,7 @@
       @extend %lora-500-28-22;
     }
     &_sale {
-      color: var.$black-200;
+      color: var.$black-300;
       @extend %lora-700-18;
       text-align: start;
       text-decoration: line-through;
@@ -84,7 +84,7 @@
         justify-content: space-between;
       }
       &_characteristic {
-        color: var.$black-200;
+        color: var.$black-300;
       }
       &_data {
       }
@@ -121,7 +121,7 @@
     width: 33.33%;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid var.$black-150;
+    border-right: 1px solid var.$black-200;
 
     @include var.adaptive-value-px(padding-inline, 10, 40);
     &:first-child {
@@ -204,7 +204,7 @@
             @extend %inter-500-16;
           }
           & > p {
-            color: var.$black-200;
+            color: var.$black-300;
           }
         }
       }
@@ -285,7 +285,7 @@
     @extend %inter-400-16;
     @include var.adaptive-value-px(margin-top, 20, 30);
     &_item {
-      border-top: 1px solid var.$black-150;
+      border-top: 1px solid var.$black-200;
       @include var.adaptive-value-px(padding-block, 15, 25);
       &_top {
         display: flex;

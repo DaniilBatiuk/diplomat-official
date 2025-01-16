@@ -22,7 +22,7 @@ html {
 
 body {
   font-weight: 300;
-  color: var.$black-100;
+  color: var.$black-500;
   padding: 0px !important;
   @include var.font-family('Inter');
 }
@@ -72,13 +72,13 @@ main {
   padding: 7px;
   border-radius: 30px;
   backdrop-filter: blur(4px);
-  background: var.$black-110;
+  background: var.$black-100;
 
   transition: transform 0.05s ease-in-out;
   @include var.button-active(0.95);
 
   &:hover {
-    background: var.$black-151;
+    background: var.$black-150;
   }
 }
 
@@ -92,13 +92,13 @@ main {
   padding: 7px;
   border-radius: 30px;
   backdrop-filter: blur(4px);
-  background: var.$black-110;
+  background: var.$black-100;
 
   transition: transform 0.05s ease-in-out;
   @include var.button-active(0.95);
 
   &:hover {
-    background: var.$black-151;
+    background: var.$black-150;
   }
 }
 
@@ -136,7 +136,7 @@ main {
     right: 0;
     height: 1px;
     content: '';
-    background-color: var.$black-150 !important;
+    background-color: var.$black-200 !important;
     opacity: 1 !important;
   }
 
@@ -149,7 +149,7 @@ main {
   }
 
   & svg {
-    color: var.$black-100 !important;
+    color: var.$black-500 !important;
   }
 }
 .input.readOnly {

@@ -80,19 +80,19 @@ $min-width: 390;
 
 $base-font-stack: ', Arial, sans-serif';
 
+$white-100: #ffffff;
+
 $background-300: #f5ece2;
 $background-200: #f9f4ee;
 $background-100: #fbf8f5;
 
 $black-50: rgba(0, 0, 0, 0.05);
-$black-100: #231e16;
-$black-110: rgba(0, 0, 0, 0.1);
-$black-150: #d9d4ce;
-$black-151: rgba(0, 0, 0, 0.15);
-$black-200: #b5b5b5;
+$black-100: rgba(0, 0, 0, 0.1);
+$black-150: rgba(0, 0, 0, 0.15);
 $black-250: rgba(0, 0, 0, 0.25);
-
-$white-100: #ffffff;
+$black-200: #d9d4ce;
+$black-300: #b5b5b5;
+$black-500: #231e16;
 
 $primary-50: #f9f0e6;
 $primary-100: #f8ecde;

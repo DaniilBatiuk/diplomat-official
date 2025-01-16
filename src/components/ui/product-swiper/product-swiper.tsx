@@ -39,7 +39,6 @@ export const ProductSwiper: React.FC<ProductSwiperProps> = ({
           <div className={styles.skeleton__container}>
             <div className={styles.skeleton}>
               <CardSkeleton />
-
               <CardSkeleton />
               <CardSkeleton />
               <CardSkeleton />
