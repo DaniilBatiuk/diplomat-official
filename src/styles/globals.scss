@@ -2,22 +2,9 @@
 @use '@/styles/reset' as reset;
 
 html {
-  scroll-behavior: smooth;
   scrollbar-gutter: stable;
-  // overflow-x: hidden;
-  background: rgb(248, 222, 187);
-  &::-webkit-scrollbar {
-    display: block;
-    width: 5px;
-    overflow: auto;
-    height: 5px;
-    background: rgb(248, 222, 187);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var.$primary-600;
-    border-radius: 30px;
-  }
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
 }
 
 body {
@@ -47,17 +34,11 @@ main {
 }
 
 .no-scroll {
-  // overflow: hidden;
-  // position: fixed;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: clip;
-  // overflow-y: scroll;
+  overflow: hidden;
 }
 .no-scroll-view {
   position: fixed;
   overflow: hidden;
-  height: 100%;
   scrollbar-gutter: unset;
 }
 
@@ -153,20 +134,20 @@ main {
   }
 }
 .input.readOnly {
-  pointer-events: none; // Отключаем события мыши (кроме onClick на обертке)
+  pointer-events: none;
 }
 
 .input.readOnly .MuiOutlinedInput-root {
-  cursor: default; // Ставим обычный курсор
+  cursor: default;
 }
 
 .input.readOnly .MuiOutlinedInput-root.Mui-focused {
-  border-color: transparent; // Убираем рамку при фокусе
-  box-shadow: none; // Убираем тень при фокусе
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .input.readOnly .MuiInputBase-input {
-  caret-color: transparent; // Убираем каретку (курсор)
+  caret-color: transparent;
 }
 
 .MuiModal-root {
