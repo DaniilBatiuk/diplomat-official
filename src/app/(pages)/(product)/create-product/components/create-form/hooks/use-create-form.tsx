@@ -1,8 +1,7 @@
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
+import { SubmitHandler, UseFieldArrayAppend } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
 import { LINKS } from '@/utils/config/links'
@@ -11,14 +10,21 @@ import { createProduct, updateProduct } from '@/utils/lib/actions/product'
 
 import { convertData } from '../helpers/convert-data'
 
-import { CreateProduct, productScheme } from '@/utils/validators/product-validator'
+import { CreateProduct } from '@/utils/validators/product-validator'
 
 interface productDataUpdateProps {
   allCategories: IBaseCategory[]
   productDataUpdate?: IProductUpdate
+  propertyAppend: UseFieldArrayAppend<CreateProduct>
+  reset: () => void
 }
 
-export const useCreateForm = ({ productDataUpdate, allCategories }: productDataUpdateProps) => {
+export const useCreateForm = ({
+  productDataUpdate,
+  allCategories,
+  propertyAppend,
+  reset,
+}: productDataUpdateProps) => {
   const router = useRouter()
 
   const [selectCategoryId, setSelectCategoryId] = useState(() =>
@@ -44,40 +50,6 @@ export const useCreateForm = ({ productDataUpdate, allCategories }: productDataU
     }
     isFirstRender.current = false
   }, [selectCategoryId])
-
-  const {
-    control,
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<CreateProduct>({
-    defaultValues: productDataUpdate
-      ? {
-          ...productDataUpdate,
-          price: productDataUpdate.price.toString(),
-          count: productDataUpdate.count.toString(),
-          discountPercent: productDataUpdate.discountPercent
-            ? productDataUpdate.discountPercent.toString()
-            : undefined,
-        }
-      : {
-          name: '',
-          description: '',
-          price: '0',
-          count: '1',
-          properties: [],
-          discountPercent: undefined,
-        },
-    mode: 'onSubmit',
-    resolver: zodResolver(productScheme),
-  })
-
-  const {
-    fields: propertyFields,
-    append: propertyAppend,
-    remove: propertyRemove,
-  } = useFieldArray({ control, name: `properties` })
 
   useEffect(() => {
     if (!productDataUpdate) {
@@ -133,17 +105,13 @@ export const useCreateForm = ({ productDataUpdate, allCategories }: productDataU
   })
 
   return {
-    handleSubmit,
     onSubmit,
-    errors,
-    register,
+
     setSelectCategoryId,
     setSelectSubcategoryId,
     selectCategoryId,
     selectSubcategoryId,
-    propertyFields,
-    propertyAppend,
-    propertyRemove,
+
     photos,
     setPhotos,
     isPending,

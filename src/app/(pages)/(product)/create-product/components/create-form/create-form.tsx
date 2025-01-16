@@ -1,6 +1,8 @@
 'use client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
+import { useFieldArray, useForm } from 'react-hook-form'
 
 import { Photo } from '../photo/photo'
 
@@ -11,6 +13,7 @@ import { MainFields } from './components/main-fields/main-fields'
 import { PropertiesFields } from './components/properties-fields/properties-fields'
 import { useCreateForm } from './hooks/use-create-form'
 import { CustomButton } from '@/components'
+import { CreateProduct, productScheme } from '@/utils/validators/product-validator'
 
 interface CreateFormProps {
   allCategories: IBaseCategory[]
@@ -25,23 +28,54 @@ export const CreateForm: React.FC<CreateFormProps> = ({
   const [createSubcategoryModalActive, setCreateSubcategoryModalActive] = useState(false)
 
   const {
-    handleSubmit,
-    onSubmit,
-    errors,
+    control,
     register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<CreateProduct>({
+    defaultValues: productDataUpdate
+      ? {
+          ...productDataUpdate,
+          price: productDataUpdate.price.toString(),
+          count: productDataUpdate.count.toString(),
+          discountPercent: productDataUpdate.discountPercent
+            ? productDataUpdate.discountPercent.toString()
+            : undefined,
+        }
+      : {
+          name: '',
+          description: '',
+          price: '0',
+          count: '1',
+          properties: [],
+          discountPercent: undefined,
+        },
+    mode: 'onSubmit',
+    resolver: zodResolver(productScheme),
+  })
+
+  const {
+    fields: propertyFields,
+    append: propertyAppend,
+    remove: propertyRemove,
+  } = useFieldArray({ control, name: `properties` })
+
+  const {
+    onSubmit,
     setSelectCategoryId,
     setSelectSubcategoryId,
     selectCategoryId,
     selectSubcategoryId,
-    propertyFields,
-    propertyAppend,
-    propertyRemove,
+
     photos,
     setPhotos,
     isPending,
   } = useCreateForm({
     allCategories,
     productDataUpdate,
+    propertyAppend,
+    reset,
   })
 
   return (
