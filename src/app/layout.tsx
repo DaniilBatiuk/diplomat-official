@@ -6,7 +6,7 @@ import { QueryWrapper } from '@/components/shared/wrappers/query-wrapper/query-w
 import '@/styles/globals.scss'
 
 import { Footer, Header, ThemeWrapper } from '@/components'
-import { getAllCategories } from '@/utils/lib/queries'
+import { getCategories } from '@/utils/lib/queries'
 
 const interSans = Inter({
   variable: '--font-geist-sans',
@@ -28,7 +28,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const allCategories = await getAllCategories()
+  const allCategories = await getCategories()
   return (
     <html lang='en'>
       <body className={`${interSans.variable} ${loraMono.variable}`}>

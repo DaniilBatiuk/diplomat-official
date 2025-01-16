@@ -93,7 +93,7 @@
 
         &:hover {
           & path {
-            stroke: var.$red-100;
+            stroke: var.$red-300;
           }
         }
 
@@ -118,7 +118,7 @@
         white-space: nowrap;
 
         &_discount {
-          color: var.$red-100;
+          color: var.$red-300;
         }
       }
 

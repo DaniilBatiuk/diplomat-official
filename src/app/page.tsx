@@ -3,10 +3,10 @@ import { HomeHeader } from './components/home-header/home-header'
 import { Sales } from './components/sales/sales'
 import styles from './home.module.scss'
 import { ProductSwiper } from '@/components'
-import { getProducts } from '@/utils/lib/queries'
+import { getActiveProducts } from '@/utils/lib/queries'
 
 export default async function Home() {
-  const products = await getProducts()
+  const products = await getActiveProducts()
   return (
     <div className={styles.page}>
       <HomeHeader />

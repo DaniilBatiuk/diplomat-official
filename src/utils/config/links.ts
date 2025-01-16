@@ -8,10 +8,11 @@ export const LINKS = {
   RulesAndConditions: '/rules-and-conditions',
   PrivacyPolicy: '/privacy-policy',
   Categories: '/categories',
-  Admin: '/admin',
   AboutUs: '/about-us',
   CreateProduct: '/create-product',
+  UpdateProduct: '/update-product',
   Profile: '/profile',
   Order: '/order',
   Product: '/product',
+  Admin: '/admin',
 }

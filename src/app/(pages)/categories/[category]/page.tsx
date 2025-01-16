@@ -3,7 +3,7 @@ import { Aside } from './components/aside/aside'
 import { CategoriesHeader } from './components/categories-header/categories-header'
 import { List } from './components/list/list'
 import { prisma } from '@/utils/lib/db'
-import { getProducts } from '@/utils/lib/queries'
+import { getActiveProducts } from '@/utils/lib/queries'
 
 export async function generateStaticParams() {
   const categories = await prisma.category.findMany()
@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 export default async function Categories({ params }: { params: Promise<{ category: string }> }) {
   const category = decodeURIComponent((await params).category)
 
-  const products = await getProducts()
+  const products = await getActiveProducts()
 
   return (
     <div className={styles.categories__container}>

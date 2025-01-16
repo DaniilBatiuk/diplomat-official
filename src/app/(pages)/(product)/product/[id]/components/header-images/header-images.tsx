@@ -41,7 +41,6 @@ export const HeaderImages: React.FC<HeaderImagesProps> = ({ images }: HeaderImag
               width={500}
               height={500}
               alt='photo'
-              priority
               quality={100}
             />
           </SwiperSlide>
@@ -66,7 +65,6 @@ export const HeaderImages: React.FC<HeaderImagesProps> = ({ images }: HeaderImag
               width={100}
               height={100}
               alt='photo'
-              priority
               quality={100}
             />
           </SwiperSlide>

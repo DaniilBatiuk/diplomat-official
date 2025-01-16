@@ -1,10 +1,10 @@
 import { CreateForm } from './components/create-form/create-form'
 import styles from './create-product.module.scss'
 import { Title } from '@/components'
-import { getAllCategories } from '@/utils/lib/queries'
+import { getCategories } from '@/utils/lib/queries'
 
 export default async function CreateProduct() {
-  const allCategories = await getAllCategories()
+  const allCategories = await getCategories()
 
   return (
     <div className={styles.create}>

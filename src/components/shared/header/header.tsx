@@ -113,11 +113,15 @@ export const Header: React.FC<HeaderProps> = ({ allCategories }: HeaderProps) =>
               >
                 {ICONS.search()}
               </li>
-
               <HeaderContactsPopUp />
 
-              <li onClick={() => setSignInActive(true)}>{ICONS.user()}</li>
+              <li className={styles.admin}>
+                <Link href={LINKS.Admin} prefetch>
+                  {ICONS.admin()}
+                </Link>
+              </li>
 
+              <li onClick={() => setSignInActive(true)}>{ICONS.user()}</li>
               <li onClick={() => setBasketActive(true)}>
                 <Badge badgeContent={1} color='error' showZero max={9} style={{ padding: 0 }}>
                   {ICONS.cart()}

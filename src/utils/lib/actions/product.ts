@@ -3,6 +3,8 @@
 import { $Enums } from '@prisma/client'
 import { revalidateTag } from 'next/cache'
 
+import { deleteAllProperties } from './properties'
+import { createProperty } from './property'
 import { prisma } from '@/utils/lib/db'
 
 export async function createProduct(product: IProductCreate) {
@@ -42,28 +44,45 @@ export async function updateProduct(product: IProductCreate, id: string) {
     return { ...prop, productId: updatedProduct.id, subcategoryId: product.subcategoryId }
   })
 
-  for (let property of properties) {
+  for (const property of properties) {
     await createProperty(property)
   }
 
   revalidateTag('products')
 }
 
-export async function createProperty(property: IPropertyCreate) {
-  await prisma.property.create({
-    data: {
-      name: property.name,
-      value: property.value,
-      productId: property.productId,
-      subcategoryId: property.subcategoryId,
+export async function deleteProduct(id: string) {
+  const isProductExists = await prisma.product.findUnique({
+    where: {
+      id,
     },
   })
+
+  if (!isProductExists) {
+    throw new Error('Товара не існує')
+  }
+
+  await deleteAllProperties(id)
+
+  await prisma.product.delete({
+    where: {
+      id,
+    },
+  })
+
+  revalidateTag('products')
 }
 
-export async function deleteAllProperties(productId: string) {
-  await prisma.property.deleteMany({
+export async function changeProductStatus({ id, status }: { id: string; status: $Enums.Status }) {
+  await prisma.product.update({
     where: {
-      productId: productId,
+      id,
+    },
+    data: {
+      status,
     },
   })
+
+  revalidateTag('products')
+  revalidateTag('active-products')
 }

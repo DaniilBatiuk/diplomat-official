@@ -78,7 +78,6 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          padding-bottom: 2px;
         }
       }
     }
@@ -110,5 +109,11 @@
 
   &_down {
     transform: rotate(180deg);
+  }
+}
+
+.admin {
+  @media (max-width: 1099px) {
+    display: none !important;
   }
 }

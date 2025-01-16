@@ -4,14 +4,14 @@ import { CreateForm } from '../../create-product/components/create-form/create-f
 
 import styles from './../../create-product/create-product.module.scss'
 import { Title } from '@/components'
-import { getAllCategories, getProductDetails } from '@/utils/lib/queries'
+import { getCategories, getProductDetails } from '@/utils/lib/queries'
 
 export default async function CreateProduct({ params }: { params: Promise<{ id: string }> }) {
   const id = (await params).id
 
   const product = await getProductDetails(id)
 
-  const allCategories = await getAllCategories()
+  const allCategories = await getCategories()
 
   if (!product) return notFound()
 

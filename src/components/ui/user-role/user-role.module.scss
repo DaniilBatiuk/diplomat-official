@@ -16,12 +16,12 @@
   }
 
   &.user {
-    border: 1px solid var.$green-300;
+    border: 1px solid var.$green-400;
     background-color: var.$green-100;
-    color: var.$green-300;
+    color: var.$green-400;
 
     &::before {
-      background-color: var.$green-300;
+      background-color: var.$green-400;
     }
   }
   &.manager {

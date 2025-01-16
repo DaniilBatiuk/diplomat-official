@@ -1,14 +1,41 @@
+import { $Enums } from '@prisma/client'
+
 import { prisma } from './db'
 import { unstable_cache } from './unstable_cache'
 
 export const getProducts = unstable_cache(
   () =>
     prisma.product.findMany({
+      orderBy: [
+        {
+          createdAt: 'desc',
+        },
+      ],
       include: { properties: true, comments: { include: { user: true } } },
     }),
   ['products'],
   {
     tags: ['products'],
+    revalidate: 60 * 60 * 2, // two hours,
+  },
+)
+
+export const getActiveProducts = unstable_cache(
+  () =>
+    prisma.product.findMany({
+      where: {
+        status: $Enums.Status.active,
+      },
+      orderBy: [
+        {
+          createdAt: 'desc',
+        },
+      ],
+      include: { properties: true, comments: { include: { user: true } } },
+    }),
+  ['active-products'],
+  {
+    tags: ['active-products'],
     revalidate: 60 * 60 * 2, // two hours,
   },
 )
@@ -36,7 +63,7 @@ export const getProductsWithSameSubcategory = unstable_cache(
   },
 )
 
-export const getAllCategories = unstable_cache(
+export const getCategories = unstable_cache(
   () =>
     prisma.category.findMany({
       include: { subcategories: { include: { products: { select: { id: true, name: true } } } } },

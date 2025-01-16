@@ -3,16 +3,19 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { MenuItem, TextField } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useFieldArray, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
 import { ICONS } from '@/utils/config/icons'
+import { LINKS } from '@/utils/config/links'
+
+import { createProduct, updateProduct } from '@/utils/lib/actions/product'
 
 import { Photo } from '../photo/photo'
 
 import styles from './../../create-product.module.scss'
-import { createProduct, updateProduct } from './actions'
 import { CreateCategoryModal } from './components/create-category-modal/create-category-modal'
 import { CreateSubcategoryModal } from './components/create-subcategory-modal/create-subcategory-modal'
 import { convertData } from './helpers/convert-data'
@@ -28,6 +31,7 @@ export const CreateForm: React.FC<CreateFormProps> = ({
   allCategories,
   productDataUpdate,
 }: CreateFormProps) => {
+  const router = useRouter()
   const [createCategoryModalActive, setCreateCategoryModalActive] = useState(false)
   const [createSubcategoryModalActive, setCreateSubcategoryModalActive] = useState(false)
 
@@ -112,11 +116,16 @@ export const CreateForm: React.FC<CreateFormProps> = ({
       ? (product: IProductCreate) => updateProduct(product, productDataUpdate.id)
       : createProduct,
     onSuccess: () => {
-      reset()
-      setPhotos([])
-      setSelectCategoryId('')
-      setSelectSubcategoryId('')
-      toast.success('Товар був успішно створений.')
+      if (!productDataUpdate) {
+        reset()
+        setPhotos([])
+        setSelectCategoryId('')
+        setSelectSubcategoryId('')
+        toast.success('Товар був успішно створений.')
+      } else {
+        toast.success('Товар був успішно змінений.')
+        router.push(LINKS.Admin)
+      }
     },
     onError: error => {
       toast.error(error.message)

@@ -1,0 +1,34 @@
+@use '@/styles/variables.scss' as var;
+
+.admin {
+  &__container {
+    @include var.adaptive-value-px(margin-top, 20, 30);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & > a {
+      border-radius: 5px;
+    }
+    & button {
+      @include var.adaptive-value-px(padding-inline, 20, 31);
+    }
+  }
+
+  &__content {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    @media (max-width: 1000px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 720px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include var.adaptive-value-px(gap, 10, 15);
+  }
+}

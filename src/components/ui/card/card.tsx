@@ -1,21 +1,23 @@
-'use client'
-
 import CardImg from '@../../public/card.webp'
 import clsx from 'clsx'
 import Image from 'next/image'
 
+import { LINKS } from '@/utils/config/links'
+
 import styles from './card.module.scss'
+import { AdminBlock } from './components/admin-block/admin-block'
 import { BuyButton } from './components/buy-button/buy-button'
 import { Link } from '@/components'
 import { calculateRoundedPrice } from '@/utils/helpers'
 
 interface CardProp {
   product: IProductBase
+  onAdminPage?: boolean
 }
-export const Card: React.FC<CardProp> = ({ product }: CardProp) => {
+export const Card: React.FC<CardProp> = ({ product, onAdminPage }: CardProp) => {
   return (
-    <Link href={`/product/${product.id}`} prefetch>
-      <figure className={styles.card}>
+    <figure className={styles.card}>
+      <Link href={LINKS.Product + `/${product.id}`} prefetch className={styles.card__link}>
         <Image
           src={product.imageUrls?.[0] || CardImg}
           loading={'eager'}
@@ -40,12 +42,13 @@ export const Card: React.FC<CardProp> = ({ product }: CardProp) => {
               {calculateRoundedPrice(product.price, product.discountPercent)} ₴
             </p>
           </div>
-          <BuyButton />
         </figcaption>
         {product.discountPercent && (
           <div className={styles.card__sale}>-{product.discountPercent}%</div>
         )}
-      </figure>
-    </Link>
+      </Link>
+      <BuyButton onAdminPage={onAdminPage} product={product} />
+      {onAdminPage && <AdminBlock id={product.id} />}
+    </figure>
   )
 }

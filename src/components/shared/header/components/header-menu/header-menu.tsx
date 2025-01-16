@@ -99,8 +99,15 @@ export const HeaderMenu: React.FC<HeaderMenuProp> = ({
                 href={LINKS.RulesAndConditions}
                 className={styles.menu_item}
                 onClick={closeMenu}
+                prefetch
               >
                 {ICONS.menuRules()} <p>Правила та умови</p>
+              </Link>
+            </li>
+            <li>
+              <Link href={LINKS.Admin} className={styles.menu_item} onClick={closeMenu} prefetch>
+                {ICONS.admin()}
+                <p>Адмін</p>
               </Link>
             </li>
           </ul>

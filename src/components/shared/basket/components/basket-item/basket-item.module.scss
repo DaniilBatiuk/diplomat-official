@@ -42,7 +42,7 @@
       @include var.button-active(0.88);
       &:hover {
         & path {
-          stroke: var.$red-100;
+          stroke: var.$red-300;
         }
       }
     }
@@ -60,7 +60,7 @@
       @extend %lora-700-22;
 
       &_discount {
-        color: var.$red-100;
+        color: var.$red-300;
       }
     }
 
