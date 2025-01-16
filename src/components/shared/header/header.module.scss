@@ -17,7 +17,7 @@
 
     & > nav > ul {
       display: flex;
-      @include var.adaptive-value-px(column-gap, 8, 13);
+      @include var.adaptive-value-px(column-gap, 8, 10);
 
       & > li {
         border: 1px solid var.$black-200;

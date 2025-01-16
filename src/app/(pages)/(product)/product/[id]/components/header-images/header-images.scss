@@ -1,7 +1,9 @@
+@use '@/styles/variables.scss' as var;
+
 .product__header_images {
   width: calc(50% - 30px);
 
-  @media (max-width: 1000px) {
+  @media (max-width: 800px) {
     width: 100%;
   }
 
@@ -16,7 +18,17 @@
     }
   }
 
+  & .mySwiper2 .swiper-slide {
+    @include var.adaptive-value-px(padding, 10, 20);
+
+    & img {
+      max-width: 450px;
+      max-height: 450px;
+    }
+  }
+
   & .swiper-slide {
+    padding: 5px;
     text-align: center;
     font-size: 18px;
     margin-right: 10px !important;
@@ -30,11 +42,9 @@
 
   & .swiper-slide img {
     border-radius: 5px;
-    @media (max-width: 480px) {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   & .swiper {
@@ -55,7 +65,7 @@
   }
 
   & .mySwiper {
-    height: 20%;
+    height: fit-content;
     box-sizing: border-box;
     padding: 10px 0;
   }

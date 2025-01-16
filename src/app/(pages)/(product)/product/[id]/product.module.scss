@@ -11,14 +11,14 @@
     display: flex;
     @include var.adaptive-value-px(margin-top, 20, 30);
     @include var.adaptive-value-px(gap, 15, 60);
-    @media (max-width: 1000px) {
+    @media (max-width: 800px) {
       flex-direction: column;
     }
   }
 
   &__info {
     width: calc(50% - 30px);
-    @media (max-width: 1000px) {
+    @media (max-width: 800px) {
       width: 100%;
     }
     &_title {
