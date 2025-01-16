@@ -79,6 +79,20 @@ export const useCreateForm = ({ productDataUpdate, allCategories }: productDataU
     remove: propertyRemove,
   } = useFieldArray({ control, name: `properties` })
 
+  useEffect(() => {
+    if (!productDataUpdate) {
+      for (const data of allCategories
+        .find(category => category.id === selectCategoryId)
+        ?.subcategories.find(subcategory => subcategory.id === selectSubcategoryId)?.properties ??
+        []) {
+        propertyAppend({
+          name: data.name,
+          value: '',
+        })
+      }
+    }
+  }, [selectSubcategoryId])
+
   const onSubmit: SubmitHandler<CreateProduct> = async data => {
     const validations = [
       { condition: !selectCategoryId.length, message: 'Категорія має бути вибрана.' },

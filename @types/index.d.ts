@@ -85,7 +85,12 @@ type IProductOne = IProductBase & {
 }
 
 type IBaseCategory = ICategory & {
-  subcategories: { products: { id: string; name: string }[]; id: string; name: string }[]
+  subcategories: {
+    products: { id: string; name: string }[]
+    id: string
+    name: string
+    properties: { id: string; name: string }[]
+  }[]
 }
 
 ///////////////////////////
