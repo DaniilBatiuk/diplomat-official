@@ -48,6 +48,7 @@ export async function updateProduct(product: IProductCreate, id: string) {
     await createProperty(property)
   }
 
+  revalidateTag(`product-${id}`)
   revalidateTag('products')
 }
 

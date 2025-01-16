@@ -40,17 +40,20 @@ export const getActiveProducts = unstable_cache(
   },
 )
 
-export const getProductDetails = unstable_cache(
-  (id: string) =>
-    prisma.product.findUnique({
-      where: { id: id },
-      include: { properties: true, comments: { include: { user: true } } },
-    }),
-  ['product'],
-  {
-    revalidate: 60 * 60 * 2, // two hours,
-  },
-)
+export const getProductDetails = (id: string): Promise<IProductOne> => {
+  return unstable_cache(
+    async () =>
+      (await prisma.product.findUnique({
+        where: { id: id },
+        include: { properties: true, comments: { include: { user: true } } },
+      })) as IProductOne,
+    ['product', id],
+    {
+      tags: [`product-${id}`],
+      revalidate: 60 * 60 * 2,
+    },
+  )()
+}
 
 export const getProductsWithSameSubcategory = unstable_cache(
   (subcategoryId: string, notToIncludeIdProduct: string) =>

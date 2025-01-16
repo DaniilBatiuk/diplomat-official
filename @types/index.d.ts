@@ -12,7 +12,7 @@ type IProduct = {
   createdAt: Date
 }
 
-type IProductBase = Omit<IProduct, 'createdAt' | 'subcategoryId'>
+type IProductBase = Omit<IProduct, 'createdAt'>
 type IProductCreate = {
   properties: {
     name: string
