@@ -121,9 +121,9 @@ export const CreateForm: React.FC<CreateFormProps> = ({
         setPhotos([])
         setSelectCategoryId('')
         setSelectSubcategoryId('')
-        toast.success('Товар був успішно створений.')
+        toast.success('Товар був успішно створений')
       } else {
-        toast.success('Товар був успішно змінений.')
+        toast.success('Товар був успішно змінений')
         router.push(LINKS.Admin)
       }
     },

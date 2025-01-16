@@ -1,4 +1,5 @@
 import CardImg from '@../../public/card.webp'
+import { $Enums } from '@prisma/client'
 import clsx from 'clsx'
 import Image from 'next/image'
 
@@ -48,7 +49,7 @@ export const Card: React.FC<CardProp> = ({ product, onAdminPage }: CardProp) => 
         )}
       </Link>
       <BuyButton onAdminPage={onAdminPage} product={product} />
-      {onAdminPage && <AdminBlock id={product.id} />}
+      {onAdminPage && product.status === $Enums.Status.inactive && <AdminBlock id={product.id} />}
     </figure>
   )
 }

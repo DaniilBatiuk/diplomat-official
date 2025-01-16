@@ -73,6 +73,8 @@
     @include var.adaptive-value-px(width, 56, 70);
     @include var.adaptive-value-px(height, 44, 54);
 
+    @extend %inter-600-24-20;
+
     @include var.button-active(0.95);
     & svg {
       @include var.adaptive-value-px(width, 23, 30);
@@ -130,18 +132,18 @@
 }
 
 .active {
-  background-color: var.$red-100;
-  color: var.$red-300;
+  background-color: var.$red-100 !important;
+  color: var.$red-300 !important;
 
   &:hover {
-    background-color: var.$red-200;
+    background-color: var.$red-200 !important;
   }
 }
 .deactivate {
-  background-color: var.$green-100;
-  color: var.$green-400;
+  background-color: var.$green-100 !important;
+  color: var.$green-400 !important;
 
   &:hover {
-    background-color: var.$green-200;
+    background-color: var.$green-200 !important;
   }
 }
