@@ -46,8 +46,6 @@ type IComment = {
   createdAt: Date
 }
 
-type ICommentBase = Omit<IComment, 'subcategoryId' | 'productId'>
-
 type IUser = {
   id: string
   name: string
@@ -77,7 +75,7 @@ type ISubcategory = {
 // Combined types
 type ICommentAndUser = {
   user: IUserBase
-} & ICommentBase
+} & IComment
 
 type IProductOne = IProductBase & {
   properties: IPropertyBase[]

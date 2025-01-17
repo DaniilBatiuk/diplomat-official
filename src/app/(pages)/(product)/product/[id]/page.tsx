@@ -36,7 +36,7 @@ export default async function Product({ params }: { params: Promise<{ id: string
         {productsSimilar.length > 0 && (
           <ProductSwiper noPadding title={'Схожі товари'} products={productsSimilar} />
         )}
-        <Comments comments={product.comments} />
+        <Comments comments={product.comments} productId={product.id} />
       </div>
     </div>
   )

@@ -234,6 +234,8 @@
       column-gap: 5px;
     }
     &_checkbox {
+      cursor: pointer;
+      width: fit-content;
       display: flex;
       align-items: center;
       column-gap: 5px;

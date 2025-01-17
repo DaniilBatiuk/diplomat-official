@@ -8,7 +8,6 @@ import { categoryScheme } from '@/utils/validators/category-validator'
 
 export const createCategory = validatedAction(categoryScheme, async category => {
   const name = category.name.trim().charAt(0).toUpperCase() + category.name.trim().slice(1)
-  console.log('name', name)
   const isCategoryExists = await prisma.category.findUnique({
     where: {
       name,

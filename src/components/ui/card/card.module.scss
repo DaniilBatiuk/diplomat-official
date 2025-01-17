@@ -140,7 +140,7 @@
   }
 
   &.disable {
-    background-color: var.$black-100 !important;
+    opacity: 0.5;
   }
 }
 .deactivate {
@@ -151,6 +151,6 @@
     background-color: var.$green-200 !important;
   }
   &.disable {
-    background-color: var.$black-100 !important;
+    opacity: 0.5;
   }
 }

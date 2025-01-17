@@ -11,9 +11,10 @@ import { calculateAverageStarCount } from '@/utils/helpers'
 
 interface CommentsProps {
   comments: ICommentAndUser[]
+  productId: string
 }
 
-export const Comments: React.FC<CommentsProps> = ({ comments }: CommentsProps) => {
+export const Comments: React.FC<CommentsProps> = ({ comments, productId }: CommentsProps) => {
   const [modalActive, setModalActive] = useState(false)
 
   return (
@@ -41,7 +42,11 @@ export const Comments: React.FC<CommentsProps> = ({ comments }: CommentsProps) =
           </div>
         </>
       )}
-      <CreateCommentModal modalActive={modalActive} setModalActive={setModalActive} />
+      <CreateCommentModal
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+        productId={productId}
+      />
     </section>
   )
 }

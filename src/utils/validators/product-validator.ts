@@ -11,9 +11,7 @@ export const productScheme = z.object({
     .max(500, 'Опис має містити не більше 500 символів'),
   price: z.string().min(1, 'Ціна має бути вибрана'),
   count: z.string().min(1, 'Кількість має бути вибрана'),
-  discountPercent: z.union([z.string(), z.number()]).optional(),
-  // subcategoryId: z.string().cuid('Підкатегорія має бути вибрана'),
-  // categoryId: z.string().cuid('Категорія має бути вибрана'),
+  discountPercent: z.string().optional(),
   properties: z.array(
     z.object({
       name: z
