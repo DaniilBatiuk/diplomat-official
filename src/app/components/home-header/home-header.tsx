@@ -36,7 +36,7 @@ export const HomeHeader: React.FC = () => {
           <br />
           Зробіть своє привітання незабутнім, даруючи щось особливе.
         </p>
-        <Link href={LINKS.Categories + '/Всі'} prefetch>
+        <Link href={LINKS.Categories} prefetch>
           <CustomButton className={styles.main__button} extraBig>
             ДО КАТЕГОРІЙ
           </CustomButton>

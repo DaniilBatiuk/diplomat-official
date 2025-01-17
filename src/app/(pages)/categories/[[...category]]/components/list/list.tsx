@@ -1,11 +1,10 @@
 import { Pagination } from '@mui/material'
-import { Product } from '@prisma/client'
 
 import styles from './../../categories.module.scss'
 import { Card } from '@/components'
 
 type ListProps = {
-  products: Product[]
+  products: IProduct[]
 }
 export const List: React.FC<ListProps> = ({ products }: ListProps) => {
   return (

@@ -6,27 +6,46 @@ import { CheckBoxCategories } from './components/check-box/check-box'
 import { Link } from '@/components'
 
 interface AsideProps {
-  category: string
+  allCategories: IBaseCategory[]
+  paramsData: {
+    category: string | undefined
+    subcategory: string | undefined
+  }
 }
 
-export const Aside: React.FC<AsideProps> = ({ category }: AsideProps) => {
+export const Aside: React.FC<AsideProps> = ({ paramsData, allCategories }: AsideProps) => {
+  const currentSubcategories = allCategories.find(category => category.name === paramsData.category)
+  const categoriesOrSubCategoriesNameList = currentSubcategories
+    ? currentSubcategories.subcategories.map(category => category.name)
+    : allCategories.map(category => category.name)
+
   return (
     <aside className={styles.aside}>
       <div className={styles.aside__categories}>
-        <h1>{category !== 'Всі' ? category : 'Категорії'}</h1>
+        <h1>{paramsData.category ? paramsData.category : 'Категорії'}</h1>
         <ul>
-          <li>
+          {/* <li>
             <Link className={styles.aside__sales} href={LINKS.Categories + '/Знижки'} prefetch>
               Знижки
             </Link>
-          </li>
-          {/* {[...new Set(PRODUCTS.map(product => product.category.name))].map(category => (
-            <li key={category}>
-              <Link href={LINKS.Categories + '/' + category} prefetch>
-                {category}
+          </li> */}
+          {categoriesOrSubCategoriesNameList.map(name => (
+            <li key={name}>
+              <Link
+                className={
+                  paramsData.subcategory && paramsData.subcategory === name ? styles.active : ''
+                }
+                href={
+                  paramsData.category
+                    ? LINKS.Categories + '/' + paramsData.category + '/' + name
+                    : LINKS.Categories + '/' + name
+                }
+                prefetch
+              >
+                {name}
               </Link>
             </li>
-          ))} */}
+          ))}
         </ul>
       </div>
       <div className={styles.aside__filter}>

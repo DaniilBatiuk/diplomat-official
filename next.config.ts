@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'utfs.io',
-        port: '', // Оставляем пустым, если порт не используется
-        pathname: '/**', // Используем маску для любых путей
+        port: '',
+        pathname: '/**',
       },
     ],
   },

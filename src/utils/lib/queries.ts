@@ -47,7 +47,7 @@ export const getProductDetails = (id: string): Promise<IProductOne> => {
         where: { id: id },
         include: { properties: true, comments: { include: { user: true } } },
       })) as IProductOne,
-    ['product', id],
+    [`product-${id}`],
     {
       tags: [`product-${id}`],
       revalidate: 60 * 60 * 2,
@@ -85,3 +85,51 @@ export const getCategories = unstable_cache(
     revalidate: 60 * 60 * 2, // two hours,
   },
 )
+
+export const getActiveProductsByCategory = (categoryName: string): Promise<IProduct[]> => {
+  return unstable_cache(
+    async () =>
+      (await prisma.product.findMany({
+        where: {
+          status: $Enums.Status.active,
+          subcategory: {
+            category: {
+              name: categoryName,
+            },
+          },
+        },
+        orderBy: [
+          {
+            createdAt: 'desc',
+          },
+        ],
+      })) as IProduct[],
+    [`products-by-category-${categoryName}`],
+    {
+      revalidate: 60 * 60 * 2,
+    },
+  )()
+}
+
+export const getActiveProductsBySubcategory = (subCategoryName: string): Promise<IProduct[]> => {
+  return unstable_cache(
+    async () =>
+      (await prisma.product.findMany({
+        where: {
+          status: $Enums.Status.active,
+          subcategory: {
+            name: subCategoryName,
+          },
+        },
+        orderBy: [
+          {
+            createdAt: 'desc',
+          },
+        ],
+      })) as IProduct[],
+    [`products-by-subcategory-${subCategoryName}`],
+    {
+      revalidate: 60 * 60 * 2,
+    },
+  )()
+}
