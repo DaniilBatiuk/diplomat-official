@@ -4,7 +4,7 @@ import styles from './../../categories.module.scss'
 import { Card } from '@/components'
 
 type ListProps = {
-  products: IProduct[]
+  products: IProductBaseWithProperties[]
 }
 export const List: React.FC<ListProps> = ({ products }: ListProps) => {
   return (

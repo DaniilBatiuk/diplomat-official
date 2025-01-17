@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { Dispatch, SetStateAction } from 'react'
 
-import { COLORS, COUNTRIES, MATERIAL } from '@/utils/config/data'
 import { ICONS } from '@/utils/config/icons'
 
 import { CheckBoxCategories } from '../../../aside/components/check-box/check-box'
@@ -12,11 +11,19 @@ import { DarkBackground } from '@/components'
 interface MenuFiltersProp {
   setMenuFiltersActive: Dispatch<SetStateAction<boolean>>
   menuFiltersActive: boolean
+  propertiesGroupedByName: Record<
+    string,
+    {
+      name: string
+      value: string
+    }[]
+  >
 }
 
 export const MenuFilters: React.FC<MenuFiltersProp> = ({
   setMenuFiltersActive,
   menuFiltersActive,
+  propertiesGroupedByName,
 }: MenuFiltersProp) => {
   return (
     <>
@@ -30,36 +37,18 @@ export const MenuFilters: React.FC<MenuFiltersProp> = ({
         })}
       >
         {ICONS.arrowLeft({ onClick: () => setMenuFiltersActive(false) })}
-        <div className={styles.aside__filter}>
-          <h2>МАТЕРІАЛ</h2>
-          <ul>
-            {MATERIAL.map(material => (
-              <li key={material}>
-                <CheckBoxCategories material={material} />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles.aside__filter}>
-          <h2>КРАЇНА ВИРОБНИК</h2>
-          <ul>
-            {COUNTRIES.map(material => (
-              <li key={material}>
-                <CheckBoxCategories material={material} />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles.aside__filter}>
-          <h2>КОЛІР</h2>
-          <ul>
-            {COLORS.map(material => (
-              <li key={material}>
-                <CheckBoxCategories material={material} />
-              </li>
-            ))}
-          </ul>
-        </div>
+        {Object.entries(propertiesGroupedByName).map(([key, value]) => (
+          <div className={styles.aside__filter} key={key}>
+            <h2>{key}</h2>
+            <ul>
+              {value.map(property => (
+                <li key={property.value}>
+                  <CheckBoxCategories value={property.value} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </>
   )

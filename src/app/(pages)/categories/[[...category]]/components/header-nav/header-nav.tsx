@@ -12,9 +12,19 @@ import { DarkBackground, MenuSort } from '@/components'
 
 interface HeaderNavProps {
   allCategories: IBaseCategory[]
+  propertiesGroupedByName: Record<
+    string,
+    {
+      name: string
+      value: string
+    }[]
+  >
 }
 
-export const HeaderNav: React.FC<HeaderNavProps> = ({ allCategories }: HeaderNavProps) => {
+export const HeaderNav: React.FC<HeaderNavProps> = ({
+  allCategories,
+  propertiesGroupedByName,
+}: HeaderNavProps) => {
   const [menuCategoriesActive, setMenuCategoriesActive] = useState(false)
   const [menuFiltersActive, setMenuFiltersActive] = useState(false)
   const [menuSortActive, setMenuSortActive] = useState(false)
@@ -34,6 +44,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ allCategories }: HeaderNav
       <MenuFilters
         menuFiltersActive={menuFiltersActive}
         setMenuFiltersActive={setMenuFiltersActive}
+        propertiesGroupedByName={propertiesGroupedByName}
       />
       <MenuSort menuSortActive={menuSortActive} setMenuSortActive={setMenuSortActive} />
       <div className={styles.categories__nav}>

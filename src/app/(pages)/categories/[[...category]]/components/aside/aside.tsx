@@ -1,4 +1,3 @@
-import { COLORS, COUNTRIES, MATERIAL } from '@/utils/config/data'
 import { LINKS } from '@/utils/config/links'
 
 import styles from './../../categories.module.scss'
@@ -11,9 +10,20 @@ interface AsideProps {
     category: string | undefined
     subcategory: string | undefined
   }
+  propertiesGroupedByName: Record<
+    string,
+    {
+      name: string
+      value: string
+    }[]
+  >
 }
 
-export const Aside: React.FC<AsideProps> = ({ paramsData, allCategories }: AsideProps) => {
+export const Aside: React.FC<AsideProps> = ({
+  paramsData,
+  allCategories,
+  propertiesGroupedByName,
+}: AsideProps) => {
   const currentSubcategories = allCategories.find(category => category.name === paramsData.category)
   const categoriesOrSubCategoriesNameList = currentSubcategories
     ? currentSubcategories.subcategories.map(category => category.name)
@@ -48,36 +58,18 @@ export const Aside: React.FC<AsideProps> = ({ paramsData, allCategories }: Aside
           ))}
         </ul>
       </div>
-      <div className={styles.aside__filter}>
-        <h2>МАТЕРІАЛ</h2>
-        <ul>
-          {MATERIAL.map(material => (
-            <li key={material}>
-              <CheckBoxCategories material={material} />
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className={styles.aside__filter}>
-        <h2>КРАЇНА ВИРОБНИК</h2>
-        <ul>
-          {COUNTRIES.map(material => (
-            <li key={material}>
-              <CheckBoxCategories material={material} />
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className={styles.aside__filter}>
-        <h2>КОЛІР</h2>
-        <ul>
-          {COLORS.map(material => (
-            <li key={material}>
-              <CheckBoxCategories material={material} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      {Object.entries(propertiesGroupedByName).map(([key, value]) => (
+        <div className={styles.aside__filter} key={key}>
+          <h2>{key}</h2>
+          <ul>
+            {value.map(property => (
+              <li key={property.value}>
+                <CheckBoxCategories value={property.value} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </aside>
   )
 }

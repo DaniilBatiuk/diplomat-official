@@ -26,6 +26,13 @@ type IProductUpdate = {
   }[]
 } & Omit<IProduct, 'createdAt' | 'status'>
 
+type IProductBaseWithProperties = {
+  properties: {
+    name: string
+    value: string
+  }[]
+} & IProduct
+
 type IProperty = {
   id: string
   name: string

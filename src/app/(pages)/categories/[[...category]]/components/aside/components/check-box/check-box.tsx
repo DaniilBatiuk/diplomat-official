@@ -6,11 +6,11 @@ import { useState } from 'react'
 import styles from './../../../../categories.module.scss'
 
 interface CheckBoxCategoriesProps {
-  material: string
+  value: string
 }
 
 export const CheckBoxCategories: React.FC<CheckBoxCategoriesProps> = ({
-  material,
+  value,
 }: CheckBoxCategoriesProps) => {
   const [checked, setChecked] = useState(false)
 
@@ -19,8 +19,8 @@ export const CheckBoxCategories: React.FC<CheckBoxCategoriesProps> = ({
   }
   return (
     <div className={styles.aside__checkbox} onClick={handleChange}>
-      <Checkbox checked={checked} name={material} />
-      <p>{material}</p>
+      <Checkbox checked={checked} name={value} />
+      <p>{value}</p>
     </div>
   )
 }

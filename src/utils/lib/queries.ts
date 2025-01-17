@@ -86,7 +86,9 @@ export const getCategories = unstable_cache(
   },
 )
 
-export const getActiveProductsByCategory = (categoryName: string): Promise<IProduct[]> => {
+export const getActiveProductsByCategory = (
+  categoryName: string,
+): Promise<IProductBaseWithProperties[]> => {
   return unstable_cache(
     async () =>
       (await prisma.product.findMany({
@@ -98,12 +100,13 @@ export const getActiveProductsByCategory = (categoryName: string): Promise<IProd
             },
           },
         },
+        include: { properties: true },
         orderBy: [
           {
             createdAt: 'desc',
           },
         ],
-      })) as IProduct[],
+      })) as IProductBaseWithProperties[],
     [`products-by-category-${categoryName}`],
     {
       revalidate: 60 * 60 * 2,
@@ -111,7 +114,9 @@ export const getActiveProductsByCategory = (categoryName: string): Promise<IProd
   )()
 }
 
-export const getActiveProductsBySubcategory = (subCategoryName: string): Promise<IProduct[]> => {
+export const getActiveProductsBySubcategory = (
+  subCategoryName: string,
+): Promise<IProductBaseWithProperties[]> => {
   return unstable_cache(
     async () =>
       (await prisma.product.findMany({
@@ -121,12 +126,13 @@ export const getActiveProductsBySubcategory = (subCategoryName: string): Promise
             name: subCategoryName,
           },
         },
+        include: { properties: true },
         orderBy: [
           {
             createdAt: 'desc',
           },
         ],
-      })) as IProduct[],
+      })) as IProductBaseWithProperties[],
     [`products-by-subcategory-${subCategoryName}`],
     {
       revalidate: 60 * 60 * 2,
