@@ -106,12 +106,10 @@ export const useCreateForm = ({
 
   return {
     onSubmit,
-
     setSelectCategoryId,
     setSelectSubcategoryId,
     selectCategoryId,
     selectSubcategoryId,
-
     photos,
     setPhotos,
     isPending,

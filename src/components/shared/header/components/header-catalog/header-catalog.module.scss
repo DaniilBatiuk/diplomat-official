@@ -95,6 +95,7 @@
           row-gap: 10px;
           &_sub {
             text-transform: lowercase;
+            line-height: 110%;
             &:hover {
               color: var.$primary-700;
               text-decoration: underline;

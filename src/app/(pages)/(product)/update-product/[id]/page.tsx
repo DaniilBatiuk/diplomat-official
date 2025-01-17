@@ -4,7 +4,15 @@ import { CreateForm } from '../../create-product/components/create-form/create-f
 
 import styles from './../../create-product/create-product.module.scss'
 import { Title } from '@/components'
+import { prisma } from '@/utils/lib/db'
 import { getCategories, getProductDetails } from '@/utils/lib/queries'
+
+export async function generateStaticParams() {
+  const products = await prisma.product.findMany()
+  return products.map(product => ({
+    id: product.id,
+  }))
+}
 
 export default async function CreateProduct({ params }: { params: Promise<{ id: string }> }) {
   const id = (await params).id

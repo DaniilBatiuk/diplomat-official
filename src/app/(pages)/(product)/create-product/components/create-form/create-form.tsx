@@ -67,7 +67,6 @@ export const CreateForm: React.FC<CreateFormProps> = ({
     setSelectSubcategoryId,
     selectCategoryId,
     selectSubcategoryId,
-
     photos,
     setPhotos,
     isPending,

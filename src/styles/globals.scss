@@ -34,8 +34,9 @@ main {
 }
 
 .no-scroll {
-  overflow: hidden;
+  overflow: clip;
 }
+
 .no-scroll-view {
   position: fixed;
   overflow: hidden;

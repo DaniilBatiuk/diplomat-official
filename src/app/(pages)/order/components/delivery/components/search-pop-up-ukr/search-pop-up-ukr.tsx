@@ -34,48 +34,46 @@ export const SearchPopUpUrk: React.FC<SearchPopUpUrkProp> = ({
       inputRef={inputRef}
     >
       {inputRef.current &&
-      inputRef.current === document.activeElement &&
-      listData.filter(item => {
-        const regex = new RegExp(`(${searchValue.trim()})`, 'gi')
-        return regex.test(item.city_name)
-      }).length ? (
-        <HeaderList>
-          {listData
-            .filter(item => {
-              const regex = new RegExp(`(${searchValue.trim()})`, 'gi')
-              return regex.test(item.city_name)
-            })
-            .slice(0, 10)
-            .map(item => {
-              const regex = new RegExp(`(${searchValue.trim()})`, 'gi')
-              const parts = item.city_name.split(regex)
+        inputRef.current === document.activeElement &&
+        listData.filter(item => {
+          const regex = new RegExp(`(${searchValue.trim()})`, 'gi')
+          return regex.test(item.city_name)
+        }).length > 0 && (
+          <HeaderList>
+            {listData
+              .filter(item => {
+                const regex = new RegExp(`(${searchValue.trim()})`, 'gi')
+                return regex.test(item.city_name)
+              })
+              .slice(0, 10)
+              .map(item => {
+                const regex = new RegExp(`(${searchValue.trim()})`, 'gi')
+                const parts = item.city_name.split(regex)
 
-              return (
-                <div
-                  className={styles.list_item}
-                  key={item.city_name}
-                  onClick={() => {
-                    setSelected(item)
-                    setSearchValue(item.city_name)
-                    searchClose()
-                  }}
-                >
-                  <p>
-                    {parts.map((part, index) =>
-                      part.toLowerCase() === searchValue.trim().toLowerCase() ? (
-                        <b key={index}>{part}</b>
-                      ) : (
-                        <span key={index}>{part}</span>
-                      ),
-                    )}
-                  </p>
-                </div>
-              )
-            })}
-        </HeaderList>
-      ) : (
-        <></>
-      )}
+                return (
+                  <div
+                    className={styles.list_item}
+                    key={item.city_name}
+                    onClick={() => {
+                      setSelected(item)
+                      setSearchValue(item.city_name)
+                      searchClose()
+                    }}
+                  >
+                    <p>
+                      {parts.map((part, index) =>
+                        part.toLowerCase() === searchValue.trim().toLowerCase() ? (
+                          <b key={index}>{part}</b>
+                        ) : (
+                          <span key={index}>{part}</span>
+                        ),
+                      )}
+                    </p>
+                  </div>
+                )
+              })}
+          </HeaderList>
+        )}
     </PopUpDelivery>
   )
 }

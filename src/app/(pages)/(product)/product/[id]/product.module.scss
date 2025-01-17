@@ -23,6 +23,7 @@
     }
     &_title {
       @extend %lora-500-28-22;
+      line-height: 110%;
     }
     &_sale {
       color: var.$black-300;
