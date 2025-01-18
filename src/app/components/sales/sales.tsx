@@ -24,7 +24,7 @@ export const Sales: React.FC = () => {
             Знайдіть подарунок, який буде приємним не тільки для душі, але й для гаманця. Обирайте
             найкращі пропозиції та заощаджуйте на кожній покупці!
           </p>
-          <Link href={LINKS.Categories + '/Знижки'} prefetch>
+          <Link href={LINKS.Categories + '?SortBy=Знижки'} prefetch>
             <CustomButton>ДО ЗНИЖОК</CustomButton>
           </Link>
         </div>

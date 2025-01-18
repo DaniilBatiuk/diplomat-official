@@ -2,26 +2,36 @@
 
 import MenuItem from '@mui/material/MenuItem'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import * as React from 'react'
 
 export const SelectCategories: React.FC = () => {
-  const [sortBy, setSortBy] = React.useState('Новинки')
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const { replace } = useRouter()
+  const [sortBy, setSortBy] = React.useState(() => searchParams.get('SortBy') ?? SORT_VARIANTS[0])
 
   const handleChange = (event: SelectChangeEvent) => {
     setSortBy(event.target.value)
+    const { value } = event.target
+    const params = new URLSearchParams(searchParams)
+    params.set('SortBy', value)
+    replace(`${pathname}?${params.toString()}`)
   }
 
   return (
     <Select
       sx={{ minWidth: 100 }}
       value={sortBy}
-      label='Age'
+      label='sortBy'
       onChange={handleChange}
       variant='standard'
     >
-      <MenuItem value={'Новинки'}>Новинки</MenuItem>
-      <MenuItem value={'Дешеві'}>Дешеві</MenuItem>
-      <MenuItem value={'Дорогі'}>Дорогі</MenuItem>
+      {SORT_VARIANTS.map(variant => (
+        <MenuItem key={variant} value={variant}>
+          {variant}
+        </MenuItem>
+      ))}
     </Select>
   )
 }

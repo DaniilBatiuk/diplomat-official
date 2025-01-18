@@ -1,6 +1,5 @@
-import { Pagination } from '@mui/material'
-
 import styles from './../../categories.module.scss'
+import { NoData } from './component/no-data'
 import { Card } from '@/components'
 
 type ProductListProps = {
@@ -9,12 +8,16 @@ type ProductListProps = {
 export const ProductList: React.FC<ProductListProps> = ({ products }: ProductListProps) => {
   return (
     <section className={styles.list__section}>
-      <div className={styles.list}>
-        {products.map(product => (
-          <Card key={product.id} product={product}></Card>
-        ))}
-      </div>
-      <Pagination
+      {products.length > 0 ? (
+        <div className={styles.list}>
+          {products.map(product => (
+            <Card key={product.id} product={product}></Card>
+          ))}
+        </div>
+      ) : (
+        <NoData />
+      )}
+      {/* <Pagination
         count={5}
         size='large'
         sx={{
@@ -29,7 +32,7 @@ export const ProductList: React.FC<ProductListProps> = ({ products }: ProductLis
             backgroundColor: '#fa9f2f',
           },
         }}
-      />
+      /> */}
     </section>
   )
 }

@@ -277,6 +277,11 @@ $yellow-100: #fff41c;
   @include font-family('Inter');
   @include adaptive-value-px(font-size, 20, 24);
 }
+%inter-600-20-18 {
+  font-weight: 600;
+  @include font-family('Inter');
+  @include adaptive-value-px(font-size, 18, 20);
+}
 %inter-600-18-16 {
   font-weight: 600;
   @include font-family('Inter');

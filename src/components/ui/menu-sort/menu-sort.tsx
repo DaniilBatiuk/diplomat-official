@@ -1,7 +1,8 @@
 'use client'
 
 import clsx from 'clsx'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
 
@@ -13,17 +14,26 @@ interface MenuSortProp {
   menuSortActive: boolean
 }
 
-const SORT_WAYS: string[] = [
-  'Спочатку новинки',
-  'Від дешевих до дорогих',
-  'Від дорогих до дешевих ',
-]
-
 export const MenuSort: React.FC<MenuSortProp> = ({
   setMenuSortActive,
   menuSortActive,
 }: MenuSortProp) => {
-  const [sortWay, setSortWay] = useState(SORT_WAYS[0])
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const { replace } = useRouter()
+  const [sortBy, setSortBy] = useState(() => searchParams.get('SortBy') ?? SORT_VARIANTS[0])
+
+  const isFirstRender = useRef(true)
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    const params = new URLSearchParams(searchParams)
+    params.set('SortBy', sortBy)
+    replace(`${pathname}?${params.toString()}`)
+    setMenuSortActive(false)
+  }, [sortBy])
 
   return (
     <>
@@ -37,7 +47,7 @@ export const MenuSort: React.FC<MenuSortProp> = ({
           <h3>Сортування</h3>
           {ICONS.close({ onClick: () => setMenuSortActive(false) })}
         </div>
-        <RadioButtons value={sortWay} setValue={setSortWay} values={SORT_WAYS} />
+        <RadioButtons value={sortBy} setValue={setSortBy} values={SORT_VARIANTS} />
       </div>
     </>
   )

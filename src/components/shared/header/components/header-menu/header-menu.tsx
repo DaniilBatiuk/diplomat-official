@@ -51,7 +51,7 @@ export const HeaderMenu: React.FC<HeaderMenuProp> = ({
             </li>
             <li className={styles.menu_red}>
               <Link
-                href={LINKS.Categories + '/Знижки'}
+                href={LINKS.Categories + '?SortBy=Знижки'}
                 className={styles.menu_item}
                 onClick={closeMenu}
                 prefetch
