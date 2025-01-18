@@ -40,7 +40,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
         setMenuFiltersActive={setMenuFiltersActive}
         propertiesGroupedByName={propertiesGroupedByName}
       />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense>
         <MenuSort menuSortActive={menuSortActive} setMenuSortActive={setMenuSortActive} />
       </Suspense>
       <div className={styles.categories__nav}>

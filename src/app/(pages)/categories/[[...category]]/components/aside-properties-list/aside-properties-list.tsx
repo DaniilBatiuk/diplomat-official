@@ -1,3 +1,4 @@
+import { Skeleton } from '@mui/material'
 import { Suspense } from 'react'
 
 import styles from './../../categories.module.scss'
@@ -18,7 +19,11 @@ export const AsidePropertiesList: React.FC<AsidePropertiesListProps> = ({
           <ul>
             {value.map(property => (
               <li key={property.value}>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense
+                  fallback={
+                    <Skeleton variant='rectangular' className={styles.skeleton__property_item} />
+                  }
+                >
                   <CheckBoxCategories value={property.value} propertyName={key} />
                 </Suspense>
               </li>

@@ -241,3 +241,16 @@
     bottom: 0;
   }
 }
+
+.skeleton {
+  &__property_item {
+    height: 30px;
+    border-radius: 3px;
+  }
+
+  &__filter {
+    width: 100px;
+    height: 32px;
+    border-radius: 3px;
+  }
+}

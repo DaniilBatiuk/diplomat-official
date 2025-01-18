@@ -2,7 +2,7 @@
 
 import { Checkbox } from '@mui/material'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useState, useTransition } from 'react'
+import { useCallback, useEffect, useState, useTransition } from 'react'
 
 import styles from './../../../../categories.module.scss'
 
@@ -23,6 +23,10 @@ export const CheckBoxCategories: React.FC<CheckBoxCategoriesProps> = ({
   const [checked, setChecked] = useState(
     () => searchParams.get(propertyName)?.split(',').includes(value) ?? false,
   )
+
+  useEffect(() => {
+    console.log('a', searchParams)
+  }, [searchParams])
 
   const updateURL = useCallback(
     (newChecked: boolean) => {

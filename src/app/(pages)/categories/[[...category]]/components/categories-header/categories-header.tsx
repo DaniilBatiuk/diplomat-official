@@ -1,3 +1,4 @@
+import { Skeleton } from '@mui/material'
 import { Suspense } from 'react'
 
 import { LINKS } from '@/utils/config/links'
@@ -40,7 +41,7 @@ export const CategoriesHeader: React.FC<CategoriesHeaderProps> = ({
           </>
         )}
       </p>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Skeleton variant='rectangular' className={styles.skeleton__filter} />}>
         <SelectCategories />
       </Suspense>
     </div>
