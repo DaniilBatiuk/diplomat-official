@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 
-import { Comments } from './components/comments/commments'
+import { Comments } from './components/comments/comments'
 import { HeaderImages } from './components/header-images/header-images'
 import { InfoColumns } from './components/info-columns/info-columns'
 import { ProductInfo } from './components/product-info/product-info'

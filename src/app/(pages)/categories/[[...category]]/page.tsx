@@ -1,12 +1,17 @@
 import styles from './categories.module.scss'
-import { Aside } from './components/aside/aside'
+import { AsidePropertiesList } from './components/aside-properties-list/aside-properties-list'
 import { CategoriesHeader } from './components/categories-header/categories-header'
+import { CategoriesList } from './components/categories-list/categories-list'
 import { HeaderNav } from './components/header-nav/header-nav'
-import { List } from './components/list/list'
-import { useFetchProducts } from './hooks/use-fetch-products'
-import { useProcessProperties } from './hooks/use-group-properties'
+import { ProductList } from './components/product-list/product-list'
+import { groupBy } from '@/utils/helpers'
 import { prisma } from '@/utils/lib/db'
-import { getCategories } from '@/utils/lib/queries'
+import {
+  getActiveProducts,
+  getActiveProductsByCategory,
+  getActiveProductsBySubcategory,
+  getCategories,
+} from '@/utils/lib/queries'
 
 export async function generateStaticParams() {
   const categories = await prisma.category.findMany({
@@ -41,8 +46,18 @@ export default async function Categories({ params }: { params: Promise<{ categor
 
   const allCategories = await getCategories()
 
-  const { products } = await useFetchProducts({ paramsData })
-  const { propertiesGroupedByName } = useProcessProperties({ products })
+  const products = paramsData.subcategory
+    ? await getActiveProductsBySubcategory(paramsData.subcategory)
+    : paramsData.category
+      ? await getActiveProductsByCategory(paramsData.category)
+      : await getActiveProducts()
+
+  const properties = products.map(product => product.properties).flat()
+  const uniqueProperties = properties.filter(
+    (prop, index, self) =>
+      self.findIndex(p => p.name === prop.name && p.value === prop.value) === index,
+  )
+  const propertiesGroupedByName = groupBy(uniqueProperties, prop => prop.name)
 
   return (
     <div className={styles.categories}>
@@ -50,12 +65,11 @@ export default async function Categories({ params }: { params: Promise<{ categor
       <div className={styles.categories__container}>
         <CategoriesHeader paramsData={paramsData} />
         <div className={styles.categories__content}>
-          <Aside
-            allCategories={allCategories}
-            paramsData={paramsData}
-            propertiesGroupedByName={propertiesGroupedByName}
-          />
-          <List products={products} />
+          <aside className={styles.aside}>
+            <CategoriesList paramsData={paramsData} allCategories={allCategories} />
+            <AsidePropertiesList propertiesGroupedByName={propertiesGroupedByName} />
+          </aside>
+          <ProductList products={products} />
         </div>
       </div>
     </div>

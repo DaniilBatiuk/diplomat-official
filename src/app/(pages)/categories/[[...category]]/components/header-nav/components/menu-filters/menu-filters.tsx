@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
 
-import { CheckBoxCategories } from '../../../aside/components/check-box/check-box'
+import { AsidePropertiesList } from '../../../aside-properties-list/aside-properties-list'
 
 import styles from './../../../../categories.module.scss'
 import { DarkBackground } from '@/components'
@@ -11,13 +11,7 @@ import { DarkBackground } from '@/components'
 interface MenuFiltersProp {
   setMenuFiltersActive: Dispatch<SetStateAction<boolean>>
   menuFiltersActive: boolean
-  propertiesGroupedByName: Record<
-    string,
-    {
-      name: string
-      value: string
-    }[]
-  >
+  propertiesGroupedByName: PropertiesGroupedByName
 }
 
 export const MenuFilters: React.FC<MenuFiltersProp> = ({
@@ -37,18 +31,7 @@ export const MenuFilters: React.FC<MenuFiltersProp> = ({
         })}
       >
         {ICONS.arrowLeft({ onClick: () => setMenuFiltersActive(false) })}
-        {Object.entries(propertiesGroupedByName).map(([key, value]) => (
-          <div className={styles.aside__filter} key={key}>
-            <h2>{key}</h2>
-            <ul>
-              {value.map(property => (
-                <li key={property.value}>
-                  <CheckBoxCategories value={property.value} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <AsidePropertiesList propertiesGroupedByName={propertiesGroupedByName} />
       </div>
     </>
   )

@@ -3,10 +3,10 @@ import { Pagination } from '@mui/material'
 import styles from './../../categories.module.scss'
 import { Card } from '@/components'
 
-type ListProps = {
+type ProductListProps = {
   products: IProductBaseWithProperties[]
 }
-export const List: React.FC<ListProps> = ({ products }: ListProps) => {
+export const ProductList: React.FC<ProductListProps> = ({ products }: ProductListProps) => {
   return (
     <section className={styles.list__section}>
       <div className={styles.list}>

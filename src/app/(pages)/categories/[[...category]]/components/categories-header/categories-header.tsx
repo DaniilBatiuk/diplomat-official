@@ -27,12 +27,15 @@ export const CategoriesHeader: React.FC<CategoriesHeaderProps> = ({
           <Link href={LINKS.Categories} prefetch>
             Категорії
           </Link>
-        )}{' '}
-        /{' '}
+        )}
         {paramsData.subcategory && (
-          <Link href={LINKS.Categories + '/' + paramsData.category} prefetch>
-            {paramsData.category}
-          </Link>
+          <>
+            {' '}
+            /{' '}
+            <Link href={LINKS.Categories + '/' + paramsData.category} prefetch>
+              {paramsData.category}
+            </Link>
+          </>
         )}
       </p>
       <SelectCategories />

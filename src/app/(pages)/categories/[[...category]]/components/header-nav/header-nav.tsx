@@ -12,13 +12,7 @@ import { DarkBackground, MenuSort } from '@/components'
 
 interface HeaderNavProps {
   allCategories: IBaseCategory[]
-  propertiesGroupedByName: Record<
-    string,
-    {
-      name: string
-      value: string
-    }[]
-  >
+  propertiesGroupedByName: PropertiesGroupedByName
 }
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({

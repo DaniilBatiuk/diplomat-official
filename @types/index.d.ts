@@ -98,6 +98,14 @@ type IBaseCategory = ICategory & {
   }[]
 }
 
+type PropertiesGroupedByName = Record<
+  string,
+  {
+    name: string
+    value: string
+  }[]
+>
+
 ///////////////////////////
 
 type Category = {
