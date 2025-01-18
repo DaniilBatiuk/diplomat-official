@@ -1,3 +1,7 @@
+'use client'
+
+import { useSortAndFilterProducts } from '../../helpers/sort-and-filter-products'
+
 import styles from './../../categories.module.scss'
 import { NoData } from './component/no-data'
 import { Card } from '@/components'
@@ -6,11 +10,13 @@ type ProductListProps = {
   products: IProductBaseWithProperties[]
 }
 export const ProductList: React.FC<ProductListProps> = ({ products }: ProductListProps) => {
+  const sortedAndFilteredProducts = useSortAndFilterProducts(products)
+
   return (
     <section className={styles.list__section}>
-      {products.length > 0 ? (
+      {sortedAndFilteredProducts.length > 0 ? (
         <div className={styles.list}>
-          {products.map(product => (
+          {sortedAndFilteredProducts.map(product => (
             <Card key={product.id} product={product}></Card>
           ))}
         </div>

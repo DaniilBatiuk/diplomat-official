@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 
 import styles from './categories.module.scss'
 import { AsidePropertiesList } from './components/aside-properties-list/aside-properties-list'
 import { CategoriesHeader } from './components/categories-header/categories-header'
 import { CategoriesList } from './components/categories-list/categories-list'
 import { HeaderNav } from './components/header-nav/header-nav'
+import { LoadingProducts } from './components/loading-products/loading-products'
 import { ProductList } from './components/product-list/product-list'
 import { CheckCorrectCategoryNameInUlr } from './helpers/check-correct-category-name-in-ulr'
 import { GroupByProperties } from './helpers/group-by-properties'
@@ -41,18 +43,10 @@ export async function generateStaticParams() {
 }
 
 type Params = Promise<{ category?: string[] }>
-type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
-export default async function Categories({
-  params,
-  // searchParams,
-}: {
-  params: Params
-  // searchParams: SearchParams
-}) {
+export default async function Categories({ params }: { params: Params }) {
   const categoriesFromParam = (await params)?.category ?? []
   const allCategories = await getCategories()
-  // const searchParamsObj = await searchParams
   const paramsData = {
     category: categoriesFromParam[0] ? decodeURIComponent(categoriesFromParam[0]) : undefined,
     subcategory: categoriesFromParam[1] ? decodeURIComponent(categoriesFromParam[1]) : undefined,
@@ -64,19 +58,11 @@ export default async function Categories({
   })
   if (!isCorrectCategoryAndSubCategoryInUrl) notFound()
 
-  // const isSearchParamsEmpty = JSON.stringify(searchParamsObj) === '{}'
-
   const products = paramsData.subcategory
     ? await getActiveProductsBySubcategory(paramsData.subcategory)
     : paramsData.category
       ? await getActiveProductsByCategory(paramsData.category)
       : await getActiveProducts()
-
-  // const sortedAndFilteredProducts = SortAndFilterProducts({
-  //   products,
-  //   searchParamsObj,
-  //   isSearchParamsEmpty,
-  // })
 
   const propertiesGroupedByName = GroupByProperties(products)
 
@@ -90,7 +76,10 @@ export default async function Categories({
             <CategoriesList paramsData={paramsData} allCategories={allCategories} />
             <AsidePropertiesList propertiesGroupedByName={propertiesGroupedByName} />
           </aside>
-          <ProductList products={products} />
+
+          <Suspense fallback={<LoadingProducts />}>
+            <ProductList products={products} />
+          </Suspense>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import { Checkbox } from '@mui/material'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useEffect, useState, useTransition } from 'react'
+import { useCallback, useState, useTransition } from 'react'
 
 import styles from './../../../../categories.module.scss'
 
@@ -24,13 +24,8 @@ export const CheckBoxCategories: React.FC<CheckBoxCategoriesProps> = ({
     () => searchParams.get(propertyName)?.split(',').includes(value) ?? false,
   )
 
-  useEffect(() => {
-    console.log('a', searchParams)
-  }, [searchParams])
-
   const updateURL = useCallback(
     (newChecked: boolean) => {
-      console.log('starting transition')
       const params = new URLSearchParams(Array.from(searchParams.entries()))
       let existingValues = params.getAll(propertyName)[0]?.split(',') ?? []
 
@@ -52,7 +47,6 @@ export const CheckBoxCategories: React.FC<CheckBoxCategoriesProps> = ({
           scroll: false,
         })
       })
-      console.log('finish transition')
     },
     [pathname, searchParams, propertyName, value, replace],
   )
