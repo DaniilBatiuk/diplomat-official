@@ -2,7 +2,7 @@
 
 import { Checkbox } from '@mui/material'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useState, useTransition } from 'react'
 
 import styles from './../../../../categories.module.scss'
 
@@ -18,37 +18,46 @@ export const CheckBoxCategories: React.FC<CheckBoxCategoriesProps> = ({
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const { replace } = useRouter()
-  const isFirstRender = useRef(true)
+  const [_, startTransition] = useTransition()
 
   const [checked, setChecked] = useState(
     () => searchParams.get(propertyName)?.split(',').includes(value) ?? false,
   )
 
-  const changeCheckBox = () => {
-    setChecked(prev => !prev)
-  }
+  const updateURL = useCallback(
+    (newChecked: boolean) => {
+      console.log('starting transition')
+      const params = new URLSearchParams(Array.from(searchParams.entries()))
+      let existingValues = params.getAll(propertyName)[0]?.split(',') ?? []
 
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false
-      return
-    }
-    const params = new URLSearchParams(searchParams)
-    let existingValues = params.getAll(propertyName)[0]?.split(',') ?? []
+      if (!existingValues.includes(value) && newChecked) {
+        existingValues.push(value)
+      } else if (existingValues.includes(value) && !newChecked) {
+        existingValues = existingValues.filter(existingValue => existingValue !== value)
+      }
 
-    if (!existingValues.includes(value) && checked) {
-      existingValues.push(value)
-    } else if (existingValues.includes(value) && !checked) {
-      existingValues = existingValues.filter(existingValue => existingValue !== value)
-    }
+      params.delete(propertyName)
+      if (existingValues.length > 0) {
+        params.append(propertyName, existingValues.join(','))
+      }
 
-    params.delete(propertyName)
+      const newURL = `${pathname}?${params.toString()}`
 
-    if (existingValues.length > 0) {
-      params.append(propertyName, existingValues.join(','))
-    }
-    replace(`${pathname}?${params.toString()}`)
-  }, [checked])
+      startTransition(() => {
+        replace(newURL, {
+          scroll: false,
+        })
+      })
+      console.log('finish transition')
+    },
+    [pathname, searchParams, propertyName, value, replace],
+  )
+
+  const changeCheckBox = useCallback(() => {
+    const newChecked = !checked
+    setChecked(newChecked)
+    updateURL(newChecked)
+  }, [checked, updateURL])
 
   return (
     <div className={styles.aside__checkbox} onClick={changeCheckBox}>

@@ -30,7 +30,7 @@ export const MenuSort: React.FC<MenuSortProp> = ({
       isFirstRender.current = false
       return
     }
-    const params = new URLSearchParams(searchParams)
+    const params = new URLSearchParams(searchParams.toString())
     params.set('SortBy', sortBy)
     replace(`${pathname}?${params.toString()}`)
     setMenuSortActive(false)

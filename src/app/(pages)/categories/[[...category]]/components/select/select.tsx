@@ -16,7 +16,7 @@ export const SelectCategories: React.FC = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setSortBy(event.target.value)
     const { value } = event.target
-    const params = new URLSearchParams(searchParams)
+    const params = new URLSearchParams(searchParams.toString())
     params.set('SortBy', value)
     replace(`${pathname}?${params.toString()}`)
   }

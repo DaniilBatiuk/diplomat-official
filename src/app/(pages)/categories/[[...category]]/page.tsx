@@ -9,6 +9,7 @@ import { ProductList } from './components/product-list/product-list'
 import { CheckCorrectCategoryNameInUlr } from './helpers/check-correct-category-name-in-ulr'
 import { GroupByProperties } from './helpers/group-by-properties'
 import { SortAndFilterProducts } from './helpers/sort-and-filter-products'
+import { prisma } from '@/utils/lib/db'
 import {
   getActiveProducts,
   getActiveProductsByCategory,
@@ -16,29 +17,29 @@ import {
   getCategories,
 } from '@/utils/lib/queries'
 
-// export async function generateStaticParams() {
-//   const categories = await prisma.category.findMany({
-//     include: {
-//       subcategories: true,
-//     },
-//   })
+export async function generateStaticParams() {
+  const categories = await prisma.category.findMany({
+    include: {
+      subcategories: true,
+    },
+  })
 
-//   const paths = [
-//     { category: [] },
+  const paths = [
+    { category: [] },
 
-//     ...categories.map(category => ({
-//       category: [category.name],
-//     })),
+    ...categories.map(category => ({
+      category: [category.name],
+    })),
 
-//     ...categories.flatMap(category =>
-//       category.subcategories.map(subcategory => ({
-//         category: [category.name, subcategory.name],
-//       })),
-//     ),
-//   ]
+    ...categories.flatMap(category =>
+      category.subcategories.map(subcategory => ({
+        category: [category.name, subcategory.name],
+      })),
+    ),
+  ]
 
-//   return paths
-// }
+  return paths
+}
 
 type Params = Promise<{ category?: string[] }>
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
