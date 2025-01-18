@@ -1,5 +1,3 @@
-import { Suspense } from 'react'
-
 import { Gallery } from './components/gallery/gallery'
 import { HomeHeader } from './components/home-header/home-header'
 import { Sales } from './components/sales/sales'
@@ -17,9 +15,7 @@ export default async function Home() {
         title={'Рекомендовані товари'}
         products={products.toSorted((a, b) => b.comments.length - a.comments.length).slice(0, 12)}
       />
-      <Suspense fallback={'Loading...'}>
-        <Sales />
-      </Suspense>
+      <Sales />
       <ProductSwiper
         title={'Товари зі знижкою'}
         products={products.filter(product => product.discountPercent).slice(0, 12)}
