@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import styles from './../../categories.module.scss'
 import { CheckBoxCategories } from './components/check-box/check-box'
 
@@ -16,7 +18,9 @@ export const AsidePropertiesList: React.FC<AsidePropertiesListProps> = ({
           <ul>
             {value.map(property => (
               <li key={property.value}>
-                <CheckBoxCategories value={property.value} propertyName={key} />
+                <Suspense fallback={<div>Loading...</div>}>
+                  <CheckBoxCategories value={property.value} propertyName={key} />
+                </Suspense>
               </li>
             ))}
           </ul>
