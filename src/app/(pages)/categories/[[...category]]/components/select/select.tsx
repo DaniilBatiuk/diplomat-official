@@ -5,6 +5,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import * as React from 'react'
 
+import { SORT_VARIANTS } from '@/utils/config/sort-variants'
+
 export const SelectCategories: React.FC = () => {
   const pathname = usePathname()
   const searchParams = useSearchParams()

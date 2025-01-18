@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
+import { SORT_VARIANTS } from '@/utils/config/sort-variants'
 
 import styles from './menu-sort.module.scss'
 import { DarkBackground, RadioButtons } from '@/components'

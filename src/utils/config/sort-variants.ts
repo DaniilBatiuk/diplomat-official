@@ -1,1 +1,1 @@
-const SORT_VARIANTS: string[] = ['Новинки', 'Знижки', 'Дешеві', 'Дорогі']
+export const SORT_VARIANTS: string[] = ['Новинки', 'Знижки', 'Дешеві', 'Дорогі']
