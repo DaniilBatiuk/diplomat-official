@@ -8,7 +8,6 @@ import { HeaderNav } from './components/header-nav/header-nav'
 import { ProductList } from './components/product-list/product-list'
 import { CheckCorrectCategoryNameInUlr } from './helpers/check-correct-category-name-in-ulr'
 import { GroupByProperties } from './helpers/group-by-properties'
-import { SortAndFilterProducts } from './helpers/sort-and-filter-products'
 import { prisma } from '@/utils/lib/db'
 import {
   getActiveProducts,
@@ -46,14 +45,14 @@ type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
 export default async function Categories({
   params,
-  searchParams,
+  // searchParams,
 }: {
   params: Params
-  searchParams: SearchParams
+  // searchParams: SearchParams
 }) {
   const categoriesFromParam = (await params)?.category ?? []
   const allCategories = await getCategories()
-  const searchParamsObj = await searchParams
+  // const searchParamsObj = await searchParams
   const paramsData = {
     category: categoriesFromParam[0] ? decodeURIComponent(categoriesFromParam[0]) : undefined,
     subcategory: categoriesFromParam[1] ? decodeURIComponent(categoriesFromParam[1]) : undefined,
@@ -65,7 +64,7 @@ export default async function Categories({
   })
   if (!isCorrectCategoryAndSubCategoryInUrl) notFound()
 
-  const isSearchParamsEmpty = JSON.stringify(searchParamsObj) === '{}'
+  // const isSearchParamsEmpty = JSON.stringify(searchParamsObj) === '{}'
 
   const products = paramsData.subcategory
     ? await getActiveProductsBySubcategory(paramsData.subcategory)
@@ -73,11 +72,11 @@ export default async function Categories({
       ? await getActiveProductsByCategory(paramsData.category)
       : await getActiveProducts()
 
-  const sortedAndFilteredProducts = SortAndFilterProducts({
-    products,
-    searchParamsObj,
-    isSearchParamsEmpty,
-  })
+  // const sortedAndFilteredProducts = SortAndFilterProducts({
+  //   products,
+  //   searchParamsObj,
+  //   isSearchParamsEmpty,
+  // })
 
   const propertiesGroupedByName = GroupByProperties(products)
 
@@ -91,7 +90,7 @@ export default async function Categories({
             <CategoriesList paramsData={paramsData} allCategories={allCategories} />
             <AsidePropertiesList propertiesGroupedByName={propertiesGroupedByName} />
           </aside>
-          <ProductList products={sortedAndFilteredProducts} />
+          <ProductList products={products} />
         </div>
       </div>
     </div>

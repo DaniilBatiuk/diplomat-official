@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 
 import { MenuCategories } from '@/components/shared/header/components/header-menu/components/menu-categories/menu-categories'
 
@@ -40,7 +40,9 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
         setMenuFiltersActive={setMenuFiltersActive}
         propertiesGroupedByName={propertiesGroupedByName}
       />
-      <MenuSort menuSortActive={menuSortActive} setMenuSortActive={setMenuSortActive} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <MenuSort menuSortActive={menuSortActive} setMenuSortActive={setMenuSortActive} />
+      </Suspense>
       <div className={styles.categories__nav}>
         <div className={styles.categories__nav_item} onClick={() => setMenuCategoriesActive(true)}>
           {ICONS.categories()} <p>Категорії</p>
