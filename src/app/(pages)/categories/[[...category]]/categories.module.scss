@@ -1,8 +1,9 @@
 @use '@/styles/variables.scss' as var;
 
 .categories {
+  @include var.adaptive-value-px(margin-top, 15, 30);
   &__container {
-    @include var.adaptive-value-px(margin-top, 15, 30);
+    background-color: inherit;
   }
 
   &__header {

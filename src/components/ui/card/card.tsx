@@ -16,7 +16,6 @@ interface CardProp {
   onAdminPage?: boolean
 }
 export const Card: React.FC<CardProp> = ({ product, onAdminPage }: CardProp) => {
-  console.log('render card', product.id)
   return (
     <figure className={styles.card}>
       <Link href={LINKS.Product + `/${product.id}`} prefetch className={styles.card__link}>
