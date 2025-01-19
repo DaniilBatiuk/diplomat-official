@@ -1,40 +1,51 @@
-interface ISortAndFilterProducts {
-  products: IProductBaseWithProperties[]
-  searchParamsObj: { [key: string]: string | string[] | undefined }
-  isSearchParamsEmpty: boolean
-}
+import { useSearchParams } from 'next/navigation'
+import { useMemo } from 'react'
 
-export const SortAndFilterProducts = ({
-  products,
-  searchParamsObj,
-  isSearchParamsEmpty,
-}: ISortAndFilterProducts) => {
-  const filteredProducts = products.filter(product => {
-    if (isSearchParamsEmpty) return true
+export const useSortAndFilterProducts = (products: IProductBaseWithProperties[]) => {
+  const searchParams = useSearchParams()
 
-    return Object.entries(searchParamsObj).every(([key, value]) => {
-      if (key === 'SortBy') return true
-      const values = typeof value === 'string' ? value.split(',') : [value]
-      return values.some(val =>
-        product.properties.some(prop => prop.name === key && prop.value === val),
-      )
+  const searchParamsObj = useMemo(() => {
+    const params: { [key: string]: string[] } = {}
+    searchParams.forEach((value, key) => {
+      params[key] = value.split(',')
     })
-  })
+    return params
+  }, [searchParams])
 
-  const sortedAndFilteredProducts = filteredProducts.toSorted((a, b) => {
-    if (searchParamsObj.SortBy === 'Дешеві') return a.price - b.price
-    if (searchParamsObj.SortBy === 'Дорогі') return b.price - a.price
-    if (searchParamsObj.SortBy === 'Знижки') {
-      const aDiscount = a.discountPercent ?? 0
-      const bDiscount = b.discountPercent ?? 0
+  const isSearchParamsEmpty = useMemo(
+    () => Object.keys(searchParamsObj).length === 0,
+    [searchParamsObj],
+  )
 
-      if (aDiscount === 0 && bDiscount > 0) return 1
-      if (aDiscount > 0 && bDiscount === 0) return -1
-
-      return bDiscount - aDiscount
+  const sortedAndFilteredProducts = useMemo(() => {
+    if (isSearchParamsEmpty) {
+      return products
     }
-    return 0
-  })
+
+    const filteredProducts = products.filter(product => {
+      return Object.entries(searchParamsObj).every(([key, values]) => {
+        if (key === 'SortBy') return true
+        return values.some(val =>
+          product.properties.some(prop => prop.name === key && prop.value === val),
+        )
+      })
+    })
+
+    return filteredProducts.toSorted((a, b) => {
+      if (searchParamsObj.SortBy?.includes('Дешеві')) return a.price - b.price
+      if (searchParamsObj.SortBy?.includes('Дорогі')) return b.price - a.price
+      if (searchParamsObj.SortBy?.includes('Знижки')) {
+        const aDiscount = a.discountPercent ?? 0
+        const bDiscount = b.discountPercent ?? 0
+
+        if (aDiscount === 0 && bDiscount > 0) return 1
+        if (aDiscount > 0 && bDiscount === 0) return -1
+
+        return bDiscount - aDiscount
+      }
+      return 0
+    })
+  }, [products, searchParamsObj, isSearchParamsEmpty])
 
   return sortedAndFilteredProducts
 }

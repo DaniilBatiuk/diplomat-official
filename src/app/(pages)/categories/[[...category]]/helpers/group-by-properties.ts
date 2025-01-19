@@ -8,5 +8,10 @@ export const GroupByProperties = (products: IProductBaseWithProperties[]) => {
   )
   const propertiesGroupedByName = groupBy(uniqueProperties, prop => prop.name)
 
-  return propertiesGroupedByName
+  const result: Record<string, string> = {}
+  for (const [key, value] of Object.entries(propertiesGroupedByName)) {
+    result[key] = value.map(v => v.value).join(', ')
+  }
+
+  return result
 }

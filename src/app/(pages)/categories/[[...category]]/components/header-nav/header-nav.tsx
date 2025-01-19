@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 
 import { MenuCategories } from '@/components/shared/header/components/header-menu/components/menu-categories/menu-categories'
 
@@ -12,12 +12,12 @@ import { DarkBackground, MenuSort } from '@/components'
 
 interface HeaderNavProps {
   allCategories: IBaseCategory[]
-  propertiesGroupedByName: PropertiesGroupedByName
+  products: IProductBaseWithProperties[]
 }
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({
   allCategories,
-  propertiesGroupedByName,
+  products,
 }: HeaderNavProps) => {
   const [menuCategoriesActive, setMenuCategoriesActive] = useState(false)
   const [menuFiltersActive, setMenuFiltersActive] = useState(false)
@@ -38,9 +38,11 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
       <MenuFilters
         menuFiltersActive={menuFiltersActive}
         setMenuFiltersActive={setMenuFiltersActive}
-        propertiesGroupedByName={propertiesGroupedByName}
+        products={products}
       />
-      <MenuSort menuSortActive={menuSortActive} setMenuSortActive={setMenuSortActive} />
+      <Suspense>
+        <MenuSort menuSortActive={menuSortActive} setMenuSortActive={setMenuSortActive} />
+      </Suspense>
       <div className={styles.categories__nav}>
         <div className={styles.categories__nav_item} onClick={() => setMenuCategoriesActive(true)}>
           {ICONS.categories()} <p>Категорії</p>
