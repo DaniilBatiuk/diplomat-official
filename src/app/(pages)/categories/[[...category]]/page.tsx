@@ -9,7 +9,7 @@ import { HeaderNav } from './components/header-nav/header-nav'
 import { LoadingProducts } from './components/loading-products/loading-products'
 import { LoadingProperties } from './components/loading-properties/loading-properties'
 import { ProductList } from './components/product-list/product-list'
-import { CheckCorrectCategoryNameInUlr } from './helpers/check-correct-category-name-in-ulr'
+import { checkCorrectCategoryNameInUlr } from './helpers/check-correct-category-name-in-ulr'
 import { prisma } from '@/utils/lib/db'
 import {
   getActiveProducts,
@@ -52,7 +52,7 @@ export default async function Categories({ params }: { params: Params }) {
     subcategory: categoriesFromParam[1] ? decodeURIComponent(categoriesFromParam[1]) : undefined,
   }
 
-  const isCorrectCategoryAndSubCategoryInUrl = CheckCorrectCategoryNameInUlr({
+  const isCorrectCategoryAndSubCategoryInUrl = checkCorrectCategoryNameInUlr({
     paramsData,
     allCategories,
   })
@@ -67,7 +67,6 @@ export default async function Categories({ params }: { params: Params }) {
   return (
     <div className={styles.categories}>
       <HeaderNav allCategories={allCategories} products={products} />
-
       <div className={styles.categories__container}>
         <CategoriesHeader paramsData={paramsData} />
         <div className={styles.categories__content}>

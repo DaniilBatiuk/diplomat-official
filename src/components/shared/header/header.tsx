@@ -3,7 +3,8 @@
 import { Badge } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
@@ -24,9 +25,10 @@ import { Link } from '@/components'
 
 interface HeaderProps {
   allCategories: IBaseCategory[]
+  searchData: ISearchData
 }
 
-export const Header: React.FC<HeaderProps> = ({ allCategories }: HeaderProps) => {
+export const Header: React.FC<HeaderProps> = ({ allCategories, searchData }: HeaderProps) => {
   const [menuActive, setMenuActive] = useState(false)
   const [signInActive, setSignInActive] = useState(false)
   const [basketActive, setBasketActive] = useState(false)
@@ -34,26 +36,54 @@ export const Header: React.FC<HeaderProps> = ({ allCategories }: HeaderProps) =>
   const [searchMobileActive, setSearchMobileActive] = useState(false)
   const [searchActive, setSearchActive] = useState(false)
   const inputRefMobile = useRef<null | HTMLInputElement>(null)
-  const inputRef = useRef<null | HTMLInputElement>(null)
+  const inputRefSearch = useRef<null | HTMLInputElement>(null)
   const [searchValue, setSearchValue] = useState('')
+  const pathname = usePathname()
+
+  useEffect(() => {
+    if (pathname !== '/categories') {
+      setSearchValue('')
+    }
+  }, [pathname])
 
   const handleHeaderClosePopUp = () => {
     if (catalogActive) {
       setCatalogActive(false)
     } else if (
       searchActive &&
-      inputRef.current &&
-      inputRef.current !== document.activeElement &&
+      inputRefSearch.current &&
+      inputRefSearch.current !== document.activeElement &&
       searchValue.length > 0
     ) {
       setSearchActive(false)
     }
   }
 
+  const searchDataView: ISearchData = {
+    categories: searchData.categories.filter(category =>
+      category.name.toLowerCase().startsWith(searchValue.toLowerCase()),
+    ),
+    subcategories: searchData.subcategories.filter(subcategory =>
+      subcategory.name.toLowerCase().startsWith(searchValue.toLowerCase()),
+    ),
+    products: searchData.products.filter(product =>
+      product.name.toLowerCase().startsWith(searchValue.toLowerCase()),
+    ),
+  }
+
+  console.log('rerender header')
+
   return (
     <>
       <DarkBackground
-        backgroundActive={searchActive && searchValue.length > 0}
+        backgroundActive={
+          searchActive &&
+          !searchMobileActive &&
+          searchValue.length > 0 &&
+          (searchDataView.categories.length > 0 ||
+            searchDataView.products.length > 0 ||
+            searchDataView.subcategories.length > 0)
+        }
         isLow
         onClick={() => setSearchActive(false)}
       />
@@ -69,6 +99,8 @@ export const Header: React.FC<HeaderProps> = ({ allCategories }: HeaderProps) =>
       />
       <Basket basketActive={basketActive} setBasketActive={setBasketActive} />
       <SearchMobile
+        searchDataView={searchDataView}
+        setSearchActive={setSearchMobileActive}
         searchMobileActive={searchMobileActive}
         searchMobileClose={() => setSearchMobileActive(false)}
         inputRefMobile={inputRefMobile}
@@ -96,11 +128,12 @@ export const Header: React.FC<HeaderProps> = ({ allCategories }: HeaderProps) =>
               })}
             </HeaderButton>
             <HeaderSearch
-              inputRef={inputRef}
+              inputRef={inputRefSearch}
               searchValue={searchValue}
               setSearchValue={setSearchValue}
               setSearchActive={setSearchActive}
               searchActive={searchActive}
+              searchDataView={searchDataView}
             />
           </div>
           <nav>

@@ -1,7 +1,8 @@
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
-import styles from './not-found.module.scss'
+import styles from '../styles/not-found.module.scss'
+
 import { CustomButton, Link } from '@/components'
 
 export default function Page() {

@@ -42,7 +42,7 @@
 
   & input {
     background-color: inherit;
-    width: 100%;
+    flex: 1 1 auto;
     border-radius: 5px;
   }
 }
@@ -53,5 +53,29 @@
 
   &.active {
     display: block;
+  }
+}
+
+.list {
+  &_item {
+    height: 39px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-inline: 15px;
+    @extend %inter-300-16;
+    & > p {
+      @include var.text-ellipsis(1);
+    }
+    &:hover {
+      background-color: var.$primary-150;
+    }
+    &:nth-child(n + 8) {
+      display: none;
+    }
+
+    & > span {
+      font-weight: 600;
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { groupBy } from '@/utils/helpers'
 
-export const GroupByProperties = (products: IProductBaseWithProperties[]) => {
+export const groupByProperties = (products: IProductBaseWithProperties[]) => {
   const properties = products.map(product => product.properties).flat()
   const uniqueProperties = properties.filter(
     (prop, index, self) =>

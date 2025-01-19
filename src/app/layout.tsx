@@ -6,7 +6,7 @@ import { QueryWrapper } from '@/components/shared/wrappers/query-wrapper/query-w
 import '@/styles/globals.scss'
 
 import { Footer, Header, ThemeWrapper } from '@/components'
-import { getCategories } from '@/utils/lib/queries'
+import { getActiveProducts, getCategories } from '@/utils/lib/queries'
 
 const interSans = Inter({
   variable: '--font-geist-sans',
@@ -29,13 +29,35 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const allCategories = await getCategories()
+  const activeProducts = await getActiveProducts()
+
+  const searchData: ISearchData = {
+    categories: allCategories.map(category => ({
+      id: category.id,
+      name: category.name,
+    })),
+    subcategories: allCategories
+      .map(category =>
+        category.subcategories.map(subcategory => ({
+          id: subcategory.id,
+          name: subcategory.name,
+          categoryName: category.name,
+        })),
+      )
+      .flat(),
+    products: activeProducts.map(product => ({
+      id: product.id,
+      name: product.name,
+    })),
+  }
+
   return (
     <html lang='en'>
       <body className={`${interSans.variable} ${loraMono.variable}`}>
         <ThemeWrapper>
           <QueryWrapper>
             <div className='wrapper' id='wrapper'>
-              <Header allCategories={allCategories} />
+              <Header allCategories={allCategories} searchData={searchData} />
               <main>{children}</main>
               <Footer />
             </div>

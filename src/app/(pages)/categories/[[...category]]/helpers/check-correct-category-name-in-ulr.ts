@@ -1,4 +1,4 @@
-export const CheckCorrectCategoryNameInUlr = ({
+export const checkCorrectCategoryNameInUlr = ({
   paramsData,
   allCategories,
 }: {

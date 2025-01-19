@@ -12,6 +12,21 @@ type IProduct = {
   createdAt: Date
 }
 
+type ISearch = {
+  id: string
+  name: string
+}
+
+type ISearchData = {
+  categories: ISearch[]
+  subcategories: {
+    categoryName: string
+    id: string
+    name: string
+  }[]
+  products: ISearch[]
+}
+
 type IProductBase = Omit<IProduct, 'createdAt'>
 type IProductCreate = {
   properties: {

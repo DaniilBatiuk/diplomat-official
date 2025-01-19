@@ -1,9 +1,11 @@
 import clsx from 'clsx'
+import { useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
+import { LINKS } from '@/utils/config/links'
 
-import { HeaderList } from '../header-list/header-list'
+import { SearchList } from '../header-search/components/search-list/search-list'
 
 import styles from './search-mobile.module.scss'
 import { DarkBackground } from '@/components'
@@ -14,6 +16,8 @@ interface SearchMobileProp {
   searchMobileActive: boolean
   searchMobileClose: () => void
   inputRefMobile: React.RefObject<HTMLInputElement | null>
+  searchDataView: ISearchData
+  setSearchActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 export const SearchMobile: React.FC<SearchMobileProp> = ({
   searchMobileActive,
@@ -21,18 +25,27 @@ export const SearchMobile: React.FC<SearchMobileProp> = ({
   searchValue,
   setSearchValue,
   inputRefMobile,
+  searchDataView,
+  setSearchActive,
 }: SearchMobileProp) => {
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const router = useRouter()
+
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    router.push(LINKS.Categories + `?Search=${searchValue}`)
+    setSearchActive(false)
+    if (inputRefMobile.current) inputRefMobile.current.blur()
   }
 
   return (
     <>
       <DarkBackground backgroundActive={searchMobileActive} onClick={searchMobileClose} />
-      <div className={clsx(styles.search_mobile, { [styles.active]: searchMobileActive })}>
-        <form
+      <form
+        onSubmit={onSubmit}
+        className={clsx(styles.search_mobile, { [styles.active]: searchMobileActive })}
+      >
+        <div
           className={styles.search_mobile_form}
-          onSubmit={submitHandler}
           onClick={() => inputRefMobile.current && inputRefMobile.current.focus()}
         >
           <div>
@@ -49,15 +62,20 @@ export const SearchMobile: React.FC<SearchMobileProp> = ({
             className: clsx(styles.close_icon, { [styles.active]: searchValue.length }),
             onClick: () => setSearchValue(''),
           })}
-        </form>
-        {inputRefMobile.current &&
-          inputRefMobile.current === document.activeElement &&
-          searchValue.length > 0 && (
-            <HeaderList
-            // setSearchValue={setSearchValue} searchClose={searchMobileClose}
+        </div>
+        {searchValue.length > 0 &&
+          (searchDataView.categories.length > 0 ||
+            searchDataView.products.length > 0 ||
+            searchDataView.subcategories.length > 0) && (
+            <SearchList
+              searchActive={searchMobileActive}
+              searchDataView={searchDataView}
+              inputRef={inputRefMobile}
+              searchValue={searchValue}
+              setSearchActive={setSearchActive}
             />
           )}
-      </div>
+      </form>
     </>
   )
 }

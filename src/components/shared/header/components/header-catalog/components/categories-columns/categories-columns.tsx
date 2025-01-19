@@ -24,7 +24,7 @@ export const CategoriesColumns: React.FC<CategoriesColumnsProps> = ({
           {selectedCategory.subcategories.map(subcategory => (
             <div className={styles.body__column_list_item} key={subcategory.id}>
               <Link
-                href={LINKS.Categories + '/' + subcategory.name}
+                href={LINKS.Categories + '/' + selectedCategory.name + '/' + subcategory.name}
                 prefetch
                 onClick={() => setCatalogActive(false)}
               >

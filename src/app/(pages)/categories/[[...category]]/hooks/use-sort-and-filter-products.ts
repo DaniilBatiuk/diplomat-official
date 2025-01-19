@@ -1,6 +1,8 @@
 import { useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
 
+import { filterProducts } from '../helpers/filter-products'
+
 export const useSortAndFilterProducts = (products: IProductBaseWithProperties[]) => {
   const searchParams = useSearchParams()
 
@@ -22,28 +24,30 @@ export const useSortAndFilterProducts = (products: IProductBaseWithProperties[])
       return products
     }
 
+    if (searchParamsObj.Search) {
+      const filteredProductsBySearch = products.filter(product =>
+        product.name.toLocaleLowerCase().includes(searchParamsObj.Search[0].toLocaleLowerCase()),
+      )
+
+      return filterProducts({
+        products: filteredProductsBySearch,
+        searchParamsObj,
+      })
+    }
+
     const filteredProducts = products.filter(product => {
       return Object.entries(searchParamsObj).every(([key, values]) => {
         if (key === 'SortBy') return true
+        if (key === 'Search') return true
         return values.some(val =>
           product.properties.some(prop => prop.name === key && prop.value === val),
         )
       })
     })
 
-    return filteredProducts.toSorted((a, b) => {
-      if (searchParamsObj.SortBy?.includes('Дешеві')) return a.price - b.price
-      if (searchParamsObj.SortBy?.includes('Дорогі')) return b.price - a.price
-      if (searchParamsObj.SortBy?.includes('Знижки')) {
-        const aDiscount = a.discountPercent ?? 0
-        const bDiscount = b.discountPercent ?? 0
-
-        if (aDiscount === 0 && bDiscount > 0) return 1
-        if (aDiscount > 0 && bDiscount === 0) return -1
-
-        return bDiscount - aDiscount
-      }
-      return 0
+    return filterProducts({
+      products: filteredProducts,
+      searchParamsObj,
     })
   }, [products, searchParamsObj, isSearchParamsEmpty])
 

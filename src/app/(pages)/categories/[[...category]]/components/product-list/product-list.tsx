@@ -1,6 +1,6 @@
 'use client'
 
-import { useSortAndFilterProducts } from '../../helpers/sort-and-filter-products'
+import { useSortAndFilterProducts } from '../../hooks/use-sort-and-filter-products'
 
 import styles from './../../categories.module.scss'
 import { NoData } from './component/no-data'
