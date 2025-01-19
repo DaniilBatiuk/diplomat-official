@@ -12,12 +12,12 @@ import { DarkBackground, MenuSort } from '@/components'
 
 interface HeaderNavProps {
   allCategories: IBaseCategory[]
-  propertiesGroupedByName: PropertiesGroupedByName
+  products: IProductBaseWithProperties[]
 }
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({
   allCategories,
-  propertiesGroupedByName,
+  products,
 }: HeaderNavProps) => {
   const [menuCategoriesActive, setMenuCategoriesActive] = useState(false)
   const [menuFiltersActive, setMenuFiltersActive] = useState(false)
@@ -38,7 +38,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
       <MenuFilters
         menuFiltersActive={menuFiltersActive}
         setMenuFiltersActive={setMenuFiltersActive}
-        propertiesGroupedByName={propertiesGroupedByName}
+        products={products}
       />
       <Suspense>
         <MenuSort menuSortActive={menuSortActive} setMenuSortActive={setMenuSortActive} />

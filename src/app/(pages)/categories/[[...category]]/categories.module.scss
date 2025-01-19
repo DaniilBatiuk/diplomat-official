@@ -67,6 +67,7 @@
 .aside {
   flex: 0 1 327px;
   min-width: 230px;
+
   @media (max-width: 840px) {
     display: none;
   }
@@ -143,7 +144,6 @@
 }
 
 .list {
-  width: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
@@ -244,13 +244,17 @@
 
 .skeleton {
   &__property_item {
-    height: 30px;
+    height: 30px !important;
     border-radius: 3px;
+
+    &_h2 {
+      height: 30px !important;
+    }
   }
 
   &__filter {
     width: 100px;
-    height: 32px;
+    height: 32px !important;
     border-radius: 3px;
   }
 }

@@ -11,13 +11,13 @@ import { DarkBackground } from '@/components'
 interface MenuFiltersProp {
   setMenuFiltersActive: Dispatch<SetStateAction<boolean>>
   menuFiltersActive: boolean
-  propertiesGroupedByName: PropertiesGroupedByName
+  products: IProductBaseWithProperties[]
 }
 
 export const MenuFilters: React.FC<MenuFiltersProp> = ({
   setMenuFiltersActive,
   menuFiltersActive,
-  propertiesGroupedByName,
+  products,
 }: MenuFiltersProp) => {
   return (
     <>
@@ -31,7 +31,7 @@ export const MenuFilters: React.FC<MenuFiltersProp> = ({
         })}
       >
         {ICONS.arrowLeft({ onClick: () => setMenuFiltersActive(false) })}
-        <AsidePropertiesList propertiesGroupedByName={propertiesGroupedByName} />
+        <AsidePropertiesList products={products} />
       </div>
     </>
   )

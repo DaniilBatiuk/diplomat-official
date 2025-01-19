@@ -1,31 +1,34 @@
-import { Skeleton } from '@mui/material'
-import { Suspense } from 'react'
+'use client'
+
+import { useFilters } from '../../hooks/use-filters'
+import { useQueryFilters } from '../../hooks/use-query-filters'
 
 import styles from './../../categories.module.scss'
 import { CheckBoxCategories } from './components/check-box/check-box'
 
 interface AsidePropertiesListProps {
-  propertiesGroupedByName: PropertiesGroupedByName
+  products: IProductBaseWithProperties[]
 }
 
 export const AsidePropertiesList: React.FC<AsidePropertiesListProps> = ({
-  propertiesGroupedByName,
+  products,
 }: AsidePropertiesListProps) => {
+  const { initialProperties, propertyStates, setPropertyStates } = useFilters(products)
+  useQueryFilters(propertyStates)
   return (
     <>
-      {Object.entries(propertiesGroupedByName).map(([key, value]) => (
-        <div className={styles.aside__filter} key={key}>
-          <h2>{key}</h2>
+      {Object.keys(propertyStates).map(propertyName => (
+        <div className={styles.aside__filter} key={propertyName}>
+          <h2>{propertyName}</h2>
           <ul>
-            {value.map(property => (
-              <li key={property.value}>
-                <Suspense
-                  fallback={
-                    <Skeleton variant='rectangular' className={styles.skeleton__property_item} />
-                  }
-                >
-                  <CheckBoxCategories value={property.value} propertyName={key} />
-                </Suspense>
+            {initialProperties[propertyName].split(', ').map(value => (
+              <li key={value}>
+                <CheckBoxCategories
+                  value={value}
+                  setPropertyStates={setPropertyStates}
+                  propertyName={propertyName}
+                  propertyStates={propertyStates}
+                />
               </li>
             ))}
           </ul>

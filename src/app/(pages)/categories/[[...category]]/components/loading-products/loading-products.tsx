@@ -5,12 +5,9 @@ export const LoadingProducts: React.FC = () => {
   return (
     <section className={styles.list__section}>
       <div className={styles.list}>
-        <CardSkeleton />
-        <CardSkeleton />
-        <CardSkeleton />
-        <CardSkeleton />
-        <CardSkeleton />
-        <CardSkeleton />
+        {Array.from({ length: 6 }).map((_, index) => (
+          <CardSkeleton key={index} />
+        ))}
       </div>
     </section>
   )

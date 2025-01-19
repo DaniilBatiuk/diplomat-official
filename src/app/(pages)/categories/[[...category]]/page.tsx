@@ -7,9 +7,9 @@ import { CategoriesHeader } from './components/categories-header/categories-head
 import { CategoriesList } from './components/categories-list/categories-list'
 import { HeaderNav } from './components/header-nav/header-nav'
 import { LoadingProducts } from './components/loading-products/loading-products'
+import { LoadingProperties } from './components/loading-properties/loading-properties'
 import { ProductList } from './components/product-list/product-list'
 import { CheckCorrectCategoryNameInUlr } from './helpers/check-correct-category-name-in-ulr'
-import { GroupByProperties } from './helpers/group-by-properties'
 import { prisma } from '@/utils/lib/db'
 import {
   getActiveProducts,
@@ -64,19 +64,18 @@ export default async function Categories({ params }: { params: Params }) {
       ? await getActiveProductsByCategory(paramsData.category)
       : await getActiveProducts()
 
-  const propertiesGroupedByName = GroupByProperties(products)
-
   return (
     <div className={styles.categories}>
-      <HeaderNav allCategories={allCategories} propertiesGroupedByName={propertiesGroupedByName} />
+      <HeaderNav allCategories={allCategories} products={products} />
       <div className={styles.categories__container}>
         <CategoriesHeader paramsData={paramsData} />
         <div className={styles.categories__content}>
           <aside className={styles.aside}>
             <CategoriesList paramsData={paramsData} allCategories={allCategories} />
-            <AsidePropertiesList propertiesGroupedByName={propertiesGroupedByName} />
+            <Suspense fallback={<LoadingProperties />}>
+              <AsidePropertiesList products={products} />
+            </Suspense>
           </aside>
-
           <Suspense fallback={<LoadingProducts />}>
             <ProductList products={products} />
           </Suspense>
