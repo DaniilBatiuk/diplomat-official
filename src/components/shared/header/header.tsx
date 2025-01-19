@@ -22,6 +22,7 @@ import { SearchMobile } from './components/search-mobile/search-mobile'
 import styles from './header.module.scss'
 import Logo from '@/../public/logo.png'
 import { Link } from '@/components'
+import { useHeaderSearchStore } from '@/utils/lib/store/header-search-store'
 
 interface HeaderProps {
   allCategories: IBaseCategory[]
@@ -33,18 +34,22 @@ export const Header: React.FC<HeaderProps> = ({ allCategories, searchData }: Hea
   const [signInActive, setSignInActive] = useState(false)
   const [basketActive, setBasketActive] = useState(false)
   const [catalogActive, setCatalogActive] = useState(false)
-  const [searchMobileActive, setSearchMobileActive] = useState(false)
-  const [searchActive, setSearchActive] = useState(false)
+
   const inputRefMobile = useRef<null | HTMLInputElement>(null)
   const inputRefSearch = useRef<null | HTMLInputElement>(null)
-  const [searchValue, setSearchValue] = useState('')
+
   const pathname = usePathname()
 
-  useEffect(() => {
-    if (pathname !== '/categories') {
-      setSearchValue('')
-    }
-  }, [pathname])
+  const {
+    searchValue,
+    setSearchValue,
+    searchActive,
+    setSearchActive,
+    searchMobileActive,
+    setSearchMobileActive,
+    setSearchDataView,
+    searchDataView,
+  } = useHeaderSearchStore()
 
   const handleHeaderClosePopUp = () => {
     if (catalogActive) {
@@ -59,19 +64,25 @@ export const Header: React.FC<HeaderProps> = ({ allCategories, searchData }: Hea
     }
   }
 
-  const searchDataView: ISearchData = {
-    categories: searchData.categories.filter(category =>
-      category.name.toLowerCase().startsWith(searchValue.toLowerCase()),
-    ),
-    subcategories: searchData.subcategories.filter(subcategory =>
-      subcategory.name.toLowerCase().startsWith(searchValue.toLowerCase()),
-    ),
-    products: searchData.products.filter(product =>
-      product.name.toLowerCase().startsWith(searchValue.toLowerCase()),
-    ),
-  }
+  useEffect(() => {
+    if (pathname !== '/categories') {
+      setSearchValue('')
+    }
+  }, [pathname])
 
-  console.log('rerender header')
+  useEffect(() => {
+    setSearchDataView({
+      categories: searchData.categories.filter(category =>
+        category.name.toLowerCase().startsWith(searchValue.toLowerCase()),
+      ),
+      subcategories: searchData.subcategories.filter(subcategory =>
+        subcategory.name.toLowerCase().startsWith(searchValue.toLowerCase()),
+      ),
+      products: searchData.products.filter(product =>
+        product.name.toLowerCase().startsWith(searchValue.toLowerCase()),
+      ),
+    })
+  }, [searchValue, searchData])
 
   return (
     <>
@@ -94,19 +105,11 @@ export const Header: React.FC<HeaderProps> = ({ allCategories, searchData }: Hea
       />
       <HeaderMenu
         menuActive={menuActive}
-        menuOpen={() => setMenuActive(false)}
+        setMenuActive={setMenuActive}
         allCategories={allCategories}
       />
       <Basket basketActive={basketActive} setBasketActive={setBasketActive} />
-      <SearchMobile
-        searchDataView={searchDataView}
-        setSearchActive={setSearchMobileActive}
-        searchMobileActive={searchMobileActive}
-        searchMobileClose={() => setSearchMobileActive(false)}
-        inputRefMobile={inputRefMobile}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
+      <SearchMobile inputRefMobile={inputRefMobile} />
       {signInActive && <SignIn onClickClose={() => setSignInActive(false)} />}
       <header className={styles.header} onClick={handleHeaderClosePopUp}>
         <div className={styles.header__container}>
@@ -127,14 +130,7 @@ export const Header: React.FC<HeaderProps> = ({ allCategories, searchData }: Hea
                 className: clsx(styles.header_arrow, { [styles.header_arrow_down]: catalogActive }),
               })}
             </HeaderButton>
-            <HeaderSearch
-              inputRef={inputRefSearch}
-              searchValue={searchValue}
-              setSearchValue={setSearchValue}
-              setSearchActive={setSearchActive}
-              searchActive={searchActive}
-              searchDataView={searchDataView}
-            />
+            <HeaderSearch inputRef={inputRefSearch} />
           </div>
           <nav>
             <ul>

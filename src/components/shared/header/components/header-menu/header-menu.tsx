@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 import { DarkBackground } from '@/components/shared/dark-background/dark-background'
 
@@ -12,18 +12,19 @@ import { Link } from '@/components'
 
 interface HeaderMenuProp {
   menuActive: boolean
-  menuOpen: () => void
+
   allCategories: IBaseCategory[]
+  setMenuActive: Dispatch<SetStateAction<boolean>>
 }
 export const HeaderMenu: React.FC<HeaderMenuProp> = ({
   menuActive,
-  menuOpen,
+  setMenuActive,
   allCategories,
 }: HeaderMenuProp) => {
   const [menuCategoriesActive, setMenuCategoriesActive] = useState(false)
 
   const closeMenu = () => {
-    menuOpen()
+    setMenuActive(false)
     setMenuCategoriesActive(false)
   }
   return (
@@ -40,7 +41,7 @@ export const HeaderMenu: React.FC<HeaderMenuProp> = ({
           [styles.active]: menuActive,
         })}
       >
-        {ICONS.close({ onClick: () => menuOpen() })}
+        {ICONS.close({ onClick: () => setMenuActive(false) })}
         <nav className={styles.menu}>
           <ul>
             <li onClick={() => setMenuCategoriesActive(true)} className={styles.menu_underline}>

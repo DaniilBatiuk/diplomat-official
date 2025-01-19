@@ -3,24 +3,19 @@ import { LINKS } from '@/utils/config/links'
 import { HeaderList } from '../../../header-list/header-list'
 import { SearchLink } from '../search-link/search-link'
 
+import { useHeaderSearchStore } from '@/utils/lib/store/header-search-store'
+
 interface SearchListProps {
-  searchValue: string
-  setSearchActive: React.Dispatch<React.SetStateAction<boolean>>
   inputRef: React.RefObject<HTMLInputElement | null>
-  searchActive: boolean
-  searchDataView: ISearchData
   absolutePosition?: boolean
 }
 
 export const SearchList: React.FC<SearchListProps> = ({
-  searchActive,
-  searchValue,
-  searchDataView,
-  setSearchActive,
   inputRef,
   absolutePosition,
 }: SearchListProps) => {
-  console.log('rerender HeaderList')
+  const { searchValue, searchActive, searchDataView } = useHeaderSearchStore()
+
   return (
     <HeaderList
       isAbsolute={absolutePosition}
@@ -38,8 +33,6 @@ export const SearchList: React.FC<SearchListProps> = ({
             key={category.id}
             name={category.name}
             link={`${LINKS.Categories}/${category.name}`}
-            searchValue={searchValue}
-            setSearchActive={setSearchActive}
             inputRef={inputRef}
           />
         ))}
@@ -50,8 +43,6 @@ export const SearchList: React.FC<SearchListProps> = ({
             key={subcategory.id}
             name={subcategory.name}
             link={`${LINKS.Categories}/${subcategory.categoryName}/${subcategory.name}`}
-            searchValue={searchValue}
-            setSearchActive={setSearchActive}
             inputRef={inputRef}
           />
         ))}
@@ -62,8 +53,6 @@ export const SearchList: React.FC<SearchListProps> = ({
             key={product.id}
             name={product.name}
             link={`${LINKS.Product}/${product.id}`}
-            searchValue={searchValue}
-            setSearchActive={setSearchActive}
             inputRef={inputRef}
           />
         ))}

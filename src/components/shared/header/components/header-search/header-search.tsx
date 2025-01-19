@@ -2,33 +2,23 @@
 
 import clsx from 'clsx'
 import { useRouter } from 'next/navigation'
-import { Dispatch, SetStateAction } from 'react'
+import { memo } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
 import { SearchList } from './components/search-list/search-list'
 import styles from './header-search.module.scss'
+import { useHeaderSearchStore } from '@/utils/lib/store/header-search-store'
 
 interface SearchProps {
-  searchValue: string
-  setSearchValue: Dispatch<SetStateAction<string>>
   inputRef: React.RefObject<HTMLInputElement | null>
-  setSearchActive: Dispatch<SetStateAction<boolean>>
-  searchActive: boolean
-  searchDataView: ISearchData
 }
 
-export const HeaderSearch: React.FC<SearchProps> = ({
-  inputRef,
-  searchValue,
-  setSearchValue,
-  setSearchActive,
-  searchActive,
-  searchDataView,
-}: SearchProps) => {
+export const HeaderSearch: React.FC<SearchProps> = memo(({ inputRef }: SearchProps) => {
   const router = useRouter()
-  console.log('rerender HeaderSearch')
+  const { searchValue, setSearchValue, setSearchActive } = useHeaderSearchStore()
+
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     router.push(LINKS.Categories + `?Search=${searchValue}`)
@@ -56,14 +46,7 @@ export const HeaderSearch: React.FC<SearchProps> = ({
         })}
       </div>
       <button type='submit'>Знайти</button>
-      <SearchList
-        absolutePosition
-        searchActive={searchActive}
-        searchDataView={searchDataView}
-        inputRef={inputRef}
-        searchValue={searchValue}
-        setSearchActive={setSearchActive}
-      />
+      <SearchList absolutePosition inputRef={inputRef} />
     </form>
   )
-}
+})
