@@ -67,6 +67,7 @@ export default async function Categories({ params }: { params: Params }) {
   return (
     <div className={styles.categories}>
       <HeaderNav allCategories={allCategories} products={products} />
+
       <div className={styles.categories__container}>
         <CategoriesHeader paramsData={paramsData} />
         <div className={styles.categories__content}>

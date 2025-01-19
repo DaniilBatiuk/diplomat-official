@@ -3,10 +3,6 @@ import { useState } from 'react'
 
 import { GroupByProperties } from '../helpers/group-by-properties'
 
-export interface Filters {
-  propertyStates: Record<string, string>
-}
-
 export const useFilters = (products: IProductBaseWithProperties[]) => {
   const searchParams = useSearchParams() as unknown as Map<string, string>
 

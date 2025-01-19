@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, Suspense } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
 
@@ -31,7 +31,9 @@ export const MenuFilters: React.FC<MenuFiltersProp> = ({
         })}
       >
         {ICONS.arrowLeft({ onClick: () => setMenuFiltersActive(false) })}
-        <AsidePropertiesList products={products} />
+        <Suspense>
+          <AsidePropertiesList products={products} />
+        </Suspense>
       </div>
     </>
   )
