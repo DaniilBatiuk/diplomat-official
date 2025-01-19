@@ -70,3 +70,4 @@ export const SearchMobile: React.FC<SearchMobileProps> = memo(
     )
   },
 )
+SearchMobile.displayName = 'SearchMobile'

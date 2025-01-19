@@ -50,3 +50,5 @@ export const HeaderSearch: React.FC<SearchProps> = memo(({ inputRef }: SearchPro
     </form>
   )
 })
+
+HeaderSearch.displayName = 'HeaderSearch'
