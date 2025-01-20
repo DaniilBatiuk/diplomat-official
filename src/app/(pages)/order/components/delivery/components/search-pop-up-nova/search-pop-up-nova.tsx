@@ -6,17 +6,17 @@ import { PopUpDelivery } from '../pop-up-delivery/pop-up-delivery'
 
 import styles from './search-pop-up.module.scss'
 
-interface SearchPopUpProp {
+interface SearchPopUpNovaProp {
   searchValue: string
   setSearchValue: Dispatch<SetStateAction<string>>
   searchActive: boolean
   searchClose: () => void
   inputRef: React.RefObject<HTMLInputElement | null>
   listData: Address[]
-  setSelected: Dispatch<SetStateAction<Address | null>>
+  setSelected: Dispatch<SetStateAction<AddressUrk | Address | undefined>>
 }
 
-export const SearchPopUp: React.FC<SearchPopUpProp> = ({
+export const SearchPopUpNova: React.FC<SearchPopUpNovaProp> = ({
   searchActive,
   searchClose,
   searchValue,
@@ -24,7 +24,7 @@ export const SearchPopUp: React.FC<SearchPopUpProp> = ({
   inputRef,
   listData,
   setSelected,
-}: SearchPopUpProp) => {
+}: SearchPopUpNovaProp) => {
   return (
     <PopUpDelivery
       searchActive={searchActive}

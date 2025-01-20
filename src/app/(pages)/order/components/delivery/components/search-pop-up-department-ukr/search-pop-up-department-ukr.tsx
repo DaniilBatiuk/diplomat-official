@@ -4,7 +4,7 @@ import { HeaderList } from '@/components/shared/header/components/header-list/he
 
 import { PopUpDelivery } from '../pop-up-delivery/pop-up-delivery'
 
-import styles from './../search-pop-up/search-pop-up.module.scss'
+import styles from './../search-pop-up-nova/search-pop-up.module.scss'
 
 interface SearchPopUpDepartmentUrkProp {
   searchValue: string
@@ -13,7 +13,7 @@ interface SearchPopUpDepartmentUrkProp {
   searchClose: () => void
   inputRef: React.RefObject<HTMLInputElement | null>
   listData: DepartmentUkr[]
-  setSelected: Dispatch<SetStateAction<DepartmentUkr | null>>
+  setSelected: Dispatch<string>
 }
 
 export const SearchPopUpDepartmentUkr: React.FC<SearchPopUpDepartmentUrkProp> = ({
@@ -55,7 +55,7 @@ export const SearchPopUpDepartmentUkr: React.FC<SearchPopUpDepartmentUrkProp> = 
                     className={styles.list_item}
                     key={item.warehouse_doc_id}
                     onClick={() => {
-                      setSelected(item)
+                      setSelected(item.name)
                       setSearchValue(item.name)
                       searchClose()
                     }}

@@ -132,7 +132,6 @@ type Role = 'User' | 'Manager' | 'Admin'
 
 type Address = {
   Present: string
-  AddressDeliveryAllowed: boolean
   DeliveryCity: string
 }
 

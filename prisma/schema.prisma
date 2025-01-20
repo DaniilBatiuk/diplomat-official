@@ -172,7 +172,6 @@ enum DeliveryWays {
 }
 
 enum DeliveryVariants {
-  postomat
   department
   courier
 }

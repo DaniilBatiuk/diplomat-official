@@ -4,7 +4,7 @@ import { HeaderList } from '@/components/shared/header/components/header-list/he
 
 import { PopUpDelivery } from '../pop-up-delivery/pop-up-delivery'
 
-import styles from './../search-pop-up/search-pop-up.module.scss'
+import styles from './../search-pop-up-nova/search-pop-up.module.scss'
 
 interface SearchPopUpUrkProp {
   searchValue: string
@@ -13,7 +13,7 @@ interface SearchPopUpUrkProp {
   searchClose: () => void
   inputRef: React.RefObject<HTMLInputElement | null>
   listData: AddressUrk[]
-  setSelected: Dispatch<SetStateAction<AddressUrk | null>>
+  setSelected: Dispatch<SetStateAction<AddressUrk | Address | undefined>>
 }
 
 export const SearchPopUpUrk: React.FC<SearchPopUpUrkProp> = ({

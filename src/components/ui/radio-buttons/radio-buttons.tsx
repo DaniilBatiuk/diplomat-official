@@ -1,29 +1,24 @@
 'use client'
 
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
-import { Dispatch, SetStateAction } from 'react'
 
 interface RadioButtonsProp<T> {
   values: T[]
   className?: string
   value: T
-  setValue: Dispatch<SetStateAction<T>>
   idName?: string
   labels: string[]
+  handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const RadioButtons = <T,>({
   values,
   className,
   value,
-  setValue,
   idName,
   labels,
+  handleChange,
 }: RadioButtonsProp<T>) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value as T)
-  }
-
   return (
     <RadioGroup
       value={value}

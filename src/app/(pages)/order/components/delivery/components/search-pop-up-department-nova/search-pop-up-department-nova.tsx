@@ -4,19 +4,19 @@ import { HeaderList } from '@/components/shared/header/components/header-list/he
 
 import { PopUpDelivery } from '../pop-up-delivery/pop-up-delivery'
 
-import styles from './../search-pop-up/search-pop-up.module.scss'
+import styles from './../search-pop-up-nova/search-pop-up.module.scss'
 
-interface SearchPopUpDepartmentProp {
+interface SearchPopUpDepartmentNovaProp {
   searchValue: string
   setSearchValue: Dispatch<SetStateAction<string>>
   searchActive: boolean
   searchClose: () => void
   inputRef: React.RefObject<HTMLInputElement | null>
   listData: Department[]
-  setSelected: Dispatch<SetStateAction<Department | null>>
+  setSelected: Dispatch<string>
 }
 
-export const SearchPopUpDepartment: React.FC<SearchPopUpDepartmentProp> = ({
+export const SearchPopUpDepartmentNova: React.FC<SearchPopUpDepartmentNovaProp> = ({
   searchActive,
   searchClose,
   searchValue,
@@ -24,7 +24,7 @@ export const SearchPopUpDepartment: React.FC<SearchPopUpDepartmentProp> = ({
   inputRef,
   listData,
   setSelected,
-}: SearchPopUpDepartmentProp) => {
+}: SearchPopUpDepartmentNovaProp) => {
   return (
     <PopUpDelivery
       searchActive={searchActive}
@@ -55,7 +55,7 @@ export const SearchPopUpDepartment: React.FC<SearchPopUpDepartmentProp> = ({
                     className={styles.list_item}
                     key={item.Description}
                     onClick={() => {
-                      setSelected(item)
+                      setSelected(item.Description)
                       setSearchValue(item.Description)
                       searchClose()
                     }}

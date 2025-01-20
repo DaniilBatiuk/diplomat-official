@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
 
-import styles from './../search-pop-up/search-pop-up.module.scss'
+import styles from './../search-pop-up-nova/search-pop-up.module.scss'
 import { DarkBackground } from '@/components'
 
 type PopUpDelivery = {

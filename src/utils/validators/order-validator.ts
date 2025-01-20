@@ -15,10 +15,18 @@ export const orderScheme = z.object({
   email: z.string().email('Некоректний e-mail').nonempty("Поле e-mail є обов'язковим"),
   phone: z.string().length(18, 'Некоректний телефон').nonempty("Поле телефон є обов'язковим"),
   city: z.string().nonempty("Поле місто є обов'язковим"),
-  department: z.string().nonempty("Поле відділення є обов'язковим"),
+  department: z
+    .string({
+      required_error: "Поле відділення є обов'язковим",
+    })
+    .nonempty("Поле відділення є обов'язковим"),
   deliveryWay: z.union([
     z.literal($Enums.DeliveryWays.novaPoshta),
     z.literal($Enums.DeliveryWays.ukrPoshta),
+  ]),
+  deliveryVariants: z.union([
+    z.literal($Enums.DeliveryVariants.department),
+    z.literal($Enums.DeliveryVariants.courier),
   ]),
   paymentWay: z.union([
     z.literal($Enums.PaymentWays.cashless),

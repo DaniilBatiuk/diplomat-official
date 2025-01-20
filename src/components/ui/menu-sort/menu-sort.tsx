@@ -1,5 +1,6 @@
 'use client'
 
+import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import clsx from 'clsx'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
@@ -8,7 +9,7 @@ import { ICONS } from '@/utils/config/icons'
 import { SORT_VARIANTS } from '@/utils/config/sort-variants'
 
 import styles from './menu-sort.module.scss'
-import { DarkBackground, RadioButtons } from '@/components'
+import { DarkBackground } from '@/components'
 
 interface MenuSortProp {
   setMenuSortActive: Dispatch<SetStateAction<boolean>>
@@ -48,7 +49,11 @@ export const MenuSort: React.FC<MenuSortProp> = ({
           <h3>Сортування</h3>
           {ICONS.close({ onClick: () => setMenuSortActive(false) })}
         </div>
-        <RadioButtons value={sortBy} setValue={setSortBy} values={SORT_VARIANTS} />
+        <RadioGroup value={sortBy} onChange={e => setSortBy(e.target.value)}>
+          {SORT_VARIANTS.map(value => (
+            <FormControlLabel key={value} value={value} control={<Radio />} label={value} />
+          ))}
+        </RadioGroup>
       </div>
     </>
   )

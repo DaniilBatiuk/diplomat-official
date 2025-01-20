@@ -1,11 +1,10 @@
 'use client'
 
-import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { $Enums } from '@prisma/client'
 import { useState } from 'react'
 
 import styles from './../../order.module.scss'
-import { FormBlock } from '@/components'
+import { FormBlock, RadioButtons } from '@/components'
 
 const PAYMENT_WAYS: string[] = [
   'Оплата при отриманні товару',
@@ -23,16 +22,13 @@ export const Payment: React.FC = () => {
   return (
     <FormBlock title='4. Спосіб оплати'>
       <div className={styles.order__delivery}>
-        <RadioGroup value={paymentWay} onChange={handleChange} id='paymentWay' name='paymentWay'>
-          {Object.values($Enums.PaymentWays).map((value, index) => (
-            <FormControlLabel
-              key={String(value)}
-              value={value}
-              control={<Radio />}
-              label={PAYMENT_WAYS[index]}
-            />
-          ))}
-        </RadioGroup>
+        <RadioButtons
+          labels={PAYMENT_WAYS}
+          values={Object.values($Enums.PaymentWays)}
+          value={paymentWay}
+          handleChange={handleChange}
+          idName='paymentWay'
+        />
       </div>
     </FormBlock>
   )

@@ -1,20 +1,19 @@
 'use client'
 
+import Ukr from '@../../public/Ukr.png'
+import Nova from '@../../public/nova.png'
 import { RadioGroup } from '@mui/material'
 import { $Enums } from '@prisma/client'
 import { useState } from 'react'
 
 import styles from './../../order.module.scss'
-import { NovaPoshta } from './components/nova-poshta/nova-poshta'
+import { DeliveryWay } from './components/delivery-way/delivery-way'
+import { SearchPopUpDepartmentNova } from './components/search-pop-up-department-nova/search-pop-up-department-nova'
 import { SearchPopUpDepartmentUkr } from './components/search-pop-up-department-ukr/search-pop-up-department-ukr'
-import { SearchPopUpDepartment } from './components/search-pop-up-department/search-pop-up-department'
 import { SearchPopUpUrk } from './components/search-pop-up-ukr/search-pop-up-ukr'
-import { UkrPoshta } from './components/ukr-poshta/urk-poshta'
-import { useCityNova } from './hooks/use-city-nova'
-import { useCityUkr } from './hooks/use-city-ukr'
-import { useDepartmentNova } from './hooks/use-department-nova'
-import { useDepartmentUkr } from './hooks/use-department-ukr'
-import { FormBlock, SearchPopUp } from '@/components'
+import { useCity } from './hooks/use-city'
+import { useDepartment } from './hooks/use-department'
+import { FormBlock, SearchPopUpNova } from '@/components'
 import { ActionState } from '@/utils/lib/middleware'
 
 interface DeliveryProps {
@@ -30,9 +29,17 @@ export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: Delivery
     setDeliveryWay((event.target as HTMLInputElement).value as $Enums.DeliveryWays)
   }
 
-  // city
+  const [deliveryVariants, setDeliveryVariants] = useState<$Enums.DeliveryVariants>(
+    $Enums.DeliveryVariants.department,
+  )
+
+  const handleChangeDeliveryVariants = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDeliveryVariants(event.target.value as $Enums.DeliveryVariants)
+  }
+
   const {
-    citiesList,
+    citiesListNova,
+    citiesListUkr,
     searchCityActive,
     setSearchCityActive,
     inputRefCity,
@@ -40,22 +47,11 @@ export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: Delivery
     setSearchCityValue,
     setSelectedCity,
     selectedCity,
-  } = useCityNova()
+  } = useCity(deliveryWay)
 
   const {
-    citiesListUkr,
-    searchCityActiveUkr,
-    setSearchCityActiveUkr,
-    inputRefCityUkr,
-    searchCityValueUkr,
-    setSearchCityValueUkr,
-    setSelectedCityUkr,
-    selectedCityUkr,
-  } = useCityUkr()
-
-  // department
-  const {
-    departmentsList,
+    departmentsListUkr,
+    departmentsListNova,
     searchDepartmentActive,
     setSearchDepartmentActive,
     inputRefDepartment,
@@ -63,41 +59,30 @@ export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: Delivery
     setSearchDepartmentValue,
     setSelectedDepartment,
     selectedDepartment,
-  } = useDepartmentNova({ selectedCity })
-
-  const {
-    departmentsListUkr,
-    searchDepartmentActiveUkr,
-    setSearchDepartmentActiveUkr,
-    inputRefDepartmentUkr,
-    searchDepartmentValueUkr,
-    setSearchDepartmentValueUkr,
-    setSelectedDepartmentUkr,
-    selectedDepartmentUkr,
-  } = useDepartmentUkr({ selectedCityUkr })
+  } = useDepartment({ selectedCity, deliveryWay })
 
   return (
     <>
       <SearchPopUpUrk
         listData={citiesListUkr}
-        setSelected={setSelectedCityUkr}
-        searchActive={searchCityActiveUkr}
-        searchClose={() => setSearchCityActiveUkr(false)}
-        inputRef={inputRefCityUkr}
-        searchValue={searchCityValueUkr}
-        setSearchValue={setSearchCityValueUkr}
+        setSelected={setSelectedCity}
+        searchActive={searchCityActive}
+        searchClose={() => setSearchCityActive(false)}
+        inputRef={inputRefCity}
+        searchValue={searchCityValue}
+        setSearchValue={setSearchCityValue}
+      />
+      <SearchPopUpNova
+        listData={citiesListNova}
+        setSelected={setSelectedCity}
+        searchActive={searchCityActive}
+        searchClose={() => setSearchCityActive(false)}
+        inputRef={inputRefCity}
+        searchValue={searchCityValue}
+        setSearchValue={setSearchCityValue}
       />
       <SearchPopUpDepartmentUkr
         listData={departmentsListUkr}
-        setSelected={setSelectedDepartmentUkr}
-        searchActive={searchDepartmentActiveUkr}
-        searchClose={() => setSearchDepartmentActiveUkr(false)}
-        inputRef={inputRefDepartmentUkr}
-        searchValue={searchDepartmentValueUkr}
-        setSearchValue={setSearchDepartmentValueUkr}
-      />
-      <SearchPopUpDepartment
-        listData={departmentsList}
         setSelected={setSelectedDepartment}
         searchActive={searchDepartmentActive}
         searchClose={() => setSearchDepartmentActive(false)}
@@ -105,14 +90,14 @@ export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: Delivery
         searchValue={searchDepartmentValue}
         setSearchValue={setSearchDepartmentValue}
       />
-      <SearchPopUp
-        listData={citiesList}
-        setSelected={setSelectedCity}
-        searchActive={searchCityActive}
-        searchClose={() => setSearchCityActive(false)}
-        inputRef={inputRefCity}
-        searchValue={searchCityValue}
-        setSearchValue={setSearchCityValue}
+      <SearchPopUpDepartmentNova
+        listData={departmentsListNova}
+        setSelected={setSelectedDepartment}
+        searchActive={searchDepartmentActive}
+        searchClose={() => setSearchDepartmentActive(false)}
+        inputRef={inputRefDepartment}
+        searchValue={searchDepartmentValue}
+        setSearchValue={setSearchDepartmentValue}
       />
       <FormBlock title='3. Спосіб доставки'>
         <div className={styles.order__delivery}>
@@ -122,23 +107,37 @@ export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: Delivery
             id='deliveryWay'
             name='deliveryWay'
           >
-            <NovaPoshta
+            <DeliveryWay
               value={deliveryWay}
-              inputRefCity={inputRefCity}
               setSearchCityActive={setSearchCityActive}
+              inputRefCity={inputRefCity}
               setSearchDepartmentActive={setSearchDepartmentActive}
               inputRefDepartment={inputRefDepartment}
-              searchCityValue={selectedCity ? selectedCity.Present : ''}
-              selectedDepartment={selectedDepartment ? selectedDepartment.Description : ''}
+              searchCityValue={searchCityValue}
+              deliveryVariants={deliveryVariants}
+              handleChangeDeliveryVariants={handleChangeDeliveryVariants}
+              selectedDepartment={selectedDepartment}
+              deliveryType={$Enums.DeliveryWays.novaPoshta}
+              deliveryName='Нова Пошта - від 60 ₴'
+              deliveryImage={Nova}
+              createOrderState={createOrderState}
+              selectedCity={selectedCity}
             />
-            <UkrPoshta
-              searchCityValue={selectedCityUkr ? selectedCityUkr.city_name : ''}
+            <DeliveryWay
               value={deliveryWay}
-              inputRefCity={inputRefCityUkr}
-              setSearchCityActive={setSearchCityActiveUkr}
-              setSearchDepartmentActive={setSearchDepartmentActiveUkr}
-              inputRefDepartment={inputRefDepartmentUkr}
-              selectedDepartment={selectedDepartmentUkr ? selectedDepartmentUkr.name : ''}
+              setSearchCityActive={setSearchCityActive}
+              inputRefCity={inputRefCity}
+              setSearchDepartmentActive={setSearchDepartmentActive}
+              inputRefDepartment={inputRefDepartment}
+              searchCityValue={searchCityValue}
+              deliveryVariants={deliveryVariants}
+              handleChangeDeliveryVariants={handleChangeDeliveryVariants}
+              selectedDepartment={selectedDepartment}
+              deliveryType={$Enums.DeliveryWays.ukrPoshta}
+              deliveryName='Укрпошта - від 45 ₴'
+              deliveryImage={Ukr}
+              createOrderState={createOrderState}
+              selectedCity={selectedCity}
             />
           </RadioGroup>
         </div>
