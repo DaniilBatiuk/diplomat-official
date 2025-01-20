@@ -13,8 +13,8 @@ export const convertData = (
     description:
       product.description.trim().charAt(0).toUpperCase() + product.description.trim().slice(1),
     imageUrls: photos.map(photo => photo.url),
-    count: +product.count,
-    price: +product.price,
+    count: product.count,
+    price: product.price,
     subcategoryId: selectSubcategoryId,
     discountPercent: product.discountPercent ? +product.discountPercent : null,
     properties: product.properties

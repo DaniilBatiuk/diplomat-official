@@ -22,7 +22,6 @@ export const CustomField: React.FC<CustomFieldProps> = ({
 }: CustomFieldProps) => {
   return (
     <TextField
-      {...rest}
       id={idName}
       name={idName}
       aria-label={idName}
@@ -34,6 +33,7 @@ export const CustomField: React.FC<CustomFieldProps> = ({
           readOnly: readOnly,
         },
       }}
+      {...rest}
       sx={
         isWhite
           ? {

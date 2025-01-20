@@ -1,30 +1,41 @@
 'use client'
 
-import { TextField } from '@mui/material'
+import { TextField, TextFieldProps } from '@mui/material'
 import { useMask } from '@react-input/mask'
-import { useState } from 'react'
 
-export const TelInput: React.FC = () => {
-  const [value, setValue] = useState('')
+interface TelInputProps extends Omit<TextFieldProps, 'inputRef'> {
+  fullWidth?: boolean
+  idName?: string
+  readOnly?: boolean
+}
 
+export const TelInput: React.FC<TelInputProps> = ({
+  className,
+  fullWidth,
+  idName,
+  readOnly,
+  ...rest
+}: TelInputProps) => {
   const inputRef = useMask({
     mask: '__ (___) ___-__-__',
     replacement: { _: /\d/ },
   })
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
-  }
-
   return (
     <TextField
       inputRef={inputRef}
+      id={idName}
+      name={idName}
+      aria-label={idName}
       type='tel'
-      label='Введіть номер телефону'
       variant='outlined'
-      fullWidth
-      value={value}
-      onChange={handleChange}
+      fullWidth={fullWidth}
+      slotProps={{
+        input: {
+          readOnly: readOnly,
+        },
+      }}
+      {...rest}
     />
   )
 }

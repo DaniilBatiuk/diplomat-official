@@ -37,17 +37,15 @@ export const CreateForm: React.FC<CreateFormProps> = ({
     defaultValues: productDataUpdate
       ? {
           ...productDataUpdate,
-          price: productDataUpdate.price.toString(),
-          count: productDataUpdate.count.toString(),
           discountPercent: productDataUpdate.discountPercent
-            ? productDataUpdate.discountPercent.toString()
+            ? productDataUpdate.discountPercent
             : undefined,
         }
       : {
           name: '',
           description: '',
-          price: '0',
-          count: '1',
+          price: 100,
+          count: 1,
           properties: [],
           discountPercent: undefined,
         },
