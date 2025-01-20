@@ -4,16 +4,16 @@ import Ukr from '@../../public/Ukr.png'
 import Nova from '@../../public/nova.png'
 import { RadioGroup } from '@mui/material'
 import { $Enums } from '@prisma/client'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 import styles from './../../order.module.scss'
 import { DeliveryWay } from './components/delivery-way/delivery-way'
+import { SearchPopUpCity } from './components/search-pop-up-city/search-pop-up-city'
 import { SearchPopUpDepartmentNova } from './components/search-pop-up-department-nova/search-pop-up-department-nova'
 import { SearchPopUpDepartmentUkr } from './components/search-pop-up-department-ukr/search-pop-up-department-ukr'
-import { SearchPopUpUrk } from './components/search-pop-up-ukr/search-pop-up-ukr'
 import { useCity } from './hooks/use-city'
 import { useDepartment } from './hooks/use-department'
-import { FormBlock, SearchPopUpNova } from '@/components'
+import { FormBlock } from '@/components'
 import { ActionState } from '@/utils/lib/middleware'
 
 interface DeliveryProps {
@@ -63,24 +63,27 @@ export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: Delivery
 
   return (
     <>
-      <SearchPopUpUrk
+      <SearchPopUpCity
+        searchValue={searchCityValue}
+        setSearchValue={setSearchCityValue}
+        searchActive={searchCityActive}
+        searchClose={() => setSearchCityActive(false)}
+        inputRef={inputRefCity}
         listData={citiesListUkr}
-        setSelected={setSelectedCity}
+        setSelected={setSelectedCity as Dispatch<SetStateAction<AddressUrk | undefined>>}
+        filterKey='city_name'
+      />
+      <SearchPopUpCity
+        searchValue={searchCityValue}
+        setSearchValue={setSearchCityValue}
         searchActive={searchCityActive}
         searchClose={() => setSearchCityActive(false)}
         inputRef={inputRefCity}
-        searchValue={searchCityValue}
-        setSearchValue={setSearchCityValue}
-      />
-      <SearchPopUpNova
         listData={citiesListNova}
-        setSelected={setSelectedCity}
-        searchActive={searchCityActive}
-        searchClose={() => setSearchCityActive(false)}
-        inputRef={inputRefCity}
-        searchValue={searchCityValue}
-        setSearchValue={setSearchCityValue}
+        setSelected={setSelectedCity as Dispatch<SetStateAction<Address | undefined>>}
+        filterKey='Present'
       />
+
       <SearchPopUpDepartmentUkr
         listData={departmentsListUkr}
         setSelected={setSelectedDepartment}

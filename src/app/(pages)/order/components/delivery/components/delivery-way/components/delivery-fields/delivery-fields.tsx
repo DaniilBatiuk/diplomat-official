@@ -33,7 +33,6 @@ export const DeliveryFields: React.FC<DeliveryFieldsProps> = ({
   createOrderState,
   selectedCity,
 }: DeliveryFieldsProps) => {
-  console.log('selectedCity', selectedCity)
   return (
     <>
       <RadioButtons

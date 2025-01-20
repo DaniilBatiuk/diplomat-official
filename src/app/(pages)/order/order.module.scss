@@ -207,7 +207,7 @@
       overflow: hidden;
 
       &.active {
-        height: 185px;
+        height: 175px;
       }
     }
 
@@ -220,7 +220,7 @@
         display: flex !important;
         justify-content: space-between !important;
         flex-direction: row !important;
-        margin-bottom: 25px;
+        margin-bottom: 15px;
         max-width: 506px;
         & > label {
           width: fit-content;

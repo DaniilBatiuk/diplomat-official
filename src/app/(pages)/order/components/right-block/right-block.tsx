@@ -1,3 +1,5 @@
+import { useFormStatus } from 'react-dom'
+
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../order.module.scss'
@@ -6,6 +8,8 @@ import { CustomButton, FormBlock } from '@/components'
 interface RightBlockProps {}
 
 export const RightBlock: React.FC<RightBlockProps> = ({}: RightBlockProps) => {
+  const { pending } = useFormStatus()
+
   return (
     <FormBlock title='' className={styles.order__right_block}>
       <div className={styles.order__right}>
@@ -19,7 +23,12 @@ export const RightBlock: React.FC<RightBlockProps> = ({}: RightBlockProps) => {
         </div>
       </div>
       <div className={styles.order__right_footer}>
-        <CustomButton className={styles.order__right_footer__button} fullWidth type='submit'>
+        <CustomButton
+          className={styles.order__right_footer__button}
+          fullWidth
+          type='submit'
+          disabled={pending}
+        >
           Оформити замовлення
           {ICONS.arrowRight()}
         </CustomButton>
