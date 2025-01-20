@@ -11,7 +11,6 @@ export async function createProduct(product: IProductCreate) {
   const newProduct = await prisma.product.create({
     data: {
       ...productCreateData,
-      status: $Enums.Status.inactive,
     },
   })
 

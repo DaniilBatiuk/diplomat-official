@@ -1,8 +1,9 @@
 import Nova from '@../../public/nova.png'
 import { FormControlLabel, Radio } from '@mui/material'
+import { $Enums } from '@prisma/client'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import styles from './../../../../order.module.scss'
 import { CustomField, RadioButtons } from '@/components'
@@ -17,7 +18,7 @@ interface NovaPoshtaProps {
   selectedDepartment: string
 }
 
-const DELIVERY_WAYS: string[] = ['У відділення', "Кур'єром", 'У поштомат']
+const DELIVERY_WAYS: string[] = ['У відділення', "Кур'єром"]
 
 export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
   value,
@@ -30,22 +31,11 @@ export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
 }: NovaPoshtaProps) => {
   const [deliveryWay, setDeliveryWay] = useState(DELIVERY_WAYS[0])
 
-  useEffect(() => {
-    if (selectedDepartment && selectedDepartment.includes('Поштомат')) {
-      setDeliveryWay(DELIVERY_WAYS[2])
-    } else if (
-      selectedDepartment &&
-      selectedDepartment.includes('Відділення') &&
-      deliveryWay !== DELIVERY_WAYS[1]
-    ) {
-      setDeliveryWay(DELIVERY_WAYS[0])
-    }
-  }, [selectedDepartment])
   return (
     <>
       <FormControlLabel
         className={styles.order__delivery_margin_bottom}
-        value={'Доставка Новою Поштою - від 60 ₴'}
+        value={$Enums.DeliveryWays.novaPoshta}
         control={<Radio />}
         label={
           <div className={styles.order__delivery_way}>
@@ -64,13 +54,13 @@ export const NovaPoshta: React.FC<NovaPoshtaProps> = ({
       />
       <div
         className={clsx(styles.order__delivery_accordion, {
-          [styles.active]: value === 'Доставка Новою Поштою - від 60 ₴',
+          [styles.active]: value === $Enums.DeliveryWays.novaPoshta,
         })}
       >
         <RadioButtons
+          className={clsx(styles.order__delivery_way_inner, styles.order__delivery_way_inner_2)}
           value={deliveryWay}
           setValue={setDeliveryWay}
-          className={styles.order__delivery_way_inner}
           values={DELIVERY_WAYS}
         />
 

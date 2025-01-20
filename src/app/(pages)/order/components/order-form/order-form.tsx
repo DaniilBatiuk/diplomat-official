@@ -41,9 +41,9 @@ export const OrderForm: React.FC = () => {
       <div className={styles.order__content_left}>
         <OrderBasket />
         <PersonalData createOrderState={createOrderState} />
-        <Delivery />
+        <Delivery createOrderState={createOrderState} />
         <Payment />
-        <Comment />
+        <Comment createOrderState={createOrderState} />
       </div>
       <RightBlock />
     </form>

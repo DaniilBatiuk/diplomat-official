@@ -1,6 +1,7 @@
 'use client'
 
 import { RadioGroup } from '@mui/material'
+import { $Enums } from '@prisma/client'
 import { useState } from 'react'
 
 import styles from './../../order.module.scss'
@@ -14,12 +15,19 @@ import { useCityUkr } from './hooks/use-city-ukr'
 import { useDepartmentNova } from './hooks/use-department-nova'
 import { useDepartmentUkr } from './hooks/use-department-ukr'
 import { FormBlock, SearchPopUp } from '@/components'
+import { ActionState } from '@/utils/lib/middleware'
 
-export const Delivery: React.FC = () => {
-  const [deliveryWay, setDeliveryWay] = useState('')
+interface DeliveryProps {
+  createOrderState: ActionState
+}
+
+export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: DeliveryProps) => {
+  const [deliveryWay, setDeliveryWay] = useState<$Enums.DeliveryWays>(
+    $Enums.DeliveryWays.novaPoshta,
+  )
 
   const handleChangeDeliveryWay = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDeliveryWay((event.target as HTMLInputElement).value)
+    setDeliveryWay((event.target as HTMLInputElement).value as $Enums.DeliveryWays)
   }
 
   // city
@@ -108,7 +116,12 @@ export const Delivery: React.FC = () => {
       />
       <FormBlock title='3. Спосіб доставки'>
         <div className={styles.order__delivery}>
-          <RadioGroup value={deliveryWay} onChange={handleChangeDeliveryWay}>
+          <RadioGroup
+            value={deliveryWay}
+            onChange={handleChangeDeliveryWay}
+            id='deliveryWay'
+            name='deliveryWay'
+          >
             <NovaPoshta
               value={deliveryWay}
               inputRefCity={inputRefCity}

@@ -1,5 +1,6 @@
 import Ukr from '@../../public/Ukr.png'
 import { FormControlLabel, Radio } from '@mui/material'
+import { $Enums } from '@prisma/client'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -31,7 +32,7 @@ export const UkrPoshta: React.FC<UkrPoshtaProps> = ({
   return (
     <>
       <FormControlLabel
-        value={'Доставка Укрпоштою - від 45 ₴'}
+        value={$Enums.DeliveryWays.ukrPoshta}
         control={<Radio />}
         label={
           <div className={styles.order__delivery_way}>
@@ -50,7 +51,7 @@ export const UkrPoshta: React.FC<UkrPoshtaProps> = ({
       />
       <div
         className={clsx(styles.order__delivery_accordion, {
-          [styles.active_2]: value === 'Доставка Укрпоштою - від 45 ₴',
+          [styles.active_2]: value === $Enums.DeliveryWays.ukrPoshta,
         })}
       >
         <RadioButtons
