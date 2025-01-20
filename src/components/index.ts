@@ -1,4 +1,3 @@
-export * from '../app/(pages)/order/components/delivery/components/search-pop-up-nova/search-pop-up-nova'
 export * from './shared/dark-background/dark-background'
 export * from './shared/footer/footer'
 export * from './shared/form-block/form-block'

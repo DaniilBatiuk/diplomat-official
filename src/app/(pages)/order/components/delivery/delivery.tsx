@@ -9,11 +9,10 @@ import { Dispatch, SetStateAction, useState } from 'react'
 import styles from './../../order.module.scss'
 import { DeliveryWay } from './components/delivery-way/delivery-way'
 import { SearchPopUpCity } from './components/search-pop-up-city/search-pop-up-city'
-import { SearchPopUpDepartmentNova } from './components/search-pop-up-department-nova/search-pop-up-department-nova'
-import { SearchPopUpDepartmentUkr } from './components/search-pop-up-department-ukr/search-pop-up-department-ukr'
+import { SearchPopUpDepartment } from './components/search-pop-up-department/search-pop-up-department'
 import { useCity } from './hooks/use-city'
 import { useDepartment } from './hooks/use-department'
-import { FormBlock } from '@/components'
+import { DarkBackground, FormBlock } from '@/components'
 import { ActionState } from '@/utils/lib/middleware'
 
 interface DeliveryProps {
@@ -63,6 +62,16 @@ export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: Delivery
 
   return (
     <>
+      <DarkBackground
+        backgroundActive={searchCityActive || searchDepartmentActive}
+        onClick={() => {
+          if (searchCityActive) {
+            setSearchCityActive(false)
+          } else if (searchDepartmentActive) {
+            setSearchDepartmentActive(false)
+          }
+        }}
+      />
       <SearchPopUpCity
         searchValue={searchCityValue}
         setSearchValue={setSearchCityValue}
@@ -83,8 +92,7 @@ export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: Delivery
         setSelected={setSelectedCity as Dispatch<SetStateAction<Address | undefined>>}
         filterKey='Present'
       />
-
-      <SearchPopUpDepartmentUkr
+      <SearchPopUpDepartment<DepartmentUkr>
         listData={departmentsListUkr}
         setSelected={setSelectedDepartment}
         searchActive={searchDepartmentActive}
@@ -92,8 +100,9 @@ export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: Delivery
         inputRef={inputRefDepartment}
         searchValue={searchDepartmentValue}
         setSearchValue={setSearchDepartmentValue}
+        filterKey='name'
       />
-      <SearchPopUpDepartmentNova
+      <SearchPopUpDepartment<Department>
         listData={departmentsListNova}
         setSelected={setSelectedDepartment}
         searchActive={searchDepartmentActive}
@@ -101,6 +110,7 @@ export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: Delivery
         inputRef={inputRefDepartment}
         searchValue={searchDepartmentValue}
         setSearchValue={setSearchDepartmentValue}
+        filterKey='Description'
       />
       <FormBlock title='3. Спосіб доставки'>
         <div className={styles.order__delivery}>

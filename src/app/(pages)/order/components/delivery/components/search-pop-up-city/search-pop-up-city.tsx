@@ -4,7 +4,7 @@ import { HeaderList } from '@/components/shared/header/components/header-list/he
 
 import { PopUpDelivery } from '../pop-up-delivery/pop-up-delivery'
 
-import styles from './../search-pop-up-nova/search-pop-up.module.scss'
+import styles from './../pop-up-delivery/search-pop-up.module.scss'
 
 interface SearchPopUpCityProps<T> {
   searchValue: string
@@ -16,7 +16,6 @@ interface SearchPopUpCityProps<T> {
   setSelected: Dispatch<SetStateAction<T | undefined>>
   filterKey: keyof T
 }
-
 export const SearchPopUpCity = <T extends Record<string, any>>({
   searchValue,
   setSearchValue,
@@ -30,7 +29,6 @@ export const SearchPopUpCity = <T extends Record<string, any>>({
   return (
     <PopUpDelivery
       searchActive={searchActive}
-      searchClose={searchClose}
       searchValue={searchValue}
       setSearchValue={setSearchValue}
       inputRef={inputRef}
@@ -51,7 +49,6 @@ export const SearchPopUpCity = <T extends Record<string, any>>({
               .map(item => {
                 const regex = new RegExp(`(${searchValue.trim()})`, 'gi')
                 const parts = (item[filterKey] as string).split(regex)
-
                 return (
                   <div
                     className={styles.list_item}
