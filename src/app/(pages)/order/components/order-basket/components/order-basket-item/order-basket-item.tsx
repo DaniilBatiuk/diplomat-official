@@ -4,40 +4,53 @@ import Image from 'next/image'
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../../../order.module.scss'
-import ProductImg from '@/../public/product100x100.jpg'
+import { Counter } from '@/components'
 import { calculateRoundedPrice } from '@/utils/helpers'
+import { useCartItemDelete, useCartItemUpdate } from '@/utils/hooks'
 
 interface OrderBasketItemProp {
-  product: IProductBase
+  cartItem: ICartItemDto
 }
 
 export const OrderBasketItem: React.FC<OrderBasketItemProp> = ({
-  product,
+  cartItem,
 }: OrderBasketItemProp) => {
+  const { mutate: deleteCartItem, isPending: deleteCartItemIsPending } = useCartItemDelete()
+  const { mutate: updateCartItem } = useCartItemUpdate()
+
   return (
     <div className={styles.order__basket_item}>
-      <Image src={ProductImg} width={100} height={100} alt='product' loading={'eager'} />
+      <Image src={cartItem.product.imageUrls[0]} width={100} height={100} alt='product' />
       <div className={styles.order__basket_item_info}>
-        <p className={styles.order__basket_item_title}>{product.name}</p>
+        <p className={styles.order__basket_item_title}>{cartItem.product.name}</p>
         <div className={styles.order__basket_item_counter}>
-          {/* <Counter /> */}
+          <Counter mutation={updateCartItem} id={cartItem.id} quantity={cartItem.quantity} />
           <div className={styles.order__basket_item_prices}>
-            {product.discountPercent && (
+            {cartItem.product.discountPercent && (
               <p className={styles.order__basket_item_sale}>
-                {product.price.toLocaleString('uk-UA')} ₴
+                {(cartItem.product.price * cartItem.quantity).toLocaleString('uk-UA')} ₴
               </p>
             )}
-
             <p
               className={clsx(styles.order__basket_item_price, {
-                [styles.order__basket_item_price_discount]: product.discountPercent,
+                [styles.order__basket_item_price_discount]: cartItem.product.discountPercent,
               })}
             >
-              {calculateRoundedPrice(product.price, product.discountPercent)} ₴ ₴
+              {calculateRoundedPrice(
+                cartItem.product.price,
+                cartItem.product.discountPercent,
+                cartItem.quantity,
+              )}{' '}
+              ₴
             </p>
           </div>
         </div>
-        {ICONS.close({ className: styles.order__basket_item_close })}
+        {ICONS.close({
+          className: styles.order__basket_item_close,
+          onClick: () => {
+            if (!deleteCartItemIsPending) deleteCartItem(cartItem.id)
+          },
+        })}
       </div>
     </div>
   )

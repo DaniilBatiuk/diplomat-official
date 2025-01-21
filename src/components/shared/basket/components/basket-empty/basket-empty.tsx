@@ -8,7 +8,7 @@ import Empty from '@/../public/empty.png'
 import { CustomButton, Link } from '@/components'
 
 interface BasketEmptyProps {
-  setBasketActive: Dispatch<SetStateAction<boolean>>
+  setBasketActive?: Dispatch<SetStateAction<boolean>>
 }
 
 export const BasketEmpty: React.FC<BasketEmptyProps> = ({ setBasketActive }: BasketEmptyProps) => {
@@ -28,7 +28,11 @@ export const BasketEmpty: React.FC<BasketEmptyProps> = ({ setBasketActive }: Bas
         decoding='sync'
         quality={100}
       />
-      <Link href={LINKS.Categories} prefetch onClick={() => setBasketActive(false)}>
+      <Link
+        href={LINKS.Categories}
+        prefetch
+        onClick={() => setBasketActive && setBasketActive(false)}
+      >
         <CustomButton fullWidth>До категорій</CustomButton>
       </Link>
     </div>
