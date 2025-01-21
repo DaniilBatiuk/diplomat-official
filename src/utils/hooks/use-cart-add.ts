@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 
 import { createCartItem } from '../lib/actions/cart-item'
 
-export const useAddToCart = () => {
+export const useCartAdd = () => {
   const queryClient = useQueryClient()
 
   return useMutation({

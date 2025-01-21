@@ -48,6 +48,9 @@
     }
 
     &_prices {
+      &.pending {
+        opacity: 0.5;
+      }
     }
 
     &_sale {

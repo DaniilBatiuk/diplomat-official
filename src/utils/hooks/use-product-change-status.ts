@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 
 import { changeProductStatus } from '../lib/actions/product'
 
-export const useChangeProductStatus = () => {
+export const useProductChangeStatus = () => {
   return useMutation({
     mutationFn: changeProductStatus,
     onSuccess: () => {

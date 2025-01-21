@@ -11,7 +11,6 @@ import { DarkBackground } from '../dark-background/dark-background'
 import styles from './basket.module.scss'
 import { BasketEmpty } from './components/basket-empty/basket-empty'
 import { BasketList } from './components/basket-list/basket-list'
-import { isCartDto } from './helpers/is-cart-dto'
 
 interface BasketProps {
   basketActive: boolean
@@ -24,8 +23,6 @@ export const Basket: React.FC<BasketProps> = ({ basketActive, setBasketActive }:
     queryFn: getCart,
     placeholderData: keepPreviousData,
   })
-
-  console.log('cart', cart)
 
   return (
     <>
@@ -43,7 +40,7 @@ export const Basket: React.FC<BasketProps> = ({ basketActive, setBasketActive }:
           })}
         </div>
         <div className={styles.basket__body}>
-          {cart && cart.items.length > 0 && isCartDto(cart) ? (
+          {cart && cart.items.length > 0 ? (
             <BasketList setBasketActive={setBasketActive} cart={cart} />
           ) : (
             <BasketEmpty setBasketActive={setBasketActive} />

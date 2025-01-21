@@ -25,7 +25,7 @@ interface CounterProps {
 export const Counter: React.FC<CounterProps> = ({ mutation, id, quantity }: CounterProps) => {
   const [count, setCount] = useState(quantity)
 
-  const debouncedUpdateCartItem = useDebounceCallback(() => mutation({ id, quantity: count }), 500)
+  const debouncedUpdateCartItem = useDebounceCallback(() => mutation({ id, quantity: count }), 300)
 
   useEffect(() => {
     if (count !== quantity) {

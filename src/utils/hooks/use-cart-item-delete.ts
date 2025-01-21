@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 
-import { updateCartItem } from '../lib/actions/cart-item'
+import { deleteCartItem } from '../lib/actions/cart-item'
 
-export const useUpdateCartItem = () => {
+export const useCartItemDelete = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: updateCartItem,
+    mutationFn: deleteCartItem,
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['cart'],

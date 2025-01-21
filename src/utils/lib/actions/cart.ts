@@ -6,7 +6,7 @@ import { prisma } from '../db'
 
 export async function getCart(): Promise<ICartDto | undefined> {
   const cookieStore = await cookies()
-  let token = cookieStore.get('cartToken')?.value
+  const token = cookieStore.get('cartToken')?.value
 
   if (!token) {
     return undefined

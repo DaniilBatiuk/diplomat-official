@@ -8,7 +8,7 @@ import { CustomButton } from '@/components/ui/custom-button/custom-button'
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../card.module.scss'
-import { useAddToCart, useChangeProductStatus } from '@/utils/hooks'
+import { useCartAdd, useProductChangeStatus } from '@/utils/hooks'
 
 interface BuyButtonProp {
   onAdminPage?: boolean
@@ -16,9 +16,9 @@ interface BuyButtonProp {
 }
 
 export const BuyButton: React.FC<BuyButtonProp> = ({ onAdminPage, product }: BuyButtonProp) => {
-  const { mutate: addToCart, isPending: addToCartIsPending } = useAddToCart()
+  const { mutate: addToCart, isPending: addToCartIsPending } = useCartAdd()
   const { mutate: changeProductStatus, isPending: changeProductStatusPending } =
-    useChangeProductStatus()
+    useProductChangeStatus()
 
   return (
     <>
