@@ -8,7 +8,7 @@ export const useCartItemDelete = () => {
 
   return useMutation<void, Error, string, { previousCart?: ICartDto }>({
     mutationFn: deleteCartItem,
-    onMutate: async variables => {
+    onMutate: async cartItemId => {
       await queryClient.cancelQueries({ queryKey: ['cart'] })
 
       const previousCart = queryClient.getQueryData<ICartDto>(['cart'])
@@ -16,13 +16,18 @@ export const useCartItemDelete = () => {
       if (previousCart) {
         queryClient.setQueryData<ICartDto>(['cart'], {
           ...previousCart,
-          items: previousCart.items.filter(item => item.id !== variables),
+          items: previousCart.items.filter(item => item.id !== cartItemId),
         })
       }
 
       return { previousCart }
     },
 
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['cart'],
+      })
+    },
     onError: (err, variables, context) => {
       toast.error(err.message)
 
@@ -33,12 +38,6 @@ export const useCartItemDelete = () => {
 
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] })
-    },
-
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['cart'],
-      })
     },
   })
 }
