@@ -60,17 +60,18 @@ export const Delivery: React.FC<DeliveryProps> = ({ createOrderState }: Delivery
     selectedDepartment,
   } = useDepartment({ selectedCity, deliveryWay })
 
+  const ClickDarkBackground = () => {
+    if (searchCityActive) {
+      setSearchCityActive(false)
+    } else if (searchDepartmentActive) {
+      setSearchDepartmentActive(false)
+    }
+  }
   return (
     <>
       <DarkBackground
         backgroundActive={searchCityActive || searchDepartmentActive}
-        onClick={() => {
-          if (searchCityActive) {
-            setSearchCityActive(false)
-          } else if (searchDepartmentActive) {
-            setSearchDepartmentActive(false)
-          }
-        }}
+        onClick={ClickDarkBackground}
       />
       <SearchPopUpCity
         searchValue={searchCityValue}

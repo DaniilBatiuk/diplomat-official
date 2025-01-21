@@ -1,8 +1,7 @@
-import styles from '../styles/home.module.scss'
-
 import { Gallery } from './components/gallery/gallery'
 import { HomeHeader } from './components/home-header/home-header'
 import { Sales } from './components/sales/sales'
+import styles from './home.module.scss'
 import { ProductSwiper } from '@/components'
 import { getActiveProducts } from '@/utils/lib/queries'
 

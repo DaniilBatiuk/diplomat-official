@@ -19,7 +19,6 @@ export const useDepartment = ({ selectedCity, deliveryWay }: useDepartmentUrk) =
   const [searchDepartmentValue, setSearchDepartmentValue] = useState('')
   const [selectedDepartment, setSelectedDepartment] = useState<string>('')
 
-  console.log('searchDepartmentValue', searchDepartmentValue)
   const { data: departmentUrk } = useQuery({
     queryKey: [
       'department urk',
