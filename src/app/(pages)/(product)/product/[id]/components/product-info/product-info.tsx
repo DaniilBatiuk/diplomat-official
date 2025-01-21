@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../product.module.scss'
-import { CustomButton } from '@/components'
+import { AddButton } from './components/add-button/add.button'
 import { calculateRoundedPrice } from '@/utils/helpers'
 
 interface ProductInfoProps {
@@ -31,10 +31,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }: ProductInfo
           </p>
         </div>
 
-        <CustomButton>
-          {ICONS.buy()}
-          <p>В кошик</p>
-        </CustomButton>
+        <AddButton productId={product.id} />
       </div>
       <Accordion className={styles.product__info_accordion_no_before} defaultExpanded>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>

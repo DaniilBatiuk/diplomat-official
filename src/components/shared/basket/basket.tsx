@@ -1,22 +1,32 @@
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import clsx from 'clsx'
-import Image from 'next/image'
 import { Dispatch, SetStateAction } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
-import { LINKS } from '@/utils/config/links'
 
-import { CustomButton } from '../../ui/custom-button/custom-button'
+import { getCart } from '@/utils/lib/actions/cart'
+
 import { DarkBackground } from '../dark-background/dark-background'
 
 import styles from './basket.module.scss'
-import Empty from '@/../public/empty.png'
-import { Link } from '@/components'
+import { BasketEmpty } from './components/basket-empty/basket-empty'
+import { BasketList } from './components/basket-list/basket-list'
+import { isCartDto } from './helpers/is-cart-dto'
 
-interface BasketProp {
+interface BasketProps {
   basketActive: boolean
   setBasketActive: Dispatch<SetStateAction<boolean>>
 }
-export const Basket: React.FC<BasketProp> = ({ basketActive, setBasketActive }: BasketProp) => {
+
+export const Basket: React.FC<BasketProps> = ({ basketActive, setBasketActive }: BasketProps) => {
+  const { data: cart } = useQuery({
+    queryKey: ['cart'],
+    queryFn: getCart,
+    placeholderData: keepPreviousData,
+  })
+
+  console.log('cart', cart)
+
   return (
     <>
       <DarkBackground backgroundActive={basketActive} onClick={() => setBasketActive(false)} />
@@ -33,47 +43,10 @@ export const Basket: React.FC<BasketProp> = ({ basketActive, setBasketActive }: 
           })}
         </div>
         <div className={styles.basket__body}>
-          {true ? (
-            <div className={styles.empty}>
-              <p className={styles.empty_title}>Кошик порожній</p>
-              <p className={styles.empty_subtitle}>
-                <span>Подивіться наш каталог, ви обов'язково</span>
-                <span>щось знайдете</span>
-              </p>
-
-              <Image
-                src={Empty}
-                alt='MainPhoto'
-                placeholder='blur'
-                loading={'eager'}
-                decoding='sync'
-                quality={100}
-              />
-              <CustomButton fullWidth>До категорій</CustomButton>
-            </div>
+          {cart && cart.items.length > 0 && isCartDto(cart) ? (
+            <BasketList setBasketActive={setBasketActive} cart={cart} />
           ) : (
-            <div className={styles.full}>
-              <div className={styles.full__list}>
-                {/* {PRODUCTS.map(product => (
-                  <BasketItem key={product.id} product={product} />
-                ))} */}
-              </div>
-              <div className={styles.total}>
-                {/* <div className={styles.total_block}>
-                  <div className={styles.total_sale}>
-                    <p>Знижка:</p>
-                    <p>- {PRODUCTS[2].price.toLocaleString('uk-UA')} ₴</p>
-                  </div>
-                  <div className={styles.total_price}>
-                    <p>До оплати:</p>
-                    <p>{PRODUCTS[1].price.toLocaleString('uk-UA')} ₴</p>
-                  </div>
-                </div> */}
-                <Link href={LINKS.Order} prefetch onClick={() => setBasketActive(false)}>
-                  <CustomButton fullWidth>Оформити замовлення</CustomButton>
-                </Link>
-              </div>
-            </div>
+            <BasketEmpty setBasketActive={setBasketActive} />
           )}
         </div>
       </div>

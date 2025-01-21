@@ -1,5 +1,4 @@
-types
-type IProduct = {
+type IProductDto = {
   id: string
   name: string
   description: string
@@ -11,6 +10,25 @@ type IProduct = {
   subcategoryId: string
   createdAt: Date
 }
+
+type ICartDto = {
+  id: string
+  token: string;
+  totalPrice: number;
+  userId: string | null;
+  items: ICartItemDto[]
+}
+
+
+type ICartItemDto = {
+  id: string
+  quantity: number;
+  productId: string;
+  cartId: string;
+  createdAt: Date
+  product: IProductDto
+}
+
 
 type ISearch = {
   id: string
@@ -27,26 +45,26 @@ type ISearchData = {
   products: ISearch[]
 }
 
-type IProductBase = Omit<IProduct, 'createdAt'>
+type IProductBase = Omit<IProductDto, 'createdAt'>
 type IProductCreate = {
   properties: {
     name: string
     value: string
   }[]
-} & Omit<IProduct, 'createdAt' | 'status' | 'id'>
+} & Omit<IProductDto, 'createdAt' | 'status' | 'id'>
 type IProductUpdate = {
   properties: {
     name: string
     value: string
   }[]
-} & Omit<IProduct, 'createdAt' | 'status'>
+} & Omit<IProductDto, 'createdAt' | 'status'>
 
 type IProductBaseWithProperties = {
   properties: {
     name: string
     value: string
   }[]
-} & IProduct
+} & IProductDto
 
 type IProperty = {
   id: string
@@ -122,6 +140,12 @@ type PropertiesGroupedByName = Record<
 >
 
 ///////////////////////////
+
+
+type ISearch = {
+  id: string
+  name: string
+}
 
 type Category = {
   id: string

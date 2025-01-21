@@ -5,7 +5,6 @@ import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../../../order.module.scss'
 import ProductImg from '@/../public/product100x100.jpg'
-import { Counter } from '@/components'
 import { calculateRoundedPrice } from '@/utils/helpers'
 
 interface OrderBasketItemProp {
@@ -21,7 +20,7 @@ export const OrderBasketItem: React.FC<OrderBasketItemProp> = ({
       <div className={styles.order__basket_item_info}>
         <p className={styles.order__basket_item_title}>{product.name}</p>
         <div className={styles.order__basket_item_counter}>
-          <Counter />
+          {/* <Counter /> */}
           <div className={styles.order__basket_item_prices}>
             {product.discountPercent && (
               <p className={styles.order__basket_item_sale}>

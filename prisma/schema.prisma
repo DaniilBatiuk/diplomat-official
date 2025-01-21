@@ -50,6 +50,8 @@ model CartItem {
   productId String
   cart      Cart    @relation(fields: [cartId], references: [id])
   cartId    String
+
+  createdAt DateTime @default(now())
 }
 
 model Product {

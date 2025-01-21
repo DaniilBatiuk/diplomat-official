@@ -1,13 +1,37 @@
 'use client'
 
-import { useState } from 'react'
+import { UseMutateFunction } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './counter.module.scss'
+import { useDebounceCallback } from '@/utils/hooks'
 
-export const Counter: React.FC = () => {
-  const [count, setCount] = useState(1)
+interface CounterProps {
+  mutation: UseMutateFunction<
+    void,
+    Error,
+    {
+      id: string
+      quantity: number
+    },
+    unknown
+  >
+  id: string
+  quantity: number
+}
+
+export const Counter: React.FC<CounterProps> = ({ mutation, id, quantity }: CounterProps) => {
+  const [count, setCount] = useState(quantity)
+
+  const debouncedUpdateCartItem = useDebounceCallback(() => mutation({ id, quantity: count }), 500)
+
+  useEffect(() => {
+    if (count !== quantity) {
+      debouncedUpdateCartItem()
+    }
+  }, [count])
   return (
     <div className={styles.counter}>
       <button onClick={() => setCount(prev => prev - 1)} disabled={count <= 1} type='button'>

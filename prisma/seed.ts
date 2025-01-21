@@ -10,7 +10,6 @@ async function main() {
       { id: 'cat3', name: 'Clothing' },
     ],
   })
-
   // Seed Subcategories
   await prisma.subcategory.createMany({
     data: [
@@ -19,7 +18,6 @@ async function main() {
       { id: 'subcat3', name: 'Fiction', categoryId: 'cat2' },
     ],
   })
-
   // Seed Products
   await prisma.product.createMany({
     data: [
@@ -70,7 +68,6 @@ async function main() {
         discountPercent: 15,
         subcategoryId: 'subcat1',
       },
-
       {
         id: 'prod5',
         name: "Harry Potter and the Sorcerer's Stone",
@@ -139,7 +136,6 @@ async function main() {
       },
     ],
   })
-
   // Seed Property
   await prisma.property.createMany({
     data: [
@@ -158,7 +154,6 @@ async function main() {
         productId: 'prod1',
         subcategoryId: 'subcat1',
       },
-
       {
         id: 'prop4',
         name: 'Processor',
@@ -174,7 +169,6 @@ async function main() {
         productId: 'prod2',
         subcategoryId: 'subcat2',
       },
-
       {
         id: 'prop7',
         name: 'Author',
@@ -192,7 +186,6 @@ async function main() {
       { id: 'prop9', name: 'Pages', value: '180', productId: 'prod3', subcategoryId: 'subcat3' },
     ],
   })
-
   // Seed Users
   await prisma.user.createMany({
     data: [
@@ -231,7 +224,6 @@ async function main() {
       },
     ],
   })
-
   // Seed Carts
   await prisma.cart.createMany({
     data: [
@@ -240,7 +232,6 @@ async function main() {
       { id: 'cart3', token: 'token3', totalPrice: 0, userId: 'user3' },
     ],
   })
-
   // Seed CartItems
   await prisma.cartItem.createMany({
     data: [
@@ -249,7 +240,6 @@ async function main() {
       { id: 'cartitem3', quantity: 3, productId: 'prod3', cartId: 'cart3' },
     ],
   })
-
   // Seed Orders
   await prisma.order.createMany({
     data: [
@@ -309,7 +299,6 @@ async function main() {
       },
     ],
   })
-
   // Seed Comments
   await prisma.comment.createMany({
     data: [
@@ -342,7 +331,6 @@ async function main() {
       },
     ],
   })
-
   console.log('Seed data successfully added')
 }
 
