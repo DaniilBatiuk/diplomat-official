@@ -22,10 +22,6 @@ export const BasketList: React.FC<BasketListProps> = ({
       </div>
       <div className={styles.total}>
         <div className={styles.total_block}>
-          <div className={styles.total_sale}>
-            <p>Знижка:</p>
-            <p>- {cart && cart.totalPrice.toLocaleString('uk-UA')} ₴</p>
-          </div>
           <div className={styles.total_price}>
             <p>До оплати:</p>
             <p>{cart && cart.totalPrice.toLocaleString('uk-UA')} ₴</p>

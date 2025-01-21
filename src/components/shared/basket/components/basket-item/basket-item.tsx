@@ -37,8 +37,9 @@ export const BasketItem: React.FC<BasketItemProps> = ({ cartItem }: BasketItemPr
               })}
             >
               {calculateRoundedPrice(
-                cartItem.product.price * cartItem.quantity,
+                cartItem.product.price,
                 cartItem.product.discountPercent,
+                cartItem.quantity,
               )}{' '}
               ₴
             </p>

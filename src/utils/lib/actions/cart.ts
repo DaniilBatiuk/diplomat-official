@@ -67,7 +67,13 @@ export const updateCartTotalAmount = async () => {
   }
 
   const totalPrice = cart.items.reduce((acc, item) => {
-    return acc + item.product.price * item.quantity
+    const discountedPrice = Math.round(
+      item.product.discountPercent
+        ? item.product.price - (item.product.price * item.product.discountPercent) / 100
+        : item.product.price,
+    )
+    const roundedPrice = Math.round(discountedPrice * item.quantity)
+    return acc + roundedPrice
   }, 0)
 
   await prisma.cart.update({
