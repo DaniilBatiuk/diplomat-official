@@ -23,7 +23,11 @@ import styles from './../../order.module.scss'
 import { ActionState } from '@/utils/lib/middleware'
 
 export const OrderForm: React.FC = () => {
-  const { data: cart, isPending: isCartPending } = useQuery({
+  const {
+    data: cart,
+    isPending: isCartPending,
+    isLoading: isCartLoading,
+  } = useQuery({
     queryKey: ['cart'],
     queryFn: getCart,
     placeholderData: keepPreviousData,
@@ -54,7 +58,7 @@ export const OrderForm: React.FC = () => {
         <Payment />
         <Comment createOrderState={createOrderState} />
       </div>
-      <RightBlock cart={cart} isCartPending={isCartPending} />
+      <RightBlock cart={cart} isCartLoading={isCartLoading} />
     </form>
   )
 }

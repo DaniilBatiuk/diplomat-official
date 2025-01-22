@@ -8,17 +8,17 @@ import { CustomButton, FormBlock } from '@/components'
 
 interface RightBlockProps {
   cart: ICartDto | undefined
-  isCartPending: boolean
+  isCartLoading: boolean
 }
 
-export const RightBlock: React.FC<RightBlockProps> = ({ cart, isCartPending }: RightBlockProps) => {
+export const RightBlock: React.FC<RightBlockProps> = ({ cart, isCartLoading }: RightBlockProps) => {
   const { pending } = useFormStatus()
 
   return (
     <FormBlock title='' className={styles.order__right_block}>
       <div className={styles.order__right}>
         <p className={styles.order__right_text}>До оплати:</p>
-        {isCartPending ? (
+        {isCartLoading ? (
           <Skeleton variant='rectangular' className={styles.order__right_skeleton_price} />
         ) : (
           <>
@@ -29,7 +29,7 @@ export const RightBlock: React.FC<RightBlockProps> = ({ cart, isCartPending }: R
           <div className={styles.order__right_line_left}>
             {ICONS.box()} <p>Ціна кошика: </p>
           </div>
-          {isCartPending ? (
+          {isCartLoading ? (
             <Skeleton variant='rectangular' className={styles.order__right_skeleton_price_min} />
           ) : (
             <h4>{cart && cart.totalPrice.toLocaleString('uk-UA')} ₴</h4>
@@ -41,7 +41,7 @@ export const RightBlock: React.FC<RightBlockProps> = ({ cart, isCartPending }: R
           className={styles.order__right_footer__button}
           fullWidth
           type='submit'
-          disabled={pending}
+          disabled={pending || (cart && cart.totalPrice === 0)}
         >
           Оформити замовлення
           {ICONS.arrowRight()}
