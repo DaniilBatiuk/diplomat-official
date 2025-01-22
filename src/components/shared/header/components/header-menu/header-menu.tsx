@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { useState } from 'react'
 
 import { DarkBackground } from '@/components/shared/dark-background/dark-background'
 
@@ -14,7 +14,7 @@ interface HeaderMenuProp {
   menuActive: boolean
 
   allCategories: IBaseCategory[]
-  setMenuActive: Dispatch<SetStateAction<boolean>>
+  setMenuActive: (menuActive: boolean) => void
 }
 export const HeaderMenu: React.FC<HeaderMenuProp> = ({
   menuActive,

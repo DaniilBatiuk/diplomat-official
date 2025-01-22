@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react'
-
 import { LINKS } from '@/utils/config/links'
 
 import { BasketItem } from '../basket-item/basket-item'
@@ -8,7 +6,7 @@ import styles from './../../basket.module.scss'
 import { CustomButton, Link } from '@/components'
 
 interface BasketListProps {
-  setBasketActive: Dispatch<SetStateAction<boolean>>
+  setBasketActive: (menuActive: boolean) => void
   cart: ICartDto
 }
 export const BasketList: React.FC<BasketListProps> = ({

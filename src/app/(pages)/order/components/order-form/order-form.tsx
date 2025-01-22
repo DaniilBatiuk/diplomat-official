@@ -4,7 +4,7 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useActionState } from 'react'
 import { toast } from 'react-toastify'
 
-import { initialState } from '@/utils/config/initial0value'
+import { initialState } from '@/utils/config/initial-state'
 
 import { useFormResultProcess } from '@/utils/hooks/useFormResultProcess/useFormResultProcess'
 

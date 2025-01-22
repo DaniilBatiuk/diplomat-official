@@ -1,6 +1,5 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import clsx from 'clsx'
-import { Dispatch, SetStateAction } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
 
@@ -14,7 +13,7 @@ import { BasketList } from './components/basket-list/basket-list'
 
 interface BasketProps {
   basketActive: boolean
-  setBasketActive: Dispatch<SetStateAction<boolean>>
+  setBasketActive: (menuActive: boolean) => void
 }
 
 export const Basket: React.FC<BasketProps> = ({ basketActive, setBasketActive }: BasketProps) => {

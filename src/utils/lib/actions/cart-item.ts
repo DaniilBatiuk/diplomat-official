@@ -2,6 +2,8 @@
 
 import { cookies } from 'next/headers'
 
+import { TOKENS } from '@/utils/config/enum-tokens'
+
 import { prisma } from '../db'
 
 import { findOrCreateCart, updateCartTotalAmount } from './cart'
@@ -22,7 +24,7 @@ async function checkCartItemExists(id: string) {
 
 export async function createCartItem(productId: string) {
   const cookieStore = await cookies()
-  let token = cookieStore.get('cartToken')?.value
+  let token = cookieStore.get(TOKENS.CART_TOKEN)?.value
 
   if (!token) {
     token = crypto.randomUUID()
@@ -48,7 +50,7 @@ export async function createCartItem(productId: string) {
     },
   })
 
-  cookieStore.set('cartToken', token, {
+  cookieStore.set(TOKENS.CART_TOKEN, token, {
     maxAge: 30 * 24 * 60 * 60 * 1000,
   })
 

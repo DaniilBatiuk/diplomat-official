@@ -2,13 +2,15 @@
 
 import { cookies } from 'next/headers'
 
+import { TOKENS } from '@/utils/config/enum-tokens'
+
 import { prisma } from '../db'
 
 import { calculateTotalPrice } from '@/utils/helpers'
 
 export async function getCart(): Promise<ICartDto | undefined> {
   const cookieStore = await cookies()
-  const token = cookieStore.get('cartToken')?.value
+  const token = cookieStore.get(TOKENS.CART_TOKEN)?.value
 
   if (!token) {
     return undefined

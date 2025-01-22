@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { Dispatch, SetStateAction } from 'react'
 
 import { LINKS } from '@/utils/config/links'
 
@@ -8,7 +7,7 @@ import Empty from '@/../public/empty.png'
 import { CustomButton, Link } from '@/components'
 
 interface BasketEmptyProps {
-  setBasketActive?: Dispatch<SetStateAction<boolean>>
+  setBasketActive?: (menuActive: boolean) => void
 }
 
 export const BasketEmpty: React.FC<BasketEmptyProps> = ({ setBasketActive }: BasketEmptyProps) => {

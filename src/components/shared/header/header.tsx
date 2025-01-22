@@ -1,25 +1,18 @@
 'use client'
 
-import { Badge } from '@mui/material'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
-import { Basket } from '../basket/basket'
-import { DarkBackground } from '../dark-background/dark-background'
-import { SignIn } from '../sign-in/sign-in'
-
 import { HeaderButton } from './components/header-button/header-button'
-import { Catalog } from './components/header-catalog/header-catalog'
-import { HeaderContactsPopUp } from './components/header-contacts-popup/header-contacts-popup'
-import { HeaderMenu } from './components/header-menu/header-menu'
+import { HeaderNav } from './components/header-nav/header-nav'
+import { HeaderOverlay } from './components/header-overlay/header-overlay'
 import { HeaderSearch } from './components/header-search/header-search'
-import { SearchMobile } from './components/search-mobile/search-mobile'
 import styles from './header.module.scss'
+import { useHeader } from './hooks/use-header'
 import Logo from '@/../public/logo.png'
 import { Link } from '@/components'
 import { useHeaderSearchStore } from '@/utils/lib/store/header-search-store'
@@ -30,87 +23,24 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ allCategories, searchData }: HeaderProps) => {
-  const [menuActive, setMenuActive] = useState(false)
-  const [signInActive, setSignInActive] = useState(false)
-  const [basketActive, setBasketActive] = useState(false)
-  const [catalogActive, setCatalogActive] = useState(false)
-
   const inputRefMobile = useRef<null | HTMLInputElement>(null)
   const inputRefSearch = useRef<null | HTMLInputElement>(null)
 
-  const pathname = usePathname()
+  const { setMenuActive } = useHeaderSearchStore()
 
-  const {
-    searchValue,
-    setSearchValue,
-    searchActive,
-    setSearchActive,
-    searchMobileActive,
-    setSearchMobileActive,
-    setSearchDataView,
-    searchDataView,
-  } = useHeaderSearchStore()
-
-  const handleHeaderClosePopUp = () => {
-    if (catalogActive) {
-      setCatalogActive(false)
-    } else if (
-      searchActive &&
-      inputRefSearch.current &&
-      inputRefSearch.current !== document.activeElement &&
-      searchValue.length > 0
-    ) {
-      setSearchActive(false)
-    }
-  }
-
-  useEffect(() => {
-    if (pathname !== '/categories') {
-      setSearchValue('')
-    }
-  }, [pathname])
-
-  useEffect(() => {
-    setSearchDataView({
-      categories: searchData.categories.filter(category =>
-        category.name.toLowerCase().startsWith(searchValue.toLowerCase()),
-      ),
-      subcategories: searchData.subcategories.filter(subcategory =>
-        subcategory.name.toLowerCase().startsWith(searchValue.toLowerCase()),
-      ),
-      products: searchData.products.filter(product =>
-        product.name.toLowerCase().startsWith(searchValue.toLowerCase()),
-      ),
-    })
-  }, [searchValue, searchData])
+  const { catalogActive, setCatalogActive, handleHeaderClosePopUp } = useHeader({
+    searchData,
+    inputRefSearch,
+  })
 
   return (
     <>
-      <DarkBackground
-        backgroundActive={
-          searchActive &&
-          !searchMobileActive &&
-          searchValue.length > 0 &&
-          (searchDataView.categories.length > 0 ||
-            searchDataView.products.length > 0 ||
-            searchDataView.subcategories.length > 0)
-        }
-        isLow
-        onClick={() => setSearchActive(false)}
-      />
-      <Catalog
+      <HeaderOverlay
+        allCategories={allCategories}
         catalogActive={catalogActive}
+        inputRefMobile={inputRefMobile}
         setCatalogActive={setCatalogActive}
-        allCategories={allCategories}
       />
-      <HeaderMenu
-        menuActive={menuActive}
-        setMenuActive={setMenuActive}
-        allCategories={allCategories}
-      />
-      <Basket basketActive={basketActive} setBasketActive={setBasketActive} />
-      <SearchMobile inputRefMobile={inputRefMobile} />
-      {signInActive && <SignIn onClickClose={() => setSignInActive(false)} />}
       <header className={styles.header} onClick={handleHeaderClosePopUp}>
         <div className={styles.header__container}>
           <div className={styles.header__burger_logo}>
@@ -132,33 +62,7 @@ export const Header: React.FC<HeaderProps> = ({ allCategories, searchData }: Hea
             </HeaderButton>
             <HeaderSearch inputRef={inputRefSearch} />
           </div>
-          <nav>
-            <ul>
-              <li
-                onClick={() => {
-                  setSearchMobileActive(true)
-                  if (inputRefMobile.current) inputRefMobile.current.focus()
-                }}
-              >
-                {ICONS.search()}
-              </li>
-              <HeaderContactsPopUp />
-
-              <li className={styles.admin}>
-                <Link href={LINKS.Admin} prefetch>
-                  {ICONS.admin()}
-                </Link>
-              </li>
-
-              <li onClick={() => setSignInActive(true)}>{ICONS.user()}</li>
-              <li onClick={() => setBasketActive(true)}>
-                <Badge badgeContent={1} color='error' showZero max={9} style={{ padding: 0 }}>
-                  {ICONS.cart()}
-                </Badge>
-                <p>2 241 ₴</p>
-              </li>
-            </ul>
-          </nav>
+          <HeaderNav inputRefMobile={inputRefMobile} />
         </div>
       </header>
     </>
