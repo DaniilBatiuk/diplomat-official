@@ -33,6 +33,10 @@
   }
 
   &__basket {
+    &_skeleton {
+      border-radius: 10px !important;
+      height: 219px !important;
+    }
     &_item {
       display: flex;
       align-items: center;
@@ -154,6 +158,19 @@
     @include var.adaptive-value-px(width, 30, 395);
     @media (max-width: 1130px) {
       width: 100%;
+    }
+
+    &_skeleton_price {
+      height: 30px !important;
+      border-radius: 5px !important;
+      width: 110px !important;
+      margin-bottom: 15px !important;
+
+      &_min {
+        height: 17px !important;
+        width: 60px !important;
+        border-radius: 5px !important;
+      }
     }
 
     &_block {

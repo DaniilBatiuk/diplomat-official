@@ -11,6 +11,7 @@ import { useFormResultProcess } from '@/utils/hooks/useFormResultProcess/useForm
 import { getCart } from '@/utils/lib/actions/cart'
 import { createOrder } from '@/utils/lib/actions/order'
 
+import { BasketSkeleton } from '../basket-skeleton/basket-skeleton'
 import { Comment } from '../comment/comment'
 import { Delivery } from '../delivery/delivery'
 import { OrderBasket } from '../order-basket/order-basket'
@@ -22,7 +23,7 @@ import styles from './../../order.module.scss'
 import { ActionState } from '@/utils/lib/middleware'
 
 export const OrderForm: React.FC = () => {
-  const { data: cart } = useQuery({
+  const { data: cart, isPending: isCartPending } = useQuery({
     queryKey: ['cart'],
     queryFn: getCart,
     placeholderData: keepPreviousData,
@@ -47,13 +48,13 @@ export const OrderForm: React.FC = () => {
   return (
     <form noValidate className={styles.order__content} action={createOrderFormAction}>
       <div className={styles.order__content_left}>
-        <OrderBasket cart={cart} />
+        {isCartPending ? <BasketSkeleton /> : <OrderBasket cart={cart} />}
         <PersonalData createOrderState={createOrderState} />
         <Delivery createOrderState={createOrderState} />
         <Payment />
         <Comment createOrderState={createOrderState} />
       </div>
-      <RightBlock cart={cart} />
+      <RightBlock cart={cart} isCartPending={isCartPending} />
     </form>
   )
 }
