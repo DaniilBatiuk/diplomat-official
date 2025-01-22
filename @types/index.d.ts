@@ -13,22 +13,87 @@ type IProductDto = {
 
 type ICartDto = {
   id: string
-  token: string;
-  totalPrice: number;
-  userId: string | null;
+  token: string
+  totalPrice: number
+  userId: string | null
   items: ICartItemDto[]
 }
 
-
 type ICartItemDto = {
   id: string
-  quantity: number;
-  productId: string;
-  cartId: string;
+  quantity: number
+  productId: string
+  cartId: string
   createdAt: Date
   product: IProductDto
 }
 
+type IProductEntity = Omit<IProductDto, 'createdAt'>
+type IProductCreate = {
+  properties: {
+    name: string
+    value: string
+  }[]
+} & Omit<IProductDto, 'createdAt' | 'status' | 'id'>
+
+type IProductUpdate = {
+  properties: {
+    name: string
+    value: string
+  }[]
+} & Omit<IProductDto, 'createdAt' | 'status'>
+
+type IProductWithProperties = IProductDto & {
+  properties: {
+    name: string
+    value: string
+  }[]
+}
+
+type IPropertyDto = {
+  id: string
+  name: string
+  value: string
+  productId: string
+  subcategoryId: string
+}
+
+type IPropertyEntity = Omit<IPropertyDto, 'subcategoryId' | 'productId'>
+type IPropertyCreate = Omit<IPropertyDto, 'id'>
+
+type ICommentDto = {
+  id: string
+  comment: string
+  title: string
+  starCount: number
+  recommend: boolean | null
+  createdAt: Date
+}
+
+type ICommentAndUser = {
+  user: IUserBase
+} & ICommentDto
+
+type IProductOne = IProductEntity & {
+  properties: IPropertyEntity[]
+  comments: ICommentAndUser[]
+}
+
+type ICategoryDto = {
+  id: string
+  name: string
+}
+
+type ICategory = ICategoryDto & {
+  subcategories: {
+    products: { id: string; name: string }[]
+    id: string
+    name: string
+    properties: { id: string; name: string }[]
+  }[]
+}
+
+type Role = 'User' | 'Manager' | 'Admin'
 
 type ISearch = {
   id: string
@@ -45,114 +110,7 @@ type ISearchData = {
   products: ISearch[]
 }
 
-type IProductBase = Omit<IProductDto, 'createdAt'>
-type IProductCreate = {
-  properties: {
-    name: string
-    value: string
-  }[]
-} & Omit<IProductDto, 'createdAt' | 'status' | 'id'>
-type IProductUpdate = {
-  properties: {
-    name: string
-    value: string
-  }[]
-} & Omit<IProductDto, 'createdAt' | 'status'>
-
-type IProductBaseWithProperties = {
-  properties: {
-    name: string
-    value: string
-  }[]
-} & IProductDto
-
-type IProperty = {
-  id: string
-  name: string
-  value: string
-  productId: string
-  subcategoryId: string
-}
-
-type IPropertyBase = Omit<IProperty, 'subcategoryId' | 'productId'>
-type IPropertyCreate = Omit<IProperty, 'id'>
-
-type IComment = {
-  id: string
-  comment: string
-  title: string
-  starCount: number
-  recommend: boolean | null
-  createdAt: Date
-}
-
-type IUser = {
-  id: string
-  name: string
-  surname: string
-  email: string
-  passwordHash: string
-  address: string | null
-  phone: string | null
-  role: $Enums.UserRole
-  provider: string | null
-  providerId: string | null
-  createdAt: Date
-}
-
-type IUserBase = Omit<IUser, 'provider' | 'providerId' | 'createdAt'>
-
-type ICategory = {
-  id: string
-  name: string
-}
-
-type ISubcategory = {
-  id: string
-  name: string
-}
-
-// Combined types
-type ICommentAndUser = {
-  user: IUserBase
-} & IComment
-
-type IProductOne = IProductBase & {
-  properties: IPropertyBase[]
-  comments: ICommentAndUser[]
-}
-
-type IBaseCategory = ICategory & {
-  subcategories: {
-    products: { id: string; name: string }[]
-    id: string
-    name: string
-    properties: { id: string; name: string }[]
-  }[]
-}
-
-type PropertiesGroupedByName = Record<
-  string,
-  {
-    name: string
-    value: string
-  }[]
->
-
-///////////////////////////
-
-
-type ISearch = {
-  id: string
-  name: string
-}
-
-type Category = {
-  id: string
-  name: string
-}
-
-type Role = 'User' | 'Manager' | 'Admin'
+// Types for api Nova Poshta And Ukr Poshta
 
 type Address = {
   Present: string

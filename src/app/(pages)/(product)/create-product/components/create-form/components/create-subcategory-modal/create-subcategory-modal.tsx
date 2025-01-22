@@ -15,7 +15,7 @@ import { ActionState } from '@/utils/lib/middleware'
 interface CreateCommentModalProps {
   modalActive: boolean
   setModalActive: (value: boolean) => void
-  allCategories: IBaseCategory[]
+  allCategories: ICategory[]
 }
 
 export const CreateSubcategoryModal: React.FC<CreateCommentModalProps> = ({

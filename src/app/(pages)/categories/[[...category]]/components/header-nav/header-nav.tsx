@@ -11,8 +11,8 @@ import { MenuFilters } from './components/menu-filters/menu-filters'
 import { DarkBackground, MenuSort } from '@/components'
 
 interface HeaderNavProps {
-  allCategories: IBaseCategory[]
-  products: IProductBaseWithProperties[]
+  allCategories: ICategory[]
+  products: IProductWithProperties[]
 }
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({

@@ -13,7 +13,7 @@ import { convertData } from '../helpers/convert-data'
 import { CreateProduct } from '@/utils/validators/product-validator'
 
 interface productDataUpdateProps {
-  allCategories: IBaseCategory[]
+  allCategories: ICategory[]
   productDataUpdate?: IProductUpdate
   propertyAppend: UseFieldArrayAppend<CreateProduct>
   reset: () => void

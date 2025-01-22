@@ -18,7 +18,7 @@ import { Link } from '@/components'
 import { useHeaderSearchStore } from '@/utils/lib/store/header-search-store'
 
 interface HeaderProps {
-  allCategories: IBaseCategory[]
+  allCategories: ICategory[]
   searchData: ISearchData
 }
 

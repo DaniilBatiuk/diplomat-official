@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import { groupByProperties } from '../helpers/group-by-properties'
 
-export const useFilters = (products: IProductBaseWithProperties[]) => {
+export const useFilters = (products: IProductWithProperties[]) => {
   const searchParams = useSearchParams() as unknown as Map<string, string>
 
   const initialProperties = groupByProperties(products)

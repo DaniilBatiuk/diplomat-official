@@ -14,7 +14,7 @@ interface HeaderOverlayProps {
   inputRefMobile: React.RefObject<HTMLInputElement | null>
   setCatalogActive: Dispatch<SetStateAction<boolean>>
   catalogActive: boolean
-  allCategories: IBaseCategory[]
+  allCategories: ICategory[]
 }
 
 export const HeaderOverlay: React.FC<HeaderOverlayProps> = ({

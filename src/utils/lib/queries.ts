@@ -88,7 +88,7 @@ export const getCategories = unstable_cache(
 
 export const getActiveProductsByCategory = (
   categoryName: string,
-): Promise<IProductBaseWithProperties[]> => {
+): Promise<IProductWithProperties[]> => {
   return unstable_cache(
     async () =>
       (await prisma.product.findMany({
@@ -106,7 +106,7 @@ export const getActiveProductsByCategory = (
             createdAt: 'desc',
           },
         ],
-      })) as IProductBaseWithProperties[],
+      })) as IProductWithProperties[],
     [`products-by-category-${categoryName}`],
     {
       revalidate: 60 * 60 * 2,
@@ -116,7 +116,7 @@ export const getActiveProductsByCategory = (
 
 export const getActiveProductsBySubcategory = (
   subCategoryName: string,
-): Promise<IProductBaseWithProperties[]> => {
+): Promise<IProductWithProperties[]> => {
   return unstable_cache(
     async () =>
       (await prisma.product.findMany({
@@ -132,7 +132,7 @@ export const getActiveProductsBySubcategory = (
             createdAt: 'desc',
           },
         ],
-      })) as IProductBaseWithProperties[],
+      })) as IProductWithProperties[],
     [`products-by-subcategory-${subCategoryName}`],
     {
       revalidate: 60 * 60 * 2,

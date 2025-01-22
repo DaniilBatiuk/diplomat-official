@@ -8,7 +8,7 @@ interface CategoriesListProps {
     category: string | undefined
     subcategory: string | undefined
   }
-  allCategories: IBaseCategory[]
+  allCategories: ICategory[]
 }
 
 export const CategoriesList: React.FC<CategoriesListProps> = ({

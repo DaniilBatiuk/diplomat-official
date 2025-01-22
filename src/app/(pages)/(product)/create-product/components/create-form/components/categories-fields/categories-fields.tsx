@@ -5,7 +5,7 @@ import styles from './../../../../create-product.module.scss'
 import { CustomSelect, FormBlock } from '@/components'
 
 interface CategoriesFieldsProps {
-  allCategories: IBaseCategory[]
+  allCategories: ICategory[]
   selectCategoryId: string
   selectSubcategoryId: string
   setSelectCategoryId: Dispatch<SetStateAction<string>>

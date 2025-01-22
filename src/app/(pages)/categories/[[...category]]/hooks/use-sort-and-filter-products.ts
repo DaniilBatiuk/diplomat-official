@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 
 import { filterProducts } from '../helpers/filter-products'
 
-export const useSortAndFilterProducts = (products: IProductBaseWithProperties[]) => {
+export const useSortAndFilterProducts = (products: IProductWithProperties[]) => {
   const searchParams = useSearchParams()
 
   const searchParamsObj = useMemo(() => {

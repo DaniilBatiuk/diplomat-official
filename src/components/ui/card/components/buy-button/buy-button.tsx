@@ -12,7 +12,7 @@ import { useCartAdd, useProductChangeStatus } from '@/utils/hooks'
 
 interface BuyButtonProp {
   onAdminPage?: boolean
-  product: IProductBase
+  product: IProductEntity
 }
 
 export const BuyButton: React.FC<BuyButtonProp> = ({ onAdminPage, product }: BuyButtonProp) => {

@@ -7,7 +7,7 @@ import { NoData } from './component/no-data'
 import { Card } from '@/components'
 
 type ProductListProps = {
-  products: IProductBaseWithProperties[]
+  products: IProductWithProperties[]
 }
 export const ProductList: React.FC<ProductListProps> = ({ products }: ProductListProps) => {
   const sortedAndFilteredProducts = useSortAndFilterProducts(products)

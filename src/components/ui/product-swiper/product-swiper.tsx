@@ -15,7 +15,7 @@ import { Card, CardSkeleton, Title } from '@/components'
 
 interface ProductSwiperProps {
   title: string
-  products: IProductBase[]
+  products: IProductEntity[]
   noPadding?: boolean
 }
 export const ProductSwiper: React.FC<ProductSwiperProps> = ({

@@ -11,7 +11,7 @@ import { DarkBackground } from '@/components'
 interface MenuFiltersProp {
   setMenuFiltersActive: Dispatch<SetStateAction<boolean>>
   menuFiltersActive: boolean
-  products: IProductBaseWithProperties[]
+  products: IProductWithProperties[]
 }
 
 export const MenuFilters: React.FC<MenuFiltersProp> = ({

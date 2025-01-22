@@ -13,7 +13,7 @@ import { Link } from '@/components'
 interface HeaderMenuProp {
   menuActive: boolean
 
-  allCategories: IBaseCategory[]
+  allCategories: ICategory[]
   setMenuActive: (menuActive: boolean) => void
 }
 export const HeaderMenu: React.FC<HeaderMenuProp> = ({

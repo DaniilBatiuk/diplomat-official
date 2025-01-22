@@ -12,7 +12,7 @@ import { Link } from '@/components'
 import { calculateRoundedPrice } from '@/utils/helpers'
 
 interface CardProp {
-  product: IProductBase
+  product: IProductEntity
   onAdminPage?: boolean
 }
 export const Card: React.FC<CardProp> = ({ product, onAdminPage }: CardProp) => {

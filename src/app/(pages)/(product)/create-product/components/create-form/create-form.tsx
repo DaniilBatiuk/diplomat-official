@@ -16,7 +16,7 @@ import { CustomButton } from '@/components'
 import { CreateProduct, productScheme } from '@/utils/validators/product-validator'
 
 interface CreateFormProps {
-  allCategories: IBaseCategory[]
+  allCategories: ICategory[]
   productDataUpdate?: IProductUpdate
 }
 

@@ -1,5 +1,5 @@
 interface IFilterProducts {
-  products: IProductBaseWithProperties[]
+  products: IProductWithProperties[]
   searchParamsObj: { [key: string]: string[] }
 }
 

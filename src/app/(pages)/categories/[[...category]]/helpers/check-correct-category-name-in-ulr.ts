@@ -6,7 +6,7 @@ export const checkCorrectCategoryNameInUlr = ({
     category: string | undefined
     subcategory: string | undefined
   }
-  allCategories: IBaseCategory[]
+  allCategories: ICategory[]
 }) => {
   if (paramsData.subcategory) {
     const foundCategory = allCategories.find(category =>

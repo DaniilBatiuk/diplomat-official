@@ -11,7 +11,7 @@ interface HeaderMenuProp {
   setMenuCategoriesActive: Dispatch<SetStateAction<boolean>>
   menuCategoriesActive: boolean
   closeMenu: () => void
-  allCategories: IBaseCategory[]
+  allCategories: ICategory[]
 }
 export const MenuCategories: React.FC<HeaderMenuProp> = ({
   setMenuCategoriesActive,

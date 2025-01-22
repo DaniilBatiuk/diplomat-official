@@ -9,7 +9,7 @@ import styles from '../../header-catalog.module.scss'
 import { Link } from '@/components'
 
 interface CategoriesColumnsProps {
-  selectedCategory: IBaseCategory
+  selectedCategory: ICategory
   setCatalogActive: Dispatch<SetStateAction<boolean>>
 }
 

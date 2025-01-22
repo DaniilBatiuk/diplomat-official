@@ -6,7 +6,7 @@ import ProductImg from '@/../public/product100x100.jpg'
 import { calculateRoundedPrice } from '@/utils/helpers'
 
 interface ProductItem {
-  product: IProductBase
+  product: IProductEntity
 }
 
 export const ProductItem: React.FC<ProductItem> = ({ product }: ProductItem) => {

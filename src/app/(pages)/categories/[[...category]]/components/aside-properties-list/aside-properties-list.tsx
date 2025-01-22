@@ -7,7 +7,7 @@ import styles from './../../categories.module.scss'
 import { CheckBoxCategories } from './components/check-box/check-box'
 
 interface AsidePropertiesListProps {
-  products: IProductBaseWithProperties[]
+  products: IProductWithProperties[]
 }
 
 export const AsidePropertiesList: React.FC<AsidePropertiesListProps> = ({

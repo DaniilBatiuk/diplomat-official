@@ -13,14 +13,14 @@ import styles from './header-catalog.module.scss'
 interface CatalogProp {
   catalogActive: boolean
   setCatalogActive: Dispatch<SetStateAction<boolean>>
-  allCategories: IBaseCategory[]
+  allCategories: ICategory[]
 }
 export const Catalog: React.FC<CatalogProp> = ({
   catalogActive,
   setCatalogActive,
   allCategories,
 }: CatalogProp) => {
-  const [selectedCategory, setSelectedCategory] = useState<IBaseCategory>(allCategories[0])
+  const [selectedCategory, setSelectedCategory] = useState<ICategory>(allCategories[0])
 
   return (
     <>
