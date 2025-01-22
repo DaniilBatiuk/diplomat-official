@@ -1,6 +1,8 @@
 import { usePathname } from 'next/navigation'
 import { RefObject, useEffect, useState } from 'react'
 
+import { compareInput } from '../helpers/compate-input'
+
 import { useHeaderSearchStore } from '@/utils/lib/store/header-search-store'
 
 interface IUseHeader {
@@ -37,14 +39,12 @@ export const useHeader = ({ searchData, inputRefSearch }: IUseHeader) => {
   useEffect(() => {
     setSearchDataView({
       categories: searchData.categories.filter(category =>
-        category.name.toLowerCase().startsWith(searchValue.toLowerCase()),
+        compareInput(searchValue, category.name),
       ),
       subcategories: searchData.subcategories.filter(subcategory =>
-        subcategory.name.toLowerCase().startsWith(searchValue.toLowerCase()),
+        compareInput(searchValue, subcategory.name),
       ),
-      products: searchData.products.filter(product =>
-        product.name.toLowerCase().startsWith(searchValue.toLowerCase()),
-      ),
+      products: searchData.products.filter(product => compareInput(searchValue, product.name)),
     })
   }, [searchValue, searchData])
 
