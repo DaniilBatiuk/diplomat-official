@@ -50,6 +50,7 @@ export const SignUpPage: React.FC<SignUpProps> = ({ setSignUp, onClickClose }: S
       toast.error(registerState.errors?.message)
     },
   })
+
   return (
     <>
       <h2>Реєстрація</h2>

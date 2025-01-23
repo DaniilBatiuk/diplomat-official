@@ -1,20 +1,17 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useQueryClient } from '@tanstack/react-query'
 import { signIn } from 'next-auth/react'
 import { Dispatch, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
 
 import { CustomButton } from '@/components/ui/custom-button/custom-button'
 
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
-import { setCartToken } from '@/utils/lib/actions/cart'
-
 import { CustomField } from '../../../../ui/custom-field/custom-field'
 import styles from '../../sign-in.module.scss'
 
+import { useSubmit } from './hooks/use-submit'
 import { LoginType, loginSchema } from '@/utils/validators/user-validator'
 
 interface SignInProps {
@@ -22,7 +19,6 @@ interface SignInProps {
   onClickClose: () => void
 }
 export const SignInPage: React.FC<SignInProps> = ({ setSignUp, onClickClose }: SignInProps) => {
-  const queryClient = useQueryClient()
   const {
     register,
     handleSubmit,
@@ -35,28 +31,7 @@ export const SignInPage: React.FC<SignInProps> = ({ setSignUp, onClickClose }: S
     },
   })
 
-  const onSubmit = async (data: LoginType) => {
-    try {
-      const resp = await signIn('credentials', {
-        ...data,
-        redirect: false,
-      })
-
-      if (!resp?.ok) {
-        throw new Error()
-      }
-
-      await setCartToken()
-      queryClient.invalidateQueries({
-        queryKey: ['cart'],
-      })
-      onClickClose()
-
-      toast.success('Вы успешно вошли в аккаунт')
-    } catch (error) {
-      toast.error('Не удалось войти в аккаунт')
-    }
-  }
+  const { onSubmit } = useSubmit({ onClickClose })
 
   return (
     <>
