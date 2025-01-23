@@ -10,7 +10,6 @@ export const ProfileLi: React.FC = () => {
   const { setSignInActive } = useHeaderSearchStore()
 
   const { data: session } = useSession()
-  console.log('session client', session)
 
   return (
     <>

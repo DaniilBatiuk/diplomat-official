@@ -9,7 +9,6 @@ import { getUserSession } from '@/utils/helpers/get-user-session'
 
 export default async function Profile() {
   const user = await getUserSession()
-  console.log('session', user)
 
   if (!user) return notFound()
 

@@ -39,9 +39,11 @@ export const CreateCommentModal: React.FC<CreateCommentModalProps> = ({
       setModalActive(false)
     },
     onError: () => {
-      createCommentState.errors.message
-        ? toast.error('createOrderState.errors.message')
-        : toast.error('Виникла помилка при створенні комментаря')
+      if (createCommentState.errors.message) {
+        toast.error(createCommentState.errors.message)
+      } else {
+        toast.error('Виникла помилка при створенні комментаря')
+      }
     },
   })
 

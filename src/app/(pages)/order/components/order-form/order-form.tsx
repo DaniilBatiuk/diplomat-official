@@ -53,9 +53,11 @@ export const OrderForm: React.FC = () => {
       toast.success('Замовлення успішно створено')
     },
     onError: () => {
-      createOrderState.errors.message
-        ? toast.error('createOrderState.errors.message')
-        : toast.error('Виникла помилка при створенні замовлення')
+      if (createOrderState.errors.message) {
+        toast.error(createOrderState.errors.message)
+      } else {
+        toast.error('Виникла помилка при створенні замовлення')
+      }
     },
   })
 

@@ -23,8 +23,6 @@ export const Auth: React.FC<AuthProps> = ({ onClickClose }: AuthProps) => {
     return () => document.documentElement.classList.remove('no-scroll-view')
   }, [])
 
-  console.log('signUp', signUp)
-
   return (
     <section className={styles.signIn}>
       <Image src={SignInImg} alt='MainPhoto' fill priority placeholder='blur' loading={'eager'} />

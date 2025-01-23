@@ -256,7 +256,6 @@ async function main() {
         cartSnapshot: JSON.stringify([{ productId: 'prod1', quantity: 2 }]),
         cartId: 'cart1',
         userId: 'user1',
-        token: 'token1',
       },
       {
         id: 'order2',
@@ -274,7 +273,6 @@ async function main() {
         cartSnapshot: JSON.stringify([{ productId: 'prod2', quantity: 1 }]),
         cartId: 'cart2',
         userId: 'user2',
-        token: 'token2',
       },
       {
         id: 'order3',
@@ -292,7 +290,6 @@ async function main() {
         cartSnapshot: JSON.stringify([{ productId: 'prod3', quantity: 3 }]),
         cartId: 'cart3',
         userId: 'user3',
-        token: 'token3',
       },
     ],
   })
