@@ -1,6 +1,7 @@
 'use client'
 
 import { Rating } from '@mui/material'
+import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
 import styles from './../../product.module.scss'
@@ -15,13 +16,14 @@ interface CommentsProps {
 }
 
 export const Comments: React.FC<CommentsProps> = ({ comments, productId }: CommentsProps) => {
+  const { data: session } = useSession()
   const [modalActive, setModalActive] = useState(false)
 
   return (
     <section className={styles.comments}>
       <div className={styles.comments__header}>
         <Title>Відгуки користувачів</Title>
-        <CustomButton outline onClick={() => setModalActive(true)}>
+        <CustomButton outline onClick={() => setModalActive(true)} disabled={!session}>
           Написати відгук
         </CustomButton>
       </div>
@@ -32,7 +34,7 @@ export const Comments: React.FC<CommentsProps> = ({ comments, productId }: Comme
             <Rating defaultValue={1} max={1} size='large' readOnly />
             <p className={styles.comments__stars_text_2}>{comments.length} відгуків</p>
           </div>
-          <CustomButton outline fullWidth onClick={() => setModalActive(true)}>
+          <CustomButton outline fullWidth onClick={() => setModalActive(true)} disabled={!session}>
             Написати відгук
           </CustomButton>
           <div className={styles.comments__list}>

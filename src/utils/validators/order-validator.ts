@@ -6,7 +6,7 @@ export const orderScheme = z.object({
     .string()
     .min(2, "Ім'я має містити не менше 2 символів")
     .max(50, "Ім'я має містити не більше 50 символів")
-    .nonempty("Поле з ім'я є обов'язковим"),
+    .nonempty("Поле ім'я є обов'язковим"),
   surname: z
     .string()
     .min(2, 'Прізвище має містити не менше 2 символів')
@@ -34,8 +34,6 @@ export const orderScheme = z.object({
     z.literal($Enums.PaymentWays.uponReceipt),
   ]),
   comment: z.string().max(500, 'Комментар має містити не більше 500 символів').optional(),
-  userId: z.string().cuid(),
-  cartId: z.string().cuid(),
 })
 
 export type CreateOrder = z.infer<typeof orderScheme>

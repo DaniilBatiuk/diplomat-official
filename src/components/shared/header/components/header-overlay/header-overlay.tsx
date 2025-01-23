@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from 'react'
 
+import { Auth } from '@/components/shared/auth/auth'
 import { Basket } from '@/components/shared/basket/basket'
 import { DarkBackground } from '@/components/shared/dark-background/dark-background'
-import { SignIn } from '@/components/shared/sign-in/sign-in'
 
 import { Catalog } from '../header-catalog/header-catalog'
 import { HeaderMenu } from '../header-menu/header-menu'
@@ -63,7 +63,7 @@ export const HeaderOverlay: React.FC<HeaderOverlayProps> = ({
       />
       <Basket basketActive={basketActive} setBasketActive={setBasketActive} />
       <SearchMobile inputRefMobile={inputRefMobile} />
-      {signInActive && <SignIn onClickClose={() => setSignInActive(false)} />}
+      {signInActive && <Auth onClickClose={() => setSignInActive(false)} />}
     </>
   )
 }

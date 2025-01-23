@@ -12,6 +12,7 @@ import { getCart } from '@/utils/lib/actions/cart'
 import { HeaderContactsPopUp } from '../header-contacts-popup/header-contacts-popup'
 
 import styles from './../../header.module.scss'
+import { ProfileLi } from './components/profile-li/profile-li'
 import { useHeaderSearchStore } from '@/utils/lib/store/header-search-store'
 
 interface HeaderNavProps {
@@ -19,7 +20,7 @@ interface HeaderNavProps {
 }
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({ inputRefMobile }: HeaderNavProps) => {
-  const { setSignInActive, setBasketActive, setSearchMobileActive } = useHeaderSearchStore()
+  const { setBasketActive, setSearchMobileActive } = useHeaderSearchStore()
 
   const { data: cart } = useQuery({
     queryKey: ['cart'],
@@ -46,7 +47,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ inputRefMobile }: HeaderNa
           </Link>
         </li>
 
-        <li onClick={() => setSignInActive(true)}>{ICONS.user()}</li>
+        <ProfileLi />
         <li onClick={() => setBasketActive(true)}>
           {cart && cart?.items.length > 0 ? (
             <Badge badgeContent={cart?.items.length} color='error' showZero max={9}>
@@ -55,7 +56,6 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ inputRefMobile }: HeaderNa
           ) : (
             ICONS.cart()
           )}
-          {cart && cart.totalPrice > 0 && <p>{cart.totalPrice.toLocaleString('uk-UA')} ₴</p>}
         </li>
       </ul>
     </nav>

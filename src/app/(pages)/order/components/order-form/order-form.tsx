@@ -1,10 +1,12 @@
 'use client'
 
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { useActionState } from 'react'
 import { toast } from 'react-toastify'
 
 import { initialState } from '@/utils/config/initial-state'
+import { LINKS } from '@/utils/config/links'
 
 import { useFormResultProcess } from '@/utils/hooks/useFormResultProcess/useFormResultProcess'
 
@@ -23,6 +25,8 @@ import styles from './../../order.module.scss'
 import { ActionState } from '@/utils/lib/middleware'
 
 export const OrderForm: React.FC = () => {
+  const queryClient = useQueryClient()
+  const router = useRouter()
   const {
     data: cart,
     isPending: isCartPending,
@@ -42,10 +46,16 @@ export const OrderForm: React.FC = () => {
     state: createOrderState,
     isPending: createOrderPending,
     onSuccess: () => {
+      router.push(LINKS.Home)
+      queryClient.invalidateQueries({
+        queryKey: ['cart'],
+      })
       toast.success('Замовлення успішно створено')
     },
     onError: () => {
-      toast.error('Виникла помилка при створенні замовлення')
+      createOrderState.errors.message
+        ? toast.error('createOrderState.errors.message')
+        : toast.error('Виникла помилка при створенні замовлення')
     },
   })
 

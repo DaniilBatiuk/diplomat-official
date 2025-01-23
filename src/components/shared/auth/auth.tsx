@@ -10,11 +10,11 @@ import { SignUpPage } from './components/sign-up/sign-up'
 import styles from './sign-in.module.scss'
 import SignInImg from '@/../public/sign-up.webp'
 
-interface SignInProps {
+interface AuthProps {
   onClickClose: () => void
 }
 
-export const SignIn: React.FC<SignInProps> = ({ onClickClose }: SignInProps) => {
+export const Auth: React.FC<AuthProps> = ({ onClickClose }: AuthProps) => {
   const [signUp, setSignUp] = useState(false)
 
   useEffect(() => {
@@ -23,6 +23,8 @@ export const SignIn: React.FC<SignInProps> = ({ onClickClose }: SignInProps) => 
     return () => document.documentElement.classList.remove('no-scroll-view')
   }, [])
 
+  console.log('signUp', signUp)
+
   return (
     <section className={styles.signIn}>
       <Image src={SignInImg} alt='MainPhoto' fill priority placeholder='blur' loading={'eager'} />
@@ -30,7 +32,11 @@ export const SignIn: React.FC<SignInProps> = ({ onClickClose }: SignInProps) => 
         {ICONS.close({ className: styles.signIn__close })}
       </button>
       <div className={styles.signIn__content}>
-        {!signUp ? <SignInPage setSignUp={setSignUp} /> : <SignUpPage setSignUp={setSignUp} />}
+        {!signUp ? (
+          <SignInPage setSignUp={setSignUp} onClickClose={onClickClose} />
+        ) : (
+          <SignUpPage setSignUp={setSignUp} onClickClose={onClickClose} />
+        )}
       </div>
     </section>
   )

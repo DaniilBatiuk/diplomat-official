@@ -304,3 +304,13 @@
     border-radius: 5px;
   }
 }
+
+.sign_out {
+  margin-top: 10px;
+  background-color: var.$red-100 !important;
+  color: var.$red-300 !important;
+
+  &:hover {
+    background-color: var.$red-200 !important;
+  }
+}

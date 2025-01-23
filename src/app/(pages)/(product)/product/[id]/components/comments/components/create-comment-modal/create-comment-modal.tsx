@@ -39,7 +39,9 @@ export const CreateCommentModal: React.FC<CreateCommentModalProps> = ({
       setModalActive(false)
     },
     onError: () => {
-      toast.error('Виникла помилка при створенні комментаря')
+      createCommentState.errors.message
+        ? toast.error('createOrderState.errors.message')
+        : toast.error('Виникла помилка при створенні комментаря')
     },
   })
 
@@ -47,7 +49,6 @@ export const CreateCommentModal: React.FC<CreateCommentModalProps> = ({
     <Modal active={modalActive} setActive={setModalActive} maxDivWidth='440px'>
       <form noValidate className={styles.comments__form} action={createCommentFormAction}>
         <input type='hidden' name='productId' value={productId} />
-        <input type='hidden' name='userId' value='cm5zobqpu000mot6wvlm18dzz' />
         <div className={styles.comments__form_fields}>
           <div className={styles.comments__form_rating}>
             <p>Виберіть рейтинг:</p>

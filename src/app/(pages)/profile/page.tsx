@@ -1,10 +1,18 @@
+import { notFound } from 'next/navigation'
+
 import { History } from './components/history/history'
 import { LeftSide } from './components/left-side/left-side'
 import { PersonalData } from './components/personal-data/personal-data'
 import styles from './profile.module.scss'
 import { Title } from '@/components'
+import { getUserSession } from '@/utils/helpers/get-user-session'
 
-export default function Profile() {
+export default async function Profile() {
+  const user = await getUserSession()
+  console.log('session', user)
+
+  if (!user) return notFound()
+
   return (
     <div className={styles.profile}>
       <section className={styles.profile__container}>

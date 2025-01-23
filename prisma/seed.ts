@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 async function main() {
-  // Seed Categories
+  //Seed Categories
   await prisma.category.createMany({
     data: [
       { id: 'cat1', name: 'Electronics' },
@@ -198,7 +198,6 @@ async function main() {
         address: '123 Main St',
         phone: '1234567890',
         role: 'user',
-        cartId: 'cart1',
       },
       {
         id: 'user2',
@@ -209,7 +208,6 @@ async function main() {
         address: '456 Elm St',
         phone: '0987654321',
         role: 'manager',
-        cartId: 'cart2',
       },
       {
         id: 'user3',
@@ -220,7 +218,6 @@ async function main() {
         address: null,
         phone: null,
         role: 'admin',
-        cartId: 'cart3',
       },
     ],
   })

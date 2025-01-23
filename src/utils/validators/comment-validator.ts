@@ -13,7 +13,6 @@ export const commentScheme = z.object({
     .nonempty("Поле відгук є обов'язковим"),
   starCount: z.preprocess(value => parseInt(String(value)), z.number().min(1).max(5)),
   recommend: z.preprocess(value => Boolean(value), z.boolean().optional()),
-  userId: z.string().cuid(),
   productId: z.string().cuid(),
 })
 

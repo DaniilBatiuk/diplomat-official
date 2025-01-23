@@ -1,6 +1,7 @@
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../profile.module.scss'
+import { SignOutButton } from './components/sign-out-button/sign-out-button'
 import { UserRole } from '@/components'
 
 export const LeftSide: React.FC = () => {
@@ -23,6 +24,7 @@ export const LeftSide: React.FC = () => {
           <p>12</p>
         </div>
       </div>
+      <SignOutButton />
     </div>
   )
 }

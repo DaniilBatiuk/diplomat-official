@@ -45,7 +45,10 @@ export const getProductDetails = (id: string): Promise<IProductOne> => {
     async () =>
       (await prisma.product.findUnique({
         where: { id: id },
-        include: { properties: true, comments: { include: { user: true } } },
+        include: {
+          properties: true,
+          comments: { include: { user: true }, orderBy: { createdAt: 'desc' } },
+        },
       })) as IProductOne,
     [`product-${id}`],
     {
