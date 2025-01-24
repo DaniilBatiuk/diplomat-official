@@ -44,7 +44,7 @@ export const getProductDetails = (id: string): Promise<IProductOne> => {
   return unstable_cache(
     async () =>
       (await prisma.product.findUnique({
-        where: { id: id },
+        where: { id },
         include: {
           properties: true,
           comments: { include: { user: true }, orderBy: { createdAt: 'desc' } },
@@ -112,7 +112,7 @@ export const getActiveProductsByCategory = (
       })) as IProductWithProperties[],
     [`products-by-category-${categoryName}`],
     {
-      revalidate: 60 * 60 * 2,
+      revalidate: 60 * 60 * 2, // two hours,
     },
   )()
 }
@@ -138,7 +138,30 @@ export const getActiveProductsBySubcategory = (
       })) as IProductWithProperties[],
     [`products-by-subcategory-${subCategoryName}`],
     {
-      revalidate: 60 * 60 * 2,
+      revalidate: 60 * 60 * 2, // two hours,
+    },
+  )()
+}
+
+export const getUserDetails = (id: string): Promise<IUserDetails> => {
+  return unstable_cache(
+    async () =>
+      (await prisma.user.findUnique({
+        where: { id },
+        include: {
+          orders: {
+            select: { id: true, cartSnapshot: true, createdAt: true },
+            orderBy: { createdAt: 'desc' },
+          },
+          _count: {
+            select: { comments: true },
+          },
+        },
+      })) as IUserDetails,
+    [`user-${id}`],
+    {
+      tags: [`user-${id}`],
+      revalidate: 60 * 60 * 2, // two hours,
     },
   )()
 }

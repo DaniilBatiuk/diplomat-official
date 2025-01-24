@@ -1,5 +1,6 @@
 'use server'
 
+import { revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 
 import { TOKENS } from '@/utils/config/enum-tokens'
@@ -55,7 +56,7 @@ export const createOrder = validatedAction(orderScheme, async order => {
   await prisma.order.create({
     data: {
       ...order,
-      cartSnapshot: JSON.stringify(cart.items),
+      cartSnapshot: JSON.stringify({ items: cart.items, totalPrice: cart.totalPrice }),
       userId: user ? user.id : null,
     },
   })
@@ -76,6 +77,9 @@ export const createOrder = validatedAction(orderScheme, async order => {
     },
   })
 
+  if (user) {
+    revalidateTag(`user-${user?.id}`)
+  }
   return {
     errors: {},
     inputs: {},

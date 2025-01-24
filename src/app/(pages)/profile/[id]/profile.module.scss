@@ -87,7 +87,7 @@
         &_footer {
           display: flex;
           align-items: flex-end;
-          justify-content: space-between;
+          justify-content: flex-end;
           column-gap: 20px;
           @include var.adaptive-value-px(margin-top, 20, 25);
           & > p {
@@ -174,8 +174,11 @@
       justify-content: space-between;
 
       align-items: flex-end;
-      margin-top: 15px;
-      @media (min-width: 1000px) {
+
+      @media (max-width: 1000px) {
+        margin-top: 15px;
+      }
+      @media (min-width: 999px) {
         align-items: center;
       }
     }
@@ -192,7 +195,7 @@
 
       &_text {
         @extend %inter-400-18;
-        @media (min-width: 1000px) {
+        @media (min-width: 1001px) {
           display: none;
         }
       }

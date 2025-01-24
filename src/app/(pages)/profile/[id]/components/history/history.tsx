@@ -1,9 +1,14 @@
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../profile.module.scss'
+import { HistoryItem } from './components/history-item/history-item'
 import { FormBlock } from '@/components'
 
-export const History: React.FC = () => {
+interface HistoryProps {
+  user: IUserDetails
+}
+
+export const History: React.FC<HistoryProps> = ({ user }: HistoryProps) => {
   return (
     <FormBlock title='Історія замовлень'>
       {false ? (
@@ -21,9 +26,9 @@ export const History: React.FC = () => {
             <p className={styles.history__header_products}>Товари</p>
             <p className={styles.history__header_sum}>Сума</p>
           </div>
-          {/* {PRODUCTS.map(product => (
-            <HistoryItem key={product.id} product={product} />
-          ))} */}
+          {user.orders.map((order, index) => (
+            <HistoryItem key={order.id} order={order} index={index} />
+          ))}
         </div>
       )}
     </FormBlock>

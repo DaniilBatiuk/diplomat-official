@@ -1,7 +1,7 @@
 'use client'
 
 import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { useActionState } from 'react'
 import { toast } from 'react-toastify'
 
@@ -26,7 +26,6 @@ import { ActionState } from '@/utils/lib/middleware'
 
 export const OrderForm: React.FC = () => {
   const queryClient = useQueryClient()
-  const router = useRouter()
   const {
     data: cart,
     isPending: isCartPending,
@@ -46,11 +45,11 @@ export const OrderForm: React.FC = () => {
     state: createOrderState,
     isPending: createOrderPending,
     onSuccess: () => {
-      router.push(LINKS.Home)
       queryClient.invalidateQueries({
         queryKey: ['cart'],
       })
       toast.success('Замовлення успішно створено')
+      redirect(LINKS.Home)
     },
     onError: () => {
       if (createOrderState.errors.message) {

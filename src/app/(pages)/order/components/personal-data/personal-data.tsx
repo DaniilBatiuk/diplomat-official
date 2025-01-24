@@ -31,7 +31,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
           type='email'
           idName='email'
           defaultValue={createOrderState.inputs.email}
-          label={createOrderState.errors.email ?? 'Введіть e-mail'}
+          label={createOrderState.errors.email ?? 'Введіть E-mail'}
           error={!!createOrderState.errors.email}
         />
         <TelInput

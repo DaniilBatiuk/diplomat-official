@@ -1,3 +1,39 @@
+type IUserDto = {
+  id: string
+  name: string
+  surname: string
+  email: string
+  role: $Enums.UserRole
+  phone: string | null
+  address: string | null
+  createdAt: Date
+  comments: ICommentDto[]
+}
+
+type IUserDetails = {
+  orders: IOrderEntity[]
+  _count: { comments: number }
+} & Omit<IUserDto, 'comments'>
+
+type IOrderEntity = Pick<IOrderDto, 'id' | 'cartSnapshot' | 'createdAt'>
+type IOrderDto = {
+  id: string
+  name: string
+  surname: string
+  email: string
+  phone: string
+  city: string
+  department: string
+  orderStatus: $Enums.OrderStatus
+  paymentStatus: $Enums.PaymentStatus
+  deliveryWay: $Enums.DeliveryWays
+  deliveryVariants: $Enums.DeliveryVariants
+  paymentWay: $Enums.PaymentWays
+  createdAt: Date
+  cartSnapshot: Json
+  comment: string | null
+}
+
 type IProductDto = {
   id: string
   name: string
