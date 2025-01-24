@@ -46,6 +46,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({ user }: PersonalData
       <form noValidate className={styles.profile__content_right_form} action={updateUserFormAction}>
         <div className={styles.profile__content_right_form_fields}>
           <CustomField
+            disabled={!!user.providerId}
             idName='name'
             fullWidth
             label={updateUserState.errors.name ?? "Введіть ім'я"}
@@ -54,6 +55,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({ user }: PersonalData
             onChange={handleChange}
           />
           <CustomField
+            disabled={!!user.providerId}
             idName='surname'
             fullWidth
             label={updateUserState.errors.surname ?? 'Введіть прізвище'}
@@ -63,6 +65,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({ user }: PersonalData
           />
         </div>
         <CustomField
+          disabled={!!user.providerId}
           idName='email'
           fullWidth
           type='email'
@@ -75,7 +78,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({ user }: PersonalData
         <div className={styles.profile__content_right_form_footer}>
           <CustomButton
             type='submit'
-            disabled={isDisabled || updateUserPending}
+            disabled={isDisabled || updateUserPending || !!user.providerId}
             className={styles.profile__content_right_form_footer_button}
           >
             Змінити

@@ -23,18 +23,12 @@ export const productScheme = z.object({
     }
     return Number(value)
   }, z.number().positive('Кількість має бути додатнім числом')),
-  discountPercent: z.preprocess(
-    value => {
-      if (isNaN(Number(value))) {
-        throw new Error('Кількість має бути числом')
-      }
-      return Number(value)
-    },
-    z
-      .number()
-      .positive('Кількість має бути додатнім числом')
-      .max(100, 'Знижка не може бути більше 100%'),
-  ),
+  discountPercent: z.preprocess(value => {
+    if (isNaN(Number(value))) {
+      throw new Error('Знижка має бути числом')
+    }
+    return Number(value)
+  }, z.number().max(100, 'Знижка не може бути більше 100%').optional()),
   properties: z.array(
     z.object({
       name: z

@@ -61,6 +61,12 @@ export async function deleteProduct(id: string) {
     throw new Error('Товара не існує')
   }
 
+  await prisma.cartItem.deleteMany({
+    where: {
+      productId: id,
+    },
+  })
+
   await deleteAllProperties(id)
 
   await prisma.product.delete({

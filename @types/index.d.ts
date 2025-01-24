@@ -8,6 +8,7 @@ type IUserDto = {
   address: string | null
   createdAt: Date
   comments: ICommentDto[]
+  providerId: string | null
 }
 
 type IUserDetails = {

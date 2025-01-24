@@ -84,18 +84,29 @@ export const updateCartTotalAmount = async () => {
   })
 }
 
-export const setCartToken = async () => {
+export const setCartToken = async (providerId?: string) => {
   const user = await getUserSession()
   const cookieStore = await cookies()
   const token = cookieStore.get(TOKENS.CART_TOKEN)?.value
+  let userId: undefined | string = undefined
+  if (providerId) {
+    const userFromProvider = await prisma.user.findFirst({
+      where: {
+        providerId,
+      },
+    })
 
-  if (!user) {
+    userId = userFromProvider?.id
+  }
+  userId = userId ?? user?.id
+  console.log('userId', userId)
+  if (!userId) {
     return
   }
 
   const cart = await prisma.cart.findFirst({
     where: {
-      userId: user.id,
+      userId,
     },
   })
 
@@ -141,7 +152,7 @@ export const setCartToken = async () => {
           id: cartFromToken.id,
         },
         data: {
-          userId: user.id,
+          userId,
         },
       })
     }

@@ -11,7 +11,6 @@ declare module 'next-auth' {
       name: string
       surname: string
       email: string
-      cartId: string | null
     }
   }
 
@@ -20,7 +19,6 @@ declare module 'next-auth' {
     role: UserRole
     name: string
     surname: string
-    cartId: string | null
   }
 }
 
@@ -28,6 +26,5 @@ declare module 'next-auth/jwt' {
   interface JWT extends DefaultJWT {
     id: string
     role: UserRole
-    cartId: string | null
   }
 }

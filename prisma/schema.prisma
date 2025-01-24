@@ -23,10 +23,9 @@ model User {
 
   orders   Order[]
   comments Comment[]
-  cart     Cart?
-  cartId   String?
 
   createdAt DateTime @default(now())
+  Cart      Cart?
 }
 
 model Cart {

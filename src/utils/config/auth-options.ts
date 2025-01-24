@@ -3,6 +3,7 @@ import { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
 
+import { setCartToken } from '../lib/actions/cart'
 import { prisma } from '../lib/db'
 
 export const authOptions: AuthOptions = {
@@ -46,7 +47,6 @@ export const authOptions: AuthOptions = {
           name: findUser.name,
           surname: findUser.surname,
           role: findUser.role,
-          cartId: findUser.cartId,
         }
       },
     }),
@@ -58,6 +58,12 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async signIn({ user, account }) {
       try {
+        if (account?.provider === 'google') {
+          console.log('user 2', user)
+          await setCartToken(user.id)
+          return true
+        }
+
         if (account?.provider === 'credentials') {
           return true
         }
@@ -123,7 +129,6 @@ export const authOptions: AuthOptions = {
         token.name = findUser.name
         token.surname = findUser.surname
         token.role = findUser.role
-        token.cartId = findUser.cartId
       }
 
       return token
@@ -132,7 +137,6 @@ export const authOptions: AuthOptions = {
       if (session?.user) {
         session.user.id = token.id
         session.user.role = token.role
-        session.user.cartId = token.cartId
       }
 
       return session

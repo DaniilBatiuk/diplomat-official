@@ -81,7 +81,7 @@ export const SignUpPage: React.FC<SignUpProps> = ({ setSignUp, onClickClose }: S
             isWhite
             idName='email'
             defaultValue={registerState.inputs.email}
-            label={registerState.errors.email ?? 'Введіть e-mail'}
+            label={registerState.errors.email ?? 'Введіть E-mail'}
             error={!!registerState.errors.email}
           />
           <CustomField

@@ -11,20 +11,18 @@ import { CustomButton } from '@/components'
 
 export const SignOutButton: React.FC = () => {
   const { data: session } = useSession()
+
   return (
-    <>
-      {session && (
-        <CustomButton
-          onClick={async () => {
-            signOut({ callbackUrl: LINKS.Home })
-            Cookies.remove(TOKENS.CART_TOKEN)
-          }}
-          fullWidth
-          className={styles.sign_out}
-        >
-          Вийти
-        </CustomButton>
-      )}
-    </>
+    <CustomButton
+      onClick={async () => {
+        signOut({ callbackUrl: LINKS.Home })
+        Cookies.remove(TOKENS.CART_TOKEN)
+      }}
+      disabled={!!!session}
+      fullWidth
+      className={styles.sign_out}
+    >
+      Вийти
+    </CustomButton>
   )
 }

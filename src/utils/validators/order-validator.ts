@@ -12,7 +12,7 @@ export const orderScheme = z.object({
     .min(2, 'Прізвище має містити не менше 2 символів')
     .max(50, 'Прізвище має містити не більше 50 символів')
     .nonempty("Поле з прізвище є обов'язковим"),
-  email: z.string().email('Некоректний e-mail').nonempty("Поле e-mail є обов'язковим"),
+  email: z.string().email('Некоректний E-mail').nonempty("Поле E-mail є обов'язковим"),
   phone: z.string().length(18, 'Некоректний телефон').nonempty("Поле телефон є обов'язковим"),
   city: z.string().nonempty("Поле місто є обов'язковим"),
   department: z

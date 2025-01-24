@@ -316,4 +316,9 @@
   &:hover {
     background-color: var.$red-200 !important;
   }
+
+  &:disabled {
+    background-color: var.$red-100 !important;
+    opacity: 0.5;
+  }
 }

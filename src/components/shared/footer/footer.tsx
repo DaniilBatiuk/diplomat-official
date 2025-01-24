@@ -97,7 +97,7 @@ export const Footer: React.FC = () => {
               <h2>Підпишіться</h2>
               <h3>Дізнавайтесь першими про новинки та знижки на подарунки.</h3>
               <form>
-                <input type='text' placeholder='Ведіть свій e-mail' />
+                <input type='text' placeholder='Ведіть свій E-mail' />
                 <button type='submit'>Підписатися</button>
               </form>
               <p>
