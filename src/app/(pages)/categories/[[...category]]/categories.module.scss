@@ -69,8 +69,15 @@
   flex: 0 1 327px;
   position: sticky;
   top: 80px;
+  max-height: calc(100vh - 80px);
   height: fit-content;
+  overflow-y: scroll;
   min-width: 230px;
+
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (max-width: 840px) {
     display: none;
