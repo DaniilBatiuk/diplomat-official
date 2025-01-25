@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { LINKS } from '@/utils/config/links'
 
 import { CopyLi } from './components/copy-li/copy-li'
+import { SubscribeForm } from './components/subscribe-form/subscribe-form'
 import styles from './footer.module.scss'
 import Logo from '@/../public/homeLogo.webp'
 import { Link } from '@/components'
@@ -96,10 +97,7 @@ export const Footer: React.FC = () => {
             <div className={styles.footer__main_column}>
               <h2>Підпишіться</h2>
               <h3>Дізнавайтесь першими про новинки та знижки на подарунки.</h3>
-              <form>
-                <input type='text' placeholder='Ведіть свій E-mail' />
-                <button type='submit'>Підписатися</button>
-              </form>
+              <SubscribeForm />
               <p>
                 Підписуючись, ви погоджуєтеся з нашою Політикою конфіденційності та надаєте згоду на
                 отримання оновлень від нашої компанії.

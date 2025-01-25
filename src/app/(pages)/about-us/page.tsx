@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { Metadata } from 'next'
 import Image from 'next/image'
 
 import styles from './about-us.module.scss'
@@ -6,6 +7,10 @@ import About1 from '@/../public/about-us1.webp'
 import About2 from '@/../public/about-us2.webp'
 import About3 from '@/../public/about-us3.webp'
 import { Title } from '@/components'
+
+export const metadata: Metadata = {
+  title: 'Про нас',
+}
 
 export default function AboutUs() {
   return (

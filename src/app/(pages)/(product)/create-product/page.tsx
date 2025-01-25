@@ -1,7 +1,13 @@
+import { Metadata } from 'next'
+
 import { CreateForm } from './components/create-form/create-form'
 import styles from './create-product.module.scss'
 import { Title } from '@/components'
 import { getCategories } from '@/utils/lib/queries'
+
+export const metadata: Metadata = {
+  title: 'Створення товару',
+}
 
 export default async function CreateProduct() {
   const allCategories = await getCategories()

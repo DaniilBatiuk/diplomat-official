@@ -1,7 +1,13 @@
+import { Metadata } from 'next'
+
 import styles from './admin.module.scss'
 import { AdminHeader } from './components/admin-header/admin-header'
 import { Card } from '@/components'
 import { getProducts } from '@/utils/lib/queries'
+
+export const metadata: Metadata = {
+  title: 'Адмін',
+}
 
 export default async function Admin() {
   const products = await getProducts()

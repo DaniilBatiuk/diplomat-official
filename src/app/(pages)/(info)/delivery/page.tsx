@@ -1,10 +1,15 @@
 import clsx from 'clsx'
+import { Metadata } from 'next'
 
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
 import styles from './../info.module.scss'
 import { CustomButton, Link, Title } from '@/components'
+
+export const metadata: Metadata = {
+  title: 'Доставка',
+}
 
 export default function Delivery() {
   return (

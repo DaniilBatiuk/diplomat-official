@@ -6,7 +6,7 @@ export const passwordSchema = z
   .nonempty("Поле пароль є обов'язковим")
 
 export const loginSchema = z.object({
-  email: z.string().email('Введіть коректно почту').nonempty("Поле E-mail є обов'язковим"),
+  email: z.string().email('Введіть коректно E-mail').nonempty("Поле E-mail є обов'язковим"),
   password: passwordSchema,
 })
 
@@ -38,7 +38,7 @@ export const updateUserSchema = z.object({
     .string()
     .min(2, 'Прізвище має містити мінімум 2 символи')
     .nonempty("Поле прізвище є обов'язковим"),
-  email: z.string().email('Введіть коректно почту').nonempty("Поле E-mail є обов'язковим"),
+  email: z.string().email('Введіть коректно E-mail').nonempty("Поле E-mail є обов'язковим"),
 })
 
 export type LoginType = z.infer<typeof loginSchema>

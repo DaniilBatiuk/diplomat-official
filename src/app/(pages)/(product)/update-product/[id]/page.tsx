@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { CreateForm } from '../../create-product/components/create-form/create-form'
@@ -12,6 +13,10 @@ export async function generateStaticParams() {
   return products.map(product => ({
     id: product.id,
   }))
+}
+
+export const metadata: Metadata = {
+  title: 'Зміна товару',
 }
 
 export default async function CreateProduct({ params }: { params: Promise<{ id: string }> }) {
