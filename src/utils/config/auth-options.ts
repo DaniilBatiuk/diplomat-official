@@ -59,9 +59,7 @@ export const authOptions: AuthOptions = {
     async signIn({ user, account }) {
       try {
         if (account?.provider === 'google') {
-          console.log('user 2', user)
           await setCartToken(user.id)
-          return true
         }
 
         if (account?.provider === 'credentials') {

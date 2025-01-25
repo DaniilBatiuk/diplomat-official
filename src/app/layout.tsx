@@ -22,6 +22,13 @@ const loraMono = Lora({
 })
 
 export const metadata: Metadata = {
+  generator: 'Next.js',
+  applicationName: WEB_NAME,
+  referrer: 'origin-when-cross-origin',
+  keywords: [WEB_NAME, 'Світ подарунків', 'Магазин подарунків'],
+  authors: [{ name: 'Daniil' }, { name: 'Daniil', url: 'https://github.com/DaniilBatiuk' }],
+  creator: 'Daniil Batiuk',
+  publisher: 'Daniil Batiuk',
   title: {
     default: WEB_NAME,
     template: `%s | ${WEB_NAME}`,

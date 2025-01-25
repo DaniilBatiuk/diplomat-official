@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
@@ -40,6 +41,29 @@ export async function generateStaticParams() {
   ]
 
   return paths
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category?: string[] }>
+}): Promise<Metadata> {
+  const categoriesFromParam = (await params)?.category ?? []
+
+  const paramsData = {
+    category: categoriesFromParam[0] ? decodeURIComponent(categoriesFromParam[0]) : undefined,
+    subcategory: categoriesFromParam[1] ? decodeURIComponent(categoriesFromParam[1]) : undefined,
+  }
+
+  const title = paramsData.subcategory
+    ? `${paramsData.subcategory}`
+    : paramsData.category
+      ? `${paramsData.category}`
+      : 'Категорії'
+
+  return {
+    title,
+  }
 }
 
 type Params = Promise<{ category?: string[] }>

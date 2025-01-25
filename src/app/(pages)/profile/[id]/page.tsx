@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { History } from './components/history/history'
@@ -14,6 +15,19 @@ export async function generateStaticParams() {
   return users.map(user => ({
     id: user.id,
   }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> {
+  const id = (await params).id
+  const user = await getUserDetails(id)
+
+  return {
+    title: `${user.name} ${user.surname}`,
+  }
 }
 
 export default async function Profile({ params }: { params: Promise<{ id: string }> }) {

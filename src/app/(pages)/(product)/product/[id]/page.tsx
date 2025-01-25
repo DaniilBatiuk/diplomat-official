@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { Comments } from './components/comments/comments'
@@ -14,6 +15,19 @@ export async function generateStaticParams() {
   return products.map(product => ({
     id: product.id,
   }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> {
+  const id = (await params).id
+  const product = await getProductDetails(id)
+
+  return {
+    title: `${product.name}`,
+  }
 }
 
 export default async function Product({ params }: { params: Promise<{ id: string }> }) {
