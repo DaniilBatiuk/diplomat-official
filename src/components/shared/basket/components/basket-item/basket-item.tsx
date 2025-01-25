@@ -6,7 +6,7 @@ import { Counter } from '@/components/ui/counter/counter'
 import { ICONS } from '@/utils/config/icons'
 
 import styles from './basket-item.module.scss'
-import { calculateRoundedPrice } from '@/utils/helpers'
+import { calculateRoundedPriceToString } from '@/utils/helpers'
 import { useCartItemDelete, useCartItemUpdate } from '@/utils/hooks'
 
 interface BasketItemProps {
@@ -34,7 +34,7 @@ export const BasketItem: React.FC<BasketItemProps> = ({ cartItem }: BasketItemPr
                 [styles.item_info_price_discount]: cartItem.product.discountPercent,
               })}
             >
-              {calculateRoundedPrice(
+              {calculateRoundedPriceToString(
                 cartItem.product.price,
                 cartItem.product.discountPercent,
                 cartItem.quantity,

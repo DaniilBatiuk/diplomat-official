@@ -5,7 +5,7 @@ import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../../../order.module.scss'
 import { Counter } from '@/components'
-import { calculateRoundedPrice } from '@/utils/helpers'
+import { calculateRoundedPriceToString } from '@/utils/helpers'
 import { useCartItemDelete, useCartItemUpdate } from '@/utils/hooks'
 
 interface OrderBasketItemProp {
@@ -36,7 +36,7 @@ export const OrderBasketItem: React.FC<OrderBasketItemProp> = ({
                 [styles.order__basket_item_price_discount]: cartItem.product.discountPercent,
               })}
             >
-              {calculateRoundedPrice(
+              {calculateRoundedPriceToString(
                 cartItem.product.price,
                 cartItem.product.discountPercent,
                 cartItem.quantity,

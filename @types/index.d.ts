@@ -122,12 +122,14 @@ type ICategoryDto = {
 }
 
 type ICategory = ICategoryDto & {
-  subcategories: {
-    products: { id: string; name: string }[]
-    id: string
-    name: string
-    properties: { id: string; name: string }[]
-  }[]
+  subcategories: ISubcategory[]
+}
+
+type ISubcategory = {
+  products: { id: string; name: string }[]
+  id: string
+  name: string
+  properties: { id: string; name: string }[]
 }
 
 type Role = 'User' | 'Manager' | 'Admin'

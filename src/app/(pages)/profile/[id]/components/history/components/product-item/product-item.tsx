@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 
 import styles from './../../../../profile.module.scss'
-import { calculateRoundedPrice } from '@/utils/helpers'
+import { calculateRoundedPriceToString } from '@/utils/helpers'
 
 interface ProductItem {
   cartItem: ICartItemDto
@@ -33,7 +33,7 @@ export const ProductItem: React.FC<ProductItem> = ({ cartItem }: ProductItem) =>
                 [styles.product_item_price_discount]: cartItem.product.discountPercent,
               })}
             >
-              {calculateRoundedPrice(
+              {calculateRoundedPriceToString(
                 cartItem.product.price,
                 cartItem.product.discountPercent,
                 cartItem.quantity,

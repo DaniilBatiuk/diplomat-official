@@ -49,12 +49,15 @@
     }
 
     &__more_width {
-      grid-column: span 3;
+      grid-column: span 4;
 
       @media (max-width: 1351px) {
-        grid-column: span 2;
+        grid-column: span 4;
       }
       @media (max-width: 1238px) {
+        grid-column: span 2;
+      }
+      @media (max-width: 686px) {
         grid-column: span 1;
       }
     }
@@ -74,16 +77,6 @@
 
       @media (max-width: 1238px) {
         grid-row: span 1;
-      }
-    }
-
-    &__more_first {
-      @media (max-width: 1351px) {
-        grid-column: span 2;
-      }
-
-      @media (max-width: 1238px) {
-        grid-column: span 1;
       }
     }
 

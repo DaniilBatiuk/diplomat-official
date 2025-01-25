@@ -1,7 +1,7 @@
 import { useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
 
-import { filterProducts } from '../helpers/filter-products'
+import { sortProducts } from '../helpers/sort-products'
 
 export const useSortAndFilterProducts = (products: IProductWithProperties[]) => {
   const searchParams = useSearchParams()
@@ -29,7 +29,7 @@ export const useSortAndFilterProducts = (products: IProductWithProperties[]) => 
         product.name.toLocaleLowerCase().includes(searchParamsObj.Search[0].toLocaleLowerCase()),
       )
 
-      return filterProducts({
+      return sortProducts({
         products: filteredProductsBySearch,
         searchParamsObj,
       })
@@ -45,7 +45,7 @@ export const useSortAndFilterProducts = (products: IProductWithProperties[]) => 
       })
     })
 
-    return filterProducts({
+    return sortProducts({
       products: filteredProducts,
       searchParamsObj,
     })

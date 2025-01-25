@@ -4,12 +4,11 @@ import Image from 'next/image'
 import { LINKS } from '@/utils/config/links'
 
 import styles from './gallery.module.scss'
-import gallery1 from '@/../public/gallery1.webp'
 import gallery2 from '@/../public/gallery2.webp'
 import gallery3 from '@/../public/gallery3.webp'
-import gallery4 from '@/../public/gallery4.webp'
 import gallery5 from '@/../public/gallery5.webp'
 import gallery6 from '@/../public/gallery6.webp'
+import gallery7 from '@/../public/gallery7.webp'
 import { Link, Title } from '@/components'
 
 export const Gallery: React.FC = () => {
@@ -19,15 +18,6 @@ export const Gallery: React.FC = () => {
         <Title>Подарунки по категоріях</Title>
         <div className={styles.gallery__list}>
           <Link
-            href={LINKS.Categories + '/Настільні ігри'}
-            className={clsx(styles.gallery__item, styles.gallery__item__more_first)}
-            prefetch
-          >
-            <Image src={gallery1} alt='gallary1' priority placeholder='blur' loading={'eager'} />
-            <div className={styles.gallery__item__gradient}></div>
-            <p>Настільні ігри</p>
-          </Link>
-          <Link
             href={LINKS.Categories + "/Інтер'єр та декор"}
             className={clsx(styles.gallery__item, styles.gallery__item__more_width)}
             prefetch
@@ -36,7 +26,6 @@ export const Gallery: React.FC = () => {
             <div className={styles.gallery__item__gradient}></div>
             <p>Інтер'єр та декор</p>
           </Link>
-
           <Link
             href={LINKS.Categories + '/Фігурки та статуетки'}
             className={clsx(styles.gallery__item, styles.gallery__item__more)}
@@ -52,13 +41,13 @@ export const Gallery: React.FC = () => {
             <p>Посуд</p>
           </Link>
           <Link
-            href={LINKS.Categories + '/Символи року'}
+            href={LINKS.Categories + '/Настільні ігри'}
             prefetch
             className={clsx(styles.gallery__item, styles.gallery__item_height)}
           >
-            <Image src={gallery4} alt='gallary4' priority placeholder='blur' loading={'eager'} />
+            <Image src={gallery7} alt='gallary7' priority placeholder='blur' loading={'eager'} />
             <div className={styles.gallery__item__gradient}></div>
-            <p>Символи року</p>
+            <p>Настільні ігри</p>
           </Link>
           <Link href={LINKS.Categories + '/Годинники'} prefetch className={styles.gallery__item}>
             <Image src={gallery5} alt='gallary5' priority placeholder='blur' loading={'eager'} />

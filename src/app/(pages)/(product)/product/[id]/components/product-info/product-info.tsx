@@ -6,7 +6,7 @@ import { ICONS } from '@/utils/config/icons'
 
 import styles from './../../product.module.scss'
 import { AddButton } from './components/add-button/add.button'
-import { calculateRoundedPrice } from '@/utils/helpers'
+import { calculateRoundedPriceToString } from '@/utils/helpers'
 
 interface ProductInfoProps {
   product: IProductOne
@@ -27,7 +27,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product }: ProductInfo
               [styles.product__info_price_discount]: product.discountPercent,
             })}
           >
-            {calculateRoundedPrice(product.price, product.discountPercent)} ₴
+            {calculateRoundedPriceToString(product.price, product.discountPercent)} ₴
           </p>
         </div>
 

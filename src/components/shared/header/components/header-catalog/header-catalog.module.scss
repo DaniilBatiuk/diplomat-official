@@ -31,7 +31,7 @@
   background-color: var.$background-200;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  height: 500px;
+  height: 230px;
   display: flex;
 
   &__column {
@@ -81,6 +81,7 @@
         row-gap: 10px;
         &_title {
           @extend %inter-700-18;
+          padding-bottom: 10px;
           &:hover {
             color: var.$primary-700;
             text-decoration: underline;
@@ -95,6 +96,9 @@
           row-gap: 10px;
           &_sub {
             text-transform: lowercase;
+            @include var.text-ellipsis(1);
+            padding-bottom: 16px;
+            margin-bottom: 3px;
             line-height: 110%;
             &:hover {
               color: var.$primary-700;

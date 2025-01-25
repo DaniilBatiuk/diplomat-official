@@ -9,7 +9,7 @@ import styles from './card.module.scss'
 import { AdminBlock } from './components/admin-block/admin-block'
 import { BuyButton } from './components/buy-button/buy-button'
 import { Link } from '@/components'
-import { calculateRoundedPrice } from '@/utils/helpers'
+import { calculateRoundedPriceToString } from '@/utils/helpers'
 
 interface CardProp {
   product: IProductEntity
@@ -40,7 +40,7 @@ export const Card: React.FC<CardProp> = ({ product, onAdminPage }: CardProp) => 
                 [styles.discount]: product.discountPercent,
               })}
             >
-              {calculateRoundedPrice(product.price, product.discountPercent)} ₴
+              {calculateRoundedPriceToString(product.price, product.discountPercent)} ₴
             </p>
           </div>
         </figcaption>
