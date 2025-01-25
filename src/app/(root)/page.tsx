@@ -6,8 +6,7 @@ import { ProductSwiper } from '@/components'
 import { getActiveProducts } from '@/utils/lib/queries'
 
 export default async function Home() {
-  const products = await getActiveProducts()
-
+  const products = (await getActiveProducts()).sort(() => Math.random() - 0.5)
   return (
     <div className={styles.page}>
       <HomeHeader />

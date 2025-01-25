@@ -73,6 +73,25 @@
   }
 }
 
+@mixin appear($percent) {
+  @keyframes appear {
+    from {
+      opacity: 0;
+      scale: 0.5;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  & {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover $percent;
+  }
+}
+
 //// Variables
 
 $max-width: 1440;
@@ -81,6 +100,8 @@ $min-width: 390;
 $base-font-stack: ', Arial, sans-serif';
 
 $white-100: #ffffff;
+
+$gray-100: #8b8888;
 
 $background-300: #f5ece2;
 $background-200: #f9f4ee;

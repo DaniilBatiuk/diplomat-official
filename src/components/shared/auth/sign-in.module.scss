@@ -87,16 +87,16 @@
     align-items: center;
     justify-content: center;
     column-gap: 10px;
-    @include var.adaptive-value-px(height, 46, 52);
-    @include var.adaptive-value-px(margin-top, 20, 30);
-
     transition:
       opacity 0.2s ease-in-out,
       transform 0.1s ease-in-out;
+
     &:hover {
       opacity: 0.9;
     }
 
+    @include var.adaptive-value-px(height, 46, 52);
+    @include var.adaptive-value-px(margin-top, 20, 30);
     @include var.button-active(0.98);
 
     & > p {

@@ -96,10 +96,10 @@
           row-gap: 10px;
           &_sub {
             text-transform: lowercase;
-            @include var.text-ellipsis(1);
             padding-bottom: 16px;
             margin-bottom: 3px;
             line-height: 110%;
+            @include var.text-ellipsis(1);
             &:hover {
               color: var.$primary-700;
               text-decoration: underline;

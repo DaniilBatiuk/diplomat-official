@@ -17,6 +17,7 @@ export const CategoriesColumns: React.FC<CategoriesColumnsProps> = ({
     <>
       {selectedCategory.subcategories.map(subcategory => (
         <CategoriesColumn
+          key={subcategory.id}
           setCatalogActive={setCatalogActive}
           subcategory={subcategory}
           selectedCategoryName={selectedCategory.name}

@@ -26,6 +26,7 @@
   }
   &__content {
     display: flex;
+    position: relative;
     @include var.adaptive-value-px(margin-top, 15, 20);
   }
 
@@ -66,6 +67,9 @@
 
 .aside {
   flex: 0 1 327px;
+  position: sticky;
+  top: 80px;
+  height: fit-content;
   min-width: 230px;
 
   @media (max-width: 840px) {
@@ -195,6 +199,10 @@
       @extend %inter-600-20-18;
     }
   }
+
+  & > figure {
+    @include var.appear(15%);
+  }
 }
 
 .menu_open {
@@ -257,4 +265,10 @@
     height: 32px !important;
     border-radius: 3px;
   }
+}
+
+.toggle_button {
+  color: var.$gray-100;
+  margin-top: 5px;
+  font-size: 15px;
 }

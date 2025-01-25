@@ -23,22 +23,6 @@ export const ProductList: React.FC<ProductListProps> = ({ products }: ProductLis
       ) : (
         <NoData />
       )}
-      {/* <Pagination
-        count={5}
-        size='large'
-        sx={{
-          '& .MuiPaginationItem-root:hover': {
-            backgroundColor: '#f7ddbe',
-          },
-          '& .MuiPaginationItem-root.Mui-selected': {
-            backgroundColor: '#f1a84d',
-            color: 'white',
-          },
-          '& .MuiPaginationItem-root.Mui-selected:hover': {
-            backgroundColor: '#fa9f2f',
-          },
-        }}
-      /> */}
     </section>
   )
 }
