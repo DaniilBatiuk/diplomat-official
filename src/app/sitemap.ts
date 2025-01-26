@@ -11,14 +11,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const users = await prisma.user.findMany()
 
   const categoryEntries: MetadataRoute.Sitemap = allCategories.map(category => ({
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}/${LINKS.Categories}/${category.name}`,
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}${LINKS.Categories}/${category.name}`,
     changeFrequency: 'weekly',
     priority: 1,
   }))
 
   const subcategoryEntries: MetadataRoute.Sitemap = allCategories.flatMap(category =>
     category.subcategories.map(subcategory => ({
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/${LINKS.Categories}/${category.name}/${subcategory.name}`,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}${LINKS.Categories}/${category.name}/${subcategory.name}`,
       changeFrequency: 'weekly',
       priority: 1,
     })),
