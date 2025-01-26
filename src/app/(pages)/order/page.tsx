@@ -1,13 +1,10 @@
-import { Metadata } from 'next'
-
 import { OrderForm } from './components/order-form/order-form'
 import { Warning } from './components/warning/warning'
 import styles from './order.module.scss'
 import { Title } from '@/components'
+import { metadataFactory } from '@/utils/helpers'
 
-export const metadata: Metadata = {
-  title: 'Замовлення',
-}
+export const metadata = metadataFactory('Замовлення')
 
 export default function Order() {
   return (

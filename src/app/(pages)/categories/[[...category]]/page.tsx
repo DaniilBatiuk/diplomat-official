@@ -11,7 +11,7 @@ import { LoadingProducts } from './components/loading-products/loading-products'
 import { LoadingProperties } from './components/loading-properties/loading-properties'
 import { ProductList } from './components/product-list/product-list'
 import { checkCorrectCategoryNameInUlr } from './helpers/check-correct-category-name-in-ulr'
-import { prisma } from '@/utils/lib/db'
+import { metadataFactory } from '@/utils/helpers'
 import {
   getActiveProducts,
   getActiveProductsByCategory,
@@ -20,20 +20,16 @@ import {
 } from '@/utils/lib/queries'
 
 export async function generateStaticParams() {
-  const categories = await prisma.category.findMany({
-    include: {
-      subcategories: true,
-    },
-  })
+  const allCategories = await getCategories()
 
   const paths = [
     { category: [] },
 
-    ...categories.map(category => ({
+    ...allCategories.map(category => ({
       category: [category.name],
     })),
 
-    ...categories.flatMap(category =>
+    ...allCategories.flatMap(category =>
       category.subcategories.map(subcategory => ({
         category: [category.name, subcategory.name],
       })),
@@ -61,9 +57,7 @@ export async function generateMetadata({
       ? `${paramsData.category}`
       : 'Категорії'
 
-  return {
-    title,
-  }
+  return metadataFactory(title)
 }
 
 type Params = Promise<{ category?: string[] }>

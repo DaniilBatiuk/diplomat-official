@@ -1,14 +1,11 @@
-import { Metadata } from 'next'
-
 import { ICONS } from '@/utils/config/icons'
 import { LINKS } from '@/utils/config/links'
 
 import styles from './../info.module.scss'
 import { CustomButton, Link, Title } from '@/components'
+import { metadataFactory } from '@/utils/helpers'
 
-export const metadata: Metadata = {
-  title: 'Оплата',
-}
+export const metadata = metadataFactory('Оплата')
 
 export default function Payment() {
   return (

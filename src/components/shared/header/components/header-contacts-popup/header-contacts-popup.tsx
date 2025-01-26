@@ -30,14 +30,6 @@ export const HeaderContactsPopUp: React.FC = () => {
               </div>
             </div>
             <div className={styles.contact}>
-              {ICONS.contactTelegram()}
-              <div className={styles.contact_info}>
-                <p className={styles.contact_info_title}>
-                  Написати у <span>Telegram</span>
-                </p>
-              </div>
-            </div>
-            <div className={styles.contact}>
               {ICONS.contactGoogle()}
               <div className={styles.contact_info}>
                 <p className={styles.contact_info_title}>diplomat@gmail.com</p>

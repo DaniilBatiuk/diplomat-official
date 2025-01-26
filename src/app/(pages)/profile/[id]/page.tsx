@@ -6,6 +6,7 @@ import { LeftSide } from './components/left-side/left-side'
 import { PersonalData } from './components/personal-data/personal-data'
 import styles from './profile.module.scss'
 import { Title } from '@/components'
+import { metadataFactory } from '@/utils/helpers'
 import { getUserSession } from '@/utils/helpers/get-user-session'
 import { prisma } from '@/utils/lib/db'
 import { getUserDetails } from '@/utils/lib/queries'
@@ -25,9 +26,7 @@ export async function generateMetadata({
   const id = (await params).id
   const user = await getUserDetails(id)
 
-  return {
-    title: `${user.name} ${user.surname}`,
-  }
+  return metadataFactory(`${user.name} ${user.surname}`)
 }
 
 export default async function Profile({ params }: { params: Promise<{ id: string }> }) {
