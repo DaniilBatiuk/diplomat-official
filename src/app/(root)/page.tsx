@@ -10,6 +10,7 @@ export const metadata = metadataFactory('Світ подарунків')
 
 export default async function Home() {
   const products = await getActiveProducts()
+
   return (
     <div className={styles.page}>
       <HomeHeader />

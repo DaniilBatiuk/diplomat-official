@@ -42,7 +42,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ inputRefMobile }: HeaderNa
         <HeaderContactsPopUp />
 
         <li className={styles.admin}>
-          <Link href={LINKS.Admin} prefetch>
+          <Link href={LINKS.Admin} prefetch aria-label='Admin'>
             {ICONS.admin()}
           </Link>
         </li>

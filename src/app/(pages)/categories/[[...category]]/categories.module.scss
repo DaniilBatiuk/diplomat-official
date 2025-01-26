@@ -146,6 +146,7 @@
     }
 
     & > p {
+      cursor: pointer;
       @extend %inter-400-16;
       line-height: 187%;
       letter-spacing: 0.05em;

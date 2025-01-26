@@ -266,7 +266,10 @@ export default function RulesAndConditions() {
           </CustomButton>
         </Link>
         <Link href={LINKS.PrivacyPolicy} prefetch>
-          <CustomButton className={styles.content__button}>
+          <CustomButton
+            className={styles.content__button}
+            aria-labelledby='Політика конфіденційності'
+          >
             <p></p>
             {ICONS.arrowRight()}
           </CustomButton>

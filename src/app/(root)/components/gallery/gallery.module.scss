@@ -18,7 +18,7 @@
 
     @media (max-width: 686px) {
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(6, 1fr);
+      grid-template-rows: repeat(5, 1fr);
     }
     @include var.adaptive-value-px(gap, 10, 15);
   }

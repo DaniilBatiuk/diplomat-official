@@ -9,6 +9,7 @@ import { Comment } from './components/comment/comment'
 import { CreateCommentModal } from './components/create-comment-modal/create-comment-modal'
 import { CustomButton, Title } from '@/components'
 import { calculateAverageStarCount } from '@/utils/helpers'
+import { useHeaderSearchStore } from '@/utils/lib/store/header-search-store'
 
 interface CommentsProps {
   comments: ICommentAndUser[]
@@ -18,12 +19,20 @@ interface CommentsProps {
 export const Comments: React.FC<CommentsProps> = ({ comments, productId }: CommentsProps) => {
   const { data: session } = useSession()
   const [modalActive, setModalActive] = useState(false)
+  const { setSignInActive } = useHeaderSearchStore()
 
+  const handleCreateCommentButtonClick = () => {
+    if (!session) {
+      setSignInActive(true)
+    } else {
+      setModalActive(true)
+    }
+  }
   return (
     <section className={styles.comments}>
       <div className={styles.comments__header}>
         <Title>Відгуки користувачів</Title>
-        <CustomButton outline onClick={() => setModalActive(true)} disabled={!session}>
+        <CustomButton outline onClick={handleCreateCommentButtonClick}>
           Написати відгук
         </CustomButton>
       </div>
@@ -34,7 +43,7 @@ export const Comments: React.FC<CommentsProps> = ({ comments, productId }: Comme
             <Rating defaultValue={1} max={1} size='large' readOnly />
             <p className={styles.comments__stars_text_2}>{comments.length} відгуків</p>
           </div>
-          <CustomButton outline fullWidth onClick={() => setModalActive(true)} disabled={!session}>
+          <CustomButton outline fullWidth onClick={handleCreateCommentButtonClick}>
             Написати відгук
           </CustomButton>
           <div className={styles.comments__list}>

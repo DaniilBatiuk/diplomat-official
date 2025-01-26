@@ -9,12 +9,12 @@ import { prisma } from '../db'
 import { calculateTotalPrice } from '@/utils/helpers'
 import { getUserSession } from '@/utils/helpers/get-user-session'
 
-export async function getCart(): Promise<ICartDto | undefined> {
+export async function getCart(): Promise<ICartDto | null> {
   const cookieStore = await cookies()
   const token = cookieStore.get(TOKENS.CART_TOKEN)?.value
 
   if (!token) {
-    return undefined
+    return null
   }
 
   const cart = await prisma.cart.findFirst({

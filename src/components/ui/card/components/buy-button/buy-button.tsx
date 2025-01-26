@@ -39,11 +39,15 @@ export const BuyButton: React.FC<BuyButtonProp> = ({ onAdminPage, product }: Buy
             product.status === $Enums.Status.active ? styles.active : styles.deactivate,
             { [styles.disable]: changeProductStatusPending },
           )}
+          aria-label={`Змінити статус ${
+            product.status === $Enums.Status.active ? 'inactive' : 'active'
+          }`}
         >
           {product.status === $Enums.Status.active ? 'D' : 'A'}
         </CustomButton>
       ) : (
         <CustomButton
+          aria-label='Додати до кошику'
           disabled={addToCartIsPending}
           onClick={e => {
             e.stopPropagation()

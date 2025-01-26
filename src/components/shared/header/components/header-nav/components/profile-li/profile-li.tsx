@@ -17,7 +17,7 @@ export const ProfileLi: React.FC = () => {
         <li onClick={() => setSignInActive(true)}>{ICONS.user()}</li>
       ) : (
         <li>
-          <Link href={LINKS.Profile + '/' + session.user.id} prefetch>
+          <Link href={LINKS.Profile + '/' + session.user.id} prefetch aria-label='Profile'>
             {ICONS.user()}
           </Link>
         </li>

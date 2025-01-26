@@ -18,13 +18,12 @@ export const AsidePropertiesList: React.FC<AsidePropertiesListProps> = ({
   const { initialProperties, propertyStates, setPropertyStates } = useFilters(products)
   useQueryFilters(propertyStates)
 
-  // Состояние для управления видимостью всех значений для каждого свойства
   const [showAll, setShowAll] = useState<Record<string, boolean>>({})
 
   const toggleShowAll = (propertyName: string) => {
     setShowAll(prev => ({
       ...prev,
-      [propertyName]: !prev[propertyName], // Переключение состояния
+      [propertyName]: !prev[propertyName],
     }))
   }
   return (

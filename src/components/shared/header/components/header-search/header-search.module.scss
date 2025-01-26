@@ -64,12 +64,18 @@
     align-items: center;
     padding-inline: 15px;
     @extend %inter-300-16;
-    & > p {
+
+    @media (max-width: 450px) {
+      padding-top: 4px;
+      height: 39px !important;
+      line-height: 200%;
       @include var.text-ellipsis(1);
     }
+
     &:hover {
       background-color: var.$primary-150;
     }
+
     &:nth-child(n + 8) {
       display: none;
     }
