@@ -64,6 +64,7 @@
         column-gap: 10px;
 
         @media (max-width: 850px) {
+          align-items: flex-start;
           flex-direction: column;
         }
       }
@@ -71,12 +72,7 @@
       &_title {
         @include var.text-ellipsis(2);
         @extend %inter-400-16;
-        @include var.adaptive-value-px(width, 10, 360);
-
-        @media (max-width: 1130px) {
-          max-width: 360px;
-          width: auto;
-        }
+        @include var.adaptive-value-px(width, 300, 360);
 
         @media (max-width: 850px) {
           max-width: none;

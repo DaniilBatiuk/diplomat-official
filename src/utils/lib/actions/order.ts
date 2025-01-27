@@ -82,7 +82,7 @@ export const createOrder = validatedAction(orderScheme, async order => {
   }
   return {
     errors: {},
-    inputs: {},
+    inputs: order,
     success: true,
   }
 })
