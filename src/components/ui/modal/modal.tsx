@@ -38,7 +38,11 @@ const Modal: React.FC<ModalProps> & {
         style={{ maxWidth: maxDivWidth }}
         onClick={e => e.stopPropagation()}
       >
-        <button onClick={() => setActive(false)} className={styles.modal__close_button}>
+        <button
+          aria-label='Закрити'
+          onClick={() => setActive(false)}
+          className={styles.modal__close_button}
+        >
           {ICONS.close({ className: styles.modal__close })}
         </button>
         {children}

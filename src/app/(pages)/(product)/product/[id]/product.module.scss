@@ -171,7 +171,7 @@
       flex-direction: column;
       row-gap: 10px;
 
-      & > h5 {
+      & > h4 {
         @extend %inter-500-16;
         margin-bottom: 10px;
       }
@@ -368,7 +368,7 @@
           row-gap: 10px;
           flex: 1 1 auto;
 
-          & > h5 {
+          & > h2 {
             @extend %inter-600-24-20;
           }
 

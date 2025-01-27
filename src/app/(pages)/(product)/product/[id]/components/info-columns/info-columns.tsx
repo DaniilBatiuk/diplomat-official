@@ -66,7 +66,7 @@ export const InfoColumns: React.FC = () => {
           {ICONS.menuPayment()} <h3>ОПЛАТА</h3>
         </div>
         <div className={styles.product__column_body}>
-          <h5>Оплатити заказ можливо наступними способами:</h5>
+          <h4>Оплатити заказ можливо наступними способами:</h4>
           <ul>
             <li>Оплата при отриманні товару</li>
             <li>Оплата картой Visa/MasterCard</li>

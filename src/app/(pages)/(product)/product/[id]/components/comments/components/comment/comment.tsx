@@ -37,7 +37,7 @@ export const Comment: React.FC<CommentProps> = ({ comment }: CommentProps) => {
           </div>
         </div>
         <div className={styles.comments__list_item_body_main}>
-          <h5> {comment.title}</h5>
+          <h2> {comment.title}</h2>
           <p>{comment.comment}</p>
         </div>
       </div>
