@@ -43,7 +43,7 @@ export const RightBlock: React.FC<RightBlockProps> = ({
           className={styles.order__right_footer__button}
           fullWidth
           type='submit'
-          disabled={createOrderPending || !!(cart && cart.totalPrice === 0)}
+          disabled={createOrderPending || !cart || !!(cart && cart.totalPrice === 0)}
         >
           Оформити замовлення
           {ICONS.arrowRight()}

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 
+import { calculateTotalPrice } from '../helpers'
 import { deleteCartItem } from '../lib/actions/cart-item'
 
 export const useCartItemDelete = () => {
@@ -14,9 +15,13 @@ export const useCartItemDelete = () => {
       const previousCart = queryClient.getQueryData<ICartDto>(['cart'])
 
       if (previousCart) {
-        queryClient.setQueryData<ICartDto>(['cart'], {
+        const newCart = {
           ...previousCart,
           items: previousCart.items.filter(item => item.id !== cartItemId),
+        }
+        queryClient.setQueryData<ICartDto>(['cart'], {
+          ...newCart,
+          totalPrice: calculateTotalPrice(newCart),
         })
       }
 
