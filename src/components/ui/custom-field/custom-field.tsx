@@ -38,22 +38,22 @@ export const CustomField: React.FC<CustomFieldProps> = ({
         isWhite
           ? {
               '& .MuiOutlinedInput-root': {
-                color: 'white', // Цвет текста
+                color: 'white',
                 '& fieldset': {
-                  borderColor: 'white', // Цвет обводки
+                  borderColor: 'white',
                 },
                 '&:hover fieldset': {
-                  borderColor: 'white', // Цвет обводки при наведении
+                  borderColor: 'white',
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: 'white', // Цвет обводки при фокусе
+                  borderColor: 'white',
                 },
               },
               '& .MuiInputLabel-root': {
-                color: 'white', // Цвет текста у label
+                color: 'white',
               },
               '& .MuiInputLabel-root.Mui-focused': {
-                color: 'white', // Цвет текста у label при фокусе
+                color: 'white',
               },
             }
           : {}

@@ -32,7 +32,7 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ rest: 
   const { document } = parseHTML(body)
   const images = Array.from(document.querySelectorAll('main img'))
     .map(img => ({
-      srcset: img.getAttribute('srcset') || img.getAttribute('srcSet'), // Linkedom is case-sensitive
+      srcset: img.getAttribute('srcset') || img.getAttribute('srcSet'),
       sizes: img.getAttribute('sizes'),
       src: img.getAttribute('src'),
       alt: img.getAttribute('alt'),

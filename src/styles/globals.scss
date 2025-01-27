@@ -48,9 +48,9 @@ main {
   content: url('../../public/arrow-left.svg');
   width: clamp(40px, 5vw, 50px) !important;
   height: clamp(40px, 5vw, 50px) !important;
-  -webkit-user-select: none; // для Safari
-  -moz-user-select: none; // для Firefox
-  -ms-user-select: none; // для IE
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   padding: 7px;
   border-radius: 30px;
   backdrop-filter: blur(4px);
@@ -68,9 +68,9 @@ main {
   content: url('../../public/arrow-right.svg');
   width: clamp(40px, 5vw, 50px) !important;
   height: clamp(40px, 5vw, 50px) !important;
-  -webkit-user-select: none; // для Safari
-  -moz-user-select: none; // для Firefox
-  -ms-user-select: none; // для IE
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   padding: 7px;
   border-radius: 30px;
   backdrop-filter: blur(4px);

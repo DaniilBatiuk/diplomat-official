@@ -143,11 +143,7 @@
     column-gap: 10px;
 
     @include var.adaptive-value-px(padding-inline, 20, 30);
-    // & > p {
-    //   white-space: nowrap;
-    //   overflow: hidden;
-    //   text-overflow: ellipsis;
-    // }
+
     & path {
       fill: var.$white-100;
     }

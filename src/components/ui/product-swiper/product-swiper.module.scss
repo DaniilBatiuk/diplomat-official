@@ -23,9 +23,9 @@
   column-gap: 15px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr; // явно задаем один ряд
-  grid-auto-rows: 0; // все последующие ряды будут иметь высоту 0
-  overflow: hidden; // скрываем все, что выходит за пределы
+  grid-template-rows: 1fr;
+  grid-auto-rows: 0;
+  overflow: hidden;
   padding-block: 1.5px;
   &__container {
     padding-inline: 0px;
