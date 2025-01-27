@@ -93,11 +93,13 @@ export const authOptions: AuthOptions = {
           return true
         }
 
+        console.log('user', user)
+
         await prisma.user.create({
           data: {
             email: user.email,
-            name: user.name || '',
-            surname: user.surname || '',
+            name: account?.provider === 'google' ? user.name.split(' ')[0] : user.name,
+            surname: account?.provider === 'google' ? user.name.split(' ')[1] : user.surname,
             passwordHash: hashSync(user.id.toString(), 10),
             provider: account?.provider,
             providerId: account?.providerAccountId,

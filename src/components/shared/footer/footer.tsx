@@ -48,8 +48,8 @@ export const Footer: React.FC = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href={LINKS.Categories + '/Символи року'} prefetch>
-                    Символи року
+                  <Link href={LINKS.Categories + "/Інтер'єр та декор"} prefetch>
+                    Інтер'єр та декор
                   </Link>
                 </li>
                 <li>

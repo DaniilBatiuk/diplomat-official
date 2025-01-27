@@ -17,10 +17,7 @@ export default async function Home() {
       <Gallery />
       <ProductSwiper
         title={'Рекомендовані товари'}
-        products={products
-          .sort(() => Math.random() - 0.5)
-          .toSorted((a, b) => b.comments.length - a.comments.length)
-          .slice(0, 12)}
+        products={products.toSorted((a, b) => b.comments.length - a.comments.length).slice(0, 12)}
       />
       <Sales />
       <ProductSwiper
