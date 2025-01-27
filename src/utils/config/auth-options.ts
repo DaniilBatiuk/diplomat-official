@@ -85,7 +85,7 @@ export const authOptions: AuthOptions = {
               providerId: account?.providerAccountId,
             },
           })
-
+          await setCartToken(findUser.id)
           return true
         }
 
@@ -100,9 +100,7 @@ export const authOptions: AuthOptions = {
           },
         })
 
-        if (account?.provider === 'google') {
-          await setCartToken(newUser.id)
-        }
+        await setCartToken(newUser.id)
 
         return true
       } catch (error) {

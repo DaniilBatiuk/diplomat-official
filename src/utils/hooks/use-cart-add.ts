@@ -8,14 +8,14 @@ export const useCartAdd = () => {
 
   return useMutation({
     mutationFn: createCartItem,
-    onSuccess: () => {
-      toast.success('Товар був доданий до кошику')
-      queryClient.invalidateQueries({
-        queryKey: ['cart'],
-      })
-    },
-    onError: (error: any) => {
-      toast.error(error.message || 'Помилка додавання товару')
+    onSuccess: ({ error }) => {
+      if (error) toast.error(error)
+      else {
+        toast.success('Товар був доданий до кошику')
+        queryClient.invalidateQueries({
+          queryKey: ['cart'],
+        })
+      }
     },
   })
 }

@@ -27,7 +27,6 @@ async function prefetchImages(href: string) {
   // only throw in dev
   if (!imageResponse.ok && process.env.NODE_ENV === 'development') {
     console.log('error prefetching images', imageResponse)
-    // throw new Error('Failed to prefetch images')
   }
   const { images } = await imageResponse.json()
   return images as PrefetchImage[]

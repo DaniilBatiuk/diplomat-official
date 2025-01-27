@@ -7,6 +7,7 @@ import { TOKENS } from '@/utils/config/enum-tokens'
 import { prisma } from '../db'
 
 import { findOrCreateCart, updateCartTotalAmount } from './cart'
+import { errorCatch } from '@/utils/helpers'
 
 async function checkCartItemExists(id: string) {
   const cartItem = await prisma.cartItem.findFirst({
@@ -22,7 +23,7 @@ async function checkCartItemExists(id: string) {
   return cartItem
 }
 
-export async function createCartItem(productId: string) {
+export const createCartItem = errorCatch(async (productId: string) => {
   const cookieStore = await cookies()
   let token = cookieStore.get(TOKENS.CART_TOKEN)?.value
 
@@ -55,7 +56,7 @@ export async function createCartItem(productId: string) {
   })
 
   await updateCartTotalAmount()
-}
+})
 
 export async function deleteCartItem(id: string) {
   await checkCartItemExists(id)
