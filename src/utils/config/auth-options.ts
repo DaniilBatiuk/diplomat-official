@@ -58,10 +58,6 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async signIn({ user, account }) {
       try {
-        if (account?.provider === 'google') {
-          await setCartToken(user.id)
-        }
-
         if (account?.provider === 'credentials') {
           return true
         }
@@ -93,7 +89,7 @@ export const authOptions: AuthOptions = {
           return true
         }
 
-        await prisma.user.create({
+        const newUser = await prisma.user.create({
           data: {
             email: user.email,
             name: account?.provider === 'google' ? user.name.split(' ')[0] : user.name,
@@ -103,6 +99,10 @@ export const authOptions: AuthOptions = {
             providerId: account?.providerAccountId,
           },
         })
+
+        if (account?.provider === 'google') {
+          await setCartToken(newUser.id)
+        }
 
         return true
       } catch (error) {

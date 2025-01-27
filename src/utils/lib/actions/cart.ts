@@ -84,21 +84,12 @@ export const updateCartTotalAmount = async () => {
   })
 }
 
-export const setCartToken = async (providerId?: string) => {
+export const setCartToken = async (newUserId?: string) => {
   const user = await getUserSession()
   const cookieStore = await cookies()
   const token = cookieStore.get(TOKENS.CART_TOKEN)?.value
-  let userId: undefined | string = undefined
-  if (providerId) {
-    const userFromProvider = await prisma.user.findFirst({
-      where: {
-        providerId,
-      },
-    })
+  const userId: undefined | string = newUserId ?? user?.id
 
-    userId = userFromProvider?.id
-  }
-  userId = userId ?? user?.id
   if (!userId) {
     return
   }
