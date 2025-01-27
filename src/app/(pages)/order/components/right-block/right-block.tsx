@@ -1,5 +1,4 @@
 import { Skeleton } from '@mui/material'
-import { useFormStatus } from 'react-dom'
 
 import { ICONS } from '@/utils/config/icons'
 
@@ -9,11 +8,14 @@ import { CustomButton, FormBlock } from '@/components'
 interface RightBlockProps {
   cart: ICartDto | null | undefined
   isCartLoading: boolean
+  createOrderPending: boolean
 }
 
-export const RightBlock: React.FC<RightBlockProps> = ({ cart, isCartLoading }: RightBlockProps) => {
-  const { pending } = useFormStatus()
-
+export const RightBlock: React.FC<RightBlockProps> = ({
+  cart,
+  isCartLoading,
+  createOrderPending,
+}: RightBlockProps) => {
   return (
     <FormBlock title='' className={styles.order__right_block}>
       <div className={styles.order__right}>
@@ -22,7 +24,7 @@ export const RightBlock: React.FC<RightBlockProps> = ({ cart, isCartLoading }: R
           <Skeleton variant='rectangular' className={styles.order__right_skeleton_price} />
         ) : (
           <>
-            <h3>{cart && cart.totalPrice.toLocaleString('uk-UA')} ₴</h3>
+            <h3>{cart && cart.totalPrice > 0 ? cart.totalPrice.toLocaleString('uk-UA') : 0} ₴</h3>
           </>
         )}
         <div className={styles.order__right_line}>
@@ -32,7 +34,7 @@ export const RightBlock: React.FC<RightBlockProps> = ({ cart, isCartLoading }: R
           {isCartLoading ? (
             <Skeleton variant='rectangular' className={styles.order__right_skeleton_price_min} />
           ) : (
-            <h4>{cart && cart.totalPrice.toLocaleString('uk-UA')} ₴</h4>
+            <h4>{cart && cart.totalPrice > 0 ? cart.totalPrice.toLocaleString('uk-UA') : 0} ₴</h4>
           )}
         </div>
       </div>
@@ -41,7 +43,7 @@ export const RightBlock: React.FC<RightBlockProps> = ({ cart, isCartLoading }: R
           className={styles.order__right_footer__button}
           fullWidth
           type='submit'
-          disabled={pending || !!(cart && cart.totalPrice === 0)}
+          disabled={createOrderPending || !!(cart && cart.totalPrice === 0)}
         >
           Оформити замовлення
           {ICONS.arrowRight()}

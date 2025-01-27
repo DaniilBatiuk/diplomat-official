@@ -4,7 +4,6 @@ import { getUserSession } from '@/utils/helpers/get-user-session'
 
 export const Warning: React.FC = async () => {
   const user = await getUserSession()
-  console.log('user', user)
   return (
     <>
       {user === null && (

@@ -93,8 +93,6 @@ export const authOptions: AuthOptions = {
           return true
         }
 
-        console.log('user', user)
-
         await prisma.user.create({
           data: {
             email: user.email,

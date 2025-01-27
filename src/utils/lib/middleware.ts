@@ -19,8 +19,6 @@ export function validatedAction<S extends z.ZodType<any, any>, T>(
 ) {
   return async (prevState: ActionState, formData: FormData): Promise<T> => {
     const result = schema.safeParse(Object.fromEntries(formData))
-    console.log('formData', formData)
-    console.log('result', result)
 
     if (!result.success) {
       const errors = result.error.errors.reduce(
@@ -31,7 +29,6 @@ export function validatedAction<S extends z.ZodType<any, any>, T>(
         {} as { [key: string]: string },
       )
 
-      console.log('errors', errors)
       return {
         success: false,
         errors,

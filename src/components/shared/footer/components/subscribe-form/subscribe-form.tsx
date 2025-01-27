@@ -11,7 +11,6 @@ export const SubscribeForm: React.FC = () => {
     const email = formData.get('email') as string
     const parseResult = subscribeSchema.safeParse(email)
 
-    console.log('parseResult', parseResult)
     if (parseResult.success) {
       toast.success('Дякуємо за підписку!')
       return

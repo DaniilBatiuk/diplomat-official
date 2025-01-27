@@ -99,7 +99,6 @@ export const setCartToken = async (providerId?: string) => {
     userId = userFromProvider?.id
   }
   userId = userId ?? user?.id
-  console.log('userId', userId)
   if (!userId) {
     return
   }

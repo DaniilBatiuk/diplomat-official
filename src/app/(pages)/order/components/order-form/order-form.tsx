@@ -45,13 +45,11 @@ export const OrderForm: React.FC = () => {
   useFormResultProcess({
     state: createOrderState,
     isPending: createOrderPending,
-    onSuccess: async () => {
-      await router.push(LINKS.Home)
-      setTimeout(() => {
-        queryClient.invalidateQueries({
-          queryKey: ['cart'],
-        })
-      }, 1000)
+    onSuccess: () => {
+      router.push(LINKS.Home)
+      queryClient.invalidateQueries({
+        queryKey: ['cart'],
+      })
       toast.success('Замовлення успішно створено')
     },
     onError: () => {
@@ -72,7 +70,11 @@ export const OrderForm: React.FC = () => {
         <Payment />
         <Comment createOrderState={createOrderState} />
       </div>
-      <RightBlock cart={cart} isCartLoading={isCartLoading} />
+      <RightBlock
+        cart={cart}
+        isCartLoading={isCartLoading}
+        createOrderPending={createOrderPending}
+      />
     </form>
   )
 }
