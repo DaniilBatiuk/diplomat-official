@@ -7,7 +7,7 @@ import styles from './../../order.module.scss'
 import { CustomButton, FormBlock } from '@/components'
 
 interface RightBlockProps {
-  cart: ICartDto | undefined
+  cart: ICartDto | null | undefined
   isCartLoading: boolean
 }
 
@@ -41,7 +41,7 @@ export const RightBlock: React.FC<RightBlockProps> = ({ cart, isCartLoading }: R
           className={styles.order__right_footer__button}
           fullWidth
           type='submit'
-          disabled={pending || (cart && cart.totalPrice === 0)}
+          disabled={pending || !!(cart && cart.totalPrice === 0)}
         >
           Оформити замовлення
           {ICONS.arrowRight()}

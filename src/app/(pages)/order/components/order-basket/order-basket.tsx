@@ -5,7 +5,7 @@ import { OrderBasketItem } from './components/order-basket-item/order-basket-ite
 import { FormBlock } from '@/components'
 
 interface OrderBasketProps {
-  cart: ICartDto | undefined
+  cart: ICartDto | null | undefined
 }
 
 export const OrderBasket: React.FC<OrderBasketProps> = ({ cart }: OrderBasketProps) => {
