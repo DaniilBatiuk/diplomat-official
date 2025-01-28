@@ -34,6 +34,7 @@ export const HeaderSearch: React.FC<SearchProps> = memo(({ inputRef }: SearchPro
         {ICONS.search()}
         <input
           ref={inputRef}
+          autoComplete='off'
           type='text'
           placeholder='Я шукаю...'
           value={searchValue}

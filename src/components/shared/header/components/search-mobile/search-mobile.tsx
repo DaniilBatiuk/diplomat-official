@@ -49,6 +49,7 @@ export const SearchMobile: React.FC<SearchMobileProps> = memo(
             <div>
               {ICONS.search({ className: styles.search_icon })}
               <input
+                autoComplete='off'
                 ref={inputRefMobile}
                 type='text'
                 placeholder='Я шукаю...'
