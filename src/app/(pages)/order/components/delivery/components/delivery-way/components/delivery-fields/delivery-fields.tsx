@@ -25,7 +25,6 @@ export const DeliveryFields: React.FC<DeliveryFieldsProps> = ({
   deliveryVariants,
   handleChangeDeliveryVariants,
   inputRefCity,
-  searchCityValue,
   setSearchCityActive,
   setSearchDepartmentActive,
   inputRefDepartment,

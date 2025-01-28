@@ -43,7 +43,7 @@ export const SearchPopUpDepartment = <T extends Department | DepartmentUkr>({
             {listData
               .filter(item => regex.test(item[filterKey as keyof T] as string))
               .slice(0, 10)
-              .map((item, index) => {
+              .map(item => {
                 const parts = (item[filterKey as keyof T] as string).split(regex)
                 return (
                   <div
