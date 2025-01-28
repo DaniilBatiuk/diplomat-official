@@ -1,6 +1,9 @@
 @use '@/styles/variables.scss' as var;
 
 .about {
+  &__container {
+    background-color: inherit;
+  }
   &__title {
     @include var.adaptive-value-px(margin-top, 20, 30);
     @include var.adaptive-value-px(margin-bottom, 20, 25);

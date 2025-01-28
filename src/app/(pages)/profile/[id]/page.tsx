@@ -34,7 +34,7 @@ export default async function Profile({ params }: { params: Promise<{ id: string
   const userFromSession = await getUserSession()
   const user = await getUserDetails(id)
 
-  if (!userFromSession || userFromSession.id !== user.id) return notFound()
+  if (!user || !userFromSession || userFromSession.id !== user.id) return notFound()
 
   return (
     <div className={styles.profile}>

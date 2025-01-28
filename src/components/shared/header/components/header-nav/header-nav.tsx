@@ -1,5 +1,7 @@
 import { Badge } from '@mui/material'
+import { $Enums } from '@prisma/client'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { useSession } from 'next-auth/react'
 import { RefObject } from 'react'
 
 import { Link } from '@/components/ui/link/link'
@@ -21,6 +23,7 @@ interface HeaderNavProps {
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({ inputRefMobile }: HeaderNavProps) => {
   const { setBasketActive, setSearchMobileActive } = useHeaderSearchStore()
+  const { data: user } = useSession()
 
   const { data: cart } = useQuery({
     queryKey: ['cart'],
@@ -41,11 +44,13 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ inputRefMobile }: HeaderNa
         </li>
         <HeaderContactsPopUp />
 
-        <li className={styles.admin}>
-          <Link href={LINKS.Admin} prefetch aria-label='Admin'>
-            {ICONS.admin()}
-          </Link>
-        </li>
+        {user && user.user.role === $Enums.UserRole.admin && (
+          <li className={styles.admin}>
+            <Link href={LINKS.Admin} prefetch aria-label='Admin'>
+              {ICONS.admin()}
+            </Link>
+          </li>
+        )}
 
         <ProfileLi />
         <li onClick={() => setBasketActive(true)}>
