@@ -1,5 +1,5 @@
 export const ICONS = {
-  cart: (props?: any) => (
+  cart: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='20px'
       height='24px'
@@ -17,7 +17,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  update: (props?: any) => (
+  update: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22'
       height='22'
@@ -32,7 +32,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  empty: (props?: any) => (
+  empty: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 24 24' {...props}>
       <path
         fill='#231E16'
@@ -40,7 +40,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  delete: (props?: any) => (
+  delete: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22'
       height='22'
@@ -55,7 +55,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  profile: (props?: any) => (
+  profile: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='150'
       height='150'
@@ -77,7 +77,7 @@ export const ICONS = {
       </defs>
     </svg>
   ),
-  admin: (props?: any) => (
+  admin: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' {...props}>
       <path
         fill='#231E16'
@@ -85,7 +85,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  user: (props?: any) => (
+  user: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22px'
       height='24px'
@@ -103,7 +103,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  box: (props?: any) => (
+  box: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22'
       height='22'
@@ -128,7 +128,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  emptyFile: (props?: any) => (
+  emptyFile: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='75'
       height='85'
@@ -143,7 +143,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  contacts: (props?: any) => (
+  contacts: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='26'
       height='24'
@@ -158,7 +158,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  categories: (props?: any) => (
+  categories: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='25px'
       height='24px'
@@ -176,7 +176,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  arrowDown: (props?: any) => (
+  arrowDown: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='23px'
       height='12px'
@@ -191,7 +191,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  search: (props?: any) => (
+  search: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='24px'
       height='24px'
@@ -209,7 +209,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  burger: (props?: any) => (
+  burger: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='26'
       height='24'
@@ -227,7 +227,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  close: (props?: any) => (
+  close: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='26'
       height='26'
@@ -245,7 +245,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  menuCategories: (props?: any) => (
+  menuCategories: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22'
       height='22'
@@ -263,7 +263,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  menuSales: (props?: any) => (
+  menuSales: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22'
       height='22'
@@ -284,7 +284,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  arrowRight: (props?: any) => (
+  arrowRight: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='12'
       height='24'
@@ -299,7 +299,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  menuAboutUs: (props?: any) => (
+  menuAboutUs: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22'
       height='22'
@@ -314,7 +314,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  menuPayment: (props?: any) => (
+  menuPayment: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22'
       height='22'
@@ -330,7 +330,7 @@ export const ICONS = {
     </svg>
   ),
 
-  menuDelivery: (props?: any) => (
+  menuDelivery: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22'
       height='22'
@@ -345,7 +345,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  mark: (props?: any) => (
+  mark: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='24'
       height='24'
@@ -360,7 +360,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  menuReturnProduct: (props?: any) => (
+  menuReturnProduct: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22'
       height='22'
@@ -376,7 +376,7 @@ export const ICONS = {
     </svg>
   ),
 
-  menuPolicy: (props?: any) => (
+  menuPolicy: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22'
       height='22'
@@ -401,7 +401,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  menuRules: (props?: any) => (
+  menuRules: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='22'
       height='22'
@@ -420,7 +420,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  arrowLeft: (props?: any) => (
+  arrowLeft: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='26'
       height='26'
@@ -435,7 +435,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  contactPhone: (props?: any) => (
+  contactPhone: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='40'
       height='40'
@@ -451,7 +451,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  contactTelegram: (props?: any) => (
+  contactTelegram: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='40'
       height='40'
@@ -467,7 +467,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  plus: (props?: any) => (
+  plus: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='30'
       height='30'
@@ -491,7 +491,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  minus: (props?: any) => (
+  minus: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='30'
       height='30'
@@ -512,7 +512,7 @@ export const ICONS = {
       <path d='M21 15.8569H9V14.1426H21V15.8569Z' fill='#F1A84D' />
     </svg>
   ),
-  checkMark: (props?: any) => (
+  checkMark: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='26'
       height='27'
@@ -527,7 +527,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  buy: (props?: any) => (
+  buy: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='30'
       height='26'
@@ -542,7 +542,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  bigMinus: (props?: any) => (
+  bigMinus: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='48'
       height='48'
@@ -563,7 +563,7 @@ export const ICONS = {
       <path d='M32.75 25.25H15.25V22.75H32.75V25.25Z' fill='#F1A84D' />
     </svg>
   ),
-  deleteImage: (props?: any) => (
+  deleteImage: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='40'
       height='40'
@@ -582,7 +582,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  sort: (props?: any) => (
+  sort: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='19'
       height='19'
@@ -600,7 +600,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  filter: (props?: any) => (
+  filter: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='18'
       height='19'
@@ -615,7 +615,7 @@ export const ICONS = {
       />
     </svg>
   ),
-  google: (props?: any) => (
+  google: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='24'
       height='24'
@@ -653,7 +653,7 @@ export const ICONS = {
       </defs>
     </svg>
   ),
-  contactGoogle: (props?: any) => (
+  contactGoogle: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='40'
       height='40'
@@ -692,7 +692,7 @@ export const ICONS = {
       </defs>
     </svg>
   ),
-  error: (props?: any) => (
+  error: (props?: React.SVGProps<SVGSVGElement>) => (
     <svg
       width='664'
       height='469'
