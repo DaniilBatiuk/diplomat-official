@@ -7,7 +7,6 @@ import { debounce } from '@/utils/helpers'
 /**
  * @name useDebounceCallback
  * @description - Hook that creates a debounced callback and returns a stable reference of it
- * @category Utilities
  *
  * @template Params The type of the params
  * @template Return The type of the return
@@ -18,6 +17,7 @@ import { debounce } from '@/utils/helpers'
  * @example
  * const debounced = useDebounceCallback(() => console.log('callback'), 500);
  */
+
 export const useDebounceCallback = <Params extends unknown[], Return>(
   callback: (...args: Params) => Return,
   delay: number,
