@@ -1,17 +1,18 @@
 {
   "name": "diplomat-official",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "db:migrate:dev": "npx prisma migrate dev",
     "db:reset": "npx prisma migrate reset",
     "prisma:studio": "prisma studio",
     "test": "vitest",
-    "test coverage": "vitest --coverage",
+    "coverage": "vitest --coverage",
+    "lint": "next lint",
     "format": "prettier --ignore-path .gitignore --write \"**/*.{ts,tsx,css,scss}\"",
     "prepare": "husky"
   },
@@ -65,12 +66,21 @@
     "eslint-config-next": "15.1.2",
     "husky": "^9.1.7",
     "jsdom": "^26.0.0",
-    "prettier": "3.4.2",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.4.2",
     "prisma": "^6.2.1",
     "sass": "^1.83.0",
     "tsx": "^4.19.2",
     "typescript": "^5",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.0.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint"
+    ],
+    "*.{ts,tsx,css,scss}": [
+      "prettier --write"
+    ]
   }
 }

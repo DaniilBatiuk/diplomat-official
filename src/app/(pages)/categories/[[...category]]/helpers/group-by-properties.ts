@@ -8,7 +8,7 @@ export const groupByProperties = (products: IProductWithProperties[]) => {
   )
   const propertiesGroupedByName = groupBy(uniqueProperties, prop => prop.name)
   const filteredPropertiesGroupedByName = Object.fromEntries(
-    Object.entries(propertiesGroupedByName).filter(([key, values]) => values.length > 1),
+    Object.entries(propertiesGroupedByName).filter(([_, values]) => values.length > 1),
   )
 
   const result: Record<string, string> = {}
