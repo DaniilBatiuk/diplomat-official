@@ -1,4 +1,6 @@
+import { $Enums } from '@prisma/client'
 import clsx from 'clsx'
+import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
 import { DarkBackground } from '@/components/shared/dark-background/dark-background'
@@ -22,7 +24,7 @@ export const HeaderMenu: React.FC<HeaderMenuProp> = ({
   allCategories,
 }: HeaderMenuProp) => {
   const [menuCategoriesActive, setMenuCategoriesActive] = useState(false)
-
+  const { data: user } = useSession()
   const closeMenu = () => {
     setMenuActive(false)
     setMenuCategoriesActive(false)
@@ -105,12 +107,14 @@ export const HeaderMenu: React.FC<HeaderMenuProp> = ({
                 {ICONS.menuRules()} <p>Правила та умови</p>
               </Link>
             </li>
-            <li>
-              <Link href={LINKS.Admin} className={styles.menu_item} onClick={closeMenu} prefetch>
-                {ICONS.admin()}
-                <p>Адмін</p>
-              </Link>
-            </li>
+            {user && user.user.role === $Enums.UserRole.admin && (
+              <li>
+                <Link href={LINKS.Admin} className={styles.menu_item} onClick={closeMenu} prefetch>
+                  {ICONS.admin()}
+                  <p>Адмін</p>
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
       </div>

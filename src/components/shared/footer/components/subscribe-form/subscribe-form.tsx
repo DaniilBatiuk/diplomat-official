@@ -13,6 +13,7 @@ export const SubscribeForm: React.FC = () => {
 
     if (parseResult.success) {
       toast.success('Дякуємо за підписку!')
+      e.currentTarget.reset()
       return
     }
 

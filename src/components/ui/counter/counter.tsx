@@ -37,7 +37,12 @@ export const Counter: React.FC<CounterProps> = ({ mutation, id, quantity }: Coun
   }, [count])
   return (
     <div className={styles.counter}>
-      <button onClick={() => setCount(prev => prev - 1)} disabled={count <= 1} type='button'>
+      <button
+        onClick={() => setCount(prev => prev - 1)}
+        disabled={count <= 1}
+        type='button'
+        aria-label='Додати'
+      >
         {ICONS.minus()}
       </button>
       <input
@@ -53,7 +58,12 @@ export const Counter: React.FC<CounterProps> = ({ mutation, id, quantity }: Coun
           }
         }}
       />
-      <button onClick={() => setCount(prev => prev + 1)} disabled={count >= 99} type='button'>
+      <button
+        onClick={() => setCount(prev => prev + 1)}
+        disabled={count >= 99}
+        type='button'
+        aria-label='Відняти'
+      >
         {ICONS.plus()}
       </button>
     </div>
