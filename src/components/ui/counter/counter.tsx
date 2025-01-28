@@ -22,7 +22,7 @@ interface CounterProps {
   quantity: number
 }
 
-export const Counter: React.FC<CounterProps> = ({ mutation, id, quantity }: CounterProps) => {
+export const Counter: React.FC = ({ mutation, id, quantity }: CounterProps) => {
   const [count, setCount] = useState(quantity)
   const debouncedUpdateCartItem = useDebounceCallback(() => mutation({ id, quantity: count }), 300)
 

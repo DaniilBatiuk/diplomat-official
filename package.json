@@ -12,7 +12,8 @@
     "prisma:studio": "prisma studio",
     "test": "vitest",
     "test coverage": "vitest --coverage",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.{ts,tsx,css,scss}\""
+    "format": "prettier --ignore-path .gitignore --write \"**/*.{ts,tsx,css,scss}\"",
+    "prepare": "husky"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
