@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center"> 
+  <img src="https://bzpfw137bb.ufs.sh/f/xBbtd5hK4pZqpOUx4Hvz9TKHtcJ5FDmAvnV6doCiy1PZe2sg" alt="Logo">
+</div>
 
-## Getting Started
+# 🔥[Diplomat Official](https://diplomat-official.vercel.app) - Online Gift Store
 
-First, run the development server:
+## About the Project
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Diplomat Official is a modern online gift store consisting of 15 pages. 14 SSG or ISR pages. To speed up page loading, custom Link component has been developed. It does prefetch not only js but also pictures. This significantly improves the user UX. Recommend to turn on slow 4g and visit the site 😉.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The project includes the following features:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Authentication and registration
+- Google authentication
+- Creating and updating products (only for users with Admin status)
+- Product search
+- Filtering and sorting products
+- Adding products to the cart
+- Delete products from cart
+- Changing the quantity of items in the cart
+- Writing comments on products
+- Updating user profile information
+- Placing orders
+- Selecting a city and delivery way using a search function (implemented via Nova Poshta and Ukr Poshta APIs)
+- Viewing order history in the profile (if the user was logged in when placing the order)
 
-## Learn More
+## Core Technologies
 
-To learn more about Next.js, take a look at the following resources:
+The project is built using modern technologies:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js 15** — server-side and client-side rendering
+- **React 19** — library for building user interfaces
+- **Zustand** — state management
+- **Prisma** — ORM for database management
+- **React Hook Form** — easy form validation
+- **MUI** — styled components
+- **Zod** — data validation schema
+- **NextAuth.js** — user authentication
+- **Vitest** — testing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contact
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you have any questions or suggestions, feel free to reach out via **[Telegram](https://t.me/DaniilBatiuk)**.
