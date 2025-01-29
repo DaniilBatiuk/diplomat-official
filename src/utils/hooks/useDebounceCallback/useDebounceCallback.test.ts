@@ -29,7 +29,7 @@ it('Should debounce the callback one time', () => {
   expect(callback).toHaveBeenCalledTimes(1)
 })
 
-it('should reset the timer if called again before delay', () => {
+it('Should reset the timer if called again before delay', () => {
   const callback = vi.fn()
   const { result } = renderHook(() => useDebounceCallback(callback, 500))
 
