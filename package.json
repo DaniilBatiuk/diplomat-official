@@ -2,17 +2,29 @@
   "name": "diplomat-official",
   "type": "module",
   "version": "0.1.0",
+  "description": "Online Gift Store",
+  "author": {
+    "name": "Daniil Batiuk",
+    "url": "https://github.com/DaniilBatiuk"
+  },
+  "homepage": "https://github.com/DaniilBatiuk/diplomat-official",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DaniilBatiuk/diplomat-official.git"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "prepublishOnly": "npm run type && npm test && npm run build",
     "db:migrate:dev": "npx prisma migrate dev",
     "db:reset": "npx prisma migrate reset",
     "prisma:studio": "prisma studio",
     "test": "vitest",
     "coverage": "vitest --coverage",
     "lint": "next lint",
+    "type": "tsc --noEmit",
     "format": "prettier --ignore-path .gitignore --write \"**/*.{ts,tsx,css,scss}\"",
     "prepare": "husky"
   },

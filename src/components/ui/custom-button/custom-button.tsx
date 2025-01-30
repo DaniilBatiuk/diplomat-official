@@ -1,8 +1,9 @@
 import clsx from 'clsx'
+import { ComponentProps } from 'react'
 
 import styles from './custom-button.module.scss'
 
-export interface CustomButtonProp extends React.ComponentProps<'button'> {
+export interface CustomButtonProp extends ComponentProps<'button'> {
   fullWidth?: boolean
   big?: boolean
   extraBig?: boolean
