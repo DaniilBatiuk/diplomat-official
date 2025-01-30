@@ -3,7 +3,7 @@
 import { useActionState } from 'react'
 import { toast } from 'react-toastify'
 
-import { initialState } from '@/utils/config/initial-state'
+import { initialState } from '@/utils/constants'
 
 import { useFormResultProcess } from '@/utils/hooks/useFormResultProcess/useFormResultProcess'
 

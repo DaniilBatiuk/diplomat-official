@@ -3,7 +3,7 @@
 import clsx from 'clsx'
 import React, { ReactNode, useEffect } from 'react'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import styles from './modal.module.scss'
 

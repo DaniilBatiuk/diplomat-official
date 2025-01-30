@@ -2,14 +2,14 @@
 
 import { cookies } from 'next/headers'
 
-import { TOKENS } from '@/utils/config/enum-tokens'
+import { TOKENS } from '@/utils/constants'
 
 import { prisma } from '../db'
 
 import { findOrCreateCart, updateCartTotalAmount } from './cart'
 import { errorCatch } from '@/utils/helpers'
 
-async function checkCartItemExists(id: string) {
+export const checkCartItemExists = async (id: string) => {
   const cartItem = await prisma.cartItem.findFirst({
     where: {
       id: id,
@@ -58,7 +58,7 @@ export const createCartItem = errorCatch(async (productId: string) => {
   await updateCartTotalAmount()
 })
 
-export async function deleteCartItem(id: string) {
+export const deleteCartItem = async (id: string) => {
   await checkCartItemExists(id)
 
   await prisma.cartItem.delete({
@@ -70,7 +70,7 @@ export async function deleteCartItem(id: string) {
   await updateCartTotalAmount()
 }
 
-export async function updateCartItem({ id, quantity }: { id: string; quantity: number }) {
+export const updateCartItem = async ({ id, quantity }: { id: string; quantity: number }) => {
   await checkCartItemExists(id)
 
   await prisma.cartItem.update({

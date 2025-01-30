@@ -1,4 +1,4 @@
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import styles from './../../profile.module.scss'
 import { SignOutButton } from './components/sign-out-button/sign-out-button'

@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { Dispatch, SetStateAction } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import './photo.scss'
 import { OurFileRouter } from '@/app/api/uploadthing/core'

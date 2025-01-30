@@ -1,5 +1,4 @@
-import { ICONS } from '@/utils/config/icons'
-import { LINKS } from '@/utils/config/links'
+import { ICONS, LINKS } from '@/utils/constants'
 
 import styles from './../info.module.scss'
 import { CustomButton, Link, Title } from '@/components'

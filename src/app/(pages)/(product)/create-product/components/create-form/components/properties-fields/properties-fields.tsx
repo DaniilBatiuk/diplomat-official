@@ -7,7 +7,7 @@ import {
   UseFormRegister,
 } from 'react-hook-form'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import styles from './../../../../create-product.module.scss'
 import { CustomButton, FormBlock } from '@/components'

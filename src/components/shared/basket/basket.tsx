@@ -1,7 +1,7 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import clsx from 'clsx'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import { getCart } from '@/utils/lib/actions/cart'
 

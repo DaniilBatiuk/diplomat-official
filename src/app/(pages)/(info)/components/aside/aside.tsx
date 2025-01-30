@@ -3,7 +3,7 @@
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation'
 
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import styles from './../../info.module.scss'
 import { Link } from '@/components'

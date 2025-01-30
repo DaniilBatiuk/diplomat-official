@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 export default function robots(): MetadataRoute.Robots {
   return {

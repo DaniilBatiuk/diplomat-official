@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction, useState } from 'react'
 
 import { DarkBackground } from '@/components/shared/dark-background/dark-background'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import { CategoriesColumns } from './components/categories-columns/categories-columns'
 import styles from './header-catalog.module.scss'

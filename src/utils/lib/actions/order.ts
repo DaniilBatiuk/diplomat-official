@@ -3,7 +3,7 @@
 import { revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 
-import { TOKENS } from '@/utils/config/enum-tokens'
+import { TOKENS } from '@/utils/constants'
 
 import { getUserSession } from '@/utils/helpers/get-user-session'
 import { prisma } from '@/utils/lib/db'

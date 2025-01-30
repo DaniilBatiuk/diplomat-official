@@ -3,7 +3,7 @@ import { $Enums } from '@prisma/client'
 import clsx from 'clsx'
 import Image from 'next/image'
 
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import styles from './card.module.scss'
 import { AdminBlock } from './components/admin-block/admin-block'

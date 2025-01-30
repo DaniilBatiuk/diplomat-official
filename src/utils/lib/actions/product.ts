@@ -6,7 +6,7 @@ import { revalidateTag } from 'next/cache'
 import { createProperty, deleteAllProperties } from './property'
 import { prisma } from '@/utils/lib/db'
 
-export async function createProduct(product: IProductCreate) {
+export const createProduct = async (product: IProductCreate) => {
   const { properties: productProperties, ...productCreateData } = product
   const newProduct = await prisma.product.create({
     data: {
@@ -25,7 +25,7 @@ export async function createProduct(product: IProductCreate) {
   revalidateTag('products')
 }
 
-export async function updateProduct(product: IProductCreate, id: string) {
+export const updateProduct = async (product: IProductCreate, id: string) => {
   const { properties: _, ...productUpdateData } = product
   const updatedProduct = await prisma.product.update({
     where: {
@@ -50,7 +50,7 @@ export async function updateProduct(product: IProductCreate, id: string) {
   revalidateTag('products')
 }
 
-export async function deleteProduct(id: string) {
+export const deleteProduct = async (id: string) => {
   const isProductExists = await prisma.product.findUnique({
     where: {
       id,
@@ -78,7 +78,13 @@ export async function deleteProduct(id: string) {
   revalidateTag('products')
 }
 
-export async function changeProductStatus({ id, status }: { id: string; status: $Enums.Status }) {
+export const changeProductStatus = async ({
+  id,
+  status,
+}: {
+  id: string
+  status: $Enums.Status
+}) => {
   await prisma.product.update({
     where: {
       id,

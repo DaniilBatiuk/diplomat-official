@@ -5,8 +5,7 @@ import clsx from 'clsx'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 
-import { ICONS } from '@/utils/config/icons'
-import { SORT_VARIANTS } from '@/utils/config/sort-variants'
+import { ICONS, SORT_VARIANTS } from '@/utils/constants'
 
 import styles from './menu-sort.module.scss'
 import { DarkBackground } from '@/components'

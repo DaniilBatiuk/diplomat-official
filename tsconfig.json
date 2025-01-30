@@ -24,6 +24,7 @@
       "@/*": ["./src/*"],
       "@/components": ["./src/components"],
       "@/utils/hooks": ["./src/utils/hooks"],
+      "@/utils/constants": ["./src/utils/constants"],
       "@/utils/lib/actions": ["./src/utils/lib/actions"],
       "@/utils/lib/helpers": ["./src/utils/lib/helpers"]
     }

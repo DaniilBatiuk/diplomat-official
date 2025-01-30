@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 
-import { COMMON_METADATA, WEB_NAME } from '../config/seo-constants'
+import { COMMON_METADATA, WEB_NAME } from '../constants'
 
 export const metadataFactory = (pageTitle?: string): Metadata => ({
   generator: 'Next.js',

@@ -6,8 +6,7 @@ import { RefObject } from 'react'
 
 import { Link } from '@/components/ui/link/link'
 
-import { ICONS } from '@/utils/config/icons'
-import { LINKS } from '@/utils/config/links'
+import { ICONS, LINKS } from '@/utils/constants'
 
 import { getCart } from '@/utils/lib/actions/cart'
 

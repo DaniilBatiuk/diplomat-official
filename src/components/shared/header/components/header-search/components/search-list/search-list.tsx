@@ -1,4 +1,4 @@
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import { HeaderList } from '../../../header-list/header-list'
 import { SearchLink } from '../search-link/search-link'

@@ -6,8 +6,7 @@ import { toast } from 'react-toastify'
 
 import { Link } from '@/components/ui/link/link'
 
-import { ICONS } from '@/utils/config/icons'
-import { LINKS } from '@/utils/config/links'
+import { ICONS, LINKS } from '@/utils/constants'
 
 import { deleteProduct } from '@/utils/lib/actions/product'
 

@@ -1,4 +1,4 @@
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import styles from './../../categories.module.scss'
 import { Link } from '@/components'

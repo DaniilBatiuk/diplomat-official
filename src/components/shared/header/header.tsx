@@ -4,8 +4,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import { useRef } from 'react'
 
-import { ICONS } from '@/utils/config/icons'
-import { LINKS } from '@/utils/config/links'
+import { ICONS, LINKS } from '@/utils/constants'
 
 import { HeaderButton } from './components/header-button/header-button'
 import { HeaderNav } from './components/header-nav/header-nav'

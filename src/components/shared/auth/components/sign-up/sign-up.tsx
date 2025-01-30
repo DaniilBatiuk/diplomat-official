@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 
 import { CustomButton } from '@/components/ui/custom-button/custom-button'
 
-import { initialState } from '@/utils/config/initial-state'
+import { initialState } from '@/utils/constants'
 
 import { useFormResultProcess } from '@/utils/hooks/useFormResultProcess/useFormResultProcess'
 

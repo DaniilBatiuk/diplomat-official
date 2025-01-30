@@ -1,6 +1,6 @@
 import { Skeleton } from '@mui/material'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import styles from './../../order.module.scss'
 import { CustomButton, FormBlock } from '@/components'

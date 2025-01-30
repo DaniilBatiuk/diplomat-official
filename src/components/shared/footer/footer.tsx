@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import { CopyLi } from './components/copy-li/copy-li'
 import { SubscribeForm } from './components/subscribe-form/subscribe-form'

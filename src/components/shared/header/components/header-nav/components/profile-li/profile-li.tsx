@@ -1,8 +1,7 @@
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
-import { ICONS } from '@/utils/config/icons'
-import { LINKS } from '@/utils/config/links'
+import { ICONS, LINKS } from '@/utils/constants'
 
 import { useHeaderSearchStore } from '@/utils/lib/store/header-search-store'
 

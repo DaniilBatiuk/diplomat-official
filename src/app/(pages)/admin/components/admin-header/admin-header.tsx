@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import styles from './../../admin.module.scss'
 import { CustomButton, Title } from '@/components'

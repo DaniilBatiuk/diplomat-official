@@ -5,8 +5,7 @@ import { useState } from 'react'
 
 import { DarkBackground } from '@/components/shared/dark-background/dark-background'
 
-import { ICONS } from '@/utils/config/icons'
-import { LINKS } from '@/utils/config/links'
+import { ICONS, LINKS } from '@/utils/constants'
 
 import { MenuCategories } from './components/menu-categories/menu-categories'
 import styles from './header-menu.module.scss'

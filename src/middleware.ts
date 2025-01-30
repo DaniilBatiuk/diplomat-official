@@ -2,7 +2,7 @@ import { $Enums } from '@prisma/client'
 import { withAuth } from 'next-auth/middleware'
 import { NextResponse } from 'next/server'
 
-import { LINKS } from './utils/config/links'
+import { LINKS } from './utils/constants'
 
 export default withAuth(
   function middleware(req) {

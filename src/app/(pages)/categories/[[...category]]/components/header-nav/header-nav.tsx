@@ -4,7 +4,7 @@ import { Suspense, useState } from 'react'
 
 import { MenuCategories } from '@/components/shared/header/components/header-menu/components/menu-categories/menu-categories'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import styles from './../../categories.module.scss'
 import { MenuFilters } from './components/menu-filters/menu-filters'

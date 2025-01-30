@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import styles from './gallery.module.scss'
 import gallery2 from '@/../public/gallery2.webp'

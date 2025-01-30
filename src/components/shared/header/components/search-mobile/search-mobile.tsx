@@ -2,8 +2,7 @@ import clsx from 'clsx'
 import { useRouter } from 'next/navigation'
 import { memo } from 'react'
 
-import { ICONS } from '@/utils/config/icons'
-import { LINKS } from '@/utils/config/links'
+import { ICONS, LINKS } from '@/utils/constants'
 
 import { SearchList } from '../header-search/components/search-list/search-list'
 

@@ -2,7 +2,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
 import clsx from 'clsx'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import styles from './../../product.module.scss'
 import { AddButton } from './components/add-button/add.button'

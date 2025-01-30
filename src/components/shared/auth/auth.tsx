@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import { SignInPage } from './components/sign-in/sign-in'
 import { SignUpPage } from './components/sign-up/sign-up'

@@ -1,6 +1,6 @@
 import { Skeleton } from '@mui/material'
 
-import { PRODUCTS } from '@/utils/config/mock-data'
+import { PRODUCTS } from '@/utils/constants'
 
 import { Card } from '../card/card'
 

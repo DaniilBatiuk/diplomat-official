@@ -1,6 +1,6 @@
 'use client'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import { CustomButton } from '@/components'
 import { useCartAdd } from '@/utils/hooks'

@@ -5,8 +5,7 @@ import { useForm } from 'react-hook-form'
 
 import { CustomButton } from '@/components/ui/custom-button/custom-button'
 
-import { ICONS } from '@/utils/config/icons'
-import { LINKS } from '@/utils/config/links'
+import { ICONS, LINKS } from '@/utils/constants'
 
 import { CustomField } from '../../../../ui/custom-field/custom-field'
 import styles from '../../sign-in.module.scss'

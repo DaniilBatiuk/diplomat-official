@@ -1,7 +1,6 @@
 import Image from 'next/image'
 
-import { ICONS } from '@/utils/config/icons'
-import { LINKS } from '@/utils/config/links'
+import { ICONS, LINKS } from '@/utils/constants'
 
 import styles from './home-header.module.scss'
 import HomeImg from '@/../public/home.webp'

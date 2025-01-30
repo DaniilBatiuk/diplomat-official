@@ -1,7 +1,7 @@
 import { Skeleton } from '@mui/material'
 import { Suspense } from 'react'
 
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import { SelectCategories } from '../select/select'
 

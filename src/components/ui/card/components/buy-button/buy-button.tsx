@@ -5,7 +5,7 @@ import clsx from 'clsx'
 
 import { CustomButton } from '@/components/ui/custom-button/custom-button'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import styles from './../../card.module.scss'
 import { useCartAdd, useProductChangeStatus } from '@/utils/hooks'

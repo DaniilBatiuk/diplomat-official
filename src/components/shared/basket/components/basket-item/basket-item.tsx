@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import { Counter } from '@/components/ui/counter/counter'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import styles from './basket-item.module.scss'
 import { calculateRoundedPriceToString } from '@/utils/helpers'

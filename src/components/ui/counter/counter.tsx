@@ -3,7 +3,7 @@
 import { UseMutateFunction } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import styles from './counter.module.scss'
 import { useDebounceCallback } from '@/utils/hooks'

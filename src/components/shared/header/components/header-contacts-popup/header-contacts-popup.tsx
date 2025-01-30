@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import styles from './header-contacts-popup.module.scss'
 import { useClickOutside } from '@/utils/hooks'

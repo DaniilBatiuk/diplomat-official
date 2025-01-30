@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, UseFieldArrayAppend } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import { createProduct, updateProduct } from '@/utils/lib/actions/product'
 

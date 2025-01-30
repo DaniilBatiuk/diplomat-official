@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Dispatch, SetStateAction } from 'react'
 
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import styles from '../../header-catalog.module.scss'
 

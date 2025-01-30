@@ -3,8 +3,7 @@
 import Cookies from 'js-cookie'
 import { signOut, useSession } from 'next-auth/react'
 
-import { TOKENS } from '@/utils/config/enum-tokens'
-import { LINKS } from '@/utils/config/links'
+import { LINKS, TOKENS } from '@/utils/constants'
 
 import styles from './../../../../profile.module.scss'
 import { CustomButton } from '@/components'

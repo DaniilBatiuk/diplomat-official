@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import styles from './../../basket.module.scss'
 import Empty from '@/../public/empty.png'

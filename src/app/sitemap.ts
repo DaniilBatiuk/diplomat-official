@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 
-import { LINKS } from '@/utils/config/links'
+import { LINKS } from '@/utils/constants'
 
 import { prisma } from '@/utils/lib/db'
 import { getCategories, getProducts } from '@/utils/lib/queries'

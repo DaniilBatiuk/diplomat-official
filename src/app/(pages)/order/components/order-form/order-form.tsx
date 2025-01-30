@@ -5,8 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useActionState } from 'react'
 import { toast } from 'react-toastify'
 
-import { initialState } from '@/utils/config/initial-state'
-import { LINKS } from '@/utils/config/links'
+import { LINKS, initialState } from '@/utils/constants'
 
 import { useFormResultProcess } from '@/utils/hooks/useFormResultProcess/useFormResultProcess'
 

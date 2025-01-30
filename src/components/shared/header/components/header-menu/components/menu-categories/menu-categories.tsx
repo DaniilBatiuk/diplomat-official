@@ -2,8 +2,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import { Dispatch, SetStateAction } from 'react'
 
-import { ICONS } from '@/utils/config/icons'
-import { LINKS } from '@/utils/config/links'
+import { ICONS, LINKS } from '@/utils/constants'
 
 import styles from '../../header-menu.module.scss'
 

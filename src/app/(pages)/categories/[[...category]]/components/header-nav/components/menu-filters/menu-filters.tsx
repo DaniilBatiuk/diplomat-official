@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { Dispatch, SetStateAction, Suspense } from 'react'
 
-import { ICONS } from '@/utils/config/icons'
+import { ICONS } from '@/utils/constants'
 
 import { AsidePropertiesList } from '../../../aside-properties-list/aside-properties-list'
 
