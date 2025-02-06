@@ -9,7 +9,10 @@ export const useCartAdd = () => {
   return useMutation({
     mutationFn: createCartItem,
     onSuccess: ({ error }) => {
-      if (error) toast.error(error)
+      if (error)
+        toast.error(
+          error.includes('prisma') ? 'Помилка підключення до БД. Спробуйте через 10 хвилин' : error,
+        )
       else {
         toast.success('Товар був доданий до кошику')
         queryClient.invalidateQueries({
